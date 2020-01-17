@@ -7,7 +7,7 @@
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "electron-forge make",
   },
   "keywords": [],
   "author": "Andy",
@@ -18,7 +18,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "electron-python-base"
+            "name": "print42"
           }
         },
         {
@@ -29,21 +29,28 @@
         },
         {
           "name": "@electron-forge/maker-dmg",
+          "config": {
+            "background": "src/images/print42-dmg-bgnd.png"
+          },
           "platforms": [
             "darwin"
           ]
         },
         {
           "name": "@electron-forge/maker-deb",
+          "config": {
+            "icon": "src/images/png/128x128.png"
+          },
           "platforms": [
             "linux"
           ]
         }
       ],
       "packagerConfig": {
-        "executableName": "electron-python-base",
+        "executableName": "print42",
         "packageManager": "npm",
         "prune": true,
+        "icon": "src/icons/icon",
         "ignore": [
           "\\.git(ignore|config)",
           "/package-lock\\.json",
