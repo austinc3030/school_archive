@@ -1,0 +1,17 @@
+{
+  "name": "python-and-electron-base",
+  "version": "1.0.0",
+  "description": "A minimal application using electron as a frontend and python as the backend.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "license": "",
+  "devDependencies": {
+    "electron": "^1.8.4"
+  },
+  "dependencies": {
+    "path": "^0.12.7",
+    "python-shell": "^1.0.7"
+  }
+}

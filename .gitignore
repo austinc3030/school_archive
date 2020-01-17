@@ -1,0 +1,8 @@
+# Node Stuff
+node_modules/
+
+# Python Stuff
+.venv
+
+# Mac Stuff
+.DS_store
