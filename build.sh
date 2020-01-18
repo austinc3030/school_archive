@@ -1,14 +1,15 @@
 #!/bin/bash
 # Cleanup previous build
 rm -rf out/
-rm -rf python/build/ 
-rm -rf python/dist/
-rm -rf python/__pycache__/
+rm -rf py_src/build/ 
+rm -rf py_src/dist/
+rm -rf py_src/__pycache__/
+rm -rf py_src/*.spec
 rm -rf py_out/
 
 # Build python stuff
 source .venv/bin/activate
-pyinstaller python/python.spec --distpath py_out --workpath python/build --specpath python/ --onefile 
+pyinstaller py_src/pytest1.py --distpath py_out --workpath py_src/build --specpath py_src/ --onefile 
 deactivate
 
 # Build and package

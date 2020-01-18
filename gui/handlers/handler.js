@@ -5,7 +5,7 @@ function handler() {
 
   var current_dir = __dirname;
   var python_dir = path.join( current_dir, '..', 'py_out' );
-  var python_file = path.join( python_dir, 'python' );
+  var python_file = path.join( python_dir, 'pytest1' );
 
   var executablePath = python_file;
 

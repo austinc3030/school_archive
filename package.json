@@ -45,7 +45,7 @@
         "packageManager": "npm",
         "prune": true,
         "ignore": [
-          "\\.git(ignore|config)",
+          "\\.git(ignore|config|attributes)",
           "/package-lock\\.json",
           "/README\\.md",
           "package.json.bak",
@@ -53,7 +53,7 @@
           "requirements.txt",
           "build.sh",
           ".venv",
-	  "python/"
+          "py_src"
         ]
       }
     }

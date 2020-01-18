@@ -1,5 +1,5 @@
 import sys
-from pythontest import pytest2
+from pytest2 import pytest2
 
 # Receive arguments
 arg1 = sys.argv[1]

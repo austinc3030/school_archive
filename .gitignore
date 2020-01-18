@@ -4,10 +4,10 @@ out/
 
 # Python Stuff
 .venv
-python/__pycache__
-python/build
-python/dist
-python/python.spec
+py_src/__pycache__
+py_src/build
+py_src/dist
+py_src/*.spec
 py_out
 
 # Mac Stuff
