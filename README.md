@@ -1,19 +1,24 @@
-Dependenices
+Dependenices for building (All OS's)
 <br>	* Python
+<br> * Virtualenv
 <br>	* NodeJS
-<br>	* electron.js
-<br>	* python-shell
- 
+
+Additional dependencies for building (Windows)
+<br>	* Git
+<br> * Inno Setup (https://www.jrsoftware.org/isinfo.php)
+
 Steps:
 <br>	1.) Clone the repo
-<br>	2.) cd electron-app-with-python-gui
-<br>	3.) pip install --user -r requirements.txt
-<br>	4.) npm install
-<br>	5.) npm start
+<br>	2.) cd electron-python-base
+<br> 3.) Depending on OS, run script in the /scripts directory
+<br> NOTE: Setup scripts are meant to help get the environment setup.
 
-When Adding npm Packages (Either by `npm install` or adding to package.json) After "Steps"
+Note on Windows Power Shell Scripts: 
+<br> In order to use the .ps1 scripts, you must run `Set-ExecutionPolicy Unrestricted -Scope process -Force` to enable running scripts. This needs to be run any time you start a new poweshell session.
+
+When Adding npm Packages (Either by `npm install` or adding to package.json) After "Steps" (Needs to update the package-lock.json file)
 <br>	npm install
 <br>	rm -rf node_modules
 <br>	npm install
 
-Adapted from: https://github.com/SouravJohar/python-app-with-electron-gui
+See references.txt for links and resources I used to figure all this out. 
