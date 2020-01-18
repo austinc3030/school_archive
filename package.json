@@ -10,7 +10,7 @@
     "make": "electron-forge make"
   },
   "keywords": [],
-  "author": "Andy",
+  "author": "Austin Conn",
   "license": "",
   "config": {
     "forge": {
@@ -47,7 +47,13 @@
         "ignore": [
           "\\.git(ignore|config)",
           "/package-lock\\.json",
-          "/README\\.md"
+          "/README\\.md",
+	  "package.json.bak",
+	  "references.txt",
+	  "requirements.txt",
+	  "python/__pycache__",
+	  "python/build",
+	  "python/python.spec"
         ]
       }
     }
