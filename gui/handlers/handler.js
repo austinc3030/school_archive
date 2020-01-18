@@ -1,20 +1,22 @@
-let {PythonShell} = require('python-shell')
-var path = require("path")
-
+const path = require('path');
+var child = require('child_process').execFile;
 
 function handler() {
 
-  var result = document.getElementById("result").value
-  
-  var options = {
-    scriptPath : path.join(__dirname, '/../python/'),
-    args : [result]
-  }
+  var current_dir = __dirname;
+  var python_dir = path.join( current_dir, '..', 'py_out' );
+  var python_file = path.join( python_dir, 'python' );
 
-  let pyshell = new PythonShell('python.py', options);
+  var executablePath = python_file;
 
+  var result = document.getElementById("result").value;
+  var parameters = [result];   
+ 
+  child(executablePath, parameters, function(err, data) {
+  //child(executablePath, function(err, data) {
+       console.log(err)
+       //console.log(data.toString());
+       document.getElementById("result").value = data.toString();
+  });
 
-  pyshell.on('message', function(message) {
-      document.getElementById("result").value = message;
-  })
 }

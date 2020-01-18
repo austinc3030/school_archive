@@ -48,12 +48,12 @@
           "\\.git(ignore|config)",
           "/package-lock\\.json",
           "/README\\.md",
-	  "package.json.bak",
-	  "references.txt",
-	  "requirements.txt",
-	  "python/__pycache__",
-	  "python/build",
-	  "python/python.spec"
+          "package.json.bak",
+          "references.txt",
+          "requirements.txt",
+          "build.sh",
+          ".venv",
+	  "python/"
         ]
       }
     }
