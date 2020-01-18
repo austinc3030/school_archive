@@ -51,9 +51,9 @@
           "package.json.bak",
           "references.txt",
           "requirements.txt",
-          "build.sh",
           ".venv",
-          "py_src"
+          "py_src",
+	  "scripts"
         ]
       }
     }
