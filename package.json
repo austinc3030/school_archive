@@ -53,7 +53,7 @@
           "requirements.txt",
           ".venv",
           "py_src",
-	  "scripts"
+          "scripts"
         ]
       }
     }

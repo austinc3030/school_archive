@@ -12,3 +12,9 @@ py_out
 
 # Mac Stuff
 .DS_store
+
+# Inno Stuff
+scripts/Output
+
+# Built installer
+epb-setup.exe
