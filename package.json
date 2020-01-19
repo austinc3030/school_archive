@@ -35,6 +35,11 @@
         },
         {
           "name": "@electron-forge/maker-deb",
+          "config": {
+            "depends": [
+              "libgconf-2-4"
+            ]
+          },
           "platforms": [
             "linux"
           ]
