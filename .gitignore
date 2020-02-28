@@ -8,7 +8,6 @@ py_src/__pycache__
 py_src/build
 py_src/dist
 py_out
-build
 
 # Mac Stuff
 .DS_store
@@ -18,3 +17,6 @@ scripts/Output
 
 # Built installer
 epb-setup.exe
+
+# Visual Studio Code Stuff
+.vscode
