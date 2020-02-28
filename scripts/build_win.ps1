@@ -8,7 +8,7 @@ Remove-Item "py_out" -Force -Recurse -ErrorAction Ignore
 
 # Build python part
 .\.venv\Scripts\activate.ps1
-pyinstaller py_src/pytest1.py --distpath py_out --workpath py_src/build --specpath py_src/ --onefile
+pyinstaller py_src/api.spec --distpath py_out
 deactivate
 
 # Build it

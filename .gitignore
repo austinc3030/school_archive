@@ -7,10 +7,8 @@ out/
 py_src/__pycache__
 py_src/build
 py_src/dist
-py_src/*.spec
 py_out
 build
-dist
 
 # Mac Stuff
 .DS_store
