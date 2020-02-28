@@ -19,7 +19,7 @@ npm run package
 
 # Build the installer
 & 'C:\Program Files (x86)\Inno Setup 6\ISCC.exe' /q .\scripts\inno_builder_script.iss
-cp .\scripts\Output\electron-python-base.exe ./epb-setup.exe
+cp .\out\epb-setup.exe ./epb-setup.exe
 Remove-Item "scripts\Output" -Force -Recurse -ErrorAction Ignore
 
 # Run the installer
