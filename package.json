@@ -1,8 +1,8 @@
 {
-  "name": "electron-python-base",
-  "productName": "electron-python-base",
+  "name": "netlock",
+  "productName": "netlock",
   "version": "1.0.0",
-  "description": "A minimal application using electron as a frontend and python as the backend.",
+  "description": "A simple application to configure consumer grade routers for the average user.",
   "main": "main.js",
   "scripts": {
     "start": "electron-forge start",
@@ -10,7 +10,11 @@
     "make": "electron-forge make"
   },
   "keywords": [],
-  "author": "Austin Conn",
+  "author": "",
+  "contributors": [
+    "Austin Conn",
+    "Andrew Hooper"
+  ],
   "license": "",
   "config": {
     "forge": {
@@ -18,7 +22,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "electron-python-base"
+            "name": "netlock"
           }
         },
         {
@@ -46,7 +50,7 @@
         }
       ],
       "packagerConfig": {
-        "executableName": "electron-python-base",
+        "executableName": "netlock",
         "packageManager": "npm",
         "prune": true,
         "ignore": [

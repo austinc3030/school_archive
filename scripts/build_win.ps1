@@ -2,7 +2,7 @@
 Set-ExecutionPolicy Unrestricted -Scope process -Force
 
 # Remove previous build outputs
-Remove-Item "epb-setup.exe" -Force -Recurse -ErrorAction Ignore
+Remove-Item "netlock-setup.exe" -Force -Recurse -ErrorAction Ignore
 Remove-Item "out" -Force -Recurse -ErrorAction Ignore
 Remove-Item "py_out" -Force -Recurse -ErrorAction Ignore
 
@@ -14,13 +14,9 @@ deactivate
 # Build it
 npm run package
 
-# Start the output for testing
-# Start-Process -FilePath .\out\electron-python-base-win32-ia32\electron-python-base.exe
-
 # Build the installer
 & 'C:\Program Files (x86)\Inno Setup 6\ISCC.exe' /q .\scripts\inno_builder_script.iss
-cp .\out\epb-setup.exe ./epb-setup.exe
-Remove-Item "scripts\Output" -Force -Recurse -ErrorAction Ignore
+cp .\out\netlock-setup.exe ./netlock-setup.exe
 
 # Run the installer
-Start-Process -FilePath .\epb-setup.exe
+Start-Process -FilePath .\netlock-setup.exe

@@ -15,4 +15,4 @@ deactivate
 npm run make
 
 # Open app
-open out/electron-python-base-darwin-x64/electron-python-base.app/
+open out/netlock-darwin-x64/netlock.app/

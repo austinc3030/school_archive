@@ -13,6 +13,3 @@ deactivate
 
 # Build and package
 npm run make
-
-# Open app
-#open out/electron-python-base-darwin-x64/electron-python-base.app/
