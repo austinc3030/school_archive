@@ -1,18 +1,19 @@
-// This file is required by the index.html file
-// Executed in the renderer process for that window.
-// All the Node.js APIs are available in this process.
+// Create the client for the server
 const zerorpc = require( "zerorpc" )
-
-
-
 let client = new zerorpc.Client( )
 
+// Get a reference to the formula and result elements
+let formula = document.querySelector( '#formula' )
+let result  = document.querySelector( '#result'  )
 
 
-client.connect("tcp://127.0.0.1:4242")
+
+// Connect to the rpc server
+client.connect( "tcp://127.0.0.1:4242" )
 
 
 
+// Check if the server is ready
 client.invoke( "echo", "server ready", ( error, res ) => {
 
   if( error || res !== 'server ready' ) {
@@ -23,21 +24,17 @@ client.invoke( "echo", "server ready", ( error, res ) => {
 
     console.log( "server is ready" )
 
-  }
+  } // End if
 
-})
-
-
-
-let formula = document.querySelector( '#formula' )
+}) // End invoke( "echo" )
 
 
 
-let result = document.querySelector( '#result' )
-
-
-
-formula.addEventListener( 'input', ( ) => {
+// ****************************************************************************
+// Name: calculate
+// Abstract: Send the formula to the server to calculate it
+// ****************************************************************************
+const calculate = ( ) => {
   
   client.invoke( "calc", formula.value, ( error, res ) => {
   
@@ -49,12 +46,16 @@ formula.addEventListener( 'input', ( ) => {
   
       result.textContent = res
   
-    }
+    } // End if
   
-  })
+  }) // End invoke( "calc" )
 
-})
+} // End getScriptPath( )
 
 
 
+// Add an event listener to formula
+formula.addEventListener( 'input', calculate ) // End EventListener
+
+// Calculate the default prefilled equation
 formula.dispatchEvent( new Event( 'input' ) )
