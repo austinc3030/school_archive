@@ -5,98 +5,165 @@ A calculator based on https://en.wikipedia.org/wiki/Reverse_Polish_notation
 from __future__ import print_function
 
 
-def getPrec(c):
+
+def getPrec( c ):
+    
     if c in "+-":
+    
         return 1
+    
     if c in "*/":
+    
         return 2
+    
     if c in "^":
+    
         return 3
+    
     return 0
 
-def getAssoc(c):
+
+
+def getAssoc( c ):
+    
     if c in "+-*/":
+    
         return "LEFT"
+    
     if c in "^":
+    
         return "RIGHT"
+    
     return "LEFT"
 
-def getBin(op, a, b):
+def getBin( op, a, b ):
+
     if op == '+':
+
         return a + b
+
     if op == '-':
+
         return a - b
+
     if op == '*':
+
         return a * b
+
     if op == '/':
+
         return a / b
+
     if op == '^':
+
         return a ** b
+
     return 0
 
-def calc(s):
-    numStk = []
-    opStk = []
-    i = 0
+
+
+def calc( s ):
+    
+    numStk  = [ ]
+    opStk   = [ ]
+    i       = 0
     isUnary = True
-    while (i < len(s)):
-        while (i < len(s) and s[i] == ' '):
+    
+    while ( i < len( s ) ):
+        
+        while ( i < len( s ) and s[ i ] == ' ' ):
+        
             i += 1
-        if (i >= len(s)):
+        
+        if ( i >= len( s ) ):
+        
             break
-        if (s[i].isdigit()):
+
+        if ( s[ i ].isdigit( ) ):
             num = ''
-            while (i < len(s) and (s[i].isdigit() or s[i] == '.')):
-                num += s[i]
+            
+            while ( i < len( s ) and ( s[ i ].isdigit( ) or s[ i ] == '.' ) ):
+                num += s[ i ]
                 i += 1
-            numStk.append(float(num))
+
+            numStk.append( float( num ) )
             isUnary = False
             continue
 
-        if (s[i] in "+-*/^"):
+        if ( s[ i ] in "+-*/^" ):
+            
             if isUnary:
-                opStk.append('#')
+
+                opStk.append( '#' )
+            
             else:
-                while (len(opStk) > 0):
-                    if ((getAssoc(s[i]) == "LEFT" and getPrec(s[i]) <= getPrec(opStk[-1])) or 
-                        (getAssoc(s[i]) == "RIGHT" and getPrec(s[i]) < getPrec(opStk[-1]))):
-                        op = opStk.pop()
+                
+                while ( len( opStk ) > 0 ):
+                    
+                    if ( ( getAssoc( s[ i ] ) == "LEFT"  and getPrec( s[ i ] ) <= getPrec( opStk[ -1 ] ) ) or 
+                         ( getAssoc( s[ i ] ) == "RIGHT" and getPrec( s[ i ] ) <  getPrec( opStk[ -1 ] ) ) ):
+                        
+                        op = opStk.pop( )
+
                         if op == '#':
-                            numStk.append(-numStk.pop())
+                            
+                            numStk.append( -numStk.pop( ) )
+                        
                         else:
-                            b = numStk.pop()
-                            a = numStk.pop()
-                            numStk.append(getBin(op, a, b))
+                            b = numStk.pop( )
+                            a = numStk.pop( )
+                            numStk.append( getBin( op, a, b ) )
+                        
                         continue
+                    
                     break
-                opStk.append(s[i])
+
+                opStk.append( s[ i ] )
+            
             isUnary = True
-        elif (s[i] == '('):
-            opStk.append(s[i])
+        
+        elif ( s[ i ] == '(' ):
+            
+            opStk.append( s[ i ] ) 
             isUnary = True
+        
         else:
-            while (len(opStk) > 0):
-                op = opStk.pop()
-                if (op == '('):
+
+            while ( len( opStk ) > 0 ):
+                
+                op = opStk.pop( )
+                
+                if ( op == '(' ):
+                
                     break
+                
                 if op == '#':
-                    numStk.append(-numStk.pop())
+                
+                    numStk.append( -numStk.pop( ) )
+                
                 else:
-                    b = numStk.pop()
-                    a = numStk.pop()
-                    numStk.append(getBin(op, a, b))
+                
+                    b = numStk.pop( )
+                    a = numStk.pop( )
+                    numStk.append( getBin( op, a, b ) )
+        
         i += 1
 
-    while (len(opStk) > 0):
-        op = opStk.pop()
-        if op == '#':
-            numStk.append(-numStk.pop())
-        else:
-            b = numStk.pop()
-            a = numStk.pop()
-            numStk.append(getBin(op, a, b))
+    while ( len( opStk ) > 0 ):
 
-    return numStk.pop()
+        op = opStk.pop( )
+        
+        if op == '#':
+        
+            numStk.append( -numStk.pop( ) )
+        
+        else:
+        
+            b = numStk.pop( )
+            a = numStk.pop( )
+            numStk.append( getBin( op, a, b ) )
+
+    return numStk.pop( )
     
 
 if __name__ == '__main__':
@@ -112,7 +179,8 @@ if __name__ == '__main__':
         "4 ^ - 3", # 0.015625
         "4 ^ ( - 3 )", # 0.015625
     ]
+
     for s in ss:
-        res = calc(s)
-        print('{} = {}'.format(res, s))
-    
+
+        res = calc( s )
+        print('{} = {}'.format( res, s ) )

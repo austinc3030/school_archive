@@ -21,6 +21,4 @@ When Adding npm Packages (Either by `npm install` or adding to package.json) Aft
 <br>	rm -rf node_modules
 <br>	npm install
 
-See references.txt for links and resources I used to figure all this out. 
-
 Probably need to add more to this.
