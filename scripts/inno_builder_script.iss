@@ -38,8 +38,8 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 6.1; Check: not IsAdminInstallMode
 
 [Files]
-Source: "Y:\GitHub\electron-python-base\out\electron-python-base-win32-ia32\electron-python-base.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Y:\GitHub\electron-python-base\out\electron-python-base-win32-ia32\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\electron-python-base\out\electron-python-base-win32-ia32\electron-python-base.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\electron-python-base\out\electron-python-base-win32-ia32\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
