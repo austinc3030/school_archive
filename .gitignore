@@ -9,6 +9,9 @@ py_src/build
 py_src/dist
 py_out
 
+# Build Folder
+build
+
 # Mac Stuff
 .DS_store
 
