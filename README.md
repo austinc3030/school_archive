@@ -1,16 +1,16 @@
 Dependenices for building (All OS's)
-<br>	* Python
-<br> * Virtualenv
-<br>	* NodeJS
+<br>	* Python ( Requires Python 3 )
+<br>    * Virtualenv
+<br>	* NodeJS ( Requires 12.16.1 )
 
 Additional dependencies for building (Windows)
-<br>	* Git
-<br> * Inno Setup (https://www.jrsoftware.org/isinfo.php)
+<br>    * Git
+<br>    * Inno Setup (https://www.jrsoftware.org/isinfo.php)
 
 Steps:
 <br>	1.) Clone the repo
 <br>	2.) cd electron-python-base
-<br> 3.) Depending on OS, run script in the /scripts directory
+<br>    3.) Depending on OS, run script in the /scripts directory
 <br> NOTE: Setup scripts are meant to help get the environment setup.
 
 Note on Windows Power Shell Scripts: 
@@ -22,3 +22,5 @@ When Adding npm Packages (Either by `npm install` or adding to package.json) Aft
 <br>	npm install
 
 See references.txt for links and resources I used to figure all this out. 
+
+Probably need to add more to this.
