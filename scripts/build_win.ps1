@@ -4,11 +4,13 @@ Set-ExecutionPolicy Unrestricted -Scope process -Force
 # Remove previous build outputs
 Remove-Item "netlock-setup.exe" -Force -Recurse -ErrorAction Ignore
 Remove-Item "out" -Force -Recurse -ErrorAction Ignore
-Remove-Item "py_out" -Force -Recurse -ErrorAction Ignore
+Remove-Item "backend" -Force -Recurse -ErrorAction Ignore
+Remove-Item "build" -Force -Recurse -ErrorAction Ignore
+Remove-Item "backend_src\__pycache__" -Force -Recurse -ErrorAction Ignore
 
 # Build python part
 .\.venv\Scripts\activate.ps1
-pyinstaller py_src/api.spec --distpath py_out
+pyinstaller backend_src/api.spec --distpath backend
 deactivate
 
 # Build it

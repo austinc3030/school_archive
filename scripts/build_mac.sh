@@ -1,14 +1,13 @@
 #!/bin/bash
 # Cleanup previous build
 rm -rf out/
-rm -rf py_src/build/ 
-rm -rf py_src/dist/
-rm -rf py_src/__pycache__/
-rm -rf py_out/
+rm -rf build/ 
+rm -rf backend_src/__pycache__/
+rm -rf backend/
 
 # Build python stuff
 source .venv/bin/activate
-pyinstaller py_src/api.spec --distpath py_out
+pyinstaller backend_src/api.spec --distpath backend
 deactivate
 
 # Build and package

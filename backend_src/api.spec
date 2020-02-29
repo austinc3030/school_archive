@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['api.py'],
-             pathex=['py_src/'],
+             pathex=['backend_src/'],
              binaries=[],
              datas=[],
              hiddenimports=['pkg_resources.py2_warn'],

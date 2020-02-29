@@ -11,8 +11,7 @@ const path = require( 'path' )
 let mainWindow = null
 
 // Python Stuff
-const PY_DIST_FOLDER = 'py_out'
-const PY_FOLDER      = 'py_src'
+const PY_DIST_FOLDER = 'backend'
 const PY_MODULE      = 'api'    // without .py suffix
 
 // Create variables for the python process and port
@@ -97,7 +96,7 @@ const createWindow = ( ) => {
   mainWindow.loadURL( 
     require( 'url' ).format( 
       {
-        pathname: path.join( __dirname, 'gui', 'index.html' ),
+        pathname: path.join( __dirname, 'frontend', 'index.html' ),
         protocol: 'file:',
         slashes: true
       } 

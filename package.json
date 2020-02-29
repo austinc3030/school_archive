@@ -62,8 +62,10 @@
           "requirements.txt",
           "requirements_win.txt",
           ".venv",
-          "py_src",
-          "scripts"
+          "backend_src",
+          "scripts",
+          "build",
+          "todo.txt"
         ]
       }
     }
