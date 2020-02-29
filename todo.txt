@@ -1,4 +1,25 @@
+Overall:
+1.) Implement back button on pages in case user misses something and needs to change it?
+2.) Need to implement a wait screen while app starts up (Mainly due to the delay in 
+    python rpc starting)
+3.) Need to develop a way to fingerprint the router to see if we are compatible before 
+    trying to authenticate/connect to it
+4.) If we successfully fingerprint a router, we should probably have something to show 
+    the user how to find the information we need, such as "Your router is X, you will 
+    need to look at the sticker on the bottom" vs. "You have router Y, you will need to 
+    look for the information card in the box with the router", etc.
+
+Selenium:
+1.) Make sure we can package selenium with the application
+2.) Determine what browsers to support (The more I think about this, the more I am 
+    inclined to support the OS default browser: Mac = Safari, Win = Edge)
+3.) An alternative to #2 would be to include a browser with the application
+        - There might be a way to leverage the built in chromium engine in electron to
+          accomplish this. Requires more research. 
+Mac:
 1.) Mac - When closing app, stays in dock and does not actually exit. 
-2.) Implement back button on pages in case user misses something and needs to change it?
-3.) Need to implement a wait screen while app starts up (Mainly due to the delay in python rpc starting)
-4.) 
+
+Frontend:
+1.) Bring up the user interface from Andrew into the new application format
+
+Backend:
