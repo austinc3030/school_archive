@@ -18,6 +18,79 @@ const PY_MODULE      = 'api'    // without .py suffix
 let pyProc = null
 let pyPort = null
 
+// Loading screen stuff
+let loadingScreen;
+
+
+
+// ****************************************************************************
+// Name: nullifyLoadingScreen
+// Abstract: Set the loading screen to null
+// ****************************************************************************
+const nullifyLoadingScreen = ( ) => {
+  
+  loadingScreen = null
+
+} // End nullifyLoadingScreen( )
+
+
+
+// ****************************************************************************
+// Name: didFinishLoad
+// Abstract: Create a loading screen
+// ****************************************************************************
+const didFinishLoad = ( ) => {
+  
+  loadingScreen.show( )
+
+} // End didFinishLoad( )
+
+
+
+// ****************************************************************************
+// Name: createLoadingScreen
+// Abstract: Create a loading screen
+// ****************************************************************************
+const createLoadingScreen = () => {
+
+  loadingScreen = new BrowserWindow( 
+    Object.assign( 
+      {
+      
+        width:        200,
+        height:       400,
+        frame:        false,
+        transparent:  true
+      
+      }  // End assign
+    
+    ) // End BrowserWindow
+
+  ) // End loadingScreen
+  
+  loadingScreen.setResizable( false )
+
+  loadingScreen.loadURL( 
+    require( 'url' ).format( 
+      
+      {
+      
+        pathname: path.join( __dirname, 'frontend', 'loading.html' ),
+        protocol: 'file:',
+        slashes: true
+      
+      } // End format
+
+    ) // End loadURL
+
+  ) // End loadingScreen
+
+  loadingScreen.on( 'closed', nullifyLoadingScreen )
+  
+  loadingScreen.webContents.on('did-finish-load', didFinishLoad )
+
+} // End createLoadingScreen
+
 
 
 // ****************************************************************************
@@ -91,17 +164,31 @@ const nullifyMainWindow = ( ) => {
 // ****************************************************************************
 const createWindow = ( ) => {
  
-  mainWindow = new BrowserWindow( { width: 800, height: 600 } )
+  mainWindow = new BrowserWindow( 
+    { 
+  
+      width:  800, 
+      height: 600, 
+      show:   false 
+  
+    } // End BrowserWindow
+  
+  ) // End mainWindow
 
   mainWindow.loadURL( 
     require( 'url' ).format( 
+      
       {
+      
         pathname: path.join( __dirname, 'frontend', 'index.html' ),
         protocol: 'file:',
         slashes: true
-      } 
-    ) 
-  )
+      
+      } // End format
+
+    ) // End loadURL
+
+  ) // End mainWindow
   
   // Shows web tools during debugging
   // Should be commented when building release
@@ -109,6 +196,14 @@ const createWindow = ( ) => {
 
   // When closing, nullify the Main Window
   mainWindow.on( 'closed', nullifyMainWindow )
+
+ if ( loadingScreen ) {
+    
+    loadingScreen.close()
+    
+  } // End if
+    
+  mainWindow.show( )
 
 } // End createWindow( )
 
@@ -161,11 +256,60 @@ const quitApp = ( ) => {
 
 
 
-// When ready, start the python rpc server
-app.on( 'ready', createPyProc )
+// ****************************************************************************
+// Name: quitApp
+// Abstract: Needed for mac, when closing application, make sure to "quit" 
+//           the application
+// ****************************************************************************
+const listenForPython = ( ) => {
 
-// When the app is ready, create the window
-app.on( 'ready', createWindow )
+  // Create the client for the server
+  const zerorpc = require( "zerorpc" )
+  let client = new zerorpc.Client( )
+
+  // Connect to the rpc server
+  client.connect( "tcp://127.0.0.1:4242" )
+
+  // Check if the server is ready
+  client.invoke( "echo", "server ready", ( error, res ) => {
+
+    if( error || res !== 'server ready' ) {
+
+      console.error( error ) 
+
+    } else {
+
+      console.log( "server is ready" )
+
+      createWindow( )
+
+    } // End if
+
+  }) // End invoke( "echo" )
+
+} // End listenForPython( )
+
+
+
+// ****************************************************************************
+// Name: appReady
+// Abstract: When ready, launch loading screen and python server, wait until 
+//           we hear from the python server, then create the main window
+// ****************************************************************************
+const appReady = ( ) => {
+
+  createLoadingScreen( )
+
+  createPyProc( )
+
+  listenForPython( )
+
+} // End appReady( )
+
+
+
+// When ready, start the python rpc server
+app.on( 'ready', appReady )
 
 // When activated, if the mainWindow is null, then create the window
 app.on( 'activate', createWindowIfNull )
