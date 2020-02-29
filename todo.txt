@@ -7,6 +7,10 @@ Overall:
     the user how to find the information we need, such as "Your router is X, you will 
     need to look at the sticker on the bottom" vs. "You have router Y, you will need to 
     look for the information card in the box with the router", etc.
+5.) Need to dynamically choose port for python to run on. If port is hardcoded, there 
+    is the potential that the server will not be able to start if the port is in use. 
+    This will requiring learning javascript/nodejs async functions and programming style. 
+    Yay......
 
 Selenium:
 1.) Make sure we can package selenium with the application
