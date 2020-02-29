@@ -1,0 +1,3 @@
+1.) Mac - When closing app, stays in dock and does not actually exit. 
+2.) Implement back button on pages in case user misses something and needs to change it?
+3.) 
