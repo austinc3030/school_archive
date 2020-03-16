@@ -15,7 +15,6 @@ Overall:
 Selenium:
 
 Mac:
-1.) Mac - When closing app, stays in dock and does not actually exit. 
 
 Frontend:
 1.) Bring up the user interface from Andrew into the new application format
@@ -33,4 +32,4 @@ Completed:
 3.) An alternative to #2 would be to include a browser with the application
         - There might be a way to leverage the built in chromium engine in electron to
           accomplish this. Requires more research.
-
+1.) Mac - When closing app, stays in dock and does not actually exit. (Not a bug, its a feature. lol)
