@@ -1,6 +1,6 @@
 Overall:
-1.) Implement back button on pages in case user misses something and needs to change it?
-2.) Need to theme wait screen (frontend/loading.html)
+1.) Implement back button on pages in case user misses something and needs to change it? - Andrew
+2.) Need to theme wait screen (frontend/loading.html) - Andrew
 3.) Need to develop a way to fingerprint the router to see if we are compatible before 
     trying to authenticate/connect to it
 4.) If we successfully fingerprint a router, we should probably have something to show 
@@ -8,17 +8,12 @@ Overall:
     need to look at the sticker on the bottom" vs. "You have router Y, you will need to 
     look for the information card in the box with the router", etc.
 5.) Need to dynamically choose port for python to run on. If port is hardcoded, there 
-    is the potential that the server will not be able to start if the port is in use. 
-    This will requiring learning javascript/nodejs async functions and programming style. 
-    Yay......
+    is the potential that the server will not be able to start if the port is in use.
+        - Spent about 6 hours working on this and made no progress. Ultimately rolled back changes
+          and am proceeding with hard coded port for now.
 
 Selenium:
-1.) Make sure we can package selenium with the application
-2.) Determine what browsers to support (The more I think about this, the more I am 
-    inclined to support the OS default browser: Mac = Safari, Win = Edge)
-3.) An alternative to #2 would be to include a browser with the application
-        - There might be a way to leverage the built in chromium engine in electron to
-          accomplish this. Requires more research. 
+
 Mac:
 1.) Mac - When closing app, stays in dock and does not actually exit. 
 
@@ -32,3 +27,10 @@ Backend:
 Completed:
 2.) Need to implement a wait screen while app starts up (Mainly due to the delay in 
     python rpc starting)
+1.) Make sure we can package selenium with the application
+2.) Determine what browsers to support (The more I think about this, the more I am
+    inclined to support the OS default browser: Mac = Safari, Win = Edge)
+3.) An alternative to #2 would be to include a browser with the application
+        - There might be a way to leverage the built in chromium engine in electron to
+          accomplish this. Requires more research.
+
