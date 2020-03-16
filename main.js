@@ -98,12 +98,6 @@ const createLoadingScreen = () => {
 // Abstract: Build the path to the python rpc server
 // ****************************************************************************
 const getScriptPath = ( ) => {
-  
-  if ( process.platform === 'win32' ) {
-
-    return path.join( __dirname, PY_DIST_FOLDER, PY_MODULE + '.exe' )
-
-  } // End if
 
   return path.join( __dirname, PY_DIST_FOLDER, PY_MODULE )
 

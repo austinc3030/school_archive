@@ -29,9 +29,6 @@ def getChromedriverPath( ):
         success     = False
         binary_path = None
 
-        # TODO: Need a path for windows!!!!!
-        binary_path_win = 0 # os.path.join(  )
-
         if sys.platform == 'darwin':
 
             # Get the user folder
@@ -60,12 +57,7 @@ def getChromedriverPath( ):
 
             # End ifelse
 
-        elif sys.platform == 'win32':
-
-            # This is windows
-            binary_path = binary_path_win
-
-        # End ifelse
+        # End if
 
         # Were we successful?
         if binary_path is not None :
@@ -98,9 +90,6 @@ def getChromiumPath():
         success     = False
         binary_path = None
 
-        # TODO: Need a path for windows!!!!!
-        binary_path_win = None  # os.path.join(  )
-
         if sys.platform == 'darwin':
 
             # Get the user folder
@@ -131,12 +120,7 @@ def getChromiumPath():
 
             # End ifelse
 
-        elif sys.platform == 'win32':
-
-            # This is windows
-            binary_path = None
-
-        # End ifelse
+        # End if
 
         # Were we successful?
         if binary_path is not None:

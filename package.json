@@ -20,12 +20,6 @@
     "forge": {
       "makers": [
         {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "netlock"
-          }
-        },
-        {
           "name": "@electron-forge/maker-zip",
           "platforms": [
             "darwin"
@@ -60,7 +54,6 @@
           "package.json.bak",
           "references.txt",
           "requirements.txt",
-          "requirements_win.txt",
           ".venv",
           "backend_src",
           "scripts",
