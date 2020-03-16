@@ -3,6 +3,9 @@
 # Install necessary packages
 sudo apt-get -y install dpkg fakeroot
 
+# Export variable to ensure the proper version of chrome is downloaded
+export CHROMIUM_REVISION=722274
+
 # Install node modules
 npm install
 

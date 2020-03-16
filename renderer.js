@@ -6,6 +6,11 @@ let client = new zerorpc.Client( )
 let formula = document.querySelector( '#formula' )
 let result  = document.querySelector( '#result'  )
 
+// Require some chromium things
+const chromium = require( "chromium" )
+//const chrome_driver = require( "electron-chromedriver" )
+
+
 
 
 // Connect to the rpc server
@@ -23,6 +28,23 @@ client.invoke( "echo", "server ready", ( error, res ) => {
   } else {
 
     console.log( "server is ready" )
+
+  } // End if
+
+}) // End invoke( "echo" )
+
+
+
+// Check if the server is ready
+client.invoke( "startChromiumBackend", ( error, res ) => {
+
+  if( error || res !== 'success' ) {
+
+    console.error( error ) 
+
+  } else {
+
+    console.log( "Chromium Backend Started" )
 
   } // End if
 

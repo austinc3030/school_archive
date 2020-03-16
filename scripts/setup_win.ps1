@@ -1,5 +1,8 @@
 Set-ExecutionPolicy Unrestricted -Scope process -Force
 
+# Export variable to ensure the proper version of chrome is downloaded
+$env:CHROMIUM_REVISION=722274
+
 # Install node modules
 npm install
 

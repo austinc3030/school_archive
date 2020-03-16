@@ -32,12 +32,6 @@
           ]
         },
         {
-          "name": "@electron-forge/maker-dmg",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
           "name": "@electron-forge/maker-deb",
           "config": {
             "depends": [
@@ -71,12 +65,14 @@
     }
   },
   "dependencies": {
-    "path": "^0.12.7",
-    "python-shell": "^1.0.7",
+    "chromium": "^2.1.2",
+    "electron-chromedriver": "^8.0.0",
     "electron-compile": "^6.4.4",
     "electron-in-page-search": "^1.3.2",
     "electron-log": "^4.0.0",
     "electron-squirrel-startup": "^1.0.0",
+    "path": "^0.12.7",
+    "python-shell": "^1.0.7",
     "zerorpc": "^0.9.7"
   },
   "devDependencies": {

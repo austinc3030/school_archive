@@ -11,8 +11,5 @@ backend
 # Mac Stuff
 .DS_store
 
-# Visual Studio Code Stuff
-.vscode
-
 # Compiled Windows Installer
 netlock-setup.exe

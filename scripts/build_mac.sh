@@ -14,4 +14,6 @@ deactivate
 npm run make
 
 # Open app
-open out/netlock-darwin-x64/netlock.app/
+rm -rf /Applications/netlock.app
+cp -R out/netlock-darwin-x64/netlock.app /Applications/
+open /Applications/netlock.app/

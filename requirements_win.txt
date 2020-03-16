@@ -5,3 +5,4 @@ msgpack-python
 gevent
 pyinstaller
 pypiwin32
+selenium
