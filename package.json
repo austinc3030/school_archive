@@ -65,6 +65,7 @@
     }
   },
   "dependencies": {
+    "minimist": ">=1.2.2",
     "chromium": "^2.1.2",
     "electron-chromedriver": "^8.0.0",
     "electron-compile": "^6.4.4",
