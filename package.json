@@ -53,13 +53,18 @@
     }
   },
   "dependencies": {
-    "minimist": ">=1.2.2",
+    "bootstrap": "^4.4.1",
     "chromium": "^2.1.2",
+    "desandro-matches-selector": "^2.0.2",
     "electron-chromedriver": "^8.0.0",
     "electron-compile": "^6.4.4",
     "electron-in-page-search": "^1.3.2",
     "electron-log": "^4.0.0",
     "electron-squirrel-startup": "^1.0.0",
+    "ev-emitter": "^1.1.1",
+    "fancybox": "^3.0.1",
+    "jquery": "^3.4.1",
+    "minimist": ">=1.2.2",
     "path": "^0.12.7",
     "python-shell": "^1.0.7",
     "zerorpc": "^0.9.7"

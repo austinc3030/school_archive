@@ -174,7 +174,7 @@ const createWindow = ( ) => {
       
       {
       
-        pathname: path.join( __dirname, 'frontend', 'index.html' ),
+        pathname: path.join( __dirname, 'frontend', 'pages', 'index.html' ),
         protocol: 'file:',
         slashes: true
       

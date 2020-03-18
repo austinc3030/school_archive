@@ -1,3 +1,7 @@
+// Require jquery
+const jquery = require( 'jquery' )
+window.$ = window.jQuery=jquery;
+
 // Create the client for the server
 const zerorpc = require( "zerorpc" )
 let client = new zerorpc.Client( )
