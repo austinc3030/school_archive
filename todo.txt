@@ -1,6 +1,6 @@
 Overall:
-1.) Implement back button on pages in case user misses something and needs to change it? - Andrew
-2.) Need to theme wait screen (frontend/loading.html) - Andrew
+1.) Implement back button on pages in case user misses something and needs to change it? - Andrew - DONE
+2.) Need to theme wait screen (frontend/loading.html) - Andrew - DONE
 3.) Need to develop a way to fingerprint the router to see if we are compatible before 
     trying to authenticate/connect to it
 4.) If we successfully fingerprint a router, we should probably have something to show 
