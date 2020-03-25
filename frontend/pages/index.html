@@ -7,19 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="assets/css/loaders/loader-typing.css" rel="stylesheet" type="text/css" media="all" />
     <link href="assets/css/spring2020_index.css" rel="stylesheet" type="text/css" media="all" />
-    <link rel="preload" as="font" href="assets/fonts/Inter-UI-upright.var.woff2" type="font/woff2" crossorigin="anonymous">
-    <link rel="preload" as="font" href="assets/fonts/Inter-UI.var.woff2" type="font/woff2" crossorigin="anonymous">
-	<link href="assets/css/customspring.css" rel="stylesheet">
+
   </head>
 
   <body>
-
-  <!-- Required vendor scripts (Do not remove) -->
-  <script type="text/javascript" src="assets/js/jquery.min.js"></script>
-  <script type="text/javascript" src="assets/js/popper.min.js"></script>
-  <script type="text/javascript" src="assets/js/bootstrap.js"></script>
-
-  <div class="loader">
+    <div class="loader">
       <div class="loading-animation"></div>
     </div>
 
@@ -103,21 +95,18 @@
         <div class="row text-center">
           <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
             <div class="icon-round bg-secondary mx-auto mb-4">
-              <img class="icon bg-primary" src="assets/img/icons/theme/general/lock.svg" alt="icon" data-inject-svg/>
             </div>
             <h4>Security</h4>
             <p class="lead mx-xl-3">NetLock is here to make sure your home router isn't vulnerable to attackers. By following simple steps you will greatly reduce the likelihood of your network being compromised.</p>
           </div>
           <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
             <div class="icon-round bg-secondary mx-auto mb-4">
-              <img class="icon bg-primary" src="assets/img/icons/theme/code/code.svg" alt="icon" data-inject-svg />
             </div>
             <h4>Best Practice Recommendations</h4>
             <p class="lead mx-xl-3">Not sure how to properly configure your router? Don't worry, we provide industry best practice recommendations throughout setup.</p>
           </div>
           <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
             <div class="icon-round bg-secondary mx-auto mb-4">
-              <img class="icon bg-primary" src="assets/img/icons/theme/shopping/box-2.svg" alt="icon" data-inject-svg />
             </div>
             <h4>Ease of Use</h4>
             <p class="lead mx-xl-3">Our interface acts as a step-by-step guide, that will walk you through the most important aspects of securing your home network.</p>
@@ -138,33 +127,33 @@
     </footer>
 
     <a href="#" class="btn back-to-top btn-primary btn-round" data-smooth-scroll data-aos="fade-up" data-aos-offset="2000" data-aos-mirror="true" data-aos-once="false">
-      <img class="icon" src="assets/img/icons/theme/navigation/arrow-up.svg" alt="arrow-up icon" data-inject-svg />
     </a>
+    <!-- Required vendor scripts (Do not remove) -->
+    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/popper.min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
 
     <!-- Optional Vendor Scripts (Remove the plugin script here and comment initializer script out of index.js if site does not use that feature) -->
-
+	<!-- Load jquery before bootstrap -->
+	
     <!-- AOS (Animate On Scroll - animates elements into view while scrolling down) -->
     <script type="text/javascript" src="assets/js/aos.js"></script>
     <!-- Clipboard (copies content from browser into OS clipboard) -->
     <script type="text/javascript" src="assets/js/clipboard.js"></script>
     <!-- Fancybox (handles image and video lightbox and galleries) -->
-    <script type="text/javascript" src="assets/js/jquery.fancybox.min.js"></script>
     <!-- Flatpickr (calendar/date/time picker UI) -->
     <script type="text/javascript" src="assets/js/flatpickr.min.js"></script>
     <!-- Flickity (handles touch enabled carousels and sliders) -->
-    <script type="text/javascript" src="assets/js/flickity.pkgd.min.js"></script>
     <!-- Ion rangeSlider (flexible and pretty range slider elements) -->
-    <script type="text/javascript" src="assets/js/ion.rangeSlider.min.js"></script>
     <!-- Isotope (masonry layouts and filtering) -->
-    <script type="text/javascript" src="assets/js/isotope.pkgd.min.js"></script>
     <!-- jarallax (parallax effect and video backgrounds) -->
     <script type="text/javascript" src="assets/js/jarallax.min.js"></script>
     <script type="text/javascript" src="assets/js/jarallax-video.min.js"></script>
     <script type="text/javascript" src="assets/js/jarallax-element.min.js"></script>
     <!-- jQuery Countdown (displays countdown text to a specified date) -->
-    <script type="text/javascript" src="assets/js/jquery.countdown.min.js"></script>
+	    <script type="text/javascript" src="assets/js/jquery.countdown.min.js"></script>
+
     <!-- jQuery smartWizard facilitates steppable wizard content -->
-    <script type="text/javascript" src="assets/js/jquery.smartWizard.min.js"></script>
     <!-- Plyr (unified player for Video, Audio, Vimeo and Youtube) -->
     <script type="text/javascript" src="assets/js/plyr.polyfilled.min.js"></script>
     <!-- Prism (displays formatted code boxes) -->
@@ -186,7 +175,6 @@
       window.addEventListener("load", function () {    document.querySelector('body').classList.add('loaded');  });
     </script>
 
-    <script>require('../renderer.js')</script>
   </body>
 
 </html>

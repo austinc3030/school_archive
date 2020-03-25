@@ -7,18 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="assets/css/loaders/loader-typing.css" rel="stylesheet" type="text/css" media="all" />
     <link href="assets/css/spring2020_page1.css" rel="stylesheet" type="text/css" media="all" />
-    <link rel="preload" as="font" href="assets/fonts/Inter-UI-upright.var.woff2" type="font/woff2" crossorigin="anonymous">
-    <link rel="preload" as="font" href="assets/fonts/Inter-UI.var.woff2" type="font/woff2" crossorigin="anonymous">
   </head>
 
   <body>
-
-  <!-- Required vendor scripts (Do not remove) -->
-  <script type="text/javascript" src="assets/js/jquery.min.js"></script>
-  <script type="text/javascript" src="assets/js/popper.min.js"></script>
-  <script type="text/javascript" src="assets/js/bootstrap.js"></script>
-
-  <div class="loader">
+    <div class="loader">
       <div class="loading-animation"></div>
     </div>
 
@@ -55,11 +47,20 @@
                 <span>Want to keep current information? <a href="#">Skip This Step</a>
                 </span>
               </div>
+			   <div class="text-center text-small text-muted">
+                <span>Forget something? <a href="login.html">Go Back</a>
+                </span>
+              </div>
             </form>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- Required vendor scripts (Do not remove) -->
+    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/popper.min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
 
     <!-- Optional Vendor Scripts (Remove the plugin script here and comment initializer script out of index.js if site does not use that feature) -->
 
@@ -106,7 +107,6 @@
       window.addEventListener("load", function () {    document.querySelector('body').classList.add('loaded');  });
     </script>
 
-    <script>require('../renderer.js')</script>
   </body>
 
 </html>

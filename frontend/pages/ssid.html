@@ -7,18 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="assets/css/loaders/loader-typing.css" rel="stylesheet" type="text/css" media="all" />
     <link href="assets/css/spring2020_page1.css" rel="stylesheet" type="text/css" media="all" />
-    <link rel="preload" as="font" href="assets/fonts/Inter-UI-upright.var.woff2" type="font/woff2" crossorigin="anonymous">
-    <link rel="preload" as="font" href="assets/fonts/Inter-UI.var.woff2" type="font/woff2" crossorigin="anonymous">
   </head>
 
   <body>
-
-  <!-- Required vendor scripts (Do not remove) -->
-  <script type="text/javascript" src="assets/js/jquery.min.js"></script>
-  <script type="text/javascript" src="assets/js/popper.min.js"></script>
-  <script type="text/javascript" src="assets/js/bootstrap.js"></script>
-
-  <div class="loader">
+    <div class="loader">
       <div class="loading-animation"></div>
     </div>
 
@@ -36,7 +28,7 @@
               <h1 class="mb-1">Name/Password Protect Wi-Fi</h1>
                <span>Consider changing the name of the network (This is called the SSID). There is a default name that is already chosen, but there are advantages when using a different name. 
 			  <br><br>
-			  The default SSID makes it easier for hackers to break into your encrytion (we will come to this later). This is due to the default network name being part of the encryption algorithm and password cracking tables (Rainbow Tables) which include these popular default network names. </span>
+			  The default SSID makes it easier for hackers to break into your encryption (we will come to this later). This is due to the default network name being part of the encryption algorithm and password cracking tables (Rainbow Tables) which include these popular default network names. </span>
             </div>
             <form>
               <div class="form-group">
@@ -58,11 +50,20 @@
                 <span>Want to keep current information? <a href="#">Skip This Step</a>
                 </span>
               </div>
+			  <div class="text-center text-small text-muted">
+                <span>Forget something? <a href="loginnew.html">Go Back</a>
+                </span>
+              </div>
             </form>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- Required vendor scripts (Do not remove) -->
+    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/popper.min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
 
     <!-- Optional Vendor Scripts (Remove the plugin script here and comment initializer script out of index.js if site does not use that feature) -->
 
@@ -109,7 +110,6 @@
       window.addEventListener("load", function () {    document.querySelector('body').classList.add('loaded');  });
     </script>
 
-    <script>require('../renderer.js')</script>
   </body>
 
 </html>
