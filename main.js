@@ -75,7 +75,7 @@ const createLoadingScreen = () => {
       
       {
       
-        pathname: path.join( __dirname, 'frontend', 'loading.html' ),
+        pathname: path.join( __dirname, 'frontend', 'pages', 'loading.html' ),
         protocol: 'file:',
         slashes: true
       
