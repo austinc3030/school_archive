@@ -18,6 +18,10 @@ chromedriver_path   = None
 chromium_path       = None
 webdriver           = None
 
+# Other global variables
+current_username = None
+current_password = None
+
 
 
 def getChromedriverPath( ):
@@ -127,6 +131,7 @@ def getChromiumPath( ):
 
         # Were we successful?
         if binary_path is not None:
+
             # Yes
             success = True
 
@@ -146,25 +151,27 @@ def getChromiumPath( ):
 
 
 
-def changeAdminCredentials( oldUser, newUser, oldPass, newPass ):
+def fChangeLoginCredentials( username, password ):
 
     try:
 
         # Make sure the global chromedriver_path is used
         global webdriver
+        global current_username
+        global current_password
 
-        webdriver.get( "http://" + oldUser + ":" + oldPass + "@192.168.0.1" )
+        webdriver.get( "http://" + current_username + ":" + current_password + "@192.168.0.1" )
         webdriver.set_window_size( 1440, 900 )
         webdriver.switch_to.frame( 1 )
         webdriver.find_element( By.ID, "a64" ).click( )
         webdriver.find_element( By.ID, "a71" ).click( )
         webdriver.switch_to.default_content( )
         webdriver.switch_to.frame( 2 )
-        webdriver.find_element( By.NAME, "oldname" ).send_keys( oldUser )
-        webdriver.find_element( By.NAME, "oldpassword" ).send_keys( oldPass )
-        webdriver.find_element( By.NAME, "newname" ).send_keys( newUser )
-        webdriver.find_element( By.NAME, "newpassword" ).send_keys( newPass )
-        webdriver.find_element( By.NAME, "newpassword2" ).send_keys( newPass )
+        webdriver.find_element( By.NAME, "oldname" ).send_keys( current_username )
+        webdriver.find_element( By.NAME, "oldpassword" ).send_keys( current_password )
+        webdriver.find_element( By.NAME, "newname" ).send_keys( username )
+        webdriver.find_element( By.NAME, "newpassword" ).send_keys( password )
+        webdriver.find_element( By.NAME, "newpassword2" ).send_keys( password )
         webdriver.find_element( By.NAME, "Save" ).click( )
 
     except Exception as e:
@@ -177,7 +184,7 @@ def changeAdminCredentials( oldUser, newUser, oldPass, newPass ):
 
 
 
-def shutdownAllBackend( ):
+def fShutdownAllBackend( ):
 
     global webdriver
 
@@ -187,11 +194,23 @@ def shutdownAllBackend( ):
 
     return True
 
-# End shutdownAllBackend
+# End fShutdownAllBackend
 
 
 
-def startChromiumDriver( ):
+def fSetLoginCredentials( username, password ):
+
+    global current_username
+    global current_password
+
+    current_username = username
+    current_password = password
+
+# End fSetLoginCredentials
+
+
+
+def fStartChromiumDriver( ):
 
     # Start the Chromium Backend
 
@@ -216,43 +235,41 @@ def startChromiumDriver( ):
 
     return "success"
 
-# End startChromiumBackend( )
+# End fStartChromiumBackend( )
 
 
 
 class CalcApi( object ):
 
 
-    
-    def echo( self, text ):
-    
-        # echo any text
-    
-        return text
-
-    # End echo( )
-
-
-
-    def setAdminCredentials( self, oldUser, newUser, oldPass, newPass ):
-
-        return changeAdminCredentials( oldUser, newUser, oldPass, newPass )
-
-    # End getChromiumPaths
-
-
 
     def startDriver( self ):
 
-        return startChromiumDriver( )
+        return fStartChromiumDriver( )
 
     # End startChromiumBackend( )
 
 
 
+    def setLoginCredentials( self, username, password ):
+
+        return fSetLoginCredentials( username, password )
+
+    # End setLoginCredentials( )
+
+
+
+    def changeLoginCredentials( self, username, password ):
+
+        return fChangeLoginCredentials( username, password )
+
+    # End changeLoginCredentials( )
+
+
+
     def shutdownBackend( self ):
 
-        return shutdownAllBackend( )
+        return fShutdownAllBackend( )
 
     # End shutdownBackend( )
 
