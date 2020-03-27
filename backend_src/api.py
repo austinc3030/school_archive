@@ -7,8 +7,8 @@ import zerorpc
 
 from selenium import webdriver
 from os.path import expanduser
-from selenium.webdriver import ChromeOptions
 from selenium.webdriver import Chrome
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 
 
@@ -146,7 +146,7 @@ def getChromiumPath( ):
 
 
 
-def changeAdminCredentials( self, oldUser, newUser, oldPass, newPass ):
+def changeAdminCredentials( oldUser, newUser, oldPass, newPass ):
 
     try:
 
@@ -177,6 +177,20 @@ def changeAdminCredentials( self, oldUser, newUser, oldPass, newPass ):
 
 
 
+def shutdownAllBackend( ):
+
+    global webdriver
+
+    webdriver.quit( )
+
+    sys.exit( 1 )
+
+    return True
+
+# End shutdownAllBackend
+
+
+
 def startChromiumDriver( ):
 
     # Start the Chromium Backend
@@ -186,8 +200,13 @@ def startChromiumDriver( ):
         # Make sure the global chromedriver_path is used
         global webdriver
 
-        chrome_options = ChromeOptions( )
+        chrome_options = Options( )
         chrome_options.add_argument( "--disable-extensions" )
+        chrome_options.add_argument( "--incognito" )
+
+        # Commented for development/testing. Will remove when deploying
+        # chrome_options.add_argument( "--headless" )
+
         chrome_options.binary_location = chromium_path
         webdriver = Chrome( executable_path = chromedriver_path, options = chrome_options )
 
@@ -217,7 +236,7 @@ class CalcApi( object ):
 
     def setAdminCredentials( self, oldUser, newUser, oldPass, newPass ):
 
-        return changeAdminCredentials( self, oldUser, newUser, oldPass, newPass )
+        return changeAdminCredentials( oldUser, newUser, oldPass, newPass )
 
     # End getChromiumPaths
 
@@ -228,6 +247,16 @@ class CalcApi( object ):
         return startChromiumDriver( )
 
     # End startChromiumBackend( )
+
+
+
+    def shutdownBackend( self ):
+
+        return shutdownAllBackend( )
+
+    # End shutdownBackend( )
+
+# End CalcAPI
 
 
 
@@ -271,12 +300,12 @@ def main( ):
       
         addr = 'tcp://127.0.0.1:' + parsePort( )
         
-        s = zerorpc.Server( CalcApi( ) )
+        rpc_server = zerorpc.Server( CalcApi( ) )
         
-        s.bind( addr )
+        rpc_server.bind( addr )
         
         print( 'start running on {}'.format( addr ) )
-        s.run( )
+        rpc_server.run( )
 
     except Exception as e:
     

@@ -17,6 +17,7 @@ const PY_MODULE      = 'api'    // without .py suffix
 // Create variables for the python process and port
 let pyProc = null
 let pyPort = null
+let client = null
 
 // Loading screen stuff
 let loadingScreen;
@@ -225,9 +226,20 @@ const createWindowIfNull = ( ) => {
 // ****************************************************************************
 const exitPyProc = ( ) => {
 
-  pyProc.kill( )
-  pyProc = null
-  pyPort = null
+  // Check if the server is ready
+  client.invoke( "shutdownBackend", ( error, res ) => {
+
+    if( error || res !== 'True' ) {
+
+      console.error( error )
+
+    } else {
+
+      console.log( "Backend has shutdown" )
+
+    } // End if
+
+  }) // End invoke( "echo" )
 
 } // End exitPyProc( )
 
@@ -239,12 +251,8 @@ const exitPyProc = ( ) => {
 //           the application
 // ****************************************************************************
 const quitApp = ( ) => {
-    
-  if ( process.platform !== 'darwin' ) {
-  
-    app.quit( )
-  
-  } // End if
+
+  app.quit( )
 
 } // End nullifyMainWindow( )
 
@@ -259,7 +267,7 @@ const listenForPython = ( ) => {
 
   // Create the client for the server
   const zerorpc = require( "zerorpc" )
-  let client = new zerorpc.Client( )
+  client = new zerorpc.Client( )
 
   // Connect to the rpc server
   client.connect( "tcp://127.0.0.1:4242" )
