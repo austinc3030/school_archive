@@ -22,6 +22,11 @@ npm run make
 # Chromium. However, need this removed for testing so we can see the window.
 defaults delete /Users/austinc/GitHub/netlock/node_modules/chromium/lib/chromium/chrome-mac/Chromium.app/Contents/Info.plist LSBackgroundOnly
 
+# Code Signing
+codesign -s "netlock" -f out/netlock-darwin-x64/netlock.app/Contents/Resources/app/node_modules/chromium/lib/chromium/chrome-mac/Chromium.app --deep
+codesign -s "netlock" -f out/netlock-darwin-x64/netlock.app/Contents/Resources/app/backend/api --deep
+codesign -s "netlock" -f out/netlock-darwin-x64/netlock.app --deep
+
 # Open app
 rm -rf /Applications/netlock.app
 cp -R out/netlock-darwin-x64/netlock.app /Applications/
