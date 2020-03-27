@@ -15,7 +15,6 @@ Selenium:
 Mac:
 
 Frontend:
-1.) Bring up the user interface from Andrew into the new application format
 
 Backend:
 
@@ -33,3 +32,5 @@ Completed:
 1.) Mac - When closing app, stays in dock and does not actually exit. (Not a bug, its a feature. lol)
 1.) Implement back button on pages in case user misses something and needs to change it? - Andrew - DONE
 2.) Need to theme wait screen (frontend/loading.html) - Andrew - DONE
+1.) Bring up the user interface from Andrew into the new application format
+
