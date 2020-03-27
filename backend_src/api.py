@@ -2,19 +2,21 @@ from __future__ import print_function
 
 import os
 import sys
-import time
 
 import zerorpc
 
-from calc import calc as real_calc
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from os.path import expanduser
+from selenium.webdriver import ChromeOptions
+from selenium.webdriver import Chrome
+from selenium.webdriver.common.by import By
+
 
 
 # Global vars for the chromedriver and chromium binaries
 chromedriver_path   = None
 chromium_path       = None
+webdriver           = None
 
 
 
@@ -80,7 +82,8 @@ def getChromedriverPath( ):
 
 
 
-def getChromiumPath():
+def getChromiumPath( ):
+
     try:
 
         # Make sure the global chromium_path is used
@@ -143,23 +146,62 @@ def getChromiumPath():
 
 
 
+def changeAdminCredentials( self, oldUser, newUser, oldPass, newPass ):
+
+    try:
+
+        # Make sure the global chromedriver_path is used
+        global webdriver
+
+        webdriver.get( "http://" + oldUser + ":" + oldPass + "@192.168.0.1" )
+        webdriver.set_window_size( 1440, 900 )
+        webdriver.switch_to.frame( 1 )
+        webdriver.find_element( By.ID, "a64" ).click( )
+        webdriver.find_element( By.ID, "a71" ).click( )
+        webdriver.switch_to.default_content( )
+        webdriver.switch_to.frame( 2 )
+        webdriver.find_element( By.NAME, "oldname" ).send_keys( oldUser )
+        webdriver.find_element( By.NAME, "oldpassword" ).send_keys( oldPass )
+        webdriver.find_element( By.NAME, "newname" ).send_keys( newUser )
+        webdriver.find_element( By.NAME, "newpassword" ).send_keys( newPass )
+        webdriver.find_element( By.NAME, "newpassword2" ).send_keys( newPass )
+        webdriver.find_element( By.NAME, "Save" ).click( )
+
+    except Exception as e:
+
+        return e
+
+    return "success"
+
+# End setAdminCredentials
+
+
+
+def startChromiumDriver( ):
+
+    # Start the Chromium Backend
+
+    try:
+
+        # Make sure the global chromedriver_path is used
+        global webdriver
+
+        chrome_options = ChromeOptions( )
+        chrome_options.add_argument( "--disable-extensions" )
+        chrome_options.binary_location = chromium_path
+        webdriver = Chrome( executable_path = chromedriver_path, options = chrome_options )
+
+    except Exception as e:
+
+        return e
+
+    return "success"
+
+# End startChromiumBackend( )
+
+
+
 class CalcApi( object ):
-
-
-
-    def calc( self, text ):
-    
-        # Based on the input text, return the int result
-    
-        try:
-    
-            return real_calc( text )
-    
-        except Exception as e:
-    
-            return 0.0   
-
-    # End calc( ) 
 
 
     
@@ -173,46 +215,17 @@ class CalcApi( object ):
 
 
 
-    def getChromedriverPath( self ):
+    def setAdminCredentials( self, oldUser, newUser, oldPass, newPass ):
 
-        return chromedriver_path
-
-    # End getChromedriverPaths
-
-
-
-    def getChromiumPath( self ):
-
-        return chromium_path
+        return changeAdminCredentials( self, oldUser, newUser, oldPass, newPass )
 
     # End getChromiumPaths
 
 
 
-    def startChromiumBackend( self ):
-    
-        # Start the Chromium Backend
-    
-        try:
+    def startDriver( self ):
 
-            chrome_options = Options( )
-            chrome_options.add_argument( "--disable-extensions" )
-            chrome_options.binary_location = chromium_path
-            driver = webdriver.Chrome( executable_path = chromedriver_path, options = chrome_options )
-
-            driver.get( 'http://www.google.com/' )
-            time.sleep( 5 ) # Let the user actually see something!
-            search_box = driver.find_element_by_name( 'q' )
-            search_box.send_keys( 'ChromeDriver' )
-            search_box.submit( )
-            time.sleep( 5 ) # Let the user actually see something!
-            driver.quit( )
-
-        except Exception as e:
-    
-            return e
-
-        return "success"  
+        return startChromiumDriver( )
 
     # End startChromiumBackend( )
 

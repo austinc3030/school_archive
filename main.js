@@ -275,7 +275,22 @@ const listenForPython = ( ) => {
 
       console.log( "server is ready" )
 
-      createWindow( )
+      // Check if the server is ready
+      client.invoke( "startDriver", ( error, res ) => {
+
+        if( error || res !== 'success' ) {
+
+          console.error( error )
+
+        } else {
+
+          console.log( "Chromium Backend Started" )
+
+          createWindow( )
+
+        } // End if
+
+      }) // End invoke( "echo" )
 
     } // End if
 
