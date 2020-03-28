@@ -1,68 +1,33 @@
-<!DOCTYPE html>
-<html>
-<head class=">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="assets/css/spring2020_index.css" rel="stylesheet" type="text/css" media="all" />
-<style class>
-/* Center the loader */
-#loader {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: 1;
-  width: 150px;
-  height: 150px;
-  margin: -75px 0 0 -75px;
-  border: 16px solid #2d98fd;
-  border-radius: 50%;
-  border-top: 16px solid #ffff;
-  width: 120px;
-  height: 120px;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
-}
+<!doctype html>
+<html lang="en">
 
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
+  <head>
+    <meta charset="utf-8">
+    <title>Loading</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="assets/css/loaders/loader-typing_2.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="assets/css/spring2020_index.css" rel="stylesheet" type="text/css" media="all" />
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
+  </head>
+<!--Wrapper-->
+<div class="loader text-center">
+    <div class="loader-inner">
 
-/* Add animation to "page content" */
-.animate-bottom {
-  position: relative;
-  -webkit-animation-name: animatebottom;
-  -webkit-animation-duration: 1s;
-  animation-name: animatebottom;
-  animation-duration: 1s
-}
-
-@-webkit-keyframes animatebottom {
-  from { bottom:-100px; opacity:0 } 
-  to { bottom:0px; opacity:1 }
-}
-
-@keyframes animatebottom { 
-  from{ bottom:-100px; opacity:0 } 
-  to{ bottom:0; opacity:1 }
-}
-
-#myDiv {
-  display: none;
-  text-align: center;
-}
-</style>
-</head>
-<body onload="myFunction()" style="margin:0;">
-
-<div id="loader"></div>
-
-
-
-
-</body>
+        <!-- Spinner -->
+        <div class="lds-roller mb-3">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        
+        <!-- Text-->
+        <h4 class="text-uppercase font-weight-bold text-muted">Loading</h4>
+        <p class="font-italic text-muted">Please wait while we connect</p>
+    </div>
+</div>
 </html>
