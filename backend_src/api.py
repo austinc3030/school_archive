@@ -243,6 +243,16 @@ class CalcApi( object ):
 
 
 
+    def echo( self, text ):
+
+        # echo any text
+
+        return text
+
+    # End echo( )
+
+
+
     def startDriver( self ):
 
         return fStartChromiumDriver( )
