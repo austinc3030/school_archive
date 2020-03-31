@@ -6,9 +6,8 @@ window.$ = window.jQuery=jquery;
 const zerorpc = require( "zerorpc" )
 let client = new zerorpc.Client( )
 
-// Get a reference to the formula and result elements
-let formula = document.querySelector( '#formula' )
-let result  = document.querySelector( '#result'  )
+// Get a reference to the letsgetstarted
+let letsgetstarted = document.querySelector( '#letsgetstarted' )
 
 
 
@@ -18,31 +17,16 @@ client.connect( "tcp://127.0.0.1:4242" )
 
 
 // ****************************************************************************
-// Name: calculate
-// Abstract: Send the formula to the server to calculate it
+// Name: fletsgetstarted
+// Abstract: Move to the next page
 // ****************************************************************************
-const calculate = ( ) => {
+const fletsgetstarted = ( ) => {
   
-  client.invoke( "calc", formula.value, ( error, res ) => {
-  
-    if( error ) {
-  
-      console.error( error )
-  
-    } else {
-  
-      result.textContent = res
-  
-    } // End if
-  
-  }) // End invoke( "calc" )
+    window.location.href = 'login.html'
 
-} // End getScriptPath( )
+} // End letsgetstarted( )
 
 
 
-// Add an event listener to formula
-formula.addEventListener( 'input', calculate ) // End EventListener
-
-// Calculate the default prefilled equation
-formula.dispatchEvent( new Event( 'input' ) )
+// Add an event listener to letsgetstarted
+letsgetstarted.addEventListener( 'click', fletsgetstarted ) // End EventListener

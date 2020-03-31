@@ -6,9 +6,11 @@ window.$ = window.jQuery=jquery;
 const zerorpc = require( "zerorpc" )
 let client = new zerorpc.Client( )
 
-// Get a reference to the formula and result elements
-let formula = document.querySelector( '#formula' )
-let result  = document.querySelector( '#result'  )
+// Get a reference to the elements
+let gobacktologinnew = document.querySelector( '#gobacktologinnew' )
+let gobacktossid = document.querySelector( '#gobacktossid' )
+let gobacktofeature = document.querySelector( '#gobacktofeature' )
+let gobacktoencryption = document.querySelector( '#gobacktoencryption' )
 
 
 
@@ -18,31 +20,49 @@ client.connect( "tcp://127.0.0.1:4242" )
 
 
 // ****************************************************************************
-// Name: calculate
-// Abstract: Send the formula to the server to calculate it
+// Name: fgobacktologinnew
+// Abstract: Go back to the loginnew screen
 // ****************************************************************************
-const calculate = ( ) => {
+const fgobacktologinnew = ( ) => {
   
-  client.invoke( "calc", formula.value, ( error, res ) => {
-  
-    if( error ) {
-  
-      console.error( error )
-  
-    } else {
-  
-      result.textContent = res
-  
-    } // End if
-  
-  }) // End invoke( "calc" )
+    window.location.href = 'loginnew.html'
 
-} // End getScriptPath( )
+} // End fgobacktologinnew( )
+
+// ****************************************************************************
+// Name: fgobacktossid
+// Abstract: Go back to the ssid screen
+// ****************************************************************************
+const fgobacktossid = ( ) => {
+
+    window.location.href = 'ssid.html'
+
+} // End fgobacktossid( )
+
+// ****************************************************************************
+// Name: fgobacktofeature
+// Abstract: Go back to the feature screen
+// ****************************************************************************
+const fgobacktofeature = ( ) => {
+
+    window.location.href = 'feature.html'
+
+} // End fgobacktofeature( )
+
+// ****************************************************************************
+// Name: fgobacktoencryption
+// Abstract: Go back to the encryption screen
+// ****************************************************************************
+const fgobacktoencryption = ( ) => {
+
+    window.location.href = 'encryption.html'
+
+} // End fgobacktoencryption( )
 
 
 
 // Add an event listener to formula
-formula.addEventListener( 'input', calculate ) // End EventListener
-
-// Calculate the default prefilled equation
-formula.dispatchEvent( new Event( 'input' ) )
+gobacktologinnew.addEventListener( 'click', fgobacktologinnew ) // End EventListener
+gobacktossid.addEventListener( 'click', fgobacktossid ) // End EventListener
+gobacktofeature.addEventListener( 'click', fgobacktofeature ) // End EventListener
+gobacktoencryption.addEventListener( 'click', fgobacktoencryption ) // End EventListener

@@ -6,10 +6,9 @@ window.$ = window.jQuery=jquery;
 const zerorpc = require( "zerorpc" )
 let client = new zerorpc.Client( )
 
-// Get a reference to the formula and result elements
-let formula = document.querySelector( '#formula' )
-let result  = document.querySelector( '#result'  )
-
+// Get a reference to the signin
+let next = document.querySelector( '#next' )
+let goback = document.querySelector( '#goback' )
 
 
 // Connect to the rpc server
@@ -18,31 +17,31 @@ client.connect( "tcp://127.0.0.1:4242" )
 
 
 // ****************************************************************************
-// Name: calculate
-// Abstract: Send the formula to the server to calculate it
+// Name: fnext
+// Abstract: Move to the next page
 // ****************************************************************************
-const calculate = ( ) => {
-  
-  client.invoke( "calc", formula.value, ( error, res ) => {
-  
-    if( error ) {
-  
-      console.error( error )
-  
-    } else {
-  
-      result.textContent = res
-  
-    } // End if
-  
-  }) // End invoke( "calc" )
+const fnext = ( ) => {
 
-} // End getScriptPath( )
+    window.location.href = 'feature.html'
+
+} // End fsignin( )
 
 
 
-// Add an event listener to formula
-formula.addEventListener( 'input', calculate ) // End EventListener
+// ****************************************************************************
+// Name: fgoback
+// Abstract: Move to the next page
+// ****************************************************************************
+const fgoback = ( ) => {
 
-// Calculate the default prefilled equation
-formula.dispatchEvent( new Event( 'input' ) )
+    window.location.href = 'loginnew.html'
+
+} // End fgoback( )
+
+
+
+// Add an event listener to signin
+next.addEventListener( 'click', fnext ) // End EventListener
+
+// Add an event listener to goback
+goback.addEventListener( 'click', fgoback ) // End EventListener
