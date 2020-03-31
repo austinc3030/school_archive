@@ -7,6 +7,9 @@ const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 const path = require( 'path' )
 
+// Require some chromium things
+const chromium = require( "chromium" )
+
 // Create a variable to hold the mainWindow
 let mainWindow = null
 

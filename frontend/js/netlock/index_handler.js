@@ -10,9 +10,6 @@ let client = new zerorpc.Client( )
 let formula = document.querySelector( '#formula' )
 let result  = document.querySelector( '#result'  )
 
-// Require some chromium things
-const chromium = require( "chromium" )
-
 
 
 // Connect to the rpc server
