@@ -247,8 +247,6 @@ def fWaitTest( ):
 
     try:
 
-        time.sleep( 5 )
-
         return "success"
 
     except Exception as e:
