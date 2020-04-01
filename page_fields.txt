@@ -11,8 +11,8 @@ ssid.html
 	new_password
 	new_password_confirm
 feature.html
-	enable_wps
-	enable_upnp
-	broadcast_ssid
+	WPS
+	UPnP
+	castssid
 encryption.html
-	wpa2
+	WPA2

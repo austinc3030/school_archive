@@ -12,6 +12,11 @@ let client = new zerorpc.Client( )
 // Get a reference to the signin
 let next = document.querySelector( '#next' )
 let goback = document.querySelector( '#goback' )
+let wps = document.querySelector( '#WPS' )
+let upnp = document.querySelector( '#UPnP' )
+let castssid = document.querySelector( '#castssid' )
+
+
 
 // Constant for the progressStep
 const progressStep = 'feature'

@@ -12,6 +12,8 @@ let client = new zerorpc.Client( )
 // Get a reference to the letsgetstarted
 let letsgetstarted = document.querySelector( '#letsgetstarted' )
 
+
+
 // Constant for the progressStep
 const progressStep = 'index'
 

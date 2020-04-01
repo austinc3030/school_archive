@@ -12,6 +12,11 @@ let client = new zerorpc.Client( )
 // Get a reference to the signin
 let signin = document.querySelector( '#signin' )
 let goback = document.querySelector( '#goback' )
+let username = document.querySelector( '#username' )
+let password = document.querySelector( '#password' )
+let password_confirm = document.querySelector( '#password_confirm' )
+
+
 
 // Constant for the progressStep
 const progressStep = 'login'

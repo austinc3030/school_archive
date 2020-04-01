@@ -9,9 +9,12 @@ const path = require( 'path' )
 const zerorpc = require( "zerorpc" )
 let client = new zerorpc.Client( )
 
-// Get a reference to the signin
+// Get a reference to the elements we are concerned with
 let next = document.querySelector( '#next' )
 let goback = document.querySelector( '#goback' )
+let wpa2 = document.querySelector( '#WPA2' )
+
+
 
 // Constant for the progressStep
 const progressStep = 'encryption'

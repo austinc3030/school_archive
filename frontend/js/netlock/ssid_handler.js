@@ -12,6 +12,11 @@ let client = new zerorpc.Client( )
 // Get a reference to the signin
 let next = document.querySelector( '#next' )
 let goback = document.querySelector( '#goback' )
+let new_ssid = document.querySelector( '#new_ssid' )
+let new_password = document.querySelector( '#new_password' )
+let new_password_confirm = document.querySelector( '#new_password_confirm' )
+
+
 
 // Constant for the progressStep
 const progressStep = 'ssid'
