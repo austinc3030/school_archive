@@ -9,7 +9,6 @@ from selenium import webdriver
 from os.path import expanduser
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
 
 
 
@@ -19,8 +18,6 @@ chromium_path       = None
 webdriver           = None
 
 # Other global variables
-current_username = None
-current_password = None
 
 
 
@@ -151,39 +148,6 @@ def getChromiumPath( ):
 
 
 
-def fChangeLoginCredentials( username, password ):
-
-    try:
-
-        # Make sure the global chromedriver_path is used
-        global webdriver
-        global current_username
-        global current_password
-
-        webdriver.get( "http://" + current_username + ":" + current_password + "@192.168.0.1" )
-        webdriver.set_window_size( 1440, 900 )
-        webdriver.switch_to.frame( 1 )
-        webdriver.find_element( By.ID, "a64" ).click( )
-        webdriver.find_element( By.ID, "a71" ).click( )
-        webdriver.switch_to.default_content( )
-        webdriver.switch_to.frame( 2 )
-        webdriver.find_element( By.NAME, "oldname" ).send_keys( current_username )
-        webdriver.find_element( By.NAME, "oldpassword" ).send_keys( current_password )
-        webdriver.find_element( By.NAME, "newname" ).send_keys( username )
-        webdriver.find_element( By.NAME, "newpassword" ).send_keys( password )
-        webdriver.find_element( By.NAME, "newpassword2" ).send_keys( password )
-        webdriver.find_element( By.NAME, "Save" ).click( )
-
-    except Exception as e:
-
-        return e
-
-    return "success"
-
-# End setAdminCredentials
-
-
-
 def fShutdownAllBackend( ):
 
     global webdriver
@@ -198,23 +162,27 @@ def fShutdownAllBackend( ):
 
 
 
-def fSetLoginCredentials( username, password ):
-
-    global current_username
-    global current_password
-
-    current_username = username
-    current_password = password
-
-# End fSetLoginCredentials
-
-
-
 def fStartChromiumDriver( ):
 
     # Start the Chromium Backend
 
     try:
+
+        # Get the chromedriver binary path
+        if getChromedriverPath( ) == False :
+
+            # Couldn't find driver binary
+            raise ValueError( 'Could not find chromedriver binary' )
+
+        # End if
+
+        # Get the chromium binary path
+        if getChromiumPath( ) == False:
+
+            # Couldn't find driver binary
+            raise ValueError( 'Could not find chromium binary' )
+
+        # End if
 
         # Make sure the global chromedriver_path is used
         global webdriver
@@ -239,7 +207,7 @@ def fStartChromiumDriver( ):
 
 
 
-class CalcApi( object ):
+class NetLockAPI( object ):
 
 
 
@@ -261,29 +229,13 @@ class CalcApi( object ):
 
 
 
-    def setLoginCredentials( self, username, password ):
-
-        return fSetLoginCredentials( username, password )
-
-    # End setLoginCredentials( )
-
-
-
-    def changeLoginCredentials( self, username, password ):
-
-        return fChangeLoginCredentials( username, password )
-
-    # End changeLoginCredentials( )
-
-
-
     def shutdownBackend( self ):
 
         return fShutdownAllBackend( )
 
     # End shutdownBackend( )
 
-# End CalcAPI
+# End NetLockAPI( )
 
 
 
@@ -308,30 +260,14 @@ def parsePort( ):
 def main( ):
     
     try:
-
-        # Get the chromedriver binary path
-        if getChromedriverPath( ) == False :
-
-            # Couldn't find driver binary
-            raise ValueError( 'Could not find chromedriver binary' )
-
-        # End if
-
-        # Get the chromium binary path
-        if getChromiumPath( ) == False:
-
-            # Couldn't find driver binary
-            raise ValueError( 'Could not find chromium binary' )
-
-        # End if
       
-        addr = 'tcp://127.0.0.1:' + parsePort( )
+        address = 'tcp://127.0.0.1:' + parsePort( )
         
-        rpc_server = zerorpc.Server( CalcApi( ) )
+        rpc_server = zerorpc.Server( NetLockAPI( ) )
         
-        rpc_server.bind( addr )
+        rpc_server.bind( address )
         
-        print( 'start running on {}'.format( addr ) )
+        print( 'start running on {}'.format( address ) )
         rpc_server.run( )
 
     except Exception as e:
