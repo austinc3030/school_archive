@@ -18,6 +18,7 @@ chromium_path       = None
 webdriver           = None
 
 # Other global variables
+currentProgressStep = None
 
 
 
@@ -207,6 +208,40 @@ def fStartChromiumDriver( ):
 
 
 
+def fSetProgressStep( step ):
+
+    try:
+
+        global currentProgressStep
+
+        currentProgressStep = step
+
+    except Exception as e:
+
+        return e
+
+    return "success"
+
+# End fSetProgressStep( )
+
+
+
+def fGetProgressStep( ):
+
+    try:
+
+        global currentProgressStep
+
+        return currentProgressStep
+
+    except Exception as e:
+
+        return e
+
+# End fSetProgressStep( )
+
+
+
 class NetLockAPI( object ):
 
 
@@ -234,6 +269,24 @@ class NetLockAPI( object ):
         return fShutdownAllBackend( )
 
     # End shutdownBackend( )
+
+
+
+    def setProgressStep( self, step ):
+
+        return fSetProgressStep( step )
+
+    # End setProgressStep( )
+
+
+
+    def getProgressStep( self ):
+
+        return fGetProgressStep( )
+
+    # End setProgressStep( )
+
+
 
 # End NetLockAPI( )
 

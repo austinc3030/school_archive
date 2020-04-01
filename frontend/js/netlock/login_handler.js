@@ -2,6 +2,9 @@
 const jquery = require( 'jquery' )
 window.$ = window.jQuery=jquery;
 
+// Require path
+const path = require( 'path' )
+
 // Create the client for the server
 const zerorpc = require( "zerorpc" )
 let client = new zerorpc.Client( )
@@ -9,6 +12,14 @@ let client = new zerorpc.Client( )
 // Get a reference to the signin
 let signin = document.querySelector( '#signin' )
 let goback = document.querySelector( '#goback' )
+
+// Constant for the progressStep
+const progressStep = 'login'
+
+// Get a reference to the main process
+const remote = require('electron').remote
+const mainWindow = remote.getCurrentWindow( )
+
 
 
 // Connect to the rpc server
@@ -22,7 +33,20 @@ client.connect( "tcp://127.0.0.1:4242" )
 // ****************************************************************************
 const fsignin = ( ) => {
 
-    window.location.href = 'loginnew.html'
+  mainWindow.loadURL(
+    require( 'url' ).format(
+
+      {
+
+        pathname: path.join( __dirname, '..', '..', 'pages', 'loginnew.html' ),
+        protocol: 'file:',
+        slashes: true
+
+      } // End format
+
+    ) // End loadURL
+
+  ) // End mainWindow
 
 } // End fsignin( )
 
@@ -34,9 +58,47 @@ const fsignin = ( ) => {
 // ****************************************************************************
 const fgoback = ( ) => {
 
-    window.location.href = 'index.html'
+  mainWindow.loadURL(
+    require( 'url' ).format(
+
+      {
+
+        pathname: path.join( __dirname, '..', '..', 'pages', 'index.html' ),
+        protocol: 'file:',
+        slashes: true
+
+      } // End format
+
+    ) // End loadURL
+
+  ) // End mainWindow
 
 } // End fgoback( )
+
+
+
+// ****************************************************************************
+// Name: fsetProgressStep
+// Abstract: Update the backend with the current progress step
+// ****************************************************************************
+const fsetProgressStep = ( ) => {
+
+  // Tell the backend what step we are on
+  client.invoke( "setProgressStep", progressStep, ( error, res ) => {
+
+    if( error || res !== 'success' ) {
+
+      console.error( error )
+
+    } else {
+
+      console.log( "Backend progress step updated successfully." )
+
+    } // End if
+
+  } ) // End invoke( "setProgressStep" )
+
+} // End fsetProgressStep( )
 
 
 
@@ -45,3 +107,6 @@ signin.addEventListener( 'click', fsignin ) // End EventListener
 
 // Add an event listener to goback
 goback.addEventListener( 'click', fgoback ) // End EventListener
+
+// When everything is loaded, notify the backend that we are on the current step
+mainWindow.webContents.once( 'did-finish-load', fsetProgressStep )
