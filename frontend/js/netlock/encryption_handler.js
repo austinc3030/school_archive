@@ -12,7 +12,6 @@ let client = new zerorpc.Client( )
 // Get a reference to the elements we are concerned with
 let next = document.querySelector( '#next' )
 let goback = document.querySelector( '#goback' )
-let wpa2 = document.querySelector( '#WPA2' )
 
 
 
@@ -25,6 +24,7 @@ const mainWindow = remote.getCurrentWindow( )
 const { BrowserWindow } = require('electron').remote
 
 let loadingScreen = null
+let wpa2 = null
 
 
 // Connect to the rpc server
@@ -103,46 +103,68 @@ const createLoadingScreen = () => {
 
 
 // ****************************************************************************
+// Name: inputValidation
+// Abstract: Validate the inputs before sending them to python
+// ****************************************************************************
+const inputValidation = ( ) => {
+
+  let elm_wpa2 = document.querySelector( '#WPA2' )
+
+  wpa2 = elm_wpa2.checked
+
+  // TODO: respond that we do not support using anything other than WPA2. May phrase it as being unsupported.
+
+  return true
+
+} // End fsignin( )
+
+
+
+// ****************************************************************************
 // Name: fnext
 // Abstract: Move to the next page
 // ****************************************************************************
 const fnext = ( ) => {
 
-  createLoadingScreen( )
+  if ( inputValidation( ) == true ) {
 
-  // Tell the backend what step we are on
-  client.invoke( "waitTest", ( error, res ) => {
+    createLoadingScreen( )
 
-    if( error || res !== 'success' ) {
+    // Tell the backend what step we are on
+    client.invoke( "setEncryption", wpa2, ( error, res ) => {
 
-      console.error( error )
+      if( error || res !== 'success' ) {
 
-    } else {
+        console.error( error )
 
-      mainWindow.loadURL(
-        require( 'url' ).format(
+      } else {
 
-          {
+        mainWindow.loadURL(
+          require( 'url' ).format(
 
-            pathname: path.join( __dirname, '..', '..', 'pages', 'thankyou.html' ),
-            protocol: 'file:',
-            slashes: true
+            {
 
-          } // End format
+              pathname: path.join( __dirname, '..', '..', 'pages', 'thankyou.html' ),
+              protocol: 'file:',
+              slashes: true
 
-        ) // End loadURL
+            } // End format
 
-      ) // End mainWindow
+          ) // End loadURL
 
-      if ( loadingScreen ) {
-
-        loadingScreen.close( )
+        ) // End mainWindow
 
       } // End if
 
+    } ) // End invoke( "waitTest" )
+
+    if ( loadingScreen ) {
+
+      loadingScreen.close( )
+
     } // End if
 
-  } ) // End invoke( "waitTest" )
+  } // End if
 
 } // End fsignin( )
 

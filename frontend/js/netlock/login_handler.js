@@ -12,9 +12,6 @@ let client = new zerorpc.Client( )
 // Get a reference to the signin
 let signin = document.querySelector( '#signin' )
 let goback = document.querySelector( '#goback' )
-let username = document.querySelector( '#username' )
-let password = document.querySelector( '#password' )
-let password_confirm = document.querySelector( '#password_confirm' )
 
 
 
@@ -27,6 +24,9 @@ const mainWindow = remote.getCurrentWindow( )
 const { BrowserWindow } = require('electron').remote
 
 let loadingScreen = null
+let username = null
+let password = null
+let password_confirm = null
 
 
 
@@ -106,46 +106,84 @@ const createLoadingScreen = () => {
 
 
 // ****************************************************************************
+// Name: inputValidation
+// Abstract: Validate the inputs before sending them to python
+// ****************************************************************************
+const inputValidation = ( ) => {
+
+  let elm_username = document.querySelector( '#username' )
+  let elm_password = document.querySelector( '#password' )
+  let elm_password_confirm = document.querySelector( '#password_confirm' )
+
+  username = elm_username.value
+  password = elm_password.value
+  password_confirm = elm_password_confirm.value
+
+  if ( password !== password_confirm ) {
+
+    let error = 'Passwords do not match.' // TODO: need to get a field on the screen to display the error
+
+    console.error( error )
+
+    return false
+
+  } else {
+
+    console.log( 'Passwords match' )
+
+    return true
+
+  } // End if
+
+} // End fsignin( )
+
+
+
+// ****************************************************************************
 // Name: fsignin
 // Abstract: Move to the next page
 // ****************************************************************************
 const fsignin = ( ) => {
 
-  createLoadingScreen( )
+  if ( inputValidation( ) == true ) {
 
-  // Tell the backend what step we are on
-  client.invoke( "waitTest", ( error, res ) => {
+    createLoadingScreen( )
 
-    if( error || res !== 'success' ) {
+    // Tell the backend what step we are on
+    client.invoke( "setCurrentCredentials", username, password, ( error, res ) => {
 
-      console.error( error )
+      if( error || res !== 'success' ) {
 
-    } else {
+        console.error( error )
 
-      mainWindow.loadURL(
-        require( 'url' ).format(
+      } else {
 
-          {
+        mainWindow.loadURL(
+          require( 'url' ).format(
 
-            pathname: path.join( __dirname, '..', '..', 'pages', 'loginnew.html' ),
-            protocol: 'file:',
-            slashes: true
+            {
 
-          } // End format
+              pathname: path.join( __dirname, '..', '..', 'pages', 'loginnew.html' ),
+              protocol: 'file:',
+              slashes: true
 
-        ) // End loadURL
+            } // End format
 
-      ) // End mainWindow
+          ) // End loadURL
 
-      if ( loadingScreen ) {
-
-        loadingScreen.close( )
+        ) // End mainWindow
 
       } // End if
 
+    } ) // End invoke( "waitTest" )
+
+    if ( loadingScreen ) {
+
+      loadingScreen.close( )
+
     } // End if
 
-  } ) // End invoke( "waitTest" )
+  } // End if
 
 } // End fsignin( )
 
@@ -159,39 +197,26 @@ const fgoback = ( ) => {
 
   createLoadingScreen( )
 
-  // Tell the backend what step we are on
-  client.invoke( "waitTest", ( error, res ) => {
+  mainWindow.loadURL(
+    require( 'url' ).format(
 
-    if( error || res !== 'success' ) {
+      {
 
-      console.error( error )
+        pathname: path.join( __dirname, '..', '..', 'pages', 'index.html' ),
+        protocol: 'file:',
+        slashes: true
 
-    } else {
+      } // End format
 
-      mainWindow.loadURL(
-        require( 'url' ).format(
+    ) // End loadURL
 
-          {
+  ) // End mainWindow
 
-            pathname: path.join( __dirname, '..', '..', 'pages', 'index.html' ),
-            protocol: 'file:',
-            slashes: true
+  if ( loadingScreen ) {
 
-          } // End format
+    loadingScreen.close( )
 
-        ) // End loadURL
-
-      ) // End mainWindow
-
-      if ( loadingScreen ) {
-
-        loadingScreen.close( )
-
-      } // End if
-
-    } // End if
-
-  } ) // End invoke( "waitTest" )
+  } // End if
 
 } // End fgoback( )
 

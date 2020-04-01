@@ -12,9 +12,6 @@ let client = new zerorpc.Client( )
 // Get a reference to the signin
 let next = document.querySelector( '#next' )
 let goback = document.querySelector( '#goback' )
-let wps = document.querySelector( '#WPS' )
-let upnp = document.querySelector( '#UPnP' )
-let castssid = document.querySelector( '#castssid' )
 
 
 
@@ -27,6 +24,10 @@ const mainWindow = remote.getCurrentWindow( )
 const { BrowserWindow } = require('electron').remote
 
 let loadingScreen = null
+let wps = null
+let upnp = null
+let castssid = null
+
 
 
 // Connect to the rpc server
@@ -105,46 +106,70 @@ const createLoadingScreen = () => {
 
 
 // ****************************************************************************
+// Name: inputValidation
+// Abstract: Validate the inputs before sending them to python
+// ****************************************************************************
+const inputValidation = ( ) => {
+
+  let elm_wps = document.querySelector( '#WPS' )
+  let elm_upnp = document.querySelector( '#UPnP' )
+  let elm_castssid = document.querySelector( '#castssid' )
+
+  wps = elm_wps.checked
+  upnp = elm_upnp.checked
+  castssid = elm_castssid.checked
+
+  return true
+
+} // End fsignin( )
+
+
+
+// ****************************************************************************
 // Name: fnext
 // Abstract: Move to the next page
 // ****************************************************************************
 const fnext = ( ) => {
 
-  createLoadingScreen( )
+  if ( inputValidation( ) == true ) {
 
-  // Tell the backend what step we are on
-  client.invoke( "waitTest", ( error, res ) => {
+    createLoadingScreen( )
 
-    if( error || res !== 'success' ) {
+    // Tell the backend what step we are on
+    client.invoke( "setFeatures", wps, upnp, castssid, ( error, res ) => {
 
-      console.error( error )
+      if( error || res !== 'success' ) {
 
-    } else {
+        console.error( error )
 
-      mainWindow.loadURL(
-        require( 'url' ).format(
+      } else {
 
-          {
+        mainWindow.loadURL(
+          require( 'url' ).format(
 
-            pathname: path.join( __dirname, '..', '..', 'pages', 'encryption.html' ),
-            protocol: 'file:',
-            slashes: true
+            {
 
-          } // End format
+              pathname: path.join( __dirname, '..', '..', 'pages', 'encryption.html' ),
+              protocol: 'file:',
+              slashes: true
 
-        ) // End loadURL
+            } // End format
 
-      ) // End mainWindow
+          ) // End loadURL
 
-      if ( loadingScreen ) {
-
-        loadingScreen.close( )
+        ) // End mainWindow
 
       } // End if
 
+    } ) // End invoke( "waitTest" )
+
+    if ( loadingScreen ) {
+
+      loadingScreen.close( )
+
     } // End if
 
-  } ) // End invoke( "waitTest" )
+  } // End if
 
 } // End fsignin( )
 

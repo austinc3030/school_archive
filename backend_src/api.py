@@ -20,6 +20,16 @@ webdriver           = None
 
 # Other global variables
 currentProgressStep = None
+current_username = None
+current_password = None
+encryption_wpa2 = None
+feature_wps = None
+feature_upnp = None
+feature_castssid = None
+new_login_username = None
+new_login_password = None
+new_ssid_name = None
+new_ssid_password = None
 
 
 
@@ -257,6 +267,191 @@ def fWaitTest( ):
 
 
 
+def fSetCurrentCredentials( username, password ):
+
+    try:
+
+        global current_username
+        global current_password
+
+        current_username = username
+        current_password = password
+
+        return "success"
+
+    except Exception as e:
+
+        return e
+
+# End fSetCurrentCredentials( )
+
+
+
+def fGetCurrentCredentials( ):
+
+    try:
+
+        global current_username
+        global current_password
+
+        return "User/Pass: " + current_username + " / " + current_password
+
+    except Exception as e:
+
+        return e
+
+# End fSetCurrentCredentials( )
+
+
+
+def fSetEncryption( wpa2 ):
+
+    try:
+
+        global encryption_wpa2
+
+        encryption_wpa2 = wpa2
+
+        return "success"
+
+    except Exception as e:
+
+        return e
+
+# End fSetCurrentCredentials( )
+
+
+
+def fGetEncryption( ):
+
+    try:
+
+        global encryption_wpa2
+
+        return "Encryption = WPA2: " + str( encryption_wpa2 )
+
+    except Exception as e:
+
+        return e
+
+# End fSetCurrentCredentials( )
+
+
+
+def fSetFeatures( wps, upnp, castssid ):
+
+    try:
+
+        global feature_wps
+        global feature_upnp
+        global feature_castssid
+
+        feature_wps = wps
+        feature_upnp = upnp
+        feature_castssid = castssid
+
+        return "success"
+
+    except Exception as e:
+
+        return e
+
+# End fSetCurrentCredentials( )
+
+
+
+def fGetFeatures( ):
+
+    try:
+
+        global feature_wps
+        global feature_upnp
+        global feature_castssid
+
+        return "WPS: " + str( feature_wps ) + " UPnP: " + str( feature_upnp ) + " Broadcast SSID: " + str( feature_castssid )
+
+    except Exception as e:
+
+        return e
+
+# End fSetCurrentCredentials( )
+
+
+
+def fSetNewCredentials( username, password ):
+
+    try:
+
+        global new_login_username
+        global new_login_password
+
+        new_login_username = username
+        new_login_password = password
+
+        return "success"
+
+    except Exception as e:
+
+        return e
+
+# End fSetCurrentCredentials( )
+
+
+
+def fGetNewCredentials( ):
+
+    try:
+
+        global new_login_username
+        global new_login_password
+
+        return "User/Pass: " + new_login_username + " / " + new_login_password
+
+    except Exception as e:
+
+        return e
+
+# End fSetCurrentCredentials( )
+
+
+
+def fSetSSIDInformation( new_ssid, new_password ):
+
+    try:
+
+        global new_ssid_name
+        global new_ssid_password
+
+        new_ssid_name = new_ssid
+        new_ssid_password = new_password
+
+        return "success"
+
+    except Exception as e:
+
+        return e
+
+# End fSetCurrentCredentials( )
+
+
+
+def fGetSSIDInformation( ):
+
+    try:
+
+        global new_ssid_name
+        global new_ssid_password
+
+        return "SSID: " + new_ssid_name + " Password: " + new_ssid_password
+
+    except Exception as e:
+
+        return e
+
+# End fSetCurrentCredentials( )
+
+
+
 class NetLockAPI( object ):
 
 
@@ -299,7 +494,7 @@ class NetLockAPI( object ):
 
         return fGetProgressStep( )
 
-    # End setProgressStep( )
+    # End getProgressStep( )
 
 
 
@@ -307,7 +502,87 @@ class NetLockAPI( object ):
 
         return fWaitTest( )
 
-    # End setProgressStep( )
+    # End waitTest( )
+
+
+
+    def setCurrentCredentials( self, username, password ):
+
+        return fSetCurrentCredentials( username, password )
+
+    # End setCurrentCredentials( )
+
+
+
+    def getCurrentCredentials( self ):
+
+        return fGetCurrentCredentials( )
+
+    # End setCurrentCredentials( )
+
+
+
+    def setEncryption( self, wpa2 ):
+
+        return fSetEncryption( wpa2 )
+
+    # End setCurrentCredentials( )
+
+
+
+    def getEncryption( self ):
+
+        return fGetEncryption( )
+
+    # End setCurrentCredentials( )
+
+
+
+    def setFeatures( self, wps, upnp, castssid ):
+
+        return fSetFeatures( wps, upnp, castssid )
+
+    # End setCurrentCredentials( )
+
+
+
+    def getFeatures( self ):
+
+        return fGetFeatures( )
+
+    # End setCurrentCredentials( )
+
+
+
+    def setNewCredentials( self, username, password ):
+
+        return fSetNewCredentials( username, password )
+
+    # End setCurrentCredentials( )
+
+
+
+    def getNewCredentials( self ):
+
+        return fGetNewCredentials( )
+
+    # End setCurrentCredentials( )
+
+
+
+    def setSSIDInformation( self, new_ssid, new_password ):
+
+        return fSetSSIDInformation( new_ssid, new_password )
+
+    # End setCurrentCredentials( )
+
+
+
+    def getSSIDInformation( self ):
+
+        return fGetSSIDInformation( )
+
+    # End setCurrentCredentials( )
 
 
 

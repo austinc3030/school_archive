@@ -12,9 +12,6 @@ let client = new zerorpc.Client( )
 // Get a reference to the signin
 let next = document.querySelector( '#next' )
 let goback = document.querySelector( '#goback' )
-let new_ssid = document.querySelector( '#new_ssid' )
-let new_password = document.querySelector( '#new_password' )
-let new_password_confirm = document.querySelector( '#new_password_confirm' )
 
 
 
@@ -27,6 +24,10 @@ const mainWindow = remote.getCurrentWindow( )
 const { BrowserWindow } = require('electron').remote
 
 let loadingScreen = null
+//let username = null
+//let password = null
+//let password_confirm = null
+
 
 
 // Connect to the rpc server
@@ -105,46 +106,84 @@ const createLoadingScreen = () => {
 
 
 // ****************************************************************************
+// Name: inputValidation
+// Abstract: Validate the inputs before sending them to python
+// ****************************************************************************
+const inputValidation = ( ) => {
+
+  let elm_new_ssid = document.querySelector( '#new_ssid' )
+  let elm_new_password = document.querySelector( '#new_password' )
+  let elm_new_password_confirm = document.querySelector( '#new_password_confirm' )
+
+  new_ssid = elm_new_ssid.value
+  new_password = elm_new_password.value
+  new_password_confirm = elm_new_password_confirm.value
+
+  if ( new_password !== new_password_confirm ) {
+
+    let error = 'Passwords do not match.' // TODO: need to get a field on the screen to display the error
+
+    console.error( error )
+
+    return false
+
+  } else {
+
+    console.log( 'Passwords match' )
+
+    return true
+
+  } // End if
+
+} // End fsignin( )
+
+
+
+// ****************************************************************************
 // Name: fnext
 // Abstract: Move to the next page
 // ****************************************************************************
 const fnext = ( ) => {
 
-  createLoadingScreen( )
+  if ( inputValidation( ) == true ) {
 
-  // Tell the backend what step we are on
-  client.invoke( "waitTest", ( error, res ) => {
+    createLoadingScreen( )
 
-    if( error || res !== 'success' ) {
+    // Tell the backend what step we are on
+    client.invoke( "setSSIDInformation", new_ssid, new_password, ( error, res ) => {
 
-      console.error( error )
+      if( error || res !== 'success' ) {
 
-    } else {
+        console.error( error )
 
-      mainWindow.loadURL(
-        require( 'url' ).format(
+      } else {
 
-          {
+        mainWindow.loadURL(
+          require( 'url' ).format(
 
-            pathname: path.join( __dirname, '..', '..', 'pages', 'feature.html' ),
-            protocol: 'file:',
-            slashes: true
+            {
 
-          } // End format
+              pathname: path.join( __dirname, '..', '..', 'pages', 'feature.html' ),
+              protocol: 'file:',
+              slashes: true
 
-        ) // End loadURL
+            } // End format
 
-      ) // End mainWindow
+          ) // End loadURL
 
-      if ( loadingScreen ) {
-
-        loadingScreen.close( )
+        ) // End mainWindow
 
       } // End if
 
+    } ) // End invoke( "waitTest" )
+
+    if ( loadingScreen ) {
+
+      loadingScreen.close( )
+
     } // End if
 
-  } ) // End invoke( "waitTest" )
+  } // End if
 
 } // End fsignin( )
 
