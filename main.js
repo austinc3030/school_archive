@@ -23,7 +23,7 @@ let pyPort = null
 let client = null
 
 // Loading screen stuff
-let loadingScreen;
+let loadingScreen
 
 
 

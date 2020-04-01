@@ -21,7 +21,9 @@ const progressStep = 'thankyou'
 // Get a reference to the main process
 const remote = require('electron').remote
 const mainWindow = remote.getCurrentWindow( )
+const { BrowserWindow } = require('electron').remote
 
+let loadingScreen = null
 
 
 // Connect to the rpc server
@@ -30,17 +32,58 @@ client.connect( "tcp://127.0.0.1:4242" )
 
 
 // ****************************************************************************
-// Name: fgobacktologinnew
-// Abstract: Go back to the loginnew screen
+// Name: nullifyLoadingScreen
+// Abstract: Set the loading screen to null
 // ****************************************************************************
-const fgobacktologinnew = ( ) => {
-  
-  mainWindow.loadURL(
+const nullifyLoadingScreen = ( ) => {
+
+  loadingScreen = null
+
+} // End nullifyLoadingScreen( )
+
+
+
+// ****************************************************************************
+// Name: didFinishLoad
+// Abstract: Create a loading screen
+// ****************************************************************************
+const didFinishLoad = ( ) => {
+
+  loadingScreen.show( )
+
+} // End didFinishLoad( )
+
+
+
+// ****************************************************************************
+// Name: createLoadingScreen
+// Abstract: Create a loading screen
+// ****************************************************************************
+const createLoadingScreen = () => {
+
+  loadingScreen = new BrowserWindow(
+    Object.assign(
+      {
+
+        width:        200,
+        height:       400,
+        frame:        false,
+        transparent:  true
+
+      }  // End assign
+
+    ) // End BrowserWindow
+
+  ) // End loadingScreen
+
+  loadingScreen.setResizable( false )
+
+  loadingScreen.loadURL(
     require( 'url' ).format(
 
       {
 
-        pathname: path.join( __dirname, '..', '..', 'pages', 'loginnew.html' ),
+        pathname: path.join( __dirname, '..', '..', 'pages', 'loading.html' ),
         protocol: 'file:',
         slashes: true
 
@@ -48,7 +91,57 @@ const fgobacktologinnew = ( ) => {
 
     ) // End loadURL
 
-  ) // End mainWindow
+  ) // End loadingScreen
+
+  loadingScreen.on( 'closed', nullifyLoadingScreen )
+
+  loadingScreen.webContents.on('did-finish-load', didFinishLoad )
+
+} // End createLoadingScreen
+
+
+
+// ****************************************************************************
+// Name: fgobacktologinnew
+// Abstract: Go back to the loginnew screen
+// ****************************************************************************
+const fgobacktologinnew = ( ) => {
+
+  createLoadingScreen( )
+
+  // Tell the backend what step we are on
+  client.invoke( "waitTest", ( error, res ) => {
+
+    if( error || res !== 'success' ) {
+
+      console.error( error )
+
+    } else {
+
+      mainWindow.loadURL(
+        require( 'url' ).format(
+
+          {
+
+            pathname: path.join( __dirname, '..', '..', 'pages', 'loginnew.html' ),
+            protocol: 'file:',
+            slashes: true
+
+          } // End format
+
+        ) // End loadURL
+
+      ) // End mainWindow
+
+      if ( loadingScreen ) {
+
+        loadingScreen.close( )
+
+      } // End if
+
+    } // End if
+
+  } ) // End invoke( "waitTest" )
 
 } // End fgobacktologinnew( )
 
@@ -60,20 +153,41 @@ const fgobacktologinnew = ( ) => {
 // ****************************************************************************
 const fgobacktossid = ( ) => {
 
-  mainWindow.loadURL(
-    require( 'url' ).format(
+  createLoadingScreen( )
 
-      {
+  // Tell the backend what step we are on
+  client.invoke( "waitTest", ( error, res ) => {
 
-        pathname: path.join( __dirname, '..', '..', 'pages', 'ssid.html' ),
-        protocol: 'file:',
-        slashes: true
+    if( error || res !== 'success' ) {
 
-      } // End format
+      console.error( error )
 
-    ) // End loadURL
+    } else {
 
-  ) // End mainWindow
+      mainWindow.loadURL(
+        require( 'url' ).format(
+
+          {
+
+            pathname: path.join( __dirname, '..', '..', 'pages', 'ssid.html' ),
+            protocol: 'file:',
+            slashes: true
+
+          } // End format
+
+        ) // End loadURL
+
+      ) // End mainWindow
+
+      if ( loadingScreen ) {
+
+        loadingScreen.close( )
+
+      } // End if
+
+    } // End if
+
+  } ) // End invoke( "waitTest" )
 
 } // End fgobacktossid( )
 
@@ -85,20 +199,41 @@ const fgobacktossid = ( ) => {
 // ****************************************************************************
 const fgobacktofeature = ( ) => {
 
-  mainWindow.loadURL(
-    require( 'url' ).format(
+  createLoadingScreen( )
 
-      {
+  // Tell the backend what step we are on
+  client.invoke( "waitTest", ( error, res ) => {
 
-        pathname: path.join( __dirname, '..', '..', 'pages', 'feature.html' ),
-        protocol: 'file:',
-        slashes: true
+    if( error || res !== 'success' ) {
 
-      } // End format
+      console.error( error )
 
-    ) // End loadURL
+    } else {
 
-  ) // End mainWindow
+      mainWindow.loadURL(
+        require( 'url' ).format(
+
+          {
+
+            pathname: path.join( __dirname, '..', '..', 'pages', 'feature.html' ),
+            protocol: 'file:',
+            slashes: true
+
+          } // End format
+
+        ) // End loadURL
+
+      ) // End mainWindow
+
+      if ( loadingScreen ) {
+
+        loadingScreen.close( )
+
+      } // End if
+
+    } // End if
+
+  } ) // End invoke( "waitTest" )
 
 } // End fgobacktofeature( )
 
@@ -110,20 +245,41 @@ const fgobacktofeature = ( ) => {
 // ****************************************************************************
 const fgobacktoencryption = ( ) => {
 
-  mainWindow.loadURL(
-    require( 'url' ).format(
+  createLoadingScreen( )
 
-      {
+  // Tell the backend what step we are on
+  client.invoke( "waitTest", ( error, res ) => {
 
-        pathname: path.join( __dirname, '..', '..', 'pages', 'encryption.html' ),
-        protocol: 'file:',
-        slashes: true
+    if( error || res !== 'success' ) {
 
-      } // End format
+      console.error( error )
 
-    ) // End loadURL
+    } else {
 
-  ) // End mainWindow
+      mainWindow.loadURL(
+        require( 'url' ).format(
+
+          {
+
+            pathname: path.join( __dirname, '..', '..', 'pages', 'encryption.html' ),
+            protocol: 'file:',
+            slashes: true
+
+          } // End format
+
+        ) // End loadURL
+
+      ) // End mainWindow
+
+      if ( loadingScreen ) {
+
+        loadingScreen.close( )
+
+      } // End if
+
+    } // End if
+
+  } ) // End invoke( "waitTest" )
 
 } // End fgobacktoencryption( )
 

@@ -2,6 +2,7 @@ from __future__ import print_function
 
 import os
 import sys
+import time
 
 import zerorpc
 
@@ -242,6 +243,22 @@ def fGetProgressStep( ):
 
 
 
+def fWaitTest( ):
+
+    try:
+
+        time.sleep( 5 )
+
+        return "success"
+
+    except Exception as e:
+
+        return e
+
+# End fSetProgressStep( )
+
+
+
 class NetLockAPI( object ):
 
 
@@ -283,6 +300,14 @@ class NetLockAPI( object ):
     def getProgressStep( self ):
 
         return fGetProgressStep( )
+
+    # End setProgressStep( )
+
+
+
+    def waitTest( self ):
+
+        return fWaitTest( )
 
     # End setProgressStep( )
 
