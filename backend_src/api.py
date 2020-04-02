@@ -14,6 +14,8 @@ from selenium.webdriver.chrome.options import Options
 
 
 # Global vars for the chromedriver and chromium binaries
+from selenium.webdriver.common.by import By
+
 chromedriver_path   = None
 chromium_path       = None
 webdriver           = None
@@ -276,8 +278,8 @@ def fSetCurrentCredentials( username, password ):
 
         current_username = username
         current_password = password
-
-        return "success"
+        
+        return fTestRouterAccess( )
 
     except Exception as e:
 
@@ -378,17 +380,63 @@ def fGetFeatures( ):
 
 
 
+def fTestRouterAccess( ):
+
+    try:
+
+        global webdriver
+        global current_username
+        global current_password
+
+        webdriver.get( "http://" + current_username + ":" + current_password + "@192.168.0.1/" )
+        webdriver.set_window_size( 1200, 780 )
+        webdriver.switch_to.frame( 2 )
+
+        if ( webdriver.title == "Archer C7" ) :
+
+            return "success"
+
+        else :
+
+            return "unsuccessful"
+
+        # End ifelse
+
+    except Exception as e:
+
+        return e
+
+# End fTestRouterAccess( )
+
+
+
 def fSetNewCredentials( username, password ):
 
     try:
 
+        global current_username
+        global current_password
         global new_login_username
         global new_login_password
+        global webdriver
 
         new_login_username = username
         new_login_password = password
 
-        return "success"
+        webdriver.get( "http://" + current_username + ":" + current_password + "@192.168.0.1/" )
+        webdriver.switch_to.frame( 1 )
+        webdriver.find_element( By.ID, "a64" ).click( )
+        webdriver.find_element( By.ID, "a71" ).click( )
+        webdriver.switch_to.default_content( )
+        webdriver.switch_to.frame( 2 )
+        webdriver.find_element( By.NAME, "oldname" ).send_keys( current_username )
+        webdriver.find_element( By.NAME, "oldpassword" ).send_keys( current_password )
+        webdriver.find_element( By.NAME, "newname" ).send_keys( new_login_username )
+        webdriver.find_element( By.NAME, "newpassword" ).send_keys( new_login_password )
+        webdriver.find_element( By.NAME, "newpassword2" ).send_keys( new_login_password )
+        webdriver.find_element( By.NAME, "Save" ).click( )
+
+        return fTestRouterAccess( )
 
     except Exception as e:
 
@@ -585,6 +633,12 @@ class NetLockAPI( object ):
     # End setCurrentCredentials( )
 
 
+
+    def testRouterAccess( self ):
+
+        return fTestRouterAccess( )
+
+    # End testRouterAccess
 
 # End NetLockAPI( )
 
