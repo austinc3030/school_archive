@@ -111,17 +111,41 @@ const createLoadingScreen = () => {
 // ****************************************************************************
 const inputValidation = ( ) => {
 
+  let error = ''
+
   let elm_username = document.querySelector( '#username' )
   let elm_password = document.querySelector( '#password' )
   let elm_password_confirm = document.querySelector( '#password_confirm' )
+
+  let elm_error_box = document.querySelector( '#error_box' )
+  let elm_error_msg = document.querySelector( '#error_msg' )
 
   username = elm_username.value
   password = elm_password.value
   password_confirm = elm_password_confirm.value
 
-  if ( password !== password_confirm ) {
+  if ( !username.trim( ) ) {
 
-    let error = 'Passwords do not match.' // TODO: need to get a field on the screen to display the error
+    error = ' Username cannot be blank.'
+
+  } else if ( !password.trim( ) ) {
+
+    error = ' Password cannot be blank.'
+
+  } else if ( !password_confirm.trim( ) ) {
+
+    error = ' Password confirmation cannot be blank.'
+
+  } else if ( password.trim( ) !== password_confirm.trim( ) ) {
+
+    error = ' Passwords do not match.'
+
+  }
+
+  if ( error.trim( ) ) {
+
+    elm_error_msg.innerHTML = error
+    elm_error_box.className = elm_error_box.className.replace( ' invisible', ' visible' )
 
     console.error( error )
 
@@ -129,11 +153,14 @@ const inputValidation = ( ) => {
 
   } else {
 
-    console.log( 'Passwords match' )
+    elm_error_msg.innerHTML = ''
+    elm_error_box.className = elm_error_box.className.replace( ' visible', ' invisible' )
+
+    console.log( 'Validation Passed' )
 
     return true
 
-  } // End if
+  }
 
 } // End fsignin( )
 
