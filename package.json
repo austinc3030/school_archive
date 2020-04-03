@@ -30,6 +30,7 @@
         "executableName": "netlock",
         "packageManager": "npm",
         "prune": true,
+        "icon": "netlock.icns",
         "ignore": [
           "\\.git(ignore|config|attributes)",
           "/package-lock\\.json",
