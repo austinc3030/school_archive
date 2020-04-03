@@ -186,7 +186,6 @@ const fnext = ( ) => {
       if( error || res !== 'success' ) {
 
         error_msg =  ' Something went wrong trying to connect to the router. '
-        error_msg += 'Are you sure you have the correct credentials? '
         error_msg += 'The error was: ' + error
 
         elm_error_msg.innerHTML = error_msg

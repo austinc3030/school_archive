@@ -15,6 +15,8 @@ from selenium.webdriver.chrome.options import Options
 
 # Global vars for the chromedriver and chromium binaries
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
 
 chromedriver_path   = None
 chromium_path       = None
@@ -426,17 +428,24 @@ def fSetNewCredentials( username, password ):
         new_login_password = password
 
         webdriver.get( "http://" + current_username + ":" + current_password + "@192.168.0.1/" )
+        webdriver.set_window_size( 1200, 780 )
         webdriver.switch_to.frame( 1 )
         webdriver.find_element( By.ID, "a64" ).click( )
         webdriver.find_element( By.ID, "a71" ).click( )
         webdriver.switch_to.default_content( )
         webdriver.switch_to.frame( 2 )
-        webdriver.find_element( By.NAME, "oldname" ).send_keys( current_username )
-        webdriver.find_element( By.NAME, "oldpassword" ).send_keys( current_password )
-        webdriver.find_element( By.NAME, "newname" ).send_keys( new_login_username )
-        webdriver.find_element( By.NAME, "newpassword" ).send_keys( new_login_password )
-        webdriver.find_element( By.NAME, "newpassword2" ).send_keys( new_login_password )
-        webdriver.find_element( By.NAME, "Save" ).click( )
+        WebDriverWait( webdriver , 30000).until(expected_conditions.element_to_be_clickable((By.NAME, "oldname")))
+        webdriver.find_element(By.NAME, "oldname").send_keys( current_username )
+        webdriver.find_element(By.NAME, "oldpassword").send_keys( current_password )
+        webdriver.find_element(By.NAME, "newname").send_keys(new_login_username )
+        webdriver.find_element(By.NAME, "newpassword").send_keys(new_login_password)
+        webdriver.find_element(By.NAME, "newpassword2").send_keys(new_login_password)
+        webdriver.find_element(By.NAME, "Save").click( )
+
+        current_username = new_login_username
+        current_password = new_login_password
+
+        time.sleep(1)
 
         return fTestRouterAccess( )
 
