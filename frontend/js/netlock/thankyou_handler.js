@@ -110,7 +110,7 @@ const fgobacktologinnew = ( ) => {
   createLoadingScreen( )
 
   // Tell the backend what step we are on
-  client.invoke( "waitTest", ( error, res ) => {
+  client.invoke( "waitTest", 0, ( error, res ) => {
 
     if( error || res !== 'success' ) {
 
@@ -156,7 +156,7 @@ const fgobacktossid = ( ) => {
   createLoadingScreen( )
 
   // Tell the backend what step we are on
-  client.invoke( "waitTest", ( error, res ) => {
+  client.invoke( "waitTest", 0, ( error, res ) => {
 
     if( error || res !== 'success' ) {
 
@@ -202,7 +202,7 @@ const fgobacktofeature = ( ) => {
   createLoadingScreen( )
 
   // Tell the backend what step we are on
-  client.invoke( "waitTest", ( error, res ) => {
+  client.invoke( "waitTest", 0, ( error, res ) => {
 
     if( error || res !== 'success' ) {
 
@@ -248,7 +248,7 @@ const fgobacktoencryption = ( ) => {
   createLoadingScreen( )
 
   // Tell the backend what step we are on
-  client.invoke( "waitTest", ( error, res ) => {
+  client.invoke( "waitTest", 0, ( error, res ) => {
 
     if( error || res !== 'success' ) {
 

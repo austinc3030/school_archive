@@ -255,9 +255,11 @@ def fGetProgressStep( ):
 
 
 
-def fWaitTest( ):
+def fWaitTest( duration ):
 
     try:
+
+        time.sleep( duration )
 
         return "success"
 
@@ -278,7 +280,7 @@ def fSetCurrentCredentials( username, password ):
 
         current_username = username
         current_password = password
-        
+
         return fTestRouterAccess( )
 
     except Exception as e:
@@ -546,9 +548,9 @@ class NetLockAPI( object ):
 
 
 
-    def waitTest( self ):
+    def waitTest( self, duration ):
 
-        return fWaitTest( )
+        return fWaitTest( duration )
 
     # End waitTest( )
 

@@ -172,6 +172,10 @@ const inputValidation = ( ) => {
 // ****************************************************************************
 const fnext = ( ) => {
 
+  let error_msg = ''
+  let elm_error_box = document.querySelector( '#error_box' )
+  let elm_error_msg = document.querySelector( '#error_msg' )
+
   if ( inputValidation( ) == true ) {
 
     createLoadingScreen( )
@@ -181,9 +185,19 @@ const fnext = ( ) => {
 
       if( error || res !== 'success' ) {
 
+        error_msg =  ' Something went wrong trying to connect to the router. '
+        error_msg += 'Are you sure you have the correct credentials? '
+        error_msg += 'The error was: ' + error
+
+        elm_error_msg.innerHTML = error_msg
+        elm_error_box.className = elm_error_box.className.replace( ' invisible', ' visible' )
+
         console.error( error )
 
       } else {
+
+        elm_error_msg.innerHTML = error_msg
+        elm_error_box.className = elm_error_box.className.replace( ' visible', ' invisible' )
 
         mainWindow.loadURL(
           require( 'url' ).format(
@@ -225,7 +239,7 @@ const fgoback = ( ) => {
   createLoadingScreen( )
 
   // Tell the backend what step we are on
-  client.invoke( "waitTest", ( error, res ) => {
+  client.invoke( "waitTest", 0, ( error, res ) => {
 
     if( error || res !== 'success' ) {
 
