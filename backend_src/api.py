@@ -415,6 +415,38 @@ def fConfigureWPS( ):
 
 
 
+def fConfigureUPnP( ):
+
+    try:
+
+        webdriver.get("http://admin:admin@192.168.0.1/")
+        webdriver.set_window_size(1200, 780)
+        webdriver.switch_to.frame(1)
+        webdriver.find_element(By.ID, "a35").click()
+        webdriver.find_element(By.ID, "a39").click()
+        webdriver.switch_to.default_content()
+        webdriver.switch_to.frame(2)
+
+        if ( feature_upnp == True ):
+
+            webdriver.find_element(By.ID, "upnpenable").click()
+
+        else:
+
+            webdriver.find_element(By.ID, "upnpdisable").click()
+
+        # End if
+
+        return fTestRouterAccess()
+
+    except Exception as e:
+
+        return e
+
+# End fConfigureUPnP( )
+
+
+
 def fSetFeatures( wps, upnp, castssid ):
 
     try:
@@ -431,10 +463,23 @@ def fSetFeatures( wps, upnp, castssid ):
 
             feature_wps = False
 
-        feature_upnp = upnp
-        feature_castssid = castssid
+        if ( upnp == "true" ):
 
-        if ( fConfigureWPS() == "success" ):
+            feature_upnp = True
+
+        else:
+
+            feature_upnp = False
+
+        if ( castssid == "true" ):
+
+            feature_castssid = True
+
+        else:
+
+            feature_castssid = False
+
+        if ( fConfigureWPS() == "success" and fConfigureUPnP() == "success" ):
 
             return "success"
 
