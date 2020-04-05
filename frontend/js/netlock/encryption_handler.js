@@ -109,10 +109,19 @@ const createLoadingScreen = () => {
 const inputValidation = ( ) => {
 
   let elm_wpa2 = document.querySelector( '#WPA2' )
+  let elm_error_box = document.querySelector( '#error_box' )
+  let elm_error_msg = document.querySelector( '#error_msg' )
 
   wpa2 = elm_wpa2.checked
 
-  // TODO: respond that we do not support using anything other than WPA2. May phrase it as being unsupported.
+  if ( wpa2 == false ) {
+
+    error_msg =  ' We do not recommend disabling encryption on your router and therefore do not support it.'
+
+    elm_error_msg.innerHTML = error_msg
+    elm_error_box.className = elm_error_box.className.replace( ' invisible', ' visible' )
+
+  }
 
   return true
 
