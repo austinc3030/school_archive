@@ -474,6 +474,79 @@ def fGetNewCredentials( ):
 
 
 
+def fConfigure5GSSID( ):
+
+    try:
+
+        global new_ssid_name
+        global new_ssid_password
+        global current_username
+        global current_password
+
+        webdriver.get("http://" + current_username + ":" + current_password + "@192.168.0.1/")
+        webdriver.set_window_size(1200, 780)
+        webdriver.switch_to.frame(1)
+        webdriver.find_element(By.ID, "a14").click()
+        webdriver.switch_to.default_content()
+        webdriver.switch_to.frame(2)
+        WebDriverWait(webdriver, 30000).until(expected_conditions.element_to_be_clickable((By.ID, "ssid")))
+        webdriver.find_element( By.ID, "ssid").clear( )
+        webdriver.find_element(By.ID, "ssid").send_keys( new_ssid_name + "-5G" )
+        webdriver.find_element(By.ID, "Save").click()
+        webdriver.switch_to.default_content()
+        webdriver.switch_to.frame(1)
+        webdriver.find_element(By.ID, "a17").click()
+        webdriver.switch_to.default_content()
+        webdriver.switch_to.frame(2)
+        WebDriverWait(webdriver, 30000).until(expected_conditions.element_to_be_clickable((By.ID, "pskSecret")))
+        webdriver.find_element(By.ID, "pskSecret").clear( )
+        webdriver.find_element(By.ID, "pskSecret").send_keys(new_ssid_password)
+        webdriver.find_element(By.ID, "Save").click()
+
+    except Exception as e:
+
+        return e
+
+# End fConfigure5GSSID( )
+
+
+
+def fConfigure2GSSID( ):
+
+    try:
+
+        global new_ssid_name
+        global new_ssid_password
+        global current_username
+        global current_password
+
+        webdriver.get("http://" + current_username + ":" + current_password + "@192.168.0.1/")
+        webdriver.set_window_size(1200, 780)
+        webdriver.switch_to.frame(1)
+        webdriver.find_element(By.ID, "a7").click()
+        webdriver.switch_to.default_content()
+        webdriver.switch_to.frame(2)
+        WebDriverWait(webdriver, 30000).until(expected_conditions.element_to_be_clickable((By.ID, "ssid")))
+        webdriver.find_element(By.ID, "ssid").clear( )
+        webdriver.find_element(By.ID, "ssid").send_keys( new_ssid_name + "-2.4G" )
+        webdriver.find_element(By.ID, "Save").click()
+        webdriver.switch_to.default_content()
+        webdriver.switch_to.frame(1)
+        webdriver.find_element(By.ID, "a10").click()
+        webdriver.switch_to.default_content()
+        webdriver.switch_to.frame(2)
+        WebDriverWait(webdriver, 30000).until(expected_conditions.element_to_be_clickable((By.ID, "pskSecret")))
+        webdriver.find_element(By.ID, "pskSecret").clear( )
+        webdriver.find_element(By.ID, "pskSecret").send_keys(new_ssid_password)
+        webdriver.find_element(By.ID, "Save").click()
+
+    except Exception as e:
+
+        return e
+
+# End fConfigure2GSSID( )
+
+
 def fSetSSIDInformation( new_ssid, new_password ):
 
     try:
@@ -483,6 +556,9 @@ def fSetSSIDInformation( new_ssid, new_password ):
 
         new_ssid_name = new_ssid
         new_ssid_password = new_password
+
+        fConfigure2GSSID()
+        fConfigure5GSSID()
 
         return "success"
 
