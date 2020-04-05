@@ -361,29 +361,7 @@ def fConfigureWPS5G():
         webdriver.switch_to.default_content()
         webdriver.switch_to.frame(2)
 
-        # Is WPS enabled on 5G?
-        elements = webdriver.find_elements(By.ID, "t_disabled")
-        if (len(elements) > 0):
-            # No, this button enables it
-            wps_is_enabled = False
-
-        # Is WPS disabled on 5G?
-        elements = webdriver.find_elements(By.ID, "t_enabled")
-        if (len(elements) > 0):
-            # Yes, this button disables it
-            wps_is_enabled = True
-
-        # Is WPS enabled and we want it disabled?
-        if (feature_wps == False and wps_is_enabled == True):
-            # Yes, disable
-            webdriver.find_element(By.NAME, "DisWps").click()
-
-        # Is WPS disabled and we want it enabled?
-        if (feature_wps == True and wps_is_enabled == False):
-
-            webdriver.find_element(By.NAME, "EnWps").click()
-
-        return "success"
+        return fTestRouterAccess()
 
     except Exception as e:
 
@@ -410,31 +388,8 @@ def fConfigureWPS2G( ):
         webdriver.find_element(By.ID, "a9").click()
         webdriver.switch_to.default_content()
         webdriver.switch_to.frame(2)
-
-        # Is WPS enabled on 2.4G?
-        elements = webdriver.find_elements(By.ID, "t_disabled")
-        if (len(elements) > 0):
-
-            wps_is_enabled = False
-
-        # Is WPS disabled on 2.4G?
-        elements = webdriver.find_elements(By.ID, "t_enabled")
-        if (len(elements) > 0):
-
-            wps_is_enabled = True
-
-        # Is WPS enabled and we want it disabled?
-        if (feature_wps == False and wps_is_enabled == True):
-
-            # Yes, disable
-            webdriver.find_element(By.NAME, "DisWps").click()
-
-        # Is WPS disabled and we want it enabled?
-        if (feature_wps == True and wps_is_enabled == False):
-
-            webdriver.find_element(By.NAME, "EnWps").click()
         
-        return "success"
+        return fTestRouterAccess()
 
     except Exception as e:
 
