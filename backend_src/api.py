@@ -38,7 +38,7 @@ new_ssid_password = None
 
 
 def getChromedriverPath( ):
-    
+
     try:
 
         # Make sure the global chromedriver_path is used
@@ -92,9 +92,9 @@ def getChromedriverPath( ):
         return success
 
     except Exception as e:
-    
+
             return e
-    
+
 # End getChromedriverPath( )
 
 
@@ -344,6 +344,122 @@ def fGetEncryption( ):
 
 
 
+def fConfigureWPS5G():
+    try:
+
+        global feature_wps
+        global current_username
+        global current_password
+
+        wps_is_enabled = False
+
+        webdriver.get("http://" + current_username + ":" + current_password + "@192.168.0.1/")
+        webdriver.set_window_size(1200, 780)
+        webdriver.switch_to.frame(1)
+        webdriver.find_element(By.ID, "a14").click()
+        webdriver.find_element(By.ID, "a16").click()
+        webdriver.switch_to.default_content()
+        webdriver.switch_to.frame(2)
+
+        # Is WPS enabled on 5G?
+        elements = webdriver.find_elements(By.ID, "t_disabled")
+        if (len(elements) > 0):
+            # No, this button enables it
+            wps_is_enabled = False
+
+        # Is WPS disabled on 5G?
+        elements = webdriver.find_elements(By.ID, "t_enabled")
+        if (len(elements) > 0):
+            # Yes, this button disables it
+            wps_is_enabled = True
+
+        # Is WPS enabled and we want it disabled?
+        if (feature_wps == False and wps_is_enabled == True):
+            # Yes, disable
+            webdriver.find_element(By.NAME, "DisWps").click()
+
+        # Is WPS disabled and we want it enabled?
+        if (feature_wps == True and wps_is_enabled == False):
+
+            webdriver.find_element(By.NAME, "EnWps").click()
+
+        return "success"
+
+    except Exception as e:
+
+        return e
+
+# End fConfigureWPS( )
+
+
+
+def fConfigureWPS2G( ):
+
+    try:
+
+        global feature_wps
+        global current_username
+        global current_password
+
+        wps_is_enabled = False
+
+        webdriver.get("http://" + current_username + ":" + current_password + "@192.168.0.1/")
+        webdriver.set_window_size(1200, 780)
+        webdriver.switch_to.frame(1)
+        webdriver.find_element(By.ID, "a7").click()
+        webdriver.find_element(By.ID, "a9").click()
+        webdriver.switch_to.default_content()
+        webdriver.switch_to.frame(2)
+
+        # Is WPS enabled on 2.4G?
+        elements = webdriver.find_elements(By.ID, "t_disabled")
+        if (len(elements) > 0):
+
+            wps_is_enabled = False
+
+        # Is WPS disabled on 2.4G?
+        elements = webdriver.find_elements(By.ID, "t_enabled")
+        if (len(elements) > 0):
+
+            wps_is_enabled = True
+
+        # Is WPS enabled and we want it disabled?
+        if (feature_wps == False and wps_is_enabled == True):
+
+            # Yes, disable
+            webdriver.find_element(By.NAME, "DisWps").click()
+
+        # Is WPS disabled and we want it enabled?
+        if (feature_wps == True and wps_is_enabled == False):
+
+            webdriver.find_element(By.NAME, "EnWps").click()
+        
+        return "success"
+
+    except Exception as e:
+
+        return e
+
+# End fConfigureWPS2G( )
+
+
+
+def fConfigureWPS( ):
+
+    try:
+
+        if ( fConfigureWPS2G( ) == "success" and fConfigureWPS5G() == "success" ):
+
+            return "success"
+
+    except Exception as e:
+
+        return e
+
+# End fConfigureWPS( )
+
+
+
 def fSetFeatures( wps, upnp, castssid ):
 
     try:
@@ -352,11 +468,20 @@ def fSetFeatures( wps, upnp, castssid ):
         global feature_upnp
         global feature_castssid
 
-        feature_wps = wps
+        if ( wps == "true" ):
+
+            feature_wps = True
+
+        else:
+
+            feature_wps = False
+
         feature_upnp = upnp
         feature_castssid = castssid
 
-        return "success"
+        if ( fConfigureWPS() == "success" ):
+
+            return "success"
 
     except Exception as e:
 
@@ -503,6 +628,8 @@ def fConfigure5GSSID( ):
         webdriver.find_element(By.ID, "pskSecret").send_keys(new_ssid_password)
         webdriver.find_element(By.ID, "Save").click()
 
+        return "success"
+
     except Exception as e:
 
         return e
@@ -540,11 +667,14 @@ def fConfigure2GSSID( ):
         webdriver.find_element(By.ID, "pskSecret").send_keys(new_ssid_password)
         webdriver.find_element(By.ID, "Save").click()
 
+        return "success"
+
     except Exception as e:
 
         return e
 
 # End fConfigure2GSSID( )
+
 
 
 def fSetSSIDInformation( new_ssid, new_password ):
@@ -557,10 +687,11 @@ def fSetSSIDInformation( new_ssid, new_password ):
         new_ssid_name = new_ssid
         new_ssid_password = new_password
 
-        fConfigure2GSSID()
-        fConfigure5GSSID()
+        if ( fConfigure2GSSID() == "success" and fConfigure5GSSID() == "success" ):
 
-        return "success"
+            return "success"
+
+        # End if
 
     except Exception as e:
 
@@ -732,17 +863,17 @@ class NetLockAPI( object ):
 
 
 def parsePort( ):
-    
+
     port = 4242
-    
+
     try:
-    
+
         port = int( sys.argv[ 1 ] )
-    
+
     except Exception as e:
-    
+
         pass
-    
+
     return '{}'.format( port )
 
 # End parsePort( )
@@ -750,20 +881,20 @@ def parsePort( ):
 
 
 def main( ):
-    
+
     try:
-      
+
         address = 'tcp://127.0.0.1:' + parsePort( )
-        
+
         rpc_server = zerorpc.Server( NetLockAPI( ) )
-        
+
         rpc_server.bind( address )
-        
+
         print( 'start running on {}'.format( address ) )
         rpc_server.run( )
 
     except Exception as e:
-    
+
         return e
 
 # End main( )
