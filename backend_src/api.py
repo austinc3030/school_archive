@@ -418,24 +418,18 @@ def fConfigureWPS( ):
 def fConfigureUPnP( ):
 
     try:
+        
+        global current_username
+        global current_password
+        global feature_upnp
 
-        webdriver.get("http://admin:admin@192.168.0.1/")
+        webdriver.get("http://" + current_username + ":" + current_password + "@192.168.0.1/")
         webdriver.set_window_size(1200, 780)
         webdriver.switch_to.frame(1)
         webdriver.find_element(By.ID, "a35").click()
         webdriver.find_element(By.ID, "a39").click()
         webdriver.switch_to.default_content()
         webdriver.switch_to.frame(2)
-
-        if ( feature_upnp == True ):
-
-            webdriver.find_element(By.ID, "upnpenable").click()
-
-        else:
-
-            webdriver.find_element(By.ID, "upnpdisable").click()
-
-        # End if
 
         return fTestRouterAccess()
 
@@ -444,6 +438,38 @@ def fConfigureUPnP( ):
         return e
 
 # End fConfigureUPnP( )
+
+
+
+def fConfigureBroadcast( ):
+    
+    try:
+        
+        global current_username
+        global current_password
+        global feature_castssid
+
+        webdriver.get("http://" + current_username + ":" + current_password + "@192.168.0.1/")
+        webdriver.set_window_size(1200, 780)
+        webdriver.switch_to.frame(1)
+        webdriver.find_element(By.ID, "a7").click()
+        webdriver.switch_to.default_content()
+        webdriver.switch_to.frame(2)
+        webdriver.find_element(By.ID, "Save").click()
+        webdriver.switch_to.default_content()
+        webdriver.switch_to.frame(1)
+        webdriver.find_element(By.ID, "a14").click()
+        webdriver.switch_to.default_content()
+        webdriver.switch_to.frame(2)
+        webdriver.find_element(By.ID, "Save").click()
+
+        return fTestRouterAccess( )
+
+    except Exception as e:
+        
+        return e
+    
+# End fConfigureBroadcast( )
 
 
 
@@ -479,7 +505,7 @@ def fSetFeatures( wps, upnp, castssid ):
 
             feature_castssid = False
 
-        if ( fConfigureWPS() == "success" and fConfigureUPnP() == "success" ):
+        if ( fConfigureWPS() == "success" and fConfigureUPnP() == "success" and fConfigureBroadcast() == "success"):
 
             return "success"
 
