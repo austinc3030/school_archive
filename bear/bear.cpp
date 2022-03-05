@@ -26,7 +26,7 @@ void Bear::feed_bear()
     std::locale::global(gen("de_DE.UTF-8"));
     //std::locale::global(gen(""));
     cout.imbue(locale());
-    std::cout << translate("eat", "Feeding Bear\n");
+    std::cout << translate("eat", "Feeding Bear");
 
 } // End Bear::feed_bear()
 

@@ -26,7 +26,7 @@ void Lion::feed_lion()
     std::locale::global(gen("de_DE.UTF-8"));
     //std::locale::global(gen(""));
     cout.imbue(locale());
-    std::cout << translate("eat", "Feeding Lion\n");
+    std::cout << translate("eat", "Feeding Lion");
 
 } // End Lion::feed_lion()
 

@@ -26,7 +26,7 @@ void Tiger::feed_tiger()
     std::locale::global(gen("de_DE.UTF-8"));
     //std::locale::global(gen(""));
     cout.imbue(locale());
-    std::cout << translate("eat", "Feeding Tiger\n");
+    std::cout << translate("eat", "Feeding Tiger");
 
 } // End Tiger::feed_tiger()
 
