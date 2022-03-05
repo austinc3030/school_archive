@@ -22,8 +22,8 @@ int main()
     gen.add_messages_domain("messages");
 
     //One of these linses should be uncommented to allow switching locales
-    //std::locale::global(gen("de_DE.UTF - 8");
-    std::locale::global(gen(""));
+    std::locale::global(gen("de_DE.UTF-8"));
+    //std::locale::global(gen(""));
 
 
     ui_main();
