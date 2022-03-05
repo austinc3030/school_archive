@@ -13,6 +13,7 @@
 // ----------------------------------------------------------------------------
 int main()
 {
+    ui_main();
     using namespace std;
     using namespace boost::locale;
     generator gen;
@@ -26,8 +27,7 @@ int main()
     //std::locale::global(gen(""));
     cout.imbue(locale());
 
-    ui_main();
-
+   
     std::cout << translate("UI Started");
 
     system("pause");
