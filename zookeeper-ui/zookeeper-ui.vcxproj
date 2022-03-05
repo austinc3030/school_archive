@@ -154,6 +154,10 @@
       <Project>{61780ca1-5ad5-404d-8388-5b073fb5bbe0}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="de.po" />
+    <None Include="messages.mo" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
