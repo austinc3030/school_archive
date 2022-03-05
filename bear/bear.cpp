@@ -15,7 +15,7 @@
 void Bear::feed_bear()
 {
 
-    std::cout << "Feeding Bear\n";
+    std::cout << translate("eat", "Feeding Bear\n");
 
 } // End Bear::feed_bear()
 

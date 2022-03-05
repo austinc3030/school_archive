@@ -18,7 +18,7 @@
 void play_games()
 {
 
-	std::cout << "\n\nLet's play some games!!!\n\n";
+	std::cout << translate("\n\nLet's play some games!!!\n\n");
 
 	Bear* bear = get_bear();
 	play_hide_and_go_seek(bear);

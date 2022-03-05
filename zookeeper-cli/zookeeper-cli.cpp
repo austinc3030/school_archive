@@ -4,7 +4,7 @@
 // ----------------------------------------------------------------------------
 #include <iostream>
 #include "zoo.h"
-
+#include <boost/locale.hpp>
 
 
 // ----------------------------------------------------------------------------
@@ -13,6 +13,11 @@
 // ----------------------------------------------------------------------------
 int main()
 {
+    using namespace boost::locale;
+    generator gen;
+    //One of these linses should be uncommented to allow switching locales
+    //std::locale::global(gen("de_DE.UTF - 8");
+    std::locale::global(gen(""));
 
     zoo_main();
     

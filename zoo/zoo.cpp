@@ -17,7 +17,7 @@
 void zoo_main()
 {
 
-	std::cout << "\n\nLet's go to the zoo!!!\n\n";
+	std::cout << translate("\n\nLet's go to the zoo!!!\n\n");
 
 	feed_animals();
 	play_games();
