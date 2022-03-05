@@ -18,7 +18,7 @@
 void feed_animals()
 {
 
-	std::cout << translate("\n\nFeeding the Animals!!!\n");
+	std::cout << translate("Feeding the Animals!!!");
 
 	Bear* bear = get_bear();
 	feed_bear(bear);	

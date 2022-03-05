@@ -12,15 +12,47 @@ msgstr ""
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: de \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: zookeeper-ui.cpp:26
-msgid ""
-"\n"
-"\n"
-" UI Started \n"
-"\n"
-msgstr ""
+msgid "UI Started"
+msgstr "German UI Started"
+
+#: tiger.cpp:18
+msgctxt "eat"
+msgid "Feeding Tiger"
+msgstr "German Feeding Tiger"
+
+#: lion.cpp:18
+msgctxt "eat"
+msgid "Feeding Lion"
+msgstr "German Feeding Lion"
+
+#: bear.cpp:18
+msgctxt "eat"
+msgid "Feeding Bear"
+msgstr "German Feeding Bear"
+
+#: ui.cpp:19
+msgid "The zoo LOOKS so cool!!!"
+msgstr "German The zoo LOOKS so cool!!!"
+
+#: cages.cpp:21
+msgid "Feeding the Animals!!!"
+msgstr "German Feeding the Animals!!!"
+
+#: zookeeper-cli.cpp:21
+msgid "Client Starting"
+msgstr "German Client Starting"
+
+#: games.cpp:21
+msgid "Let's play some games!!!"
+msgstr "German Let's play some games!!!"
+
+#: zoo.cpp:20
+msgid "Let's go to the zoo!!!"
+msgstr "German Let's go to the zoo!!!"
+

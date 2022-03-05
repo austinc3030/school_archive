@@ -16,7 +16,7 @@
 void ui_main()
 {
 
-	std::cout << translate("\n\nThe zoo LOOKS so cool!!!\n\n");
+	std::cout << translate("The zoo LOOKS so cool!!!");
 
 	zoo_main();
 

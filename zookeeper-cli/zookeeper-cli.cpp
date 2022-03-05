@@ -21,7 +21,7 @@ int main()
 
     zoo_main();
     
-    std::cout << "\n\n\n\n";
+    std::cout << translate("Client Starting");
 
     system("pause");
 
