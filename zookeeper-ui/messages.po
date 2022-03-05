@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: zookeeper-ui.cpp:26
+#: zookeeper-ui.cpp:31
 msgid "UI Started"
 msgstr "German UI Started"
 
