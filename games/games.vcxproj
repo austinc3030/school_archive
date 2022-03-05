@@ -130,7 +130,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\Users\Brett\Documents\SoftArch\boost_1_78_0\boost_1_78_0;C:\Users\Brett\Documents\SoftArch\midtermProj\zookeeper\tiger;C:\Users\Brett\Documents\SoftArch\midtermProj\zookeeper\lion;C:\Users\Brett\Documents\SoftArch\midtermProj\zookeeper\bear;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Brett\Documents\SoftArch\boost_1_78_0\boost_1_78_0;C:\Users\Brett\Documents\SoftArch\midtermProj\zookeeper\tiger;C:\Users\Brett\Documents\SoftArch\midtermProj\zookeeper\lion;C:\Users\Brett\Documents\SoftArch\midtermProj\zookeeper\bear;C:\Users\user\Desktop\boost_1_78_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
