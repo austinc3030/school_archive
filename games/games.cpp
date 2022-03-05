@@ -8,7 +8,7 @@
 #include "lion.h"
 #include "bear.h"
 #include "tiger.h"
-
+#include <boost/locale.hpp>
 
 
 // ----------------------------------------------------------------------------
@@ -17,7 +17,7 @@
 // ----------------------------------------------------------------------------
 void play_games()
 {
-
+	using namespace boost::locale;
 	std::cout << translate("Let's play some games!!!");
 
 	Bear* bear = get_bear();

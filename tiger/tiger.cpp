@@ -5,7 +5,7 @@
 #include "pch.h"
 #include <iostream>
 #include "tiger.h"
-
+#include <boost/locale.hpp>
 
 
 // ----------------------------------------------------------------------------
@@ -14,7 +14,7 @@
 // ----------------------------------------------------------------------------
 void Tiger::feed_tiger()
 {
-
+    using namespace boost::locale;
     std::cout << translate("eat", "Feeding Tiger\n");
 
 } // End Tiger::feed_tiger()

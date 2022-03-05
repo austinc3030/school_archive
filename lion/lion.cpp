@@ -5,7 +5,7 @@
 #include "pch.h"
 #include <iostream>
 #include "lion.h"
-
+#include <boost/locale.hpp>
 
 
 // ----------------------------------------------------------------------------
@@ -14,7 +14,7 @@
 // ----------------------------------------------------------------------------
 void Lion::feed_lion()
 {
-
+    using namespace boost::locale;
     std::cout << translate("eat", "Feeding Lion\n");
 
 } // End Lion::feed_lion()

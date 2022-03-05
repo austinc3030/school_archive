@@ -138,6 +138,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>C:\Users\Brett\Documents\SoftArch\boost_1_78_0\boost_1_78_0;C:\Users\Brett\Documents\SoftArch\midtermProj\zookeeper\tiger;C:\Users\Brett\Documents\SoftArch\midtermProj\zookeeper\lion;C:\Users\Brett\Documents\SoftArch\midtermProj\zookeeper\bear;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -183,6 +184,7 @@
   <ItemGroup>
     <ProjectReference Include="..\bear\bear.vcxproj">
       <Project>{6992a60c-d6a6-4d60-a41c-b0a4a1a85472}</Project>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <ProjectReference Include="..\lion\lion.vcxproj">
       <Project>{0acdb772-b82a-4525-a510-713205bf3eaa}</Project>

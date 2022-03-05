@@ -7,6 +7,7 @@
 #include <iostream>
 #include "cages.h"
 #include "games.h"
+#include <boost/locale.hpp>
 
 
 
@@ -16,7 +17,7 @@
 // ----------------------------------------------------------------------------
 void zoo_main()
 {
-
+	using namespace boost::locale;
 	std::cout << translate("Let's go to the zoo!!!");
 
 	feed_animals();

@@ -6,7 +6,7 @@
 #include "zoo.h"
 #include <iostream>
 #include "ui.h"
-
+#include <boost/locale.hpp>
 
 
 // ----------------------------------------------------------------------------
@@ -15,7 +15,7 @@
 // ----------------------------------------------------------------------------
 void ui_main()
 {
-
+	using namespace boost::locale;
 	std::cout << translate("The zoo LOOKS so cool!!!");
 
 	zoo_main();
