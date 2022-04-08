@@ -1,0 +1,14 @@
+#include <iostream>
+#include "..\AutomationBinding\AutomationAPI_Session.h"
+#include "..\AutomationBinding\AutomationAPI_Part.h"
+
+int main()
+{
+    std::cout << "Hello World!\n";
+    AutomationAPI::Session* mySession = AutomationAPI::Session::GetSession();
+AutomationAPI::Part * Part1 = mySession->MakePart("d:\workdir\someDir\SomeName.part");
+AutomationAPI::Blockbuilder * Blockbuilder1 = Part1->CreateBlockBuilder(nullptr);
+Blockbuilder1->SetType();
+Part1->Save();
+
+}

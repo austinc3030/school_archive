@@ -1,0 +1,7 @@
+﻿  BI.cpp
+  Core.cpp
+  dllmain.cpp
+  LinkedList.cpp
+  Generating Code...
+     Creating library C:\Users\polek\source\repos\BadLibraries\Debug\CORE.lib and object C:\Users\polek\source\repos\BadLibraries\Debug\CORE.exp
+  Core.vcxproj -> C:\Users\polek\source\repos\BadLibraries\Debug\CORE.dll
