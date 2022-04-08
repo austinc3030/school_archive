@@ -13,6 +13,3 @@ To Resovle this install a Java JDK (such as Adopt OpenJDK), and then provide the
 Or optionally comment out the code in PerformJavaAutomationWorkflow, and turn off building the JavaLoader library.
 
 [Journaling Module Design](documentation_markdown/journaling.md)
-
-# Estimates
-We estimated this would take us 6 hours to complete. We completed the first portion of adding the additional functionality in 4 hours. 

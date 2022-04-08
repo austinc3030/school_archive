@@ -92,6 +92,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AutomationAPI_Hole.h" />
+    <ClInclude Include="AutomationAPI_HoleBuilder.h" />
+    <ClInclude Include="AutomationAPI_HoleCollection.h" />
     <ClInclude Include="AutomationBindingExports.h" />
     <ClInclude Include="AutomationAPI_Wire.h" />
     <ClInclude Include="AutomationAPI_Block.h" />
@@ -114,6 +117,7 @@
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Extrude.cpp" />
     <ClCompile Include="FeatureCollection.cpp" />
+    <ClCompile Include="HoleCollection.cpp" />
     <ClCompile Include="IBuilder.cpp" />
     <ClCompile Include="Part.cpp" />
     <ClCompile Include="RoutingCollection.cpp" />
