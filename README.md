@@ -1,3 +1,21 @@
+#Final Project
+We estimate it will take:
+
+    6 hours to generate the design document
+    8 hours to generate unit tests
+    12 hours for implementation of the requirements split as follow:
+        6 hours for Requirement 1 (REQUIRED) – Want all localization capability done in one library.
+        0 hours for Requirement 2 (DESIRED) – The ability to switch locales during execution.
+        0 hours for Requirement 3 (DESIRED) – Merge po files together.
+        0 hours for Requirement 4 (DESIRED) – Have xtext run as part of build process – VS pre-build or post build step
+        6 hours for Requirement 5 (REQUIRED) – Have library be in “core” layer but separate from libcore
+        0 hours for Requirement 6 (DESIRED) – Have utilities that checks for mo files (or find where boost says where it is looking)
+
+ 
+
+For estimating the introduction of localization into an existing project, we believe the estimate would be better refined after spending time to develop the design documentation. With the design documentation created, we will have a better understanding of the existing codebase leading to a better indication on the level of effort that will be required.
+
+## Original Readme Contents Below
 # SoftwareArchitectureCLassApplication
 This is sandbox code to show proof of concept usages of some principles taught in University of Cincinnati's Software Architecture Class.
 
