@@ -4,6 +4,8 @@
 #include "..\AppPartOps\PartOps.h"
 #include "..\Journaling\Journaling.h"
 #include "..\Journaling\JournalHelpers.h"
+#include "Hole.h"
+#include "HoleBuilder.h"
 
 Application::BlockBuilder* Journaling_FeatureCollection_CreateBlockBuilder(Application::PartFile *part, Application::Block* block)
 {
@@ -27,4 +29,29 @@ Application::BlockBuilder* Journaling_FeatureCollection_CreateBlockBuilder(Appli
 	}
 
 	return retVal;
+}
+
+
+
+Application::HoleBuilder* Journaling_FeatureCollection_CreateHoleBuilder(Application::PartFile* part, Application::Hole* hole)
+{
+
+	if (IsJournaling())
+	{
+
+		JournalStartCall("CreateHoleBuilder", part);
+		JournalInClassParam(hole, "AutomationAPI::Hole", "hole");
+
+	}
+
+	Application::HoleBuilder* holeBuilder = nullptr;
+
+	if (IsJournaling())
+	{
+		JournalReturnClass(holeBuilder, "AutomationAPI::HoleBuilder", "HoleBuilder");
+		JournalEndCall();
+	}
+
+	return holeBuilder;
+
 }
