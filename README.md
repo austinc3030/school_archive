@@ -15,8 +15,8 @@ We estimate it will take:
 
 For estimating the introduction of localization into an existing project, we believe the estimate would be better refined after spending time to develop the design documentation. With the design documentation created, we will have a better understanding of the existing codebase leading to a better indication on the level of effort that will be required.
 
-## Original Readme Contents Below
-# SoftwareArchitectureCLassApplication
+# Original Readme Contents Below
+## SoftwareArchitectureCLassApplication
 This is sandbox code to show proof of concept usages of some principles taught in University of Cincinnati's Software Architecture Class.
 
 This code base will be used for several assignments, but it's value comes from having several libraries in play, as well as some example usages of concepts of singletons, static initializers, journaling, and automation APIs
