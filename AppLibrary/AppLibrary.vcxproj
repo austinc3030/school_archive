@@ -99,11 +99,8 @@
     <ClInclude Include="ExtrudeVersions.h" />
     <ClInclude Include="Feature.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="HoleBuilder.h" />
     <ClInclude Include="Journaling_BlockBuilder.h" />
     <ClInclude Include="Journaling_FeatureCollection.h" />
-    <ClInclude Include="Journaling_HoleBuilder.h" />
-    <ClInclude Include="Hole.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Block.cpp" />
@@ -114,9 +111,6 @@
     <ClCompile Include="Feature.cpp" />
     <ClCompile Include="Journaling_BlockBuilder.cpp" />
     <ClCompile Include="Journaling_FeatureCollection.cpp" />
-    <ClCompile Include="Journaling_HoleBuilder.cpp" />
-    <ClCompile Include="Hole.cpp" />
-    <ClCompile Include="HoleBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AppsCore\AppsCore.vcxproj">

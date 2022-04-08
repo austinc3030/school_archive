@@ -64,15 +64,6 @@
     <ClInclude Include="AutomationAPI_WireBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AutomationAPI_Hole.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AutomationAPI_HoleBuilder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AutomationAPI_HoleCollection.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -109,9 +100,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RoutingCollection.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HoleCollection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
