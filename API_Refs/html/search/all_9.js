@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['routing_0',['Routing',['../class_automation_a_p_i_1_1_part.html#a809a717874f0597f6f67b2f317f33d97',1,'AutomationAPI::Part']]],
-  ['routingcollection_1',['RoutingCollection',['../class_automation_a_p_i_1_1_routing_collection.html',1,'AutomationAPI']]]
+  ['openpart_0',['OpenPart',['../class_automation_a_p_i_1_1_session.html#a62e0ce13ba2c72104356db2f4a0289be',1,'AutomationAPI::Session']]]
 ];

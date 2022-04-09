@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['typesdiagonalpoints_0',['TypesDiagonalPoints',['../class_automation_a_p_i_1_1_block_builder.html#a9095bc936c5de1706283d36dcd0ed9cbadc7f70cb42dd95c2531f1bc22f290353',1,'AutomationAPI::BlockBuilder']]],
-  ['typesoption2_1',['TypesOption2',['../class_automation_a_p_i_1_1_wire_builder.html#adf383d0874380ee48254160d953b8a04a085101db08c6a5fa8380b1260263f6f5',1,'AutomationAPI::WireBuilder']]],
-  ['typestwopointsandheight_2',['TypesTwoPointsAndHeight',['../class_automation_a_p_i_1_1_block_builder.html#a9095bc936c5de1706283d36dcd0ed9cba984894108fda4d41eb325f6454eb6c24',1,'AutomationAPI::BlockBuilder']]]
+  ['holejournaltypeschamfers_0',['HoleJournalTypesChamfers',['../class_automation_a_p_i_1_1_hole_builder.html#a4bec4ad300fdbc5a4c6e1b993ca57b55ae54c6523d7bfe666885142dc1cf180d4',1,'AutomationAPI::HoleBuilder']]],
+  ['holejournaltypestapers_1',['HoleJournalTypesTapers',['../class_automation_a_p_i_1_1_hole_builder.html#a4bec4ad300fdbc5a4c6e1b993ca57b55a06c2954a3f706970903660ef7f0f79f7',1,'AutomationAPI::HoleBuilder']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['wirebuildertypes_0',['WireBuilderTypes',['../class_automation_a_p_i_1_1_wire_builder.html#adf383d0874380ee48254160d953b8a04',1,'AutomationAPI::WireBuilder']]]
+  ['journalholebuildertypes_0',['JournalHoleBuilderTypes',['../class_automation_a_p_i_1_1_hole_builder.html#a4bec4ad300fdbc5a4c6e1b993ca57b55',1,'AutomationAPI::HoleBuilder']]]
 ];
