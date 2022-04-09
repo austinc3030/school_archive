@@ -1,3 +1,4 @@
+
 #include "AutomationAPI_FeatureCollection.h"
 #include "AutomationAPI_Block.h"
 #include "AutomationAPI_BlockBuilder.h"
@@ -6,40 +7,69 @@
 #include "..\AppLibrary\Block.h"
 #include "..\AppLibrary\BlockBuilder.h"
 #include "..\AppPartOps\PartOps.h"
+#include "..\AppLibrary\Hole.h"
+#include "..\AppLibrary\HoleBuilder.h"
+
 
 AutomationAPI::FeatureCollection::FeatureCollection(int guid) : m_guid(guid)
 {
 
 }
 
+
+
 AutomationAPI::FeatureCollection::~FeatureCollection()
 {
 
 }
 
+
+
 AutomationAPI::BlockBuilder* AutomationAPI::FeatureCollection::CreateBlockBuilder(AutomationAPI::Block* block)
 {
+
 	int guid = 0;
 	Application::Block* appBlock = nullptr;
+
 	if (block != nullptr)
 	{
+
 		guid = block->GetGuid();
 		appBlock = new Application::Block(guid);
-	} 
 
-	Application::PartFile* part = 
-		dynamic_cast<Application::PartFile*>(
-			GuidObjectManager::GetGuidObjectManager().GetObjectFromGUID(m_guid));
-	if (part == nullptr)
-	{
-		throw std::exception("not able to retrieve Part Object");
 	}
 
-	Application::BlockBuilder * blockBuilder =
+	Application::PartFile* part =
+		dynamic_cast<Application::PartFile*>(
+			GuidObjectManager::GetGuidObjectManager().GetObjectFromGUID(m_guid));
+
+	if (part == nullptr)
+	{
+
+		throw std::exception("not able to retrieve Part Object");
+
+	}
+
+	Application::BlockBuilder* blockBuilder =
 		Journaling_FeatureCollection_CreateBlockBuilder(part, appBlock);
 
 	int guidBlockBuilder = blockBuilder->GetGuid();
 
 	return AutomationAPI::BlockBuilder::CreateBlockBuilder(guidBlockBuilder);
+
+}
+
+
+
+AutomationAPI::HoleBuilder* AutomationAPI::FeatureCollection::CreateHoleBuilder(AutomationAPI::Hole* hole)
+{
+
+	Application::PartFile* part = nullptr;
+	Application::Hole* appHole = nullptr;
+
+	Application::HoleBuilder* holeBuilder =
+		Journaling_FeatureCollection_CreateHoleBuilder(hole, appHole);
+
+	return nullptr;
 
 }
