@@ -1,0 +1,10 @@
+<map id="_jvmtiHeapCallbacks" name="_jvmtiHeapCallbacks">
+<area shape="rect" id="node1" title=" " alt="" coords="739,136,881,163"/>
+<area shape="rect" id="node2" href="$union__jvmti_heap_reference_info.html" title=" " alt="" coords="380,136,543,163"/>
+<area shape="rect" id="node3" href="$struct__jvmti_heap_reference_info_field.html" title=" " alt="" coords="31,5,221,32"/>
+<area shape="rect" id="node4" href="$struct__jvmti_heap_reference_info_array.html" title=" " alt="" coords="29,56,223,83"/>
+<area shape="rect" id="node5" href="$struct__jvmti_heap_reference_info_constant_pool.html" title=" " alt="" coords="5,107,247,133"/>
+<area shape="rect" id="node6" href="$struct__jvmti_heap_reference_info_stack_local.html" title=" " alt="" coords="27,158,225,199"/>
+<area shape="rect" id="node7" href="$struct__jvmti_heap_reference_info_jni_local.html" title=" " alt="" coords="37,223,215,265"/>
+<area shape="rect" id="node8" href="$struct__jvmti_heap_reference_info_reserved.html" title=" " alt="" coords="18,289,234,316"/>
+</map>

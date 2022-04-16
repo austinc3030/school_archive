@@ -1,0 +1,46 @@
+\hypertarget{_journal_call_data_8h_source}{}\doxysection{Journal\+Call\+Data.\+h}
+\label{_journal_call_data_8h_source}\index{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/Journaling/JournalCallData.h@{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/Journaling/JournalCallData.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}JournalingTypes.h"{}}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{keyword}{class }GuidObject;}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{namespace }Journal}
+\DoxyCodeLine{11 \{}
+\DoxyCodeLine{12     \textcolor{keyword}{class }JournalCallParamData;}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{17     \textcolor{keyword}{class }\mbox{\hyperlink{class_journal_1_1_journal_call_data}{JournalCallData}}}
+\DoxyCodeLine{18     \{}
+\DoxyCodeLine{19     \textcolor{keyword}{public}:}
+\DoxyCodeLine{25         \mbox{\hyperlink{class_journal_1_1_journal_call_data}{JournalCallData}}(std::string methodName, CannedGlobals cannedGlobals);}
+\DoxyCodeLine{31         \mbox{\hyperlink{class_journal_1_1_journal_call_data}{JournalCallData}}(std::string methodName, GuidObject* classObject);}
+\DoxyCodeLine{32         \textcolor{keywordtype}{void} AddParameter(\mbox{\hyperlink{class_journal_1_1_journal_call_param_data}{JournalCallParamData}}* param);}
+\DoxyCodeLine{33         \textcolor{keywordtype}{void} AddReturnValue(\mbox{\hyperlink{class_journal_1_1_journal_call_param_data}{JournalCallParamData}}* param);}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35         \textcolor{keyword}{virtual} \mbox{\hyperlink{class_journal_1_1_journal_call_data}{\string~JournalCallData}}();}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37         \textcolor{keywordtype}{void} Journal();}
+\DoxyCodeLine{38         \mbox{\hyperlink{class_journal_1_1_journal_call_data}{JournalCallData}}() = \textcolor{keyword}{delete};}
+\DoxyCodeLine{39         \mbox{\hyperlink{class_journal_1_1_journal_call_data}{JournalCallData}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_journal_1_1_journal_call_data}{JournalCallData}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{40         \mbox{\hyperlink{class_journal_1_1_journal_call_data}{JournalCallData}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{class_journal_1_1_journal_call_data}{JournalCallData}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{41     \textcolor{keyword}{private}:}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43         std::string m\_methodName;}
+\DoxyCodeLine{44         std::vector<JournalCallParamData*> m\_params;}
+\DoxyCodeLine{45         \textcolor{keywordtype}{bool} m\_isCanned;}
+\DoxyCodeLine{46         GuidObject* m\_classObject;}
+\DoxyCodeLine{47         CannedGlobals m\_cannedGlobal;}
+\DoxyCodeLine{48         \mbox{\hyperlink{class_journal_1_1_journal_call_param_data}{JournalCallParamData}}* m\_retVal; \textcolor{comment}{// nulptr is void}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50     \};}
+\DoxyCodeLine{51 \}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 }
+
+\end{DoxyCode}

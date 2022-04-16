@@ -1,0 +1,588 @@
+\hypertarget{classfile__constants_8h_source}{}\doxysection{classfile\+\_\+constants.\+h}
+\label{classfile__constants_8h_source}\index{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/JNI\_Includes/classfile\_constants.h@{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/JNI\_Includes/classfile\_constants.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright (c) 2004, 2017, Oracle and/or its affiliates. All rights reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.}}
+\DoxyCodeLine{4 \textcolor{comment}{ *}}
+\DoxyCodeLine{5 \textcolor{comment}{ * This code is free software; you can redistribute it and/or modify it}}
+\DoxyCodeLine{6 \textcolor{comment}{ * under the terms of the GNU General Public License version 2 only, as}}
+\DoxyCodeLine{7 \textcolor{comment}{ * published by the Free Software Foundation.  Oracle designates this}}
+\DoxyCodeLine{8 \textcolor{comment}{ * particular file as subject to the "{}Classpath"{} exception as provided}}
+\DoxyCodeLine{9 \textcolor{comment}{ * by Oracle in the LICENSE file that accompanied this code.}}
+\DoxyCodeLine{10 \textcolor{comment}{ *}}
+\DoxyCodeLine{11 \textcolor{comment}{ * This code is distributed in the hope that it will be useful, but WITHOUT}}
+\DoxyCodeLine{12 \textcolor{comment}{ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or}}
+\DoxyCodeLine{13 \textcolor{comment}{ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License}}
+\DoxyCodeLine{14 \textcolor{comment}{ * version 2 for more details (a copy is included in the LICENSE file that}}
+\DoxyCodeLine{15 \textcolor{comment}{ * accompanied this code).}}
+\DoxyCodeLine{16 \textcolor{comment}{ *}}
+\DoxyCodeLine{17 \textcolor{comment}{ * You should have received a copy of the GNU General Public License version}}
+\DoxyCodeLine{18 \textcolor{comment}{ * 2 along with this work; if not, write to the Free Software Foundation,}}
+\DoxyCodeLine{19 \textcolor{comment}{ * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-\/1301 USA.}}
+\DoxyCodeLine{20 \textcolor{comment}{ *}}
+\DoxyCodeLine{21 \textcolor{comment}{ * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA}}
+\DoxyCodeLine{22 \textcolor{comment}{ * or visit www.oracle.com if you need additional information or have any}}
+\DoxyCodeLine{23 \textcolor{comment}{ * questions.}}
+\DoxyCodeLine{24 \textcolor{comment}{ */}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#ifndef CLASSFILE\_CONSTANTS\_H}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#define CLASSFILE\_CONSTANTS\_H}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{30 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{comment}{/* Classfile version number for this information */}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#define JVM\_CLASSFILE\_MAJOR\_VERSION 55}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#define JVM\_CLASSFILE\_MINOR\_VERSION 0}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{comment}{/* Flags */}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{40     JVM\_ACC\_PUBLIC        = 0x0001,}
+\DoxyCodeLine{41     JVM\_ACC\_PRIVATE       = 0x0002,}
+\DoxyCodeLine{42     JVM\_ACC\_PROTECTED     = 0x0004,}
+\DoxyCodeLine{43     JVM\_ACC\_STATIC        = 0x0008,}
+\DoxyCodeLine{44     JVM\_ACC\_FINAL         = 0x0010,}
+\DoxyCodeLine{45     JVM\_ACC\_SYNCHRONIZED  = 0x0020,}
+\DoxyCodeLine{46     JVM\_ACC\_SUPER         = 0x0020,}
+\DoxyCodeLine{47     JVM\_ACC\_VOLATILE      = 0x0040,}
+\DoxyCodeLine{48     JVM\_ACC\_BRIDGE        = 0x0040,}
+\DoxyCodeLine{49     JVM\_ACC\_TRANSIENT     = 0x0080,}
+\DoxyCodeLine{50     JVM\_ACC\_VARARGS       = 0x0080,}
+\DoxyCodeLine{51     JVM\_ACC\_NATIVE        = 0x0100,}
+\DoxyCodeLine{52     JVM\_ACC\_INTERFACE     = 0x0200,}
+\DoxyCodeLine{53     JVM\_ACC\_ABSTRACT      = 0x0400,}
+\DoxyCodeLine{54     JVM\_ACC\_STRICT        = 0x0800,}
+\DoxyCodeLine{55     JVM\_ACC\_SYNTHETIC     = 0x1000,}
+\DoxyCodeLine{56     JVM\_ACC\_ANNOTATION    = 0x2000,}
+\DoxyCodeLine{57     JVM\_ACC\_ENUM          = 0x4000,}
+\DoxyCodeLine{58     JVM\_ACC\_MODULE        = 0x8000}
+\DoxyCodeLine{59 \};}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#define JVM\_ACC\_PUBLIC\_BIT        0}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#define JVM\_ACC\_PRIVATE\_BIT       1}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#define JVM\_ACC\_PROTECTED\_BIT     2}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#define JVM\_ACC\_STATIC\_BIT        3}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#define JVM\_ACC\_FINAL\_BIT         4}}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#define JVM\_ACC\_SYNCHRONIZED\_BIT  5}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#define JVM\_ACC\_SUPER\_BIT         5}}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#define JVM\_ACC\_VOLATILE\_BIT      6}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#define JVM\_ACC\_BRIDGE\_BIT        6}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#define JVM\_ACC\_TRANSIENT\_BIT     7}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#define JVM\_ACC\_VARARGS\_BIT       7}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#define JVM\_ACC\_NATIVE\_BIT        8}}
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#define JVM\_ACC\_INTERFACE\_BIT     9}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#define JVM\_ACC\_ABSTRACT\_BIT      10}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#define JVM\_ACC\_STRICT\_BIT        11}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#define JVM\_ACC\_SYNTHETIC\_BIT     12}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#define JVM\_ACC\_ANNOTATION\_BIT    13}}
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#define JVM\_ACC\_ENUM\_BIT          14}}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80 \textcolor{comment}{/* Used in newarray instruction. */}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{83     JVM\_T\_BOOLEAN = 4,}
+\DoxyCodeLine{84     JVM\_T\_CHAR    = 5,}
+\DoxyCodeLine{85     JVM\_T\_FLOAT   = 6,}
+\DoxyCodeLine{86     JVM\_T\_DOUBLE  = 7,}
+\DoxyCodeLine{87     JVM\_T\_BYTE    = 8,}
+\DoxyCodeLine{88     JVM\_T\_SHORT   = 9,}
+\DoxyCodeLine{89     JVM\_T\_INT     = 10,}
+\DoxyCodeLine{90     JVM\_T\_LONG    = 11}
+\DoxyCodeLine{91 \};}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93 \textcolor{comment}{/* Constant Pool Entries */}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95 \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{96     JVM\_CONSTANT\_Utf8                   = 1,}
+\DoxyCodeLine{97     JVM\_CONSTANT\_Unicode                = 2, \textcolor{comment}{/* unused */}}
+\DoxyCodeLine{98     JVM\_CONSTANT\_Integer                = 3,}
+\DoxyCodeLine{99     JVM\_CONSTANT\_Float                  = 4,}
+\DoxyCodeLine{100     JVM\_CONSTANT\_Long                   = 5,}
+\DoxyCodeLine{101     JVM\_CONSTANT\_Double                 = 6,}
+\DoxyCodeLine{102     JVM\_CONSTANT\_Class                  = 7,}
+\DoxyCodeLine{103     JVM\_CONSTANT\_String                 = 8,}
+\DoxyCodeLine{104     JVM\_CONSTANT\_Fieldref               = 9,}
+\DoxyCodeLine{105     JVM\_CONSTANT\_Methodref              = 10,}
+\DoxyCodeLine{106     JVM\_CONSTANT\_InterfaceMethodref     = 11,}
+\DoxyCodeLine{107     JVM\_CONSTANT\_NameAndType            = 12,}
+\DoxyCodeLine{108     JVM\_CONSTANT\_MethodHandle           = 15,  \textcolor{comment}{// JSR 292}}
+\DoxyCodeLine{109     JVM\_CONSTANT\_MethodType             = 16,  \textcolor{comment}{// JSR 292}}
+\DoxyCodeLine{110     JVM\_CONSTANT\_Dynamic                = 17,}
+\DoxyCodeLine{111     JVM\_CONSTANT\_InvokeDynamic          = 18,}
+\DoxyCodeLine{112     JVM\_CONSTANT\_ExternalMax            = 18}
+\DoxyCodeLine{113 \};}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115 \textcolor{comment}{/* JVM\_CONSTANT\_MethodHandle subtypes */}}
+\DoxyCodeLine{116 \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{117     JVM\_REF\_getField                = 1,}
+\DoxyCodeLine{118     JVM\_REF\_getStatic               = 2,}
+\DoxyCodeLine{119     JVM\_REF\_putField                = 3,}
+\DoxyCodeLine{120     JVM\_REF\_putStatic               = 4,}
+\DoxyCodeLine{121     JVM\_REF\_invokeVirtual           = 5,}
+\DoxyCodeLine{122     JVM\_REF\_invokeStatic            = 6,}
+\DoxyCodeLine{123     JVM\_REF\_invokeSpecial           = 7,}
+\DoxyCodeLine{124     JVM\_REF\_newInvokeSpecial        = 8,}
+\DoxyCodeLine{125     JVM\_REF\_invokeInterface         = 9}
+\DoxyCodeLine{126 \};}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128 \textcolor{comment}{/* StackMapTable type item numbers */}}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130 \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{131     JVM\_ITEM\_Top                = 0,}
+\DoxyCodeLine{132     JVM\_ITEM\_Integer            = 1,}
+\DoxyCodeLine{133     JVM\_ITEM\_Float              = 2,}
+\DoxyCodeLine{134     JVM\_ITEM\_Double             = 3,}
+\DoxyCodeLine{135     JVM\_ITEM\_Long               = 4,}
+\DoxyCodeLine{136     JVM\_ITEM\_Null               = 5,}
+\DoxyCodeLine{137     JVM\_ITEM\_UninitializedThis  = 6,}
+\DoxyCodeLine{138     JVM\_ITEM\_Object             = 7,}
+\DoxyCodeLine{139     JVM\_ITEM\_Uninitialized      = 8}
+\DoxyCodeLine{140 \};}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142 \textcolor{comment}{/* Type signatures */}}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144 \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{145     JVM\_SIGNATURE\_ARRAY         = \textcolor{charliteral}{'['},}
+\DoxyCodeLine{146     JVM\_SIGNATURE\_BYTE          = \textcolor{charliteral}{'B'},}
+\DoxyCodeLine{147     JVM\_SIGNATURE\_CHAR          = \textcolor{charliteral}{'C'},}
+\DoxyCodeLine{148     JVM\_SIGNATURE\_CLASS         = \textcolor{charliteral}{'L'},}
+\DoxyCodeLine{149     JVM\_SIGNATURE\_ENDCLASS      = \textcolor{charliteral}{';'},}
+\DoxyCodeLine{150     JVM\_SIGNATURE\_ENUM          = \textcolor{charliteral}{'E'},}
+\DoxyCodeLine{151     JVM\_SIGNATURE\_FLOAT         = \textcolor{charliteral}{'F'},}
+\DoxyCodeLine{152     JVM\_SIGNATURE\_DOUBLE        = \textcolor{charliteral}{'D'},}
+\DoxyCodeLine{153     JVM\_SIGNATURE\_FUNC          = \textcolor{charliteral}{'('},}
+\DoxyCodeLine{154     JVM\_SIGNATURE\_ENDFUNC       = \textcolor{charliteral}{')'},}
+\DoxyCodeLine{155     JVM\_SIGNATURE\_INT           = \textcolor{charliteral}{'I'},}
+\DoxyCodeLine{156     JVM\_SIGNATURE\_LONG          = \textcolor{charliteral}{'J'},}
+\DoxyCodeLine{157     JVM\_SIGNATURE\_SHORT         = \textcolor{charliteral}{'S'},}
+\DoxyCodeLine{158     JVM\_SIGNATURE\_VOID          = \textcolor{charliteral}{'V'},}
+\DoxyCodeLine{159     JVM\_SIGNATURE\_BOOLEAN       = \textcolor{charliteral}{'Z'}}
+\DoxyCodeLine{160 \};}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162 \textcolor{comment}{/* Opcodes */}}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164 \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{165     JVM\_OPC\_nop                 = 0,}
+\DoxyCodeLine{166     JVM\_OPC\_aconst\_null         = 1,}
+\DoxyCodeLine{167     JVM\_OPC\_iconst\_m1           = 2,}
+\DoxyCodeLine{168     JVM\_OPC\_iconst\_0            = 3,}
+\DoxyCodeLine{169     JVM\_OPC\_iconst\_1            = 4,}
+\DoxyCodeLine{170     JVM\_OPC\_iconst\_2            = 5,}
+\DoxyCodeLine{171     JVM\_OPC\_iconst\_3            = 6,}
+\DoxyCodeLine{172     JVM\_OPC\_iconst\_4            = 7,}
+\DoxyCodeLine{173     JVM\_OPC\_iconst\_5            = 8,}
+\DoxyCodeLine{174     JVM\_OPC\_lconst\_0            = 9,}
+\DoxyCodeLine{175     JVM\_OPC\_lconst\_1            = 10,}
+\DoxyCodeLine{176     JVM\_OPC\_fconst\_0            = 11,}
+\DoxyCodeLine{177     JVM\_OPC\_fconst\_1            = 12,}
+\DoxyCodeLine{178     JVM\_OPC\_fconst\_2            = 13,}
+\DoxyCodeLine{179     JVM\_OPC\_dconst\_0            = 14,}
+\DoxyCodeLine{180     JVM\_OPC\_dconst\_1            = 15,}
+\DoxyCodeLine{181     JVM\_OPC\_bipush              = 16,}
+\DoxyCodeLine{182     JVM\_OPC\_sipush              = 17,}
+\DoxyCodeLine{183     JVM\_OPC\_ldc                 = 18,}
+\DoxyCodeLine{184     JVM\_OPC\_ldc\_w               = 19,}
+\DoxyCodeLine{185     JVM\_OPC\_ldc2\_w              = 20,}
+\DoxyCodeLine{186     JVM\_OPC\_iload               = 21,}
+\DoxyCodeLine{187     JVM\_OPC\_lload               = 22,}
+\DoxyCodeLine{188     JVM\_OPC\_fload               = 23,}
+\DoxyCodeLine{189     JVM\_OPC\_dload               = 24,}
+\DoxyCodeLine{190     JVM\_OPC\_aload               = 25,}
+\DoxyCodeLine{191     JVM\_OPC\_iload\_0             = 26,}
+\DoxyCodeLine{192     JVM\_OPC\_iload\_1             = 27,}
+\DoxyCodeLine{193     JVM\_OPC\_iload\_2             = 28,}
+\DoxyCodeLine{194     JVM\_OPC\_iload\_3             = 29,}
+\DoxyCodeLine{195     JVM\_OPC\_lload\_0             = 30,}
+\DoxyCodeLine{196     JVM\_OPC\_lload\_1             = 31,}
+\DoxyCodeLine{197     JVM\_OPC\_lload\_2             = 32,}
+\DoxyCodeLine{198     JVM\_OPC\_lload\_3             = 33,}
+\DoxyCodeLine{199     JVM\_OPC\_fload\_0             = 34,}
+\DoxyCodeLine{200     JVM\_OPC\_fload\_1             = 35,}
+\DoxyCodeLine{201     JVM\_OPC\_fload\_2             = 36,}
+\DoxyCodeLine{202     JVM\_OPC\_fload\_3             = 37,}
+\DoxyCodeLine{203     JVM\_OPC\_dload\_0             = 38,}
+\DoxyCodeLine{204     JVM\_OPC\_dload\_1             = 39,}
+\DoxyCodeLine{205     JVM\_OPC\_dload\_2             = 40,}
+\DoxyCodeLine{206     JVM\_OPC\_dload\_3             = 41,}
+\DoxyCodeLine{207     JVM\_OPC\_aload\_0             = 42,}
+\DoxyCodeLine{208     JVM\_OPC\_aload\_1             = 43,}
+\DoxyCodeLine{209     JVM\_OPC\_aload\_2             = 44,}
+\DoxyCodeLine{210     JVM\_OPC\_aload\_3             = 45,}
+\DoxyCodeLine{211     JVM\_OPC\_iaload              = 46,}
+\DoxyCodeLine{212     JVM\_OPC\_laload              = 47,}
+\DoxyCodeLine{213     JVM\_OPC\_faload              = 48,}
+\DoxyCodeLine{214     JVM\_OPC\_daload              = 49,}
+\DoxyCodeLine{215     JVM\_OPC\_aaload              = 50,}
+\DoxyCodeLine{216     JVM\_OPC\_baload              = 51,}
+\DoxyCodeLine{217     JVM\_OPC\_caload              = 52,}
+\DoxyCodeLine{218     JVM\_OPC\_saload              = 53,}
+\DoxyCodeLine{219     JVM\_OPC\_istore              = 54,}
+\DoxyCodeLine{220     JVM\_OPC\_lstore              = 55,}
+\DoxyCodeLine{221     JVM\_OPC\_fstore              = 56,}
+\DoxyCodeLine{222     JVM\_OPC\_dstore              = 57,}
+\DoxyCodeLine{223     JVM\_OPC\_astore              = 58,}
+\DoxyCodeLine{224     JVM\_OPC\_istore\_0            = 59,}
+\DoxyCodeLine{225     JVM\_OPC\_istore\_1            = 60,}
+\DoxyCodeLine{226     JVM\_OPC\_istore\_2            = 61,}
+\DoxyCodeLine{227     JVM\_OPC\_istore\_3            = 62,}
+\DoxyCodeLine{228     JVM\_OPC\_lstore\_0            = 63,}
+\DoxyCodeLine{229     JVM\_OPC\_lstore\_1            = 64,}
+\DoxyCodeLine{230     JVM\_OPC\_lstore\_2            = 65,}
+\DoxyCodeLine{231     JVM\_OPC\_lstore\_3            = 66,}
+\DoxyCodeLine{232     JVM\_OPC\_fstore\_0            = 67,}
+\DoxyCodeLine{233     JVM\_OPC\_fstore\_1            = 68,}
+\DoxyCodeLine{234     JVM\_OPC\_fstore\_2            = 69,}
+\DoxyCodeLine{235     JVM\_OPC\_fstore\_3            = 70,}
+\DoxyCodeLine{236     JVM\_OPC\_dstore\_0            = 71,}
+\DoxyCodeLine{237     JVM\_OPC\_dstore\_1            = 72,}
+\DoxyCodeLine{238     JVM\_OPC\_dstore\_2            = 73,}
+\DoxyCodeLine{239     JVM\_OPC\_dstore\_3            = 74,}
+\DoxyCodeLine{240     JVM\_OPC\_astore\_0            = 75,}
+\DoxyCodeLine{241     JVM\_OPC\_astore\_1            = 76,}
+\DoxyCodeLine{242     JVM\_OPC\_astore\_2            = 77,}
+\DoxyCodeLine{243     JVM\_OPC\_astore\_3            = 78,}
+\DoxyCodeLine{244     JVM\_OPC\_iastore             = 79,}
+\DoxyCodeLine{245     JVM\_OPC\_lastore             = 80,}
+\DoxyCodeLine{246     JVM\_OPC\_fastore             = 81,}
+\DoxyCodeLine{247     JVM\_OPC\_dastore             = 82,}
+\DoxyCodeLine{248     JVM\_OPC\_aastore             = 83,}
+\DoxyCodeLine{249     JVM\_OPC\_bastore             = 84,}
+\DoxyCodeLine{250     JVM\_OPC\_castore             = 85,}
+\DoxyCodeLine{251     JVM\_OPC\_sastore             = 86,}
+\DoxyCodeLine{252     JVM\_OPC\_pop                 = 87,}
+\DoxyCodeLine{253     JVM\_OPC\_pop2                = 88,}
+\DoxyCodeLine{254     JVM\_OPC\_dup                 = 89,}
+\DoxyCodeLine{255     JVM\_OPC\_dup\_x1              = 90,}
+\DoxyCodeLine{256     JVM\_OPC\_dup\_x2              = 91,}
+\DoxyCodeLine{257     JVM\_OPC\_dup2                = 92,}
+\DoxyCodeLine{258     JVM\_OPC\_dup2\_x1             = 93,}
+\DoxyCodeLine{259     JVM\_OPC\_dup2\_x2             = 94,}
+\DoxyCodeLine{260     JVM\_OPC\_swap                = 95,}
+\DoxyCodeLine{261     JVM\_OPC\_iadd                = 96,}
+\DoxyCodeLine{262     JVM\_OPC\_ladd                = 97,}
+\DoxyCodeLine{263     JVM\_OPC\_fadd                = 98,}
+\DoxyCodeLine{264     JVM\_OPC\_dadd                = 99,}
+\DoxyCodeLine{265     JVM\_OPC\_isub                = 100,}
+\DoxyCodeLine{266     JVM\_OPC\_lsub                = 101,}
+\DoxyCodeLine{267     JVM\_OPC\_fsub                = 102,}
+\DoxyCodeLine{268     JVM\_OPC\_dsub                = 103,}
+\DoxyCodeLine{269     JVM\_OPC\_imul                = 104,}
+\DoxyCodeLine{270     JVM\_OPC\_lmul                = 105,}
+\DoxyCodeLine{271     JVM\_OPC\_fmul                = 106,}
+\DoxyCodeLine{272     JVM\_OPC\_dmul                = 107,}
+\DoxyCodeLine{273     JVM\_OPC\_idiv                = 108,}
+\DoxyCodeLine{274     JVM\_OPC\_ldiv                = 109,}
+\DoxyCodeLine{275     JVM\_OPC\_fdiv                = 110,}
+\DoxyCodeLine{276     JVM\_OPC\_ddiv                = 111,}
+\DoxyCodeLine{277     JVM\_OPC\_irem                = 112,}
+\DoxyCodeLine{278     JVM\_OPC\_lrem                = 113,}
+\DoxyCodeLine{279     JVM\_OPC\_frem                = 114,}
+\DoxyCodeLine{280     JVM\_OPC\_drem                = 115,}
+\DoxyCodeLine{281     JVM\_OPC\_ineg                = 116,}
+\DoxyCodeLine{282     JVM\_OPC\_lneg                = 117,}
+\DoxyCodeLine{283     JVM\_OPC\_fneg                = 118,}
+\DoxyCodeLine{284     JVM\_OPC\_dneg                = 119,}
+\DoxyCodeLine{285     JVM\_OPC\_ishl                = 120,}
+\DoxyCodeLine{286     JVM\_OPC\_lshl                = 121,}
+\DoxyCodeLine{287     JVM\_OPC\_ishr                = 122,}
+\DoxyCodeLine{288     JVM\_OPC\_lshr                = 123,}
+\DoxyCodeLine{289     JVM\_OPC\_iushr               = 124,}
+\DoxyCodeLine{290     JVM\_OPC\_lushr               = 125,}
+\DoxyCodeLine{291     JVM\_OPC\_iand                = 126,}
+\DoxyCodeLine{292     JVM\_OPC\_land                = 127,}
+\DoxyCodeLine{293     JVM\_OPC\_ior                 = 128,}
+\DoxyCodeLine{294     JVM\_OPC\_lor                 = 129,}
+\DoxyCodeLine{295     JVM\_OPC\_ixor                = 130,}
+\DoxyCodeLine{296     JVM\_OPC\_lxor                = 131,}
+\DoxyCodeLine{297     JVM\_OPC\_iinc                = 132,}
+\DoxyCodeLine{298     JVM\_OPC\_i2l                 = 133,}
+\DoxyCodeLine{299     JVM\_OPC\_i2f                 = 134,}
+\DoxyCodeLine{300     JVM\_OPC\_i2d                 = 135,}
+\DoxyCodeLine{301     JVM\_OPC\_l2i                 = 136,}
+\DoxyCodeLine{302     JVM\_OPC\_l2f                 = 137,}
+\DoxyCodeLine{303     JVM\_OPC\_l2d                 = 138,}
+\DoxyCodeLine{304     JVM\_OPC\_f2i                 = 139,}
+\DoxyCodeLine{305     JVM\_OPC\_f2l                 = 140,}
+\DoxyCodeLine{306     JVM\_OPC\_f2d                 = 141,}
+\DoxyCodeLine{307     JVM\_OPC\_d2i                 = 142,}
+\DoxyCodeLine{308     JVM\_OPC\_d2l                 = 143,}
+\DoxyCodeLine{309     JVM\_OPC\_d2f                 = 144,}
+\DoxyCodeLine{310     JVM\_OPC\_i2b                 = 145,}
+\DoxyCodeLine{311     JVM\_OPC\_i2c                 = 146,}
+\DoxyCodeLine{312     JVM\_OPC\_i2s                 = 147,}
+\DoxyCodeLine{313     JVM\_OPC\_lcmp                = 148,}
+\DoxyCodeLine{314     JVM\_OPC\_fcmpl               = 149,}
+\DoxyCodeLine{315     JVM\_OPC\_fcmpg               = 150,}
+\DoxyCodeLine{316     JVM\_OPC\_dcmpl               = 151,}
+\DoxyCodeLine{317     JVM\_OPC\_dcmpg               = 152,}
+\DoxyCodeLine{318     JVM\_OPC\_ifeq                = 153,}
+\DoxyCodeLine{319     JVM\_OPC\_ifne                = 154,}
+\DoxyCodeLine{320     JVM\_OPC\_iflt                = 155,}
+\DoxyCodeLine{321     JVM\_OPC\_ifge                = 156,}
+\DoxyCodeLine{322     JVM\_OPC\_ifgt                = 157,}
+\DoxyCodeLine{323     JVM\_OPC\_ifle                = 158,}
+\DoxyCodeLine{324     JVM\_OPC\_if\_icmpeq           = 159,}
+\DoxyCodeLine{325     JVM\_OPC\_if\_icmpne           = 160,}
+\DoxyCodeLine{326     JVM\_OPC\_if\_icmplt           = 161,}
+\DoxyCodeLine{327     JVM\_OPC\_if\_icmpge           = 162,}
+\DoxyCodeLine{328     JVM\_OPC\_if\_icmpgt           = 163,}
+\DoxyCodeLine{329     JVM\_OPC\_if\_icmple           = 164,}
+\DoxyCodeLine{330     JVM\_OPC\_if\_acmpeq           = 165,}
+\DoxyCodeLine{331     JVM\_OPC\_if\_acmpne           = 166,}
+\DoxyCodeLine{332     JVM\_OPC\_goto                = 167,}
+\DoxyCodeLine{333     JVM\_OPC\_jsr                 = 168,}
+\DoxyCodeLine{334     JVM\_OPC\_ret                 = 169,}
+\DoxyCodeLine{335     JVM\_OPC\_tableswitch         = 170,}
+\DoxyCodeLine{336     JVM\_OPC\_lookupswitch        = 171,}
+\DoxyCodeLine{337     JVM\_OPC\_ireturn             = 172,}
+\DoxyCodeLine{338     JVM\_OPC\_lreturn             = 173,}
+\DoxyCodeLine{339     JVM\_OPC\_freturn             = 174,}
+\DoxyCodeLine{340     JVM\_OPC\_dreturn             = 175,}
+\DoxyCodeLine{341     JVM\_OPC\_areturn             = 176,}
+\DoxyCodeLine{342     JVM\_OPC\_return              = 177,}
+\DoxyCodeLine{343     JVM\_OPC\_getstatic           = 178,}
+\DoxyCodeLine{344     JVM\_OPC\_putstatic           = 179,}
+\DoxyCodeLine{345     JVM\_OPC\_getfield            = 180,}
+\DoxyCodeLine{346     JVM\_OPC\_putfield            = 181,}
+\DoxyCodeLine{347     JVM\_OPC\_invokevirtual       = 182,}
+\DoxyCodeLine{348     JVM\_OPC\_invokespecial       = 183,}
+\DoxyCodeLine{349     JVM\_OPC\_invokestatic        = 184,}
+\DoxyCodeLine{350     JVM\_OPC\_invokeinterface     = 185,}
+\DoxyCodeLine{351     JVM\_OPC\_invokedynamic       = 186,}
+\DoxyCodeLine{352     JVM\_OPC\_new                 = 187,}
+\DoxyCodeLine{353     JVM\_OPC\_newarray            = 188,}
+\DoxyCodeLine{354     JVM\_OPC\_anewarray           = 189,}
+\DoxyCodeLine{355     JVM\_OPC\_arraylength         = 190,}
+\DoxyCodeLine{356     JVM\_OPC\_athrow              = 191,}
+\DoxyCodeLine{357     JVM\_OPC\_checkcast           = 192,}
+\DoxyCodeLine{358     JVM\_OPC\_instanceof          = 193,}
+\DoxyCodeLine{359     JVM\_OPC\_monitorenter        = 194,}
+\DoxyCodeLine{360     JVM\_OPC\_monitorexit         = 195,}
+\DoxyCodeLine{361     JVM\_OPC\_wide                = 196,}
+\DoxyCodeLine{362     JVM\_OPC\_multianewarray      = 197,}
+\DoxyCodeLine{363     JVM\_OPC\_ifnull              = 198,}
+\DoxyCodeLine{364     JVM\_OPC\_ifnonnull           = 199,}
+\DoxyCodeLine{365     JVM\_OPC\_goto\_w              = 200,}
+\DoxyCodeLine{366     JVM\_OPC\_jsr\_w               = 201,}
+\DoxyCodeLine{367     JVM\_OPC\_MAX                 = 201}
+\DoxyCodeLine{368 \};}
+\DoxyCodeLine{369 }
+\DoxyCodeLine{370 \textcolor{comment}{/* Opcode length initializer, use with something like:}}
+\DoxyCodeLine{371 \textcolor{comment}{ *   unsigned char opcode\_length[JVM\_OPC\_MAX+1] = JVM\_OPCODE\_LENGTH\_INITIALIZER;}}
+\DoxyCodeLine{372 \textcolor{comment}{ */}}
+\DoxyCodeLine{373 \textcolor{preprocessor}{\#define JVM\_OPCODE\_LENGTH\_INITIALIZER \{ \(\backslash\)}}
+\DoxyCodeLine{374 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* nop */}\textcolor{preprocessor}{                       \(\backslash\)}}
+\DoxyCodeLine{375 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* aconst\_null */}\textcolor{preprocessor}{               \(\backslash\)}}
+\DoxyCodeLine{376 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* iconst\_m1 */}\textcolor{preprocessor}{                 \(\backslash\)}}
+\DoxyCodeLine{377 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* iconst\_0 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{378 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* iconst\_1 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{379 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* iconst\_2 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{380 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* iconst\_3 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{381 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* iconst\_4 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{382 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* iconst\_5 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{383 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* lconst\_0 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{384 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* lconst\_1 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{385 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* fconst\_0 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{386 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* fconst\_1 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{387 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* fconst\_2 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{388 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* dconst\_0 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{389 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* dconst\_1 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{390 \textcolor{preprocessor}{   2,   }\textcolor{comment}{/* bipush */}\textcolor{preprocessor}{                    \(\backslash\)}}
+\DoxyCodeLine{391 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* sipush */}\textcolor{preprocessor}{                    \(\backslash\)}}
+\DoxyCodeLine{392 \textcolor{preprocessor}{   2,   }\textcolor{comment}{/* ldc */}\textcolor{preprocessor}{                       \(\backslash\)}}
+\DoxyCodeLine{393 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* ldc\_w */}\textcolor{preprocessor}{                     \(\backslash\)}}
+\DoxyCodeLine{394 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* ldc2\_w */}\textcolor{preprocessor}{                    \(\backslash\)}}
+\DoxyCodeLine{395 \textcolor{preprocessor}{   2,   }\textcolor{comment}{/* iload */}\textcolor{preprocessor}{                     \(\backslash\)}}
+\DoxyCodeLine{396 \textcolor{preprocessor}{   2,   }\textcolor{comment}{/* lload */}\textcolor{preprocessor}{                     \(\backslash\)}}
+\DoxyCodeLine{397 \textcolor{preprocessor}{   2,   }\textcolor{comment}{/* fload */}\textcolor{preprocessor}{                     \(\backslash\)}}
+\DoxyCodeLine{398 \textcolor{preprocessor}{   2,   }\textcolor{comment}{/* dload */}\textcolor{preprocessor}{                     \(\backslash\)}}
+\DoxyCodeLine{399 \textcolor{preprocessor}{   2,   }\textcolor{comment}{/* aload */}\textcolor{preprocessor}{                     \(\backslash\)}}
+\DoxyCodeLine{400 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* iload\_0 */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{401 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* iload\_1 */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{402 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* iload\_2 */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{403 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* iload\_3 */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{404 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* lload\_0 */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{405 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* lload\_1 */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{406 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* lload\_2 */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{407 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* lload\_3 */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{408 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* fload\_0 */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{409 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* fload\_1 */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{410 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* fload\_2 */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{411 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* fload\_3 */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{412 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* dload\_0 */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{413 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* dload\_1 */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{414 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* dload\_2 */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{415 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* dload\_3 */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{416 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* aload\_0 */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{417 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* aload\_1 */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{418 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* aload\_2 */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{419 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* aload\_3 */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{420 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* iaload */}\textcolor{preprocessor}{                    \(\backslash\)}}
+\DoxyCodeLine{421 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* laload */}\textcolor{preprocessor}{                    \(\backslash\)}}
+\DoxyCodeLine{422 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* faload */}\textcolor{preprocessor}{                    \(\backslash\)}}
+\DoxyCodeLine{423 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* daload */}\textcolor{preprocessor}{                    \(\backslash\)}}
+\DoxyCodeLine{424 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* aaload */}\textcolor{preprocessor}{                    \(\backslash\)}}
+\DoxyCodeLine{425 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* baload */}\textcolor{preprocessor}{                    \(\backslash\)}}
+\DoxyCodeLine{426 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* caload */}\textcolor{preprocessor}{                    \(\backslash\)}}
+\DoxyCodeLine{427 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* saload */}\textcolor{preprocessor}{                    \(\backslash\)}}
+\DoxyCodeLine{428 \textcolor{preprocessor}{   2,   }\textcolor{comment}{/* istore */}\textcolor{preprocessor}{                    \(\backslash\)}}
+\DoxyCodeLine{429 \textcolor{preprocessor}{   2,   }\textcolor{comment}{/* lstore */}\textcolor{preprocessor}{                    \(\backslash\)}}
+\DoxyCodeLine{430 \textcolor{preprocessor}{   2,   }\textcolor{comment}{/* fstore */}\textcolor{preprocessor}{                    \(\backslash\)}}
+\DoxyCodeLine{431 \textcolor{preprocessor}{   2,   }\textcolor{comment}{/* dstore */}\textcolor{preprocessor}{                    \(\backslash\)}}
+\DoxyCodeLine{432 \textcolor{preprocessor}{   2,   }\textcolor{comment}{/* astore */}\textcolor{preprocessor}{                    \(\backslash\)}}
+\DoxyCodeLine{433 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* istore\_0 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{434 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* istore\_1 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{435 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* istore\_2 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{436 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* istore\_3 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{437 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* lstore\_0 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{438 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* lstore\_1 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{439 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* lstore\_2 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{440 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* lstore\_3 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{441 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* fstore\_0 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{442 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* fstore\_1 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{443 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* fstore\_2 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{444 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* fstore\_3 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{445 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* dstore\_0 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{446 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* dstore\_1 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{447 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* dstore\_2 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{448 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* dstore\_3 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{449 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* astore\_0 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{450 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* astore\_1 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{451 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* astore\_2 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{452 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* astore\_3 */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{453 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* iastore */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{454 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* lastore */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{455 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* fastore */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{456 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* dastore */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{457 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* aastore */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{458 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* bastore */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{459 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* castore */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{460 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* sastore */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{461 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* pop */}\textcolor{preprocessor}{                       \(\backslash\)}}
+\DoxyCodeLine{462 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* pop2 */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{463 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* dup */}\textcolor{preprocessor}{                       \(\backslash\)}}
+\DoxyCodeLine{464 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* dup\_x1 */}\textcolor{preprocessor}{                    \(\backslash\)}}
+\DoxyCodeLine{465 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* dup\_x2 */}\textcolor{preprocessor}{                    \(\backslash\)}}
+\DoxyCodeLine{466 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* dup2 */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{467 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* dup2\_x1 */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{468 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* dup2\_x2 */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{469 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* swap */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{470 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* iadd */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{471 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* ladd */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{472 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* fadd */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{473 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* dadd */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{474 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* isub */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{475 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* lsub */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{476 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* fsub */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{477 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* dsub */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{478 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* imul */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{479 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* lmul */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{480 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* fmul */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{481 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* dmul */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{482 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* idiv */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{483 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* ldiv */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{484 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* fdiv */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{485 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* ddiv */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{486 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* irem */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{487 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* lrem */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{488 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* frem */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{489 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* drem */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{490 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* ineg */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{491 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* lneg */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{492 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* fneg */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{493 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* dneg */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{494 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* ishl */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{495 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* lshl */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{496 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* ishr */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{497 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* lshr */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{498 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* iushr */}\textcolor{preprocessor}{                     \(\backslash\)}}
+\DoxyCodeLine{499 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* lushr */}\textcolor{preprocessor}{                     \(\backslash\)}}
+\DoxyCodeLine{500 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* iand */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{501 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* land */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{502 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* ior */}\textcolor{preprocessor}{                       \(\backslash\)}}
+\DoxyCodeLine{503 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* lor */}\textcolor{preprocessor}{                       \(\backslash\)}}
+\DoxyCodeLine{504 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* ixor */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{505 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* lxor */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{506 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* iinc */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{507 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* i2l */}\textcolor{preprocessor}{                       \(\backslash\)}}
+\DoxyCodeLine{508 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* i2f */}\textcolor{preprocessor}{                       \(\backslash\)}}
+\DoxyCodeLine{509 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* i2d */}\textcolor{preprocessor}{                       \(\backslash\)}}
+\DoxyCodeLine{510 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* l2i */}\textcolor{preprocessor}{                       \(\backslash\)}}
+\DoxyCodeLine{511 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* l2f */}\textcolor{preprocessor}{                       \(\backslash\)}}
+\DoxyCodeLine{512 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* l2d */}\textcolor{preprocessor}{                       \(\backslash\)}}
+\DoxyCodeLine{513 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* f2i */}\textcolor{preprocessor}{                       \(\backslash\)}}
+\DoxyCodeLine{514 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* f2l */}\textcolor{preprocessor}{                       \(\backslash\)}}
+\DoxyCodeLine{515 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* f2d */}\textcolor{preprocessor}{                       \(\backslash\)}}
+\DoxyCodeLine{516 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* d2i */}\textcolor{preprocessor}{                       \(\backslash\)}}
+\DoxyCodeLine{517 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* d2l */}\textcolor{preprocessor}{                       \(\backslash\)}}
+\DoxyCodeLine{518 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* d2f */}\textcolor{preprocessor}{                       \(\backslash\)}}
+\DoxyCodeLine{519 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* i2b */}\textcolor{preprocessor}{                       \(\backslash\)}}
+\DoxyCodeLine{520 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* i2c */}\textcolor{preprocessor}{                       \(\backslash\)}}
+\DoxyCodeLine{521 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* i2s */}\textcolor{preprocessor}{                       \(\backslash\)}}
+\DoxyCodeLine{522 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* lcmp */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{523 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* fcmpl */}\textcolor{preprocessor}{                     \(\backslash\)}}
+\DoxyCodeLine{524 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* fcmpg */}\textcolor{preprocessor}{                     \(\backslash\)}}
+\DoxyCodeLine{525 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* dcmpl */}\textcolor{preprocessor}{                     \(\backslash\)}}
+\DoxyCodeLine{526 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* dcmpg */}\textcolor{preprocessor}{                     \(\backslash\)}}
+\DoxyCodeLine{527 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* ifeq */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{528 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* ifne */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{529 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* iflt */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{530 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* ifge */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{531 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* ifgt */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{532 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* ifle */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{533 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* if\_icmpeq */}\textcolor{preprocessor}{                 \(\backslash\)}}
+\DoxyCodeLine{534 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* if\_icmpne */}\textcolor{preprocessor}{                 \(\backslash\)}}
+\DoxyCodeLine{535 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* if\_icmplt */}\textcolor{preprocessor}{                 \(\backslash\)}}
+\DoxyCodeLine{536 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* if\_icmpge */}\textcolor{preprocessor}{                 \(\backslash\)}}
+\DoxyCodeLine{537 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* if\_icmpgt */}\textcolor{preprocessor}{                 \(\backslash\)}}
+\DoxyCodeLine{538 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* if\_icmple */}\textcolor{preprocessor}{                 \(\backslash\)}}
+\DoxyCodeLine{539 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* if\_acmpeq */}\textcolor{preprocessor}{                 \(\backslash\)}}
+\DoxyCodeLine{540 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* if\_acmpne */}\textcolor{preprocessor}{                 \(\backslash\)}}
+\DoxyCodeLine{541 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* goto */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{542 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* jsr */}\textcolor{preprocessor}{                       \(\backslash\)}}
+\DoxyCodeLine{543 \textcolor{preprocessor}{   2,   }\textcolor{comment}{/* ret */}\textcolor{preprocessor}{                       \(\backslash\)}}
+\DoxyCodeLine{544 \textcolor{preprocessor}{   99,  }\textcolor{comment}{/* tableswitch */}\textcolor{preprocessor}{               \(\backslash\)}}
+\DoxyCodeLine{545 \textcolor{preprocessor}{   99,  }\textcolor{comment}{/* lookupswitch */}\textcolor{preprocessor}{              \(\backslash\)}}
+\DoxyCodeLine{546 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* ireturn */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{547 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* lreturn */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{548 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* freturn */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{549 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* dreturn */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{550 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* areturn */}\textcolor{preprocessor}{                   \(\backslash\)}}
+\DoxyCodeLine{551 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* return */}\textcolor{preprocessor}{                    \(\backslash\)}}
+\DoxyCodeLine{552 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* getstatic */}\textcolor{preprocessor}{                 \(\backslash\)}}
+\DoxyCodeLine{553 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* putstatic */}\textcolor{preprocessor}{                 \(\backslash\)}}
+\DoxyCodeLine{554 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* getfield */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{555 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* putfield */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{556 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* invokevirtual */}\textcolor{preprocessor}{             \(\backslash\)}}
+\DoxyCodeLine{557 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* invokespecial */}\textcolor{preprocessor}{             \(\backslash\)}}
+\DoxyCodeLine{558 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* invokestatic */}\textcolor{preprocessor}{              \(\backslash\)}}
+\DoxyCodeLine{559 \textcolor{preprocessor}{   5,   }\textcolor{comment}{/* invokeinterface */}\textcolor{preprocessor}{           \(\backslash\)}}
+\DoxyCodeLine{560 \textcolor{preprocessor}{   5,   }\textcolor{comment}{/* invokedynamic */}\textcolor{preprocessor}{             \(\backslash\)}}
+\DoxyCodeLine{561 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* new */}\textcolor{preprocessor}{                       \(\backslash\)}}
+\DoxyCodeLine{562 \textcolor{preprocessor}{   2,   }\textcolor{comment}{/* newarray */}\textcolor{preprocessor}{                  \(\backslash\)}}
+\DoxyCodeLine{563 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* anewarray */}\textcolor{preprocessor}{                 \(\backslash\)}}
+\DoxyCodeLine{564 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* arraylength */}\textcolor{preprocessor}{               \(\backslash\)}}
+\DoxyCodeLine{565 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* athrow */}\textcolor{preprocessor}{                    \(\backslash\)}}
+\DoxyCodeLine{566 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* checkcast */}\textcolor{preprocessor}{                 \(\backslash\)}}
+\DoxyCodeLine{567 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* instanceof */}\textcolor{preprocessor}{                \(\backslash\)}}
+\DoxyCodeLine{568 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* monitorenter */}\textcolor{preprocessor}{              \(\backslash\)}}
+\DoxyCodeLine{569 \textcolor{preprocessor}{   1,   }\textcolor{comment}{/* monitorexit */}\textcolor{preprocessor}{               \(\backslash\)}}
+\DoxyCodeLine{570 \textcolor{preprocessor}{   0,   }\textcolor{comment}{/* wide */}\textcolor{preprocessor}{                      \(\backslash\)}}
+\DoxyCodeLine{571 \textcolor{preprocessor}{   4,   }\textcolor{comment}{/* multianewarray */}\textcolor{preprocessor}{            \(\backslash\)}}
+\DoxyCodeLine{572 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* ifnull */}\textcolor{preprocessor}{                    \(\backslash\)}}
+\DoxyCodeLine{573 \textcolor{preprocessor}{   3,   }\textcolor{comment}{/* ifnonnull */}\textcolor{preprocessor}{                 \(\backslash\)}}
+\DoxyCodeLine{574 \textcolor{preprocessor}{   5,   }\textcolor{comment}{/* goto\_w */}\textcolor{preprocessor}{                    \(\backslash\)}}
+\DoxyCodeLine{575 \textcolor{preprocessor}{   5    }\textcolor{comment}{/* jsr\_w */}\textcolor{preprocessor}{                     \(\backslash\)}}
+\DoxyCodeLine{576 \textcolor{preprocessor}{\}}}
+\DoxyCodeLine{577 }
+\DoxyCodeLine{578 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{579 \} \textcolor{comment}{/* extern "{}C"{} */}}
+\DoxyCodeLine{580 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_cplusplus */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{581 }
+\DoxyCodeLine{582 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* CLASSFILE\_CONSTANTS */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

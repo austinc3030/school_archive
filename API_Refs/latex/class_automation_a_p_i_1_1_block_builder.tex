@@ -1,0 +1,121 @@
+\hypertarget{class_automation_a_p_i_1_1_block_builder}{}\doxysection{Automation\+API\+::Block\+Builder Class Reference}
+\label{class_automation_a_p_i_1_1_block_builder}\index{AutomationAPI::BlockBuilder@{AutomationAPI::BlockBuilder}}
+
+
+\mbox{\hyperlink{class_automation_a_p_i_1_1_block_builder}{Block\+Builder}} comment  
+
+
+
+
+{\ttfamily \#include $<$Automation\+API\+\_\+\+Block\+Builder.\+h$>$}
+
+
+
+Inheritance diagram for Automation\+API\+::Block\+Builder\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{class_automation_a_p_i_1_1_block_builder__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Automation\+API\+::Block\+Builder\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{class_automation_a_p_i_1_1_block_builder__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{class_automation_a_p_i_1_1_block_builder_a9095bc936c5de1706283d36dcd0ed9cb}{Block\+Builder\+Types}} \{ {\bfseries Types\+Origin\+And\+Edge\+Lengths}
+, \mbox{\hyperlink{class_automation_a_p_i_1_1_block_builder_a9095bc936c5de1706283d36dcd0ed9cba984894108fda4d41eb325f6454eb6c24}{Types\+Two\+Points\+And\+Height}}
+, \mbox{\hyperlink{class_automation_a_p_i_1_1_block_builder_a9095bc936c5de1706283d36dcd0ed9cbadc7f70cb42dd95c2531f1bc22f290353}{Types\+Diagonal\+Points}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_automation_a_p_i_1_1_block_builder_aa113c53a1c653e4fc9e9991cc3ea6906}\label{class_automation_a_p_i_1_1_block_builder_aa113c53a1c653e4fc9e9991cc3ea6906}} 
+void {\bfseries Set\+Type} (\mbox{\hyperlink{class_automation_a_p_i_1_1_block_builder_a9095bc936c5de1706283d36dcd0ed9cb}{Block\+Builder\+Types}} type)
+\item 
+\mbox{\Hypertarget{class_automation_a_p_i_1_1_block_builder_a9ca4f951fce14102d600b3feb27a4d10}\label{class_automation_a_p_i_1_1_block_builder_a9ca4f951fce14102d600b3feb27a4d10}} 
+\mbox{\hyperlink{class_automation_a_p_i_1_1_block_builder_a9095bc936c5de1706283d36dcd0ed9cb}{Block\+Builder\+Types}} {\bfseries Get\+Type} ()
+\item 
+\mbox{\Hypertarget{class_automation_a_p_i_1_1_block_builder_a63b7d6a47b53a786df80682107ec6405}\label{class_automation_a_p_i_1_1_block_builder_a63b7d6a47b53a786df80682107ec6405}} 
+void {\bfseries Set\+Height} (int h)
+\item 
+\mbox{\Hypertarget{class_automation_a_p_i_1_1_block_builder_aec59a96dca242249749a326823df72ea}\label{class_automation_a_p_i_1_1_block_builder_aec59a96dca242249749a326823df72ea}} 
+int {\bfseries Get\+Height} ()
+\item 
+\mbox{\Hypertarget{class_automation_a_p_i_1_1_block_builder_a27d9025d24f7783ba416f01b97eeebe9}\label{class_automation_a_p_i_1_1_block_builder_a27d9025d24f7783ba416f01b97eeebe9}} 
+void {\bfseries Set\+Width} (int w)
+\item 
+\mbox{\Hypertarget{class_automation_a_p_i_1_1_block_builder_a259964f42afba22fecba6019d123d296}\label{class_automation_a_p_i_1_1_block_builder_a259964f42afba22fecba6019d123d296}} 
+int {\bfseries Get\+Width} ()
+\item 
+\mbox{\Hypertarget{class_automation_a_p_i_1_1_block_builder_ac56539e9d1aeb7a26dc688d6d9408985}\label{class_automation_a_p_i_1_1_block_builder_ac56539e9d1aeb7a26dc688d6d9408985}} 
+void {\bfseries Set\+Depth} (int d)
+\item 
+\mbox{\Hypertarget{class_automation_a_p_i_1_1_block_builder_afd6be33136547fcc18288f18c66d0670}\label{class_automation_a_p_i_1_1_block_builder_afd6be33136547fcc18288f18c66d0670}} 
+int {\bfseries Get\+Depth} ()
+\item 
+\mbox{\Hypertarget{class_automation_a_p_i_1_1_block_builder_a09b4e7ccc4563af4aae5f1b7f277ca16}\label{class_automation_a_p_i_1_1_block_builder_a09b4e7ccc4563af4aae5f1b7f277ca16}} 
+void {\bfseries Set\+Origin} (int x, int y, int z)
+\item 
+\mbox{\Hypertarget{class_automation_a_p_i_1_1_block_builder_a618256ed4c4d41eeef6755439d2a62da}\label{class_automation_a_p_i_1_1_block_builder_a618256ed4c4d41eeef6755439d2a62da}} 
+void {\bfseries Get\+Origin} (int \&x, int \&y, int \&z)
+\item 
+\mbox{\hyperlink{class_automation_a_p_i_1_1_c_a_d_object}{CADObject}} $\ast$ \mbox{\hyperlink{class_automation_a_p_i_1_1_block_builder_aa26db68ed79e3d57d1b00e1383ad5e9e}{Commit}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_automation_a_p_i_1_1_block_builder_ac6f44eabbcd505e98fea0025d6b68519}\label{class_automation_a_p_i_1_1_block_builder_ac6f44eabbcd505e98fea0025d6b68519}} 
+static \mbox{\hyperlink{class_automation_a_p_i_1_1_block_builder}{Block\+Builder}} $\ast$ {\bfseries Create\+Block\+Builder} (int guid)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_automation_a_p_i_1_1_block_builder}{Block\+Builder}} comment 
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{class_automation_a_p_i_1_1_block_builder_a9095bc936c5de1706283d36dcd0ed9cb}\label{class_automation_a_p_i_1_1_block_builder_a9095bc936c5de1706283d36dcd0ed9cb}} 
+\index{AutomationAPI::BlockBuilder@{AutomationAPI::BlockBuilder}!BlockBuilderTypes@{BlockBuilderTypes}}
+\index{BlockBuilderTypes@{BlockBuilderTypes}!AutomationAPI::BlockBuilder@{AutomationAPI::BlockBuilder}}
+\doxysubsubsection{\texorpdfstring{BlockBuilderTypes}{BlockBuilderTypes}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{class_automation_a_p_i_1_1_block_builder_a9095bc936c5de1706283d36dcd0ed9cb}{Automation\+API\+::\+Block\+Builder\+::\+Block\+Builder\+Types}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TypesTwoPointsAndHeight@{TypesTwoPointsAndHeight}!AutomationAPI::BlockBuilder@{AutomationAPI::BlockBuilder}}\index{AutomationAPI::BlockBuilder@{AutomationAPI::BlockBuilder}!TypesTwoPointsAndHeight@{TypesTwoPointsAndHeight}}}\mbox{\Hypertarget{class_automation_a_p_i_1_1_block_builder_a9095bc936c5de1706283d36dcd0ed9cba984894108fda4d41eb325f6454eb6c24}\label{class_automation_a_p_i_1_1_block_builder_a9095bc936c5de1706283d36dcd0ed9cba984894108fda4d41eb325f6454eb6c24}} 
+Types\+Two\+Points\+And\+Height&Represents the block created by providing Originand Edge Lengths. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TypesDiagonalPoints@{TypesDiagonalPoints}!AutomationAPI::BlockBuilder@{AutomationAPI::BlockBuilder}}\index{AutomationAPI::BlockBuilder@{AutomationAPI::BlockBuilder}!TypesDiagonalPoints@{TypesDiagonalPoints}}}\mbox{\Hypertarget{class_automation_a_p_i_1_1_block_builder_a9095bc936c5de1706283d36dcd0ed9cbadc7f70cb42dd95c2531f1bc22f290353}\label{class_automation_a_p_i_1_1_block_builder_a9095bc936c5de1706283d36dcd0ed9cbadc7f70cb42dd95c2531f1bc22f290353}} 
+Types\+Diagonal\+Points&Represents the block created by providing Two Pointsand Height. Represents the block created by providing Diagonal Points. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_automation_a_p_i_1_1_block_builder_aa26db68ed79e3d57d1b00e1383ad5e9e}\label{class_automation_a_p_i_1_1_block_builder_aa26db68ed79e3d57d1b00e1383ad5e9e}} 
+\index{AutomationAPI::BlockBuilder@{AutomationAPI::BlockBuilder}!Commit@{Commit}}
+\index{Commit@{Commit}!AutomationAPI::BlockBuilder@{AutomationAPI::BlockBuilder}}
+\doxysubsubsection{\texorpdfstring{Commit()}{Commit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_automation_a_p_i_1_1_c_a_d_object}{Automation\+API\+::\+CADObject}} $\ast$ Automation\+API\+::\+Block\+Builder\+::\+Commit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Commit the builder 
+
+Implements \mbox{\hyperlink{class_automation_a_p_i_1_1_i_builder}{Automation\+API\+::\+IBuilder}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Brett/source/repos/\+Software\+Arch\+\_\+\+Final\+Project/\+Automation\+Binding/Automation\+API\+\_\+\+Block\+Builder.\+h\item 
+C\+:/\+Users/\+Brett/source/repos/\+Software\+Arch\+\_\+\+Final\+Project/\+Automation\+Binding/Block\+Builder.\+cpp\end{DoxyCompactItemize}

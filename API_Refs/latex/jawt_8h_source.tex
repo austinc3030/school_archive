@@ -1,0 +1,324 @@
+\hypertarget{jawt_8h_source}{}\doxysection{jawt.\+h}
+\label{jawt_8h_source}\index{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/JNI\_Includes/jawt.h@{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/JNI\_Includes/jawt.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright (c) 1999, 2017, Oracle and/or its affiliates. All rights reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.}}
+\DoxyCodeLine{4 \textcolor{comment}{ *}}
+\DoxyCodeLine{5 \textcolor{comment}{ * This code is free software; you can redistribute it and/or modify it}}
+\DoxyCodeLine{6 \textcolor{comment}{ * under the terms of the GNU General Public License version 2 only, as}}
+\DoxyCodeLine{7 \textcolor{comment}{ * published by the Free Software Foundation.  Oracle designates this}}
+\DoxyCodeLine{8 \textcolor{comment}{ * particular file as subject to the "{}Classpath"{} exception as provided}}
+\DoxyCodeLine{9 \textcolor{comment}{ * by Oracle in the LICENSE file that accompanied this code.}}
+\DoxyCodeLine{10 \textcolor{comment}{ *}}
+\DoxyCodeLine{11 \textcolor{comment}{ * This code is distributed in the hope that it will be useful, but WITHOUT}}
+\DoxyCodeLine{12 \textcolor{comment}{ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or}}
+\DoxyCodeLine{13 \textcolor{comment}{ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License}}
+\DoxyCodeLine{14 \textcolor{comment}{ * version 2 for more details (a copy is included in the LICENSE file that}}
+\DoxyCodeLine{15 \textcolor{comment}{ * accompanied this code).}}
+\DoxyCodeLine{16 \textcolor{comment}{ *}}
+\DoxyCodeLine{17 \textcolor{comment}{ * You should have received a copy of the GNU General Public License version}}
+\DoxyCodeLine{18 \textcolor{comment}{ * 2 along with this work; if not, write to the Free Software Foundation,}}
+\DoxyCodeLine{19 \textcolor{comment}{ * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-\/1301 USA.}}
+\DoxyCodeLine{20 \textcolor{comment}{ *}}
+\DoxyCodeLine{21 \textcolor{comment}{ * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA}}
+\DoxyCodeLine{22 \textcolor{comment}{ * or visit www.oracle.com if you need additional information or have any}}
+\DoxyCodeLine{23 \textcolor{comment}{ * questions.}}
+\DoxyCodeLine{24 \textcolor{comment}{ */}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#ifndef \_JAVASOFT\_JAWT\_H\_}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#define \_JAVASOFT\_JAWT\_H\_}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include "{}jni.h"{}}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{32 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{comment}{/*}}
+\DoxyCodeLine{36 \textcolor{comment}{ * AWT native interface.}}
+\DoxyCodeLine{37 \textcolor{comment}{ *}}
+\DoxyCodeLine{38 \textcolor{comment}{ * The AWT native interface allows a native C or C++ application a means}}
+\DoxyCodeLine{39 \textcolor{comment}{ * by which to access native structures in AWT.  This is to facilitate moving}}
+\DoxyCodeLine{40 \textcolor{comment}{ * legacy C and C++ applications to Java and to target the needs of the}}
+\DoxyCodeLine{41 \textcolor{comment}{ * developers who need to do their own native rendering to canvases}}
+\DoxyCodeLine{42 \textcolor{comment}{ * for performance or other reasons.}}
+\DoxyCodeLine{43 \textcolor{comment}{ *}}
+\DoxyCodeLine{44 \textcolor{comment}{ * Conversely it also provides mechanisms for an application which already}}
+\DoxyCodeLine{45 \textcolor{comment}{ * has a native window to provide that to AWT for AWT rendering.}}
+\DoxyCodeLine{46 \textcolor{comment}{ *}}
+\DoxyCodeLine{47 \textcolor{comment}{ * Since every platform may be different in its native data structures}}
+\DoxyCodeLine{48 \textcolor{comment}{ * and APIs for windowing systems the application must necessarily}}
+\DoxyCodeLine{49 \textcolor{comment}{ * provided per-\/platform source and compile and deliver per-\/platform}}
+\DoxyCodeLine{50 \textcolor{comment}{ * native code  to use this API.}}
+\DoxyCodeLine{51 \textcolor{comment}{ *}}
+\DoxyCodeLine{52 \textcolor{comment}{ * These interfaces are not part of the Java SE specification and}}
+\DoxyCodeLine{53 \textcolor{comment}{ * a VM is not required to implement this API. However it is strongly}}
+\DoxyCodeLine{54 \textcolor{comment}{ * recommended that all implementations which support headful AWT}}
+\DoxyCodeLine{55 \textcolor{comment}{ * also support these interfaces.}}
+\DoxyCodeLine{56 \textcolor{comment}{ *}}
+\DoxyCodeLine{57 \textcolor{comment}{ */}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 \textcolor{comment}{/*}}
+\DoxyCodeLine{60 \textcolor{comment}{ * AWT Native Drawing Surface (JAWT\_DrawingSurface).}}
+\DoxyCodeLine{61 \textcolor{comment}{ *}}
+\DoxyCodeLine{62 \textcolor{comment}{ * For each platform, there is a native drawing surface structure.  This}}
+\DoxyCodeLine{63 \textcolor{comment}{ * platform-\/specific structure can be found in jawt\_md.h.  It is recommended}}
+\DoxyCodeLine{64 \textcolor{comment}{ * that additional platforms follow the same model.  It is also recommended}}
+\DoxyCodeLine{65 \textcolor{comment}{ * that VMs on all platforms support the existing structures in jawt\_md.h.}}
+\DoxyCodeLine{66 \textcolor{comment}{ *}}
+\DoxyCodeLine{67 \textcolor{comment}{ *******************}}
+\DoxyCodeLine{68 \textcolor{comment}{ * EXAMPLE OF USAGE:}}
+\DoxyCodeLine{69 \textcolor{comment}{ *******************}}
+\DoxyCodeLine{70 \textcolor{comment}{ *}}
+\DoxyCodeLine{71 \textcolor{comment}{ * In Win32, a programmer wishes to access the HWND of a canvas to perform}}
+\DoxyCodeLine{72 \textcolor{comment}{ * native rendering into it.  The programmer has declared the paint() method}}
+\DoxyCodeLine{73 \textcolor{comment}{ * for their canvas subclass to be native:}}
+\DoxyCodeLine{74 \textcolor{comment}{ *}}
+\DoxyCodeLine{75 \textcolor{comment}{ *}}
+\DoxyCodeLine{76 \textcolor{comment}{ * MyCanvas.java:}}
+\DoxyCodeLine{77 \textcolor{comment}{ *}}
+\DoxyCodeLine{78 \textcolor{comment}{ * import java.awt.*;}}
+\DoxyCodeLine{79 \textcolor{comment}{ *}}
+\DoxyCodeLine{80 \textcolor{comment}{ * public class MyCanvas extends Canvas \{}}
+\DoxyCodeLine{81 \textcolor{comment}{ *}}
+\DoxyCodeLine{82 \textcolor{comment}{ *     static \{}}
+\DoxyCodeLine{83 \textcolor{comment}{ *         System.loadLibrary("{}mylib"{});}}
+\DoxyCodeLine{84 \textcolor{comment}{ *     \}}}
+\DoxyCodeLine{85 \textcolor{comment}{ *}}
+\DoxyCodeLine{86 \textcolor{comment}{ *     public native void paint(Graphics g);}}
+\DoxyCodeLine{87 \textcolor{comment}{ * \}}}
+\DoxyCodeLine{88 \textcolor{comment}{ *}}
+\DoxyCodeLine{89 \textcolor{comment}{ *}}
+\DoxyCodeLine{90 \textcolor{comment}{ * myfile.c:}}
+\DoxyCodeLine{91 \textcolor{comment}{ *}}
+\DoxyCodeLine{92 \textcolor{comment}{ * \#include "{}jawt\_md.h"{}}}
+\DoxyCodeLine{93 \textcolor{comment}{ * \#include <assert.h>}}
+\DoxyCodeLine{94 \textcolor{comment}{ *}}
+\DoxyCodeLine{95 \textcolor{comment}{ * JNIEXPORT void JNICALL}}
+\DoxyCodeLine{96 \textcolor{comment}{ * Java\_MyCanvas\_paint(JNIEnv* env, jobject canvas, jobject graphics)}}
+\DoxyCodeLine{97 \textcolor{comment}{ * \{}}
+\DoxyCodeLine{98 \textcolor{comment}{ *     JAWT awt;}}
+\DoxyCodeLine{99 \textcolor{comment}{ *     JAWT\_DrawingSurface* ds;}}
+\DoxyCodeLine{100 \textcolor{comment}{ *     JAWT\_DrawingSurfaceInfo* dsi;}}
+\DoxyCodeLine{101 \textcolor{comment}{ *     JAWT\_Win32DrawingSurfaceInfo* dsi\_win;}}
+\DoxyCodeLine{102 \textcolor{comment}{ *     jboolean result;}}
+\DoxyCodeLine{103 \textcolor{comment}{ *     jint lock;}}
+\DoxyCodeLine{104 \textcolor{comment}{ *}}
+\DoxyCodeLine{105 \textcolor{comment}{ *     // Get the AWT. Request version 9 to access features in that release.}}
+\DoxyCodeLine{106 \textcolor{comment}{ *     awt.version = JAWT\_VERSION\_9;}}
+\DoxyCodeLine{107 \textcolor{comment}{ *     result = JAWT\_GetAWT(env, \&awt);}}
+\DoxyCodeLine{108 \textcolor{comment}{ *     assert(result != JNI\_FALSE);}}
+\DoxyCodeLine{109 \textcolor{comment}{ *}}
+\DoxyCodeLine{110 \textcolor{comment}{ *     // Get the drawing surface}}
+\DoxyCodeLine{111 \textcolor{comment}{ *     ds = awt.GetDrawingSurface(env, canvas);}}
+\DoxyCodeLine{112 \textcolor{comment}{ *     assert(ds != NULL);}}
+\DoxyCodeLine{113 \textcolor{comment}{ *}}
+\DoxyCodeLine{114 \textcolor{comment}{ *     // Lock the drawing surface}}
+\DoxyCodeLine{115 \textcolor{comment}{ *     lock = ds-\/>Lock(ds);}}
+\DoxyCodeLine{116 \textcolor{comment}{ *     assert((lock \& JAWT\_LOCK\_ERROR) == 0);}}
+\DoxyCodeLine{117 \textcolor{comment}{ *}}
+\DoxyCodeLine{118 \textcolor{comment}{ *     // Get the drawing surface info}}
+\DoxyCodeLine{119 \textcolor{comment}{ *     dsi = ds-\/>GetDrawingSurfaceInfo(ds);}}
+\DoxyCodeLine{120 \textcolor{comment}{ *}}
+\DoxyCodeLine{121 \textcolor{comment}{ *     // Get the platform-\/specific drawing info}}
+\DoxyCodeLine{122 \textcolor{comment}{ *     dsi\_win = (JAWT\_Win32DrawingSurfaceInfo*)dsi-\/>platformInfo;}}
+\DoxyCodeLine{123 \textcolor{comment}{ *}}
+\DoxyCodeLine{124 \textcolor{comment}{ *     //////////////////////////////}}
+\DoxyCodeLine{125 \textcolor{comment}{ *     // !!! DO PAINTING HERE !!! //}}
+\DoxyCodeLine{126 \textcolor{comment}{ *     //////////////////////////////}}
+\DoxyCodeLine{127 \textcolor{comment}{ *}}
+\DoxyCodeLine{128 \textcolor{comment}{ *     // Free the drawing surface info}}
+\DoxyCodeLine{129 \textcolor{comment}{ *     ds-\/>FreeDrawingSurfaceInfo(dsi);}}
+\DoxyCodeLine{130 \textcolor{comment}{ *}}
+\DoxyCodeLine{131 \textcolor{comment}{ *     // Unlock the drawing surface}}
+\DoxyCodeLine{132 \textcolor{comment}{ *     ds-\/>Unlock(ds);}}
+\DoxyCodeLine{133 \textcolor{comment}{ *}}
+\DoxyCodeLine{134 \textcolor{comment}{ *     // Free the drawing surface}}
+\DoxyCodeLine{135 \textcolor{comment}{ *     awt.FreeDrawingSurface(ds);}}
+\DoxyCodeLine{136 \textcolor{comment}{ * \}}}
+\DoxyCodeLine{137 \textcolor{comment}{ *}}
+\DoxyCodeLine{138 \textcolor{comment}{ */}}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140 \textcolor{comment}{/*}}
+\DoxyCodeLine{141 \textcolor{comment}{ * JAWT\_Rectangle}}
+\DoxyCodeLine{142 \textcolor{comment}{ * Structure for a native rectangle.}}
+\DoxyCodeLine{143 \textcolor{comment}{ */}}
+\DoxyCodeLine{144 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structjawt___rectangle}{jawt\_Rectangle}} \{}
+\DoxyCodeLine{145     jint x;}
+\DoxyCodeLine{146     jint y;}
+\DoxyCodeLine{147     jint width;}
+\DoxyCodeLine{148     jint height;}
+\DoxyCodeLine{149 \} \mbox{\hyperlink{structjawt___rectangle}{JAWT\_Rectangle}};}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151 \textcolor{keyword}{struct }\mbox{\hyperlink{structjawt___drawing_surface}{jawt\_DrawingSurface}};}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153 \textcolor{comment}{/*}}
+\DoxyCodeLine{154 \textcolor{comment}{ * JAWT\_DrawingSurfaceInfo}}
+\DoxyCodeLine{155 \textcolor{comment}{ * Structure for containing the underlying drawing information of a component.}}
+\DoxyCodeLine{156 \textcolor{comment}{ */}}
+\DoxyCodeLine{157 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structjawt___drawing_surface_info}{jawt\_DrawingSurfaceInfo}} \{}
+\DoxyCodeLine{158     \textcolor{comment}{/*}}
+\DoxyCodeLine{159 \textcolor{comment}{     * Pointer to the platform-\/specific information.  This can be safely}}
+\DoxyCodeLine{160 \textcolor{comment}{     * cast to a JAWT\_Win32DrawingSurfaceInfo on Windows or a}}
+\DoxyCodeLine{161 \textcolor{comment}{     * JAWT\_X11DrawingSurfaceInfo on Linux and Solaris. On Mac OS X this is a}}
+\DoxyCodeLine{162 \textcolor{comment}{     * pointer to a NSObject that conforms to the JAWT\_SurfaceLayers}}
+\DoxyCodeLine{163 \textcolor{comment}{     * protocol. See jawt\_md.h for details.}}
+\DoxyCodeLine{164 \textcolor{comment}{     */}}
+\DoxyCodeLine{165     \textcolor{keywordtype}{void}* platformInfo;}
+\DoxyCodeLine{166     \textcolor{comment}{/* Cached pointer to the underlying drawing surface */}}
+\DoxyCodeLine{167     \textcolor{keyword}{struct }\mbox{\hyperlink{structjawt___drawing_surface}{jawt\_DrawingSurface}}* ds;}
+\DoxyCodeLine{168     \textcolor{comment}{/* Bounding rectangle of the drawing surface */}}
+\DoxyCodeLine{169     \mbox{\hyperlink{structjawt___rectangle}{JAWT\_Rectangle}} bounds;}
+\DoxyCodeLine{170     \textcolor{comment}{/* Number of rectangles in the clip */}}
+\DoxyCodeLine{171     jint clipSize;}
+\DoxyCodeLine{172     \textcolor{comment}{/* Clip rectangle array */}}
+\DoxyCodeLine{173     \mbox{\hyperlink{structjawt___rectangle}{JAWT\_Rectangle}}* clip;}
+\DoxyCodeLine{174 \} \mbox{\hyperlink{structjawt___drawing_surface_info}{JAWT\_DrawingSurfaceInfo}};}
+\DoxyCodeLine{175 }
+\DoxyCodeLine{176 \textcolor{preprocessor}{\#define JAWT\_LOCK\_ERROR                 0x00000001}}
+\DoxyCodeLine{177 \textcolor{preprocessor}{\#define JAWT\_LOCK\_CLIP\_CHANGED          0x00000002}}
+\DoxyCodeLine{178 \textcolor{preprocessor}{\#define JAWT\_LOCK\_BOUNDS\_CHANGED        0x00000004}}
+\DoxyCodeLine{179 \textcolor{preprocessor}{\#define JAWT\_LOCK\_SURFACE\_CHANGED       0x00000008}}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181 \textcolor{comment}{/*}}
+\DoxyCodeLine{182 \textcolor{comment}{ * JAWT\_DrawingSurface}}
+\DoxyCodeLine{183 \textcolor{comment}{ * Structure for containing the underlying drawing information of a component.}}
+\DoxyCodeLine{184 \textcolor{comment}{ * All operations on a JAWT\_DrawingSurface MUST be performed from the same}}
+\DoxyCodeLine{185 \textcolor{comment}{ * thread as the call to GetDrawingSurface.}}
+\DoxyCodeLine{186 \textcolor{comment}{ */}}
+\DoxyCodeLine{187 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structjawt___drawing_surface}{jawt\_DrawingSurface}} \{}
+\DoxyCodeLine{188     \textcolor{comment}{/*}}
+\DoxyCodeLine{189 \textcolor{comment}{     * Cached reference to the Java environment of the calling thread.}}
+\DoxyCodeLine{190 \textcolor{comment}{     * If Lock(), Unlock(), GetDrawingSurfaceInfo() or}}
+\DoxyCodeLine{191 \textcolor{comment}{     * FreeDrawingSurfaceInfo() are called from a different thread,}}
+\DoxyCodeLine{192 \textcolor{comment}{     * this data member should be set before calling those functions.}}
+\DoxyCodeLine{193 \textcolor{comment}{     */}}
+\DoxyCodeLine{194     \mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* env;}
+\DoxyCodeLine{195     \textcolor{comment}{/* Cached reference to the target object */}}
+\DoxyCodeLine{196     jobject target;}
+\DoxyCodeLine{197     \textcolor{comment}{/*}}
+\DoxyCodeLine{198 \textcolor{comment}{     * Lock the surface of the target component for native rendering.}}
+\DoxyCodeLine{199 \textcolor{comment}{     * When finished drawing, the surface must be unlocked with}}
+\DoxyCodeLine{200 \textcolor{comment}{     * Unlock().  This function returns a bitmask with one or more of the}}
+\DoxyCodeLine{201 \textcolor{comment}{     * following values:}}
+\DoxyCodeLine{202 \textcolor{comment}{     *}}
+\DoxyCodeLine{203 \textcolor{comment}{     * JAWT\_LOCK\_ERROR -\/ When an error has occurred and the surface could not}}
+\DoxyCodeLine{204 \textcolor{comment}{     * be locked.}}
+\DoxyCodeLine{205 \textcolor{comment}{     *}}
+\DoxyCodeLine{206 \textcolor{comment}{     * JAWT\_LOCK\_CLIP\_CHANGED -\/ When the clip region has changed.}}
+\DoxyCodeLine{207 \textcolor{comment}{     *}}
+\DoxyCodeLine{208 \textcolor{comment}{     * JAWT\_LOCK\_BOUNDS\_CHANGED -\/ When the bounds of the surface have changed.}}
+\DoxyCodeLine{209 \textcolor{comment}{     *}}
+\DoxyCodeLine{210 \textcolor{comment}{     * JAWT\_LOCK\_SURFACE\_CHANGED -\/ When the surface itself has changed}}
+\DoxyCodeLine{211 \textcolor{comment}{     */}}
+\DoxyCodeLine{212     jint (JNICALL *Lock)}
+\DoxyCodeLine{213         (\textcolor{keyword}{struct }\mbox{\hyperlink{structjawt___drawing_surface}{jawt\_DrawingSurface}}* ds);}
+\DoxyCodeLine{214     \textcolor{comment}{/*}}
+\DoxyCodeLine{215 \textcolor{comment}{     * Get the drawing surface info.}}
+\DoxyCodeLine{216 \textcolor{comment}{     * The value returned may be cached, but the values may change if}}
+\DoxyCodeLine{217 \textcolor{comment}{     * additional calls to Lock() or Unlock() are made.}}
+\DoxyCodeLine{218 \textcolor{comment}{     * Lock() must be called before this can return a valid value.}}
+\DoxyCodeLine{219 \textcolor{comment}{     * Returns NULL if an error has occurred.}}
+\DoxyCodeLine{220 \textcolor{comment}{     * When finished with the returned value, FreeDrawingSurfaceInfo must be}}
+\DoxyCodeLine{221 \textcolor{comment}{     * called.}}
+\DoxyCodeLine{222 \textcolor{comment}{     */}}
+\DoxyCodeLine{223     \mbox{\hyperlink{structjawt___drawing_surface_info}{JAWT\_DrawingSurfaceInfo}}* (JNICALL *GetDrawingSurfaceInfo)}
+\DoxyCodeLine{224         (\textcolor{keyword}{struct} \mbox{\hyperlink{structjawt___drawing_surface}{jawt\_DrawingSurface}}* ds);}
+\DoxyCodeLine{225     \textcolor{comment}{/*}}
+\DoxyCodeLine{226 \textcolor{comment}{     * Free the drawing surface info.}}
+\DoxyCodeLine{227 \textcolor{comment}{     */}}
+\DoxyCodeLine{228     void (JNICALL *FreeDrawingSurfaceInfo)}
+\DoxyCodeLine{229         (\mbox{\hyperlink{structjawt___drawing_surface_info}{JAWT\_DrawingSurfaceInfo}}* dsi);}
+\DoxyCodeLine{230     \textcolor{comment}{/*}}
+\DoxyCodeLine{231 \textcolor{comment}{     * Unlock the drawing surface of the target component for native rendering.}}
+\DoxyCodeLine{232 \textcolor{comment}{     */}}
+\DoxyCodeLine{233     void (JNICALL *Unlock)}
+\DoxyCodeLine{234         (\textcolor{keyword}{struct }\mbox{\hyperlink{structjawt___drawing_surface}{jawt\_DrawingSurface}}* ds);}
+\DoxyCodeLine{235 \} \mbox{\hyperlink{structjawt___drawing_surface}{JAWT\_DrawingSurface}};}
+\DoxyCodeLine{236 }
+\DoxyCodeLine{237 \textcolor{comment}{/*}}
+\DoxyCodeLine{238 \textcolor{comment}{ * JAWT}}
+\DoxyCodeLine{239 \textcolor{comment}{ * Structure for containing native AWT functions.}}
+\DoxyCodeLine{240 \textcolor{comment}{ */}}
+\DoxyCodeLine{241 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structjawt}{jawt}} \{}
+\DoxyCodeLine{242     \textcolor{comment}{/*}}
+\DoxyCodeLine{243 \textcolor{comment}{     * Version of this structure.  This must always be set before}}
+\DoxyCodeLine{244 \textcolor{comment}{     * calling JAWT\_GetAWT(). It affects the functions returned.}}
+\DoxyCodeLine{245 \textcolor{comment}{     * Must be one of the known pre-\/defined versions.}}
+\DoxyCodeLine{246 \textcolor{comment}{     */}}
+\DoxyCodeLine{247     jint version;}
+\DoxyCodeLine{248     \textcolor{comment}{/*}}
+\DoxyCodeLine{249 \textcolor{comment}{     * Return a drawing surface from a target jobject.  This value}}
+\DoxyCodeLine{250 \textcolor{comment}{     * may be cached.}}
+\DoxyCodeLine{251 \textcolor{comment}{     * Returns NULL if an error has occurred.}}
+\DoxyCodeLine{252 \textcolor{comment}{     * Target must be a java.awt.Component (should be a Canvas}}
+\DoxyCodeLine{253 \textcolor{comment}{     * or Window for native rendering).}}
+\DoxyCodeLine{254 \textcolor{comment}{     * FreeDrawingSurface() must be called when finished with the}}
+\DoxyCodeLine{255 \textcolor{comment}{     * returned JAWT\_DrawingSurface.}}
+\DoxyCodeLine{256 \textcolor{comment}{     */}}
+\DoxyCodeLine{257     \mbox{\hyperlink{structjawt___drawing_surface}{JAWT\_DrawingSurface}}* (JNICALL *GetDrawingSurface)}
+\DoxyCodeLine{258         (\mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* env, jobject target);}
+\DoxyCodeLine{259     \textcolor{comment}{/*}}
+\DoxyCodeLine{260 \textcolor{comment}{     * Free the drawing surface allocated in GetDrawingSurface.}}
+\DoxyCodeLine{261 \textcolor{comment}{     */}}
+\DoxyCodeLine{262     void (JNICALL *FreeDrawingSurface)}
+\DoxyCodeLine{263         (\mbox{\hyperlink{structjawt___drawing_surface}{JAWT\_DrawingSurface}}* ds);}
+\DoxyCodeLine{264     \textcolor{comment}{/*}}
+\DoxyCodeLine{265 \textcolor{comment}{     * Since 1.4}}
+\DoxyCodeLine{266 \textcolor{comment}{     * Locks the entire AWT for synchronization purposes}}
+\DoxyCodeLine{267 \textcolor{comment}{     */}}
+\DoxyCodeLine{268     void (JNICALL *Lock)(\mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* env);}
+\DoxyCodeLine{269     \textcolor{comment}{/*}}
+\DoxyCodeLine{270 \textcolor{comment}{     * Since 1.4}}
+\DoxyCodeLine{271 \textcolor{comment}{     * Unlocks the entire AWT for synchronization purposes}}
+\DoxyCodeLine{272 \textcolor{comment}{     */}}
+\DoxyCodeLine{273     void (JNICALL *Unlock)(\mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* env);}
+\DoxyCodeLine{274     \textcolor{comment}{/*}}
+\DoxyCodeLine{275 \textcolor{comment}{     * Since 1.4}}
+\DoxyCodeLine{276 \textcolor{comment}{     * Returns a reference to a java.awt.Component from a native}}
+\DoxyCodeLine{277 \textcolor{comment}{     * platform handle.  On Windows, this corresponds to an HWND;}}
+\DoxyCodeLine{278 \textcolor{comment}{     * on Solaris and Linux, this is a Drawable.  For other platforms,}}
+\DoxyCodeLine{279 \textcolor{comment}{     * see the appropriate machine-\/dependent header file for a description.}}
+\DoxyCodeLine{280 \textcolor{comment}{     * The reference returned by this function is a local}}
+\DoxyCodeLine{281 \textcolor{comment}{     * reference that is only valid in this environment.}}
+\DoxyCodeLine{282 \textcolor{comment}{     * This function returns a NULL reference if no component could be}}
+\DoxyCodeLine{283 \textcolor{comment}{     * found with matching platform information.}}
+\DoxyCodeLine{284 \textcolor{comment}{     */}}
+\DoxyCodeLine{285     jobject (JNICALL *GetComponent)(\mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* env, \textcolor{keywordtype}{void}* platformInfo);}
+\DoxyCodeLine{286 }
+\DoxyCodeLine{297     \mbox{\hyperlink{structjawt_a533d4df5925fa8e4aa02bfeff69e1eef}{jobject}} (JNICALL *CreateEmbeddedFrame) (\mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}} *env, \textcolor{keywordtype}{void}* platformInfo);}
+\DoxyCodeLine{298 }
+\DoxyCodeLine{318     \mbox{\hyperlink{structjawt_a219af0d0af30b139e1fa334dc31f431a}{void}} (JNICALL *SetBounds) (\mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}} *env, jobject embeddedFrame,}
+\DoxyCodeLine{319             jint x, jint y, jint w, jint h);}
+\DoxyCodeLine{329     \mbox{\hyperlink{structjawt_a8122c9e7eb3bcb1f2f5c3f0ad8e8760a}{void}} (JNICALL *SynthesizeWindowActivation) (\mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}} *env,}
+\DoxyCodeLine{330             jobject embeddedFrame, jboolean doActivate);}
+\DoxyCodeLine{331 \} \mbox{\hyperlink{structjawt}{JAWT}};}
+\DoxyCodeLine{332 }
+\DoxyCodeLine{333 \textcolor{comment}{/*}}
+\DoxyCodeLine{334 \textcolor{comment}{ * Get the AWT native structure.  This function returns JNI\_FALSE if}}
+\DoxyCodeLine{335 \textcolor{comment}{ * an error occurs.}}
+\DoxyCodeLine{336 \textcolor{comment}{ */}}
+\DoxyCodeLine{337 \_JNI\_IMPORT\_OR\_EXPORT\_}
+\DoxyCodeLine{338 jboolean JNICALL JAWT\_GetAWT(\mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* env, \mbox{\hyperlink{structjawt}{JAWT}}* awt);}
+\DoxyCodeLine{339 }
+\DoxyCodeLine{340 \textcolor{comment}{/*}}
+\DoxyCodeLine{341 \textcolor{comment}{ * Specify one of these constants as the JAWT.version}}
+\DoxyCodeLine{342 \textcolor{comment}{ * Specifying an earlier version will limit the available functions to}}
+\DoxyCodeLine{343 \textcolor{comment}{ * those provided in that earlier version of JAWT.}}
+\DoxyCodeLine{344 \textcolor{comment}{ * See the "{}Since"{} note on each API. Methods with no "{}Since"{}}}
+\DoxyCodeLine{345 \textcolor{comment}{ * may be presumed to be present in JAWT\_VERSION\_1\_3.}}
+\DoxyCodeLine{346 \textcolor{comment}{ */}}
+\DoxyCodeLine{347 \textcolor{preprocessor}{\#define JAWT\_VERSION\_1\_3 0x00010003}}
+\DoxyCodeLine{348 \textcolor{preprocessor}{\#define JAWT\_VERSION\_1\_4 0x00010004}}
+\DoxyCodeLine{349 \textcolor{preprocessor}{\#define JAWT\_VERSION\_1\_7 0x00010007}}
+\DoxyCodeLine{350 \textcolor{preprocessor}{\#define JAWT\_VERSION\_9 0x00090000}}
+\DoxyCodeLine{351 }
+\DoxyCodeLine{352 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{353 \} \textcolor{comment}{/* extern "{}C"{} */}}
+\DoxyCodeLine{354 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{355 }
+\DoxyCodeLine{356 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* !\_JAVASOFT\_JAWT\_H\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

@@ -1,0 +1,34 @@
+\hypertarget{_observer_8h_source}{}\doxysection{Observer.\+h}
+\label{_observer_8h_source}\index{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/Core/Observer.h@{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/Core/Observer.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}CoreExports.h"{}}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}IObserver.h"{}}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}CoreSession.h"{}}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{keyword}{class }CORE\_API \mbox{\hyperlink{class_observer}{Observer}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_i_observer}{IObserver}} }
+\DoxyCodeLine{7 \{}
+\DoxyCodeLine{8    }
+\DoxyCodeLine{9     \textcolor{keyword}{public}:}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11         \mbox{\hyperlink{class_observer}{Observer}}(\mbox{\hyperlink{class_core_session}{CoreSession}}\& coreSesssion, EventTypes eventType) ;}
+\DoxyCodeLine{12         \mbox{\hyperlink{class_observer}{\string~Observer}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{13         \textcolor{keywordtype}{void} Update(\textcolor{keyword}{const} std::string\& message\_from\_subject) \textcolor{keyword}{override};}
+\DoxyCodeLine{14         \textcolor{keywordtype}{void} Update(\textcolor{keyword}{const} std::string\& message\_from\_subject, \textcolor{keywordtype}{void} * data) \textcolor{keyword}{override};}
+\DoxyCodeLine{15         \textcolor{keywordtype}{void} RemoveMeFromTheList();}
+\DoxyCodeLine{16         \textcolor{keywordtype}{void} PrintInfo();}
+\DoxyCodeLine{17         \textcolor{keywordtype}{void} PrintInfo(\textcolor{keywordtype}{void}* data);}
+\DoxyCodeLine{18         \textcolor{keywordtype}{bool} UpdateOnEventType(EventTypes eventType);}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20     \textcolor{keyword}{private}:}
+\DoxyCodeLine{21         std::string message\_from\_subject\_;}
+\DoxyCodeLine{22         \mbox{\hyperlink{class_core_session}{CoreSession}}\& coreSession\_;}
+\DoxyCodeLine{23         \textcolor{keyword}{static} \textcolor{keywordtype}{int} static\_number\_;}
+\DoxyCodeLine{24         \textcolor{keywordtype}{int} number\_;}
+\DoxyCodeLine{25         EventTypes m\_eventType;}
+\DoxyCodeLine{26     }
+\DoxyCodeLine{27 \};}
+\DoxyCodeLine{28 }
+
+\end{DoxyCode}

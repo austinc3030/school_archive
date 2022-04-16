@@ -1,0 +1,43 @@
+\hypertarget{_guid_object_8h_source}{}\doxysection{Guid\+Object.\+h}
+\label{_guid_object_8h_source}\index{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/Core/GuidObject.h@{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/Core/GuidObject.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}CoreExports.h"{}}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{keyword}{class }CORE\_API \mbox{\hyperlink{class_guid_object}{GuidObject}}}
+\DoxyCodeLine{5 \{}
+\DoxyCodeLine{6     public :}
+\DoxyCodeLine{7         \mbox{\hyperlink{class_guid_object}{GuidObject}}(\textcolor{keywordtype}{int} guid);}
+\DoxyCodeLine{8         }
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10         \textcolor{keywordtype}{int} GetGuid();}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13         \textcolor{keyword}{virtual} \mbox{\hyperlink{class_guid_object}{\string~GuidObject}}();}
+\DoxyCodeLine{14         \mbox{\hyperlink{class_guid_object}{GuidObject}}() = \textcolor{keyword}{delete};}
+\DoxyCodeLine{15     \textcolor{keyword}{protected}:}
+\DoxyCodeLine{16         }
+\DoxyCodeLine{17         \textcolor{keywordtype}{int} m\_guid;}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \};}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{keyword}{class }CORE\_API \mbox{\hyperlink{class_guid_object_manager}{GuidObjectManager}}}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23     \textcolor{keyword}{public}:}
+\DoxyCodeLine{24         \textcolor{keyword}{static} \mbox{\hyperlink{class_guid_object_manager}{GuidObjectManager}}\& GetGuidObjectManager();}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26         \mbox{\hyperlink{class_guid_object}{GuidObject}}* GetObjectFromGUID(\textcolor{keywordtype}{int} guid);}
+\DoxyCodeLine{27         \textcolor{keywordtype}{void} SetObjectFromGUID(\textcolor{keywordtype}{int} guid, \mbox{\hyperlink{class_guid_object}{GuidObject}}* objectToStore);}
+\DoxyCodeLine{28         \mbox{\hyperlink{class_guid_object_manager}{GuidObjectManager}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_guid_object_manager}{GuidObjectManager}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{29         \mbox{\hyperlink{class_guid_object_manager}{GuidObjectManager}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{class_guid_object_manager}{GuidObjectManager}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31     \textcolor{keyword}{private}:}
+\DoxyCodeLine{32         \mbox{\hyperlink{class_guid_object_manager}{GuidObjectManager}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{33         \mbox{\hyperlink{class_guid_object_manager}{\string~GuidObjectManager}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \};}
+\DoxyCodeLine{37 }
+
+\end{DoxyCode}

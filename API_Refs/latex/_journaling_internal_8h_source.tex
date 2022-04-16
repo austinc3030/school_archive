@@ -1,0 +1,29 @@
+\hypertarget{_journaling_internal_8h_source}{}\doxysection{Journaling\+Internal.\+h}
+\label{_journaling_internal_8h_source}\index{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/Journaling/JournalingInternal.h@{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/Journaling/JournalingInternal.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{keyword}{class }GuidObject;}
+\DoxyCodeLine{7 \textcolor{keyword}{namespace }Journal}
+\DoxyCodeLine{8 \{}
+\DoxyCodeLine{9     \textcolor{keyword}{class }JournalFile;}
+\DoxyCodeLine{10 \}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \mbox{\hyperlink{class_journal_1_1_journal_file}{Journal::JournalFile}}* GetActiveJournalFile();}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{keywordtype}{bool} InGuidToParamMap(\textcolor{keywordtype}{int} guid);}
+\DoxyCodeLine{16 \textcolor{keywordtype}{void} AddGuidToParamMap(\textcolor{keywordtype}{int} guid, std::string\& param);}
+\DoxyCodeLine{17 std::string GetGuidToParam(\textcolor{keywordtype}{int} guid, \textcolor{keywordtype}{bool}\& found);}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 std::string GenerateVariableName(std::string variableName);}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 }
+
+\end{DoxyCode}

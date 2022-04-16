@@ -1,0 +1,622 @@
+\hypertarget{_access_bridge_calls_8h_source}{}\doxysection{Access\+Bridge\+Calls.\+h}
+\label{_access_bridge_calls_8h_source}\index{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/JNI\_Includes/win32/bridge/AccessBridgeCalls.h@{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/JNI\_Includes/win32/bridge/AccessBridgeCalls.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright (c) 2005, 2016, Oracle and/or its affiliates. All rights reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.}}
+\DoxyCodeLine{4 \textcolor{comment}{ *}}
+\DoxyCodeLine{5 \textcolor{comment}{ * This code is free software; you can redistribute it and/or modify it}}
+\DoxyCodeLine{6 \textcolor{comment}{ * under the terms of the GNU General Public License version 2 only, as}}
+\DoxyCodeLine{7 \textcolor{comment}{ * published by the Free Software Foundation.  Oracle designates this}}
+\DoxyCodeLine{8 \textcolor{comment}{ * particular file as subject to the "{}Classpath"{} exception as provided}}
+\DoxyCodeLine{9 \textcolor{comment}{ * by Oracle in the LICENSE file that accompanied this code.}}
+\DoxyCodeLine{10 \textcolor{comment}{ *}}
+\DoxyCodeLine{11 \textcolor{comment}{ * This code is distributed in the hope that it will be useful, but WITHOUT}}
+\DoxyCodeLine{12 \textcolor{comment}{ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or}}
+\DoxyCodeLine{13 \textcolor{comment}{ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License}}
+\DoxyCodeLine{14 \textcolor{comment}{ * version 2 for more details (a copy is included in the LICENSE file that}}
+\DoxyCodeLine{15 \textcolor{comment}{ * accompanied this code).}}
+\DoxyCodeLine{16 \textcolor{comment}{ *}}
+\DoxyCodeLine{17 \textcolor{comment}{ * You should have received a copy of the GNU General Public License version}}
+\DoxyCodeLine{18 \textcolor{comment}{ * 2 along with this work; if not, write to the Free Software Foundation,}}
+\DoxyCodeLine{19 \textcolor{comment}{ * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-\/1301 USA.}}
+\DoxyCodeLine{20 \textcolor{comment}{ *}}
+\DoxyCodeLine{21 \textcolor{comment}{ * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA}}
+\DoxyCodeLine{22 \textcolor{comment}{ * or visit www.oracle.com if you need additional information or have any}}
+\DoxyCodeLine{23 \textcolor{comment}{ * questions.}}
+\DoxyCodeLine{24 \textcolor{comment}{ */}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{comment}{/* Note: In addition to this header file AccessBridgeCalls.c must be compiled and}}
+\DoxyCodeLine{27 \textcolor{comment}{ * linked to your application.  AccessBridgeCalls.c implements the Java Access}}
+\DoxyCodeLine{28 \textcolor{comment}{ * Bridge API and also hides the complexities associated with interfacing to the}}
+\DoxyCodeLine{29 \textcolor{comment}{ * associated Java Access Bridge DLL which is installed when Java is installed.}}
+\DoxyCodeLine{30 \textcolor{comment}{ *}}
+\DoxyCodeLine{31 \textcolor{comment}{ * AccessBridgeCalls.c is available for download from the OpenJDK repository using}}
+\DoxyCodeLine{32 \textcolor{comment}{ * the following link:}}
+\DoxyCodeLine{33 \textcolor{comment}{ *}}
+\DoxyCodeLine{34 \textcolor{comment}{ * http://hg.openjdk.java.net/jdk9/jdk9/jdk/raw-\/file/tip/src/jdk.accessibility/windows/native/bridge/AccessBridgeCalls.c}}
+\DoxyCodeLine{35 \textcolor{comment}{ *}}
+\DoxyCodeLine{36 \textcolor{comment}{ * Also note that the API is used in the jaccessinspector and jaccesswalker tools.}}
+\DoxyCodeLine{37 \textcolor{comment}{ * The source for those tools is available in the OpenJDK repository at these links:}}
+\DoxyCodeLine{38 \textcolor{comment}{ *}}
+\DoxyCodeLine{39 \textcolor{comment}{ * http://hg.openjdk.java.net/jdk9/jdk9/jdk/file/tip/src/jdk.accessibility/windows/native/jaccessinspector/jaccessinspector.cpp}}
+\DoxyCodeLine{40 \textcolor{comment}{ * http://hg.openjdk.java.net/jdk9/jdk9/jdk/file/tip/src/jdk.accessibility/windows/native/jaccesswalker/jaccesswalker.cpp}}
+\DoxyCodeLine{41 \textcolor{comment}{ *}}
+\DoxyCodeLine{42 \textcolor{comment}{ *}}
+\DoxyCodeLine{43 \textcolor{comment}{ */}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{comment}{/*}}
+\DoxyCodeLine{46 \textcolor{comment}{ * Wrapper functions around calls to the AccessBridge DLL}}
+\DoxyCodeLine{47 \textcolor{comment}{ */}}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#include <windows.h>}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#include <jni.h>}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#include "{}AccessBridgeCallbacks.h"{}}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#include "{}AccessBridgePackages.h"{}}}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{55 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#define null NULL}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60     \textcolor{keyword}{typedef} JOBJECT64 AccessibleContext;}
+\DoxyCodeLine{61     \textcolor{keyword}{typedef} JOBJECT64 AccessibleText;}
+\DoxyCodeLine{62     \textcolor{keyword}{typedef} JOBJECT64 AccessibleValue;}
+\DoxyCodeLine{63     \textcolor{keyword}{typedef} JOBJECT64 AccessibleSelection;}
+\DoxyCodeLine{64     \textcolor{keyword}{typedef} JOBJECT64 Java\_Object;}
+\DoxyCodeLine{65     \textcolor{keyword}{typedef} JOBJECT64 PropertyChangeEvent;}
+\DoxyCodeLine{66     \textcolor{keyword}{typedef} JOBJECT64 FocusEvent;}
+\DoxyCodeLine{67     \textcolor{keyword}{typedef} JOBJECT64 CaretEvent;}
+\DoxyCodeLine{68     \textcolor{keyword}{typedef} JOBJECT64 MouseEvent;}
+\DoxyCodeLine{69     \textcolor{keyword}{typedef} JOBJECT64 MenuEvent;}
+\DoxyCodeLine{70     \textcolor{keyword}{typedef} JOBJECT64 AccessibleTable;}
+\DoxyCodeLine{71     \textcolor{keyword}{typedef} JOBJECT64 AccessibleHyperlink;}
+\DoxyCodeLine{72     \textcolor{keyword}{typedef} JOBJECT64 AccessibleHypertext;}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75     \textcolor{keyword}{typedef} void (*Windows\_runFP) ();}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77     \textcolor{keyword}{typedef} void (*SetPropertyChangeFP) (AccessBridge\_PropertyChangeFP fp);}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79     \textcolor{keyword}{typedef} void (*SetJavaShutdownFP) (AccessBridge\_JavaShutdownFP fp);}
+\DoxyCodeLine{80     \textcolor{keyword}{typedef} void (*SetFocusGainedFP) (AccessBridge\_FocusGainedFP fp);}
+\DoxyCodeLine{81     \textcolor{keyword}{typedef} void (*SetFocusLostFP) (AccessBridge\_FocusLostFP fp);}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83     \textcolor{keyword}{typedef} void (*SetCaretUpdateFP) (AccessBridge\_CaretUpdateFP fp);}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85     \textcolor{keyword}{typedef} void (*SetMouseClickedFP) (AccessBridge\_MouseClickedFP fp);}
+\DoxyCodeLine{86     \textcolor{keyword}{typedef} void (*SetMouseEnteredFP) (AccessBridge\_MouseEnteredFP fp);}
+\DoxyCodeLine{87     \textcolor{keyword}{typedef} void (*SetMouseExitedFP) (AccessBridge\_MouseExitedFP fp);}
+\DoxyCodeLine{88     \textcolor{keyword}{typedef} void (*SetMousePressedFP) (AccessBridge\_MousePressedFP fp);}
+\DoxyCodeLine{89     \textcolor{keyword}{typedef} void (*SetMouseReleasedFP) (AccessBridge\_MouseReleasedFP fp);}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91     \textcolor{keyword}{typedef} void (*SetMenuCanceledFP) (AccessBridge\_MenuCanceledFP fp);}
+\DoxyCodeLine{92     \textcolor{keyword}{typedef} void (*SetMenuDeselectedFP) (AccessBridge\_MenuDeselectedFP fp);}
+\DoxyCodeLine{93     \textcolor{keyword}{typedef} void (*SetMenuSelectedFP) (AccessBridge\_MenuSelectedFP fp);}
+\DoxyCodeLine{94     \textcolor{keyword}{typedef} void (*SetPopupMenuCanceledFP) (AccessBridge\_PopupMenuCanceledFP fp);}
+\DoxyCodeLine{95     \textcolor{keyword}{typedef} void (*SetPopupMenuWillBecomeInvisibleFP) (AccessBridge\_PopupMenuWillBecomeInvisibleFP fp);}
+\DoxyCodeLine{96     \textcolor{keyword}{typedef} void (*SetPopupMenuWillBecomeVisibleFP) (AccessBridge\_PopupMenuWillBecomeVisibleFP fp);}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98     \textcolor{keyword}{typedef} void (*SetPropertyNameChangeFP) (AccessBridge\_PropertyNameChangeFP fp);}
+\DoxyCodeLine{99     \textcolor{keyword}{typedef} void (*SetPropertyDescriptionChangeFP) (AccessBridge\_PropertyDescriptionChangeFP fp);}
+\DoxyCodeLine{100     \textcolor{keyword}{typedef} void (*SetPropertyStateChangeFP) (AccessBridge\_PropertyStateChangeFP fp);}
+\DoxyCodeLine{101     \textcolor{keyword}{typedef} void (*SetPropertyValueChangeFP) (AccessBridge\_PropertyValueChangeFP fp);}
+\DoxyCodeLine{102     \textcolor{keyword}{typedef} void (*SetPropertySelectionChangeFP) (AccessBridge\_PropertySelectionChangeFP fp);}
+\DoxyCodeLine{103     \textcolor{keyword}{typedef} void (*SetPropertyTextChangeFP) (AccessBridge\_PropertyTextChangeFP fp);}
+\DoxyCodeLine{104     \textcolor{keyword}{typedef} void (*SetPropertyCaretChangeFP) (AccessBridge\_PropertyCaretChangeFP fp);}
+\DoxyCodeLine{105     \textcolor{keyword}{typedef} void (*SetPropertyVisibleDataChangeFP) (AccessBridge\_PropertyVisibleDataChangeFP fp);}
+\DoxyCodeLine{106     \textcolor{keyword}{typedef} void (*SetPropertyChildChangeFP) (AccessBridge\_PropertyChildChangeFP fp);}
+\DoxyCodeLine{107     \textcolor{keyword}{typedef} void (*SetPropertyActiveDescendentChangeFP) (AccessBridge\_PropertyActiveDescendentChangeFP fp);}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109     \textcolor{keyword}{typedef} void (*SetPropertyTableModelChangeFP) (AccessBridge\_PropertyTableModelChangeFP fp);}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111     \textcolor{keyword}{typedef} void (*ReleaseJavaObjectFP) (\textcolor{keywordtype}{long} vmID, Java\_Object object);}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113     \textcolor{keyword}{typedef} BOOL (*GetVersionInfoFP) (\textcolor{keywordtype}{long} vmID, \mbox{\hyperlink{struct_access_bridge_version_info_tag}{AccessBridgeVersionInfo}} *info);}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115     \textcolor{keyword}{typedef} BOOL (*IsJavaWindowFP) (HWND window);}
+\DoxyCodeLine{116     \textcolor{keyword}{typedef} BOOL (*IsSameObjectFP) (\textcolor{keywordtype}{long} vmID, JOBJECT64 obj1, JOBJECT64 obj2);}
+\DoxyCodeLine{117     \textcolor{keyword}{typedef} BOOL (*GetAccessibleContextFromHWNDFP) (HWND window, \textcolor{keywordtype}{long} *vmID, AccessibleContext *ac);}
+\DoxyCodeLine{118     \textcolor{keyword}{typedef} HWND (*getHWNDFromAccessibleContextFP) (\textcolor{keywordtype}{long} vmID, AccessibleContext ac);}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120     \textcolor{keyword}{typedef} BOOL (*GetAccessibleContextAtFP) (\textcolor{keywordtype}{long} vmID, AccessibleContext acParent,}
+\DoxyCodeLine{121                                               jint x, jint y, AccessibleContext *ac);}
+\DoxyCodeLine{122     \textcolor{keyword}{typedef} BOOL (*GetAccessibleContextWithFocusFP) (HWND window, \textcolor{keywordtype}{long} *vmID, AccessibleContext *ac);}
+\DoxyCodeLine{123     \textcolor{keyword}{typedef} BOOL (*GetAccessibleContextInfoFP) (\textcolor{keywordtype}{long} vmID, AccessibleContext ac, \mbox{\hyperlink{struct_accessible_context_info_tag}{AccessibleContextInfo}} *info);}
+\DoxyCodeLine{124     \textcolor{keyword}{typedef} AccessibleContext (*GetAccessibleChildFromContextFP) (\textcolor{keywordtype}{long} vmID, AccessibleContext ac, jint i);}
+\DoxyCodeLine{125     \textcolor{keyword}{typedef} AccessibleContext (*GetAccessibleParentFromContextFP) (\textcolor{keywordtype}{long} vmID, AccessibleContext ac);}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127     \textcolor{comment}{/* begin AccessibleTable */}}
+\DoxyCodeLine{128     \textcolor{keyword}{typedef} BOOL (*getAccessibleTableInfoFP) (\textcolor{keywordtype}{long} vmID, AccessibleContext ac, \mbox{\hyperlink{struct_accessible_table_info_tag}{AccessibleTableInfo}} *tableInfo);}
+\DoxyCodeLine{129     \textcolor{keyword}{typedef} BOOL (*getAccessibleTableCellInfoFP) (\textcolor{keywordtype}{long} vmID, AccessibleTable accessibleTable,}
+\DoxyCodeLine{130                                                   jint row, jint column, \mbox{\hyperlink{struct_accessible_table_cell_info_tag}{AccessibleTableCellInfo}} *tableCellInfo);}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132     \textcolor{keyword}{typedef} BOOL (*getAccessibleTableRowHeaderFP) (\textcolor{keywordtype}{long} vmID, AccessibleContext acParent, \mbox{\hyperlink{struct_accessible_table_info_tag}{AccessibleTableInfo}} *tableInfo);}
+\DoxyCodeLine{133     \textcolor{keyword}{typedef} BOOL (*getAccessibleTableColumnHeaderFP) (\textcolor{keywordtype}{long} vmID, AccessibleContext acParent, \mbox{\hyperlink{struct_accessible_table_info_tag}{AccessibleTableInfo}} *tableInfo);}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135     \textcolor{keyword}{typedef} AccessibleContext (*getAccessibleTableRowDescriptionFP) (\textcolor{keywordtype}{long} vmID, AccessibleContext acParent, jint row);}
+\DoxyCodeLine{136     \textcolor{keyword}{typedef} AccessibleContext (*getAccessibleTableColumnDescriptionFP) (\textcolor{keywordtype}{long} vmID, AccessibleContext acParent, jint column);}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138     \textcolor{keyword}{typedef} jint (*getAccessibleTableRowSelectionCountFP) (\textcolor{keywordtype}{long} vmID, AccessibleTable table);}
+\DoxyCodeLine{139     \textcolor{keyword}{typedef} BOOL (*isAccessibleTableRowSelectedFP) (\textcolor{keywordtype}{long} vmID, AccessibleTable table, jint row);}
+\DoxyCodeLine{140     \textcolor{keyword}{typedef} BOOL (*getAccessibleTableRowSelectionsFP) (\textcolor{keywordtype}{long} vmID, AccessibleTable table, jint count,}
+\DoxyCodeLine{141                                                        jint *selections);}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143     \textcolor{keyword}{typedef} jint (*getAccessibleTableColumnSelectionCountFP) (\textcolor{keywordtype}{long} vmID, AccessibleTable table);}
+\DoxyCodeLine{144     \textcolor{keyword}{typedef} BOOL (*isAccessibleTableColumnSelectedFP) (\textcolor{keywordtype}{long} vmID, AccessibleTable table, jint column);}
+\DoxyCodeLine{145     \textcolor{keyword}{typedef} BOOL (*getAccessibleTableColumnSelectionsFP) (\textcolor{keywordtype}{long} vmID, AccessibleTable table, jint count,}
+\DoxyCodeLine{146                                                           jint *selections);}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148     \textcolor{keyword}{typedef} jint (*getAccessibleTableRowFP) (\textcolor{keywordtype}{long} vmID, AccessibleTable table, jint index);}
+\DoxyCodeLine{149     \textcolor{keyword}{typedef} jint (*getAccessibleTableColumnFP) (\textcolor{keywordtype}{long} vmID, AccessibleTable table, jint index);}
+\DoxyCodeLine{150     \textcolor{keyword}{typedef} jint (*getAccessibleTableIndexFP) (\textcolor{keywordtype}{long} vmID, AccessibleTable table, jint row, jint column);}
+\DoxyCodeLine{151     \textcolor{comment}{/* end AccessibleTable */}}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153     \textcolor{comment}{/* AccessibleRelationSet */}}
+\DoxyCodeLine{154     \textcolor{keyword}{typedef} BOOL (*getAccessibleRelationSetFP) (\textcolor{keywordtype}{long} vmID, AccessibleContext accessibleContext,}
+\DoxyCodeLine{155                                                 \mbox{\hyperlink{struct_accessible_relation_set_info_tag}{AccessibleRelationSetInfo}} *relationSetInfo);}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157     \textcolor{comment}{/* AccessibleHypertext */}}
+\DoxyCodeLine{158     \textcolor{keyword}{typedef} BOOL (*getAccessibleHypertextFP)(\textcolor{keywordtype}{long} vmID, AccessibleContext accessibleContext,}
+\DoxyCodeLine{159                                              \mbox{\hyperlink{struct_accessible_hypertext_info_tag}{AccessibleHypertextInfo}} *hypertextInfo);}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161     \textcolor{keyword}{typedef} BOOL (*activateAccessibleHyperlinkFP)(\textcolor{keywordtype}{long} vmID, AccessibleContext accessibleContext,}
+\DoxyCodeLine{162                                                   AccessibleHyperlink accessibleHyperlink);}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164     \textcolor{keyword}{typedef} jint (*getAccessibleHyperlinkCountFP)(\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID,}
+\DoxyCodeLine{165                                                       \textcolor{keyword}{const} AccessibleContext accessibleContext);}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167     \textcolor{keyword}{typedef} BOOL (*getAccessibleHypertextExtFP) (\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID,}
+\DoxyCodeLine{168                                                  \textcolor{keyword}{const} AccessibleContext accessibleContext,}
+\DoxyCodeLine{169                                                  \textcolor{keyword}{const} jint nStartIndex,}
+\DoxyCodeLine{170                                                  \mbox{\hyperlink{struct_accessible_hypertext_info_tag}{AccessibleHypertextInfo}} *hypertextInfo);}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{172     \textcolor{keyword}{typedef} jint (*getAccessibleHypertextLinkIndexFP)(\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID,}
+\DoxyCodeLine{173                                                       \textcolor{keyword}{const} AccessibleHypertext hypertext,}
+\DoxyCodeLine{174                                                       \textcolor{keyword}{const} jint nIndex);}
+\DoxyCodeLine{175 }
+\DoxyCodeLine{176     \textcolor{keyword}{typedef} BOOL (*getAccessibleHyperlinkFP)(\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID,}
+\DoxyCodeLine{177                                              \textcolor{keyword}{const} AccessibleHypertext hypertext,}
+\DoxyCodeLine{178                                              \textcolor{keyword}{const} jint nIndex,}
+\DoxyCodeLine{179                                              \mbox{\hyperlink{struct_accessible_hyperlink_info_tag}{AccessibleHyperlinkInfo}} *hyperlinkInfo);}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181 }
+\DoxyCodeLine{182     \textcolor{comment}{/* Accessible KeyBindings, Icons and Actions */}}
+\DoxyCodeLine{183     \textcolor{keyword}{typedef} BOOL (*getAccessibleKeyBindingsFP)(\textcolor{keywordtype}{long} vmID, AccessibleContext accessibleContext,}
+\DoxyCodeLine{184                                                \mbox{\hyperlink{struct_accessible_key_bindings_tag}{AccessibleKeyBindings}} *keyBindings);}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{186     \textcolor{keyword}{typedef} BOOL (*getAccessibleIconsFP)(\textcolor{keywordtype}{long} vmID, AccessibleContext accessibleContext,}
+\DoxyCodeLine{187                                          \mbox{\hyperlink{struct_accessible_icons_tag}{AccessibleIcons}} *icons);}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{189     \textcolor{keyword}{typedef} BOOL (*getAccessibleActionsFP)(\textcolor{keywordtype}{long} vmID, AccessibleContext accessibleContext,}
+\DoxyCodeLine{190                                            \mbox{\hyperlink{struct_accessible_actions_tag}{AccessibleActions}} *actions);}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192     \textcolor{keyword}{typedef} BOOL (*doAccessibleActionsFP)(\textcolor{keywordtype}{long} vmID, AccessibleContext accessibleContext,}
+\DoxyCodeLine{193                                           \mbox{\hyperlink{struct_accessible_actions_to_do_tag}{AccessibleActionsToDo}} *actionsToDo, jint *failure);}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195 }
+\DoxyCodeLine{196     \textcolor{comment}{/* AccessibleText */}}
+\DoxyCodeLine{197 }
+\DoxyCodeLine{198     \textcolor{keyword}{typedef} BOOL (*GetAccessibleTextInfoFP) (\textcolor{keywordtype}{long} vmID, AccessibleText at, \mbox{\hyperlink{struct_accessible_text_info_tag}{AccessibleTextInfo}} *textInfo, jint x, jint y);}
+\DoxyCodeLine{199     \textcolor{keyword}{typedef} BOOL (*GetAccessibleTextItemsFP) (\textcolor{keywordtype}{long} vmID, AccessibleText at, \mbox{\hyperlink{struct_accessible_text_items_info_tag}{AccessibleTextItemsInfo}} *textItems, jint index);}
+\DoxyCodeLine{200     \textcolor{keyword}{typedef} BOOL (*GetAccessibleTextSelectionInfoFP) (\textcolor{keywordtype}{long} vmID, AccessibleText at, \mbox{\hyperlink{struct_accessible_text_selection_info_tag}{AccessibleTextSelectionInfo}} *textSelection);}
+\DoxyCodeLine{201     \textcolor{keyword}{typedef} BOOL (*GetAccessibleTextAttributesFP) (\textcolor{keywordtype}{long} vmID, AccessibleText at, jint index, \mbox{\hyperlink{struct_accessible_text_attributes_info_tag}{AccessibleTextAttributesInfo}} *attributes);}
+\DoxyCodeLine{202     \textcolor{keyword}{typedef} BOOL (*GetAccessibleTextRectFP) (\textcolor{keywordtype}{long} vmID, AccessibleText at, \mbox{\hyperlink{struct_accessible_text_rect_info_tag}{AccessibleTextRectInfo}} *rectInfo, jint index);}
+\DoxyCodeLine{203     \textcolor{keyword}{typedef} BOOL (*GetAccessibleTextLineBoundsFP) (\textcolor{keywordtype}{long} vmID, AccessibleText at, jint index, jint *startIndex, jint *endIndex);}
+\DoxyCodeLine{204     \textcolor{keyword}{typedef} BOOL (*GetAccessibleTextRangeFP) (\textcolor{keywordtype}{long} vmID, AccessibleText at, jint start, jint end, \textcolor{keywordtype}{wchar\_t} *text, \textcolor{keywordtype}{short} len);}
+\DoxyCodeLine{205 }
+\DoxyCodeLine{206     \textcolor{keyword}{typedef} BOOL (*GetCurrentAccessibleValueFromContextFP) (\textcolor{keywordtype}{long} vmID, AccessibleValue av, \textcolor{keywordtype}{wchar\_t} *value, \textcolor{keywordtype}{short} len);}
+\DoxyCodeLine{207     \textcolor{keyword}{typedef} BOOL (*GetMaximumAccessibleValueFromContextFP) (\textcolor{keywordtype}{long} vmID, AccessibleValue av, \textcolor{keywordtype}{wchar\_t} *value, \textcolor{keywordtype}{short} len);}
+\DoxyCodeLine{208     \textcolor{keyword}{typedef} BOOL (*GetMinimumAccessibleValueFromContextFP) (\textcolor{keywordtype}{long} vmID, AccessibleValue av, \textcolor{keywordtype}{wchar\_t} *value, \textcolor{keywordtype}{short} len);}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{210     \textcolor{keyword}{typedef} void (*AddAccessibleSelectionFromContextFP) (\textcolor{keywordtype}{long} vmID, AccessibleSelection as, \textcolor{keywordtype}{int} i);}
+\DoxyCodeLine{211     \textcolor{keyword}{typedef} void (*ClearAccessibleSelectionFromContextFP) (\textcolor{keywordtype}{long} vmID, AccessibleSelection as);}
+\DoxyCodeLine{212     \textcolor{keyword}{typedef} JOBJECT64 (*GetAccessibleSelectionFromContextFP) (\textcolor{keywordtype}{long} vmID, AccessibleSelection as, \textcolor{keywordtype}{int} i);}
+\DoxyCodeLine{213     \textcolor{keyword}{typedef} int (*GetAccessibleSelectionCountFromContextFP) (\textcolor{keywordtype}{long} vmID, AccessibleSelection as);}
+\DoxyCodeLine{214     \textcolor{keyword}{typedef} BOOL (*IsAccessibleChildSelectedFromContextFP) (\textcolor{keywordtype}{long} vmID, AccessibleSelection as, \textcolor{keywordtype}{int} i);}
+\DoxyCodeLine{215     \textcolor{keyword}{typedef} void (*RemoveAccessibleSelectionFromContextFP) (\textcolor{keywordtype}{long} vmID, AccessibleSelection as, \textcolor{keywordtype}{int} i);}
+\DoxyCodeLine{216     \textcolor{keyword}{typedef} void (*SelectAllAccessibleSelectionFromContextFP) (\textcolor{keywordtype}{long} vmID, AccessibleSelection as);}
+\DoxyCodeLine{217 }
+\DoxyCodeLine{218     \textcolor{comment}{/* Utility methods */}}
+\DoxyCodeLine{219 }
+\DoxyCodeLine{220     \textcolor{keyword}{typedef} BOOL (*setTextContentsFP) (\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID, \textcolor{keyword}{const} AccessibleContext ac, \textcolor{keyword}{const} \textcolor{keywordtype}{wchar\_t} *text);}
+\DoxyCodeLine{221     \textcolor{keyword}{typedef} AccessibleContext (*getParentWithRoleFP) (\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID, \textcolor{keyword}{const} AccessibleContext ac, \textcolor{keyword}{const} \textcolor{keywordtype}{wchar\_t} *role);}
+\DoxyCodeLine{222     \textcolor{keyword}{typedef} AccessibleContext (*getParentWithRoleElseRootFP) (\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID, \textcolor{keyword}{const} AccessibleContext ac, \textcolor{keyword}{const} \textcolor{keywordtype}{wchar\_t} *role);}
+\DoxyCodeLine{223     \textcolor{keyword}{typedef} AccessibleContext (*getTopLevelObjectFP) (\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID, \textcolor{keyword}{const} AccessibleContext ac);}
+\DoxyCodeLine{224     \textcolor{keyword}{typedef} int (*getObjectDepthFP) (\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID, \textcolor{keyword}{const} AccessibleContext ac);}
+\DoxyCodeLine{225     \textcolor{keyword}{typedef} AccessibleContext (*getActiveDescendentFP) (\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID, \textcolor{keyword}{const} AccessibleContext ac);}
+\DoxyCodeLine{226 }
+\DoxyCodeLine{227 }
+\DoxyCodeLine{228     \textcolor{keyword}{typedef} BOOL (*getVirtualAccessibleNameFP) (\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID, \textcolor{keyword}{const} AccessibleContext accessibleContext,}
+\DoxyCodeLine{229                                              \textcolor{keywordtype}{wchar\_t} *name, \textcolor{keywordtype}{int} len);}
+\DoxyCodeLine{230 }
+\DoxyCodeLine{231     \textcolor{keyword}{typedef} BOOL (*requestFocusFP) (\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID, \textcolor{keyword}{const} AccessibleContext accessibleContext);}
+\DoxyCodeLine{232 }
+\DoxyCodeLine{233     \textcolor{keyword}{typedef} BOOL (*selectTextRangeFP) (\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID, \textcolor{keyword}{const} AccessibleContext accessibleContext,}
+\DoxyCodeLine{234                                        \textcolor{keyword}{const} \textcolor{keywordtype}{int} startIndex, \textcolor{keyword}{const} \textcolor{keywordtype}{int} endIndex);}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{236     \textcolor{keyword}{typedef} BOOL (*getTextAttributesInRangeFP) (\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID, \textcolor{keyword}{const} AccessibleContext accessibleContext,}
+\DoxyCodeLine{237                                                 \textcolor{keyword}{const} \textcolor{keywordtype}{int} startIndex, \textcolor{keyword}{const} \textcolor{keywordtype}{int} endIndex,}
+\DoxyCodeLine{238                                                 \mbox{\hyperlink{struct_accessible_text_attributes_info_tag}{AccessibleTextAttributesInfo}} *attributes, \textcolor{keywordtype}{short} *len);}
+\DoxyCodeLine{239 }
+\DoxyCodeLine{240     \textcolor{keyword}{typedef} int (*getVisibleChildrenCountFP) (\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID, \textcolor{keyword}{const} AccessibleContext accessibleContext);}
+\DoxyCodeLine{241 }
+\DoxyCodeLine{242     \textcolor{keyword}{typedef} BOOL (*getVisibleChildrenFP) (\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID, \textcolor{keyword}{const} AccessibleContext accessibleContext,}
+\DoxyCodeLine{243                                           \textcolor{keyword}{const} \textcolor{keywordtype}{int} startIndex, \mbox{\hyperlink{struct_visible_childen_info_tag}{VisibleChildrenInfo}} *children);}
+\DoxyCodeLine{244 }
+\DoxyCodeLine{245     \textcolor{keyword}{typedef} BOOL (*setCaretPositionFP) (\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID, \textcolor{keyword}{const} AccessibleContext accessibleContext, \textcolor{keyword}{const} \textcolor{keywordtype}{int} position);}
+\DoxyCodeLine{246 }
+\DoxyCodeLine{247     \textcolor{keyword}{typedef} BOOL (*getCaretLocationFP) (\textcolor{keywordtype}{long} vmID, AccessibleContext ac, \mbox{\hyperlink{struct_accessible_text_rect_info_tag}{AccessibleTextRectInfo}} *rectInfo, jint index);}
+\DoxyCodeLine{248 }
+\DoxyCodeLine{249     \textcolor{keyword}{typedef} int (*getEventsWaitingFP) ();}
+\DoxyCodeLine{250 }
+\DoxyCodeLine{251     \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_access_bridge_f_ps_tag}{AccessBridgeFPsTag}} \{}
+\DoxyCodeLine{252         Windows\_runFP Windows\_run;}
+\DoxyCodeLine{253 }
+\DoxyCodeLine{254         SetPropertyChangeFP SetPropertyChange;}
+\DoxyCodeLine{255 }
+\DoxyCodeLine{256         SetJavaShutdownFP SetJavaShutdown;}
+\DoxyCodeLine{257         SetFocusGainedFP SetFocusGained;}
+\DoxyCodeLine{258         SetFocusLostFP SetFocusLost;}
+\DoxyCodeLine{259 }
+\DoxyCodeLine{260         SetCaretUpdateFP SetCaretUpdate;}
+\DoxyCodeLine{261 }
+\DoxyCodeLine{262         SetMouseClickedFP SetMouseClicked;}
+\DoxyCodeLine{263         SetMouseEnteredFP SetMouseEntered;}
+\DoxyCodeLine{264         SetMouseExitedFP SetMouseExited;}
+\DoxyCodeLine{265         SetMousePressedFP SetMousePressed;}
+\DoxyCodeLine{266         SetMouseReleasedFP SetMouseReleased;}
+\DoxyCodeLine{267 }
+\DoxyCodeLine{268         SetMenuCanceledFP SetMenuCanceled;}
+\DoxyCodeLine{269         SetMenuDeselectedFP SetMenuDeselected;}
+\DoxyCodeLine{270         SetMenuSelectedFP SetMenuSelected;}
+\DoxyCodeLine{271         SetPopupMenuCanceledFP SetPopupMenuCanceled;}
+\DoxyCodeLine{272         SetPopupMenuWillBecomeInvisibleFP SetPopupMenuWillBecomeInvisible;}
+\DoxyCodeLine{273         SetPopupMenuWillBecomeVisibleFP SetPopupMenuWillBecomeVisible;}
+\DoxyCodeLine{274 }
+\DoxyCodeLine{275         SetPropertyNameChangeFP SetPropertyNameChange;}
+\DoxyCodeLine{276         SetPropertyDescriptionChangeFP SetPropertyDescriptionChange;}
+\DoxyCodeLine{277         SetPropertyStateChangeFP SetPropertyStateChange;}
+\DoxyCodeLine{278         SetPropertyValueChangeFP SetPropertyValueChange;}
+\DoxyCodeLine{279         SetPropertySelectionChangeFP SetPropertySelectionChange;}
+\DoxyCodeLine{280         SetPropertyTextChangeFP SetPropertyTextChange;}
+\DoxyCodeLine{281         SetPropertyCaretChangeFP SetPropertyCaretChange;}
+\DoxyCodeLine{282         SetPropertyVisibleDataChangeFP SetPropertyVisibleDataChange;}
+\DoxyCodeLine{283         SetPropertyChildChangeFP SetPropertyChildChange;}
+\DoxyCodeLine{284         SetPropertyActiveDescendentChangeFP SetPropertyActiveDescendentChange;}
+\DoxyCodeLine{285 }
+\DoxyCodeLine{286         SetPropertyTableModelChangeFP SetPropertyTableModelChange;}
+\DoxyCodeLine{287 }
+\DoxyCodeLine{288         ReleaseJavaObjectFP ReleaseJavaObject;}
+\DoxyCodeLine{289         GetVersionInfoFP GetVersionInfo;}
+\DoxyCodeLine{290 }
+\DoxyCodeLine{291         IsJavaWindowFP IsJavaWindow;}
+\DoxyCodeLine{292         IsSameObjectFP IsSameObject;}
+\DoxyCodeLine{293         GetAccessibleContextFromHWNDFP GetAccessibleContextFromHWND;}
+\DoxyCodeLine{294         getHWNDFromAccessibleContextFP getHWNDFromAccessibleContext;}
+\DoxyCodeLine{295 }
+\DoxyCodeLine{296         GetAccessibleContextAtFP GetAccessibleContextAt;}
+\DoxyCodeLine{297         GetAccessibleContextWithFocusFP GetAccessibleContextWithFocus;}
+\DoxyCodeLine{298         GetAccessibleContextInfoFP GetAccessibleContextInfo;}
+\DoxyCodeLine{299         GetAccessibleChildFromContextFP GetAccessibleChildFromContext;}
+\DoxyCodeLine{300         GetAccessibleParentFromContextFP GetAccessibleParentFromContext;}
+\DoxyCodeLine{301 }
+\DoxyCodeLine{302         getAccessibleTableInfoFP getAccessibleTableInfo;}
+\DoxyCodeLine{303         getAccessibleTableCellInfoFP getAccessibleTableCellInfo;}
+\DoxyCodeLine{304 }
+\DoxyCodeLine{305         getAccessibleTableRowHeaderFP getAccessibleTableRowHeader;}
+\DoxyCodeLine{306         getAccessibleTableColumnHeaderFP getAccessibleTableColumnHeader;}
+\DoxyCodeLine{307 }
+\DoxyCodeLine{308         getAccessibleTableRowDescriptionFP getAccessibleTableRowDescription;}
+\DoxyCodeLine{309         getAccessibleTableColumnDescriptionFP getAccessibleTableColumnDescription;}
+\DoxyCodeLine{310 }
+\DoxyCodeLine{311         getAccessibleTableRowSelectionCountFP getAccessibleTableRowSelectionCount;}
+\DoxyCodeLine{312         isAccessibleTableRowSelectedFP isAccessibleTableRowSelected;}
+\DoxyCodeLine{313         getAccessibleTableRowSelectionsFP getAccessibleTableRowSelections;}
+\DoxyCodeLine{314 }
+\DoxyCodeLine{315         getAccessibleTableColumnSelectionCountFP getAccessibleTableColumnSelectionCount;}
+\DoxyCodeLine{316         isAccessibleTableColumnSelectedFP isAccessibleTableColumnSelected;}
+\DoxyCodeLine{317         getAccessibleTableColumnSelectionsFP getAccessibleTableColumnSelections;}
+\DoxyCodeLine{318 }
+\DoxyCodeLine{319         getAccessibleTableRowFP getAccessibleTableRow;}
+\DoxyCodeLine{320         getAccessibleTableColumnFP getAccessibleTableColumn;}
+\DoxyCodeLine{321         getAccessibleTableIndexFP getAccessibleTableIndex;}
+\DoxyCodeLine{322 }
+\DoxyCodeLine{323         getAccessibleRelationSetFP getAccessibleRelationSet;}
+\DoxyCodeLine{324 }
+\DoxyCodeLine{325         getAccessibleHypertextFP getAccessibleHypertext;}
+\DoxyCodeLine{326         activateAccessibleHyperlinkFP activateAccessibleHyperlink;}
+\DoxyCodeLine{327         getAccessibleHyperlinkCountFP getAccessibleHyperlinkCount;}
+\DoxyCodeLine{328         getAccessibleHypertextExtFP getAccessibleHypertextExt;}
+\DoxyCodeLine{329         getAccessibleHypertextLinkIndexFP getAccessibleHypertextLinkIndex;}
+\DoxyCodeLine{330         getAccessibleHyperlinkFP getAccessibleHyperlink;}
+\DoxyCodeLine{331 }
+\DoxyCodeLine{332         getAccessibleKeyBindingsFP getAccessibleKeyBindings;}
+\DoxyCodeLine{333         getAccessibleIconsFP getAccessibleIcons;}
+\DoxyCodeLine{334         getAccessibleActionsFP getAccessibleActions;}
+\DoxyCodeLine{335         doAccessibleActionsFP doAccessibleActions;}
+\DoxyCodeLine{336 }
+\DoxyCodeLine{337         GetAccessibleTextInfoFP GetAccessibleTextInfo;}
+\DoxyCodeLine{338         GetAccessibleTextItemsFP GetAccessibleTextItems;}
+\DoxyCodeLine{339         GetAccessibleTextSelectionInfoFP GetAccessibleTextSelectionInfo;}
+\DoxyCodeLine{340         GetAccessibleTextAttributesFP GetAccessibleTextAttributes;}
+\DoxyCodeLine{341         GetAccessibleTextRectFP GetAccessibleTextRect;}
+\DoxyCodeLine{342         GetAccessibleTextLineBoundsFP GetAccessibleTextLineBounds;}
+\DoxyCodeLine{343         GetAccessibleTextRangeFP GetAccessibleTextRange;}
+\DoxyCodeLine{344 }
+\DoxyCodeLine{345         GetCurrentAccessibleValueFromContextFP GetCurrentAccessibleValueFromContext;}
+\DoxyCodeLine{346         GetMaximumAccessibleValueFromContextFP GetMaximumAccessibleValueFromContext;}
+\DoxyCodeLine{347         GetMinimumAccessibleValueFromContextFP GetMinimumAccessibleValueFromContext;}
+\DoxyCodeLine{348 }
+\DoxyCodeLine{349         AddAccessibleSelectionFromContextFP AddAccessibleSelectionFromContext;}
+\DoxyCodeLine{350         ClearAccessibleSelectionFromContextFP ClearAccessibleSelectionFromContext;}
+\DoxyCodeLine{351         GetAccessibleSelectionFromContextFP GetAccessibleSelectionFromContext;}
+\DoxyCodeLine{352         GetAccessibleSelectionCountFromContextFP GetAccessibleSelectionCountFromContext;}
+\DoxyCodeLine{353         IsAccessibleChildSelectedFromContextFP IsAccessibleChildSelectedFromContext;}
+\DoxyCodeLine{354         RemoveAccessibleSelectionFromContextFP RemoveAccessibleSelectionFromContext;}
+\DoxyCodeLine{355         SelectAllAccessibleSelectionFromContextFP SelectAllAccessibleSelectionFromContext;}
+\DoxyCodeLine{356 }
+\DoxyCodeLine{357         setTextContentsFP setTextContents;}
+\DoxyCodeLine{358         getParentWithRoleFP getParentWithRole;}
+\DoxyCodeLine{359         getTopLevelObjectFP getTopLevelObject;}
+\DoxyCodeLine{360         getParentWithRoleElseRootFP getParentWithRoleElseRoot;}
+\DoxyCodeLine{361         getObjectDepthFP getObjectDepth;}
+\DoxyCodeLine{362         getActiveDescendentFP getActiveDescendent;}
+\DoxyCodeLine{363 }
+\DoxyCodeLine{364         getVirtualAccessibleNameFP getVirtualAccessibleName;}
+\DoxyCodeLine{365         requestFocusFP requestFocus;}
+\DoxyCodeLine{366         selectTextRangeFP selectTextRange;}
+\DoxyCodeLine{367         getTextAttributesInRangeFP getTextAttributesInRange;}
+\DoxyCodeLine{368         getVisibleChildrenCountFP getVisibleChildrenCount;}
+\DoxyCodeLine{369         getVisibleChildrenFP getVisibleChildren;}
+\DoxyCodeLine{370         setCaretPositionFP setCaretPosition;}
+\DoxyCodeLine{371         getCaretLocationFP getCaretLocation;}
+\DoxyCodeLine{372 }
+\DoxyCodeLine{373         getEventsWaitingFP getEventsWaiting;}
+\DoxyCodeLine{374 }
+\DoxyCodeLine{375     \} \mbox{\hyperlink{struct_access_bridge_f_ps_tag}{AccessBridgeFPs}};}
+\DoxyCodeLine{376 }
+\DoxyCodeLine{377 }
+\DoxyCodeLine{381     BOOL initializeAccessBridge();}
+\DoxyCodeLine{382     BOOL shutdownAccessBridge();}
+\DoxyCodeLine{383 }
+\DoxyCodeLine{387     BOOL IsJavaWindow(HWND window);}
+\DoxyCodeLine{388 }
+\DoxyCodeLine{389     \textcolor{comment}{// Returns the virtual machine ID and AccessibleContext for a top-\/level window}}
+\DoxyCodeLine{390     BOOL GetAccessibleContextFromHWND(HWND target, \textcolor{keywordtype}{long} *vmID, AccessibleContext *ac);}
+\DoxyCodeLine{391 }
+\DoxyCodeLine{392     \textcolor{comment}{// Returns the HWND from the AccessibleContext of a top-\/level window}}
+\DoxyCodeLine{393     HWND getHWNDFromAccessibleContext(\textcolor{keywordtype}{long} vmID, AccessibleContext ac);}
+\DoxyCodeLine{394 }
+\DoxyCodeLine{395 }
+\DoxyCodeLine{399     \textcolor{keywordtype}{void} SetJavaShutdown(AccessBridge\_JavaShutdownFP fp);}
+\DoxyCodeLine{400     \textcolor{keywordtype}{void} SetFocusGained(AccessBridge\_FocusGainedFP fp);}
+\DoxyCodeLine{401     \textcolor{keywordtype}{void} SetFocusLost(AccessBridge\_FocusLostFP fp);}
+\DoxyCodeLine{402 }
+\DoxyCodeLine{403     \textcolor{keywordtype}{void} SetCaretUpdate(AccessBridge\_CaretUpdateFP fp);}
+\DoxyCodeLine{404 }
+\DoxyCodeLine{405     \textcolor{keywordtype}{void} SetMouseClicked(AccessBridge\_MouseClickedFP fp);}
+\DoxyCodeLine{406     \textcolor{keywordtype}{void} SetMouseEntered(AccessBridge\_MouseEnteredFP fp);}
+\DoxyCodeLine{407     \textcolor{keywordtype}{void} SetMouseExited(AccessBridge\_MouseExitedFP fp);}
+\DoxyCodeLine{408     \textcolor{keywordtype}{void} SetMousePressed(AccessBridge\_MousePressedFP fp);}
+\DoxyCodeLine{409     \textcolor{keywordtype}{void} SetMouseReleased(AccessBridge\_MouseReleasedFP fp);}
+\DoxyCodeLine{410 }
+\DoxyCodeLine{411     \textcolor{keywordtype}{void} SetMenuCanceled(AccessBridge\_MenuCanceledFP fp);}
+\DoxyCodeLine{412     \textcolor{keywordtype}{void} SetMenuDeselected(AccessBridge\_MenuDeselectedFP fp);}
+\DoxyCodeLine{413     \textcolor{keywordtype}{void} SetMenuSelected(AccessBridge\_MenuSelectedFP fp);}
+\DoxyCodeLine{414     \textcolor{keywordtype}{void} SetPopupMenuCanceled(AccessBridge\_PopupMenuCanceledFP fp);}
+\DoxyCodeLine{415     \textcolor{keywordtype}{void} SetPopupMenuWillBecomeInvisible(AccessBridge\_PopupMenuWillBecomeInvisibleFP fp);}
+\DoxyCodeLine{416     \textcolor{keywordtype}{void} SetPopupMenuWillBecomeVisible(AccessBridge\_PopupMenuWillBecomeVisibleFP fp);}
+\DoxyCodeLine{417 }
+\DoxyCodeLine{418     \textcolor{keywordtype}{void} SetPropertyNameChange(AccessBridge\_PropertyNameChangeFP fp);}
+\DoxyCodeLine{419     \textcolor{keywordtype}{void} SetPropertyDescriptionChange(AccessBridge\_PropertyDescriptionChangeFP fp);}
+\DoxyCodeLine{420     \textcolor{keywordtype}{void} SetPropertyStateChange(AccessBridge\_PropertyStateChangeFP fp);}
+\DoxyCodeLine{421     \textcolor{keywordtype}{void} SetPropertyValueChange(AccessBridge\_PropertyValueChangeFP fp);}
+\DoxyCodeLine{422     \textcolor{keywordtype}{void} SetPropertySelectionChange(AccessBridge\_PropertySelectionChangeFP fp);}
+\DoxyCodeLine{423     \textcolor{keywordtype}{void} SetPropertyTextChange(AccessBridge\_PropertyTextChangeFP fp);}
+\DoxyCodeLine{424     \textcolor{keywordtype}{void} SetPropertyCaretChange(AccessBridge\_PropertyCaretChangeFP fp);}
+\DoxyCodeLine{425     \textcolor{keywordtype}{void} SetPropertyVisibleDataChange(AccessBridge\_PropertyVisibleDataChangeFP fp);}
+\DoxyCodeLine{426     \textcolor{keywordtype}{void} SetPropertyChildChange(AccessBridge\_PropertyChildChangeFP fp);}
+\DoxyCodeLine{427     \textcolor{keywordtype}{void} SetPropertyActiveDescendentChange(AccessBridge\_PropertyActiveDescendentChangeFP fp);}
+\DoxyCodeLine{428 }
+\DoxyCodeLine{429     \textcolor{keywordtype}{void} SetPropertyTableModelChange(AccessBridge\_PropertyTableModelChangeFP fp);}
+\DoxyCodeLine{430 }
+\DoxyCodeLine{431 }
+\DoxyCodeLine{435     \textcolor{keywordtype}{void} ReleaseJavaObject(\textcolor{keywordtype}{long} vmID, Java\_Object \textcolor{keywordtype}{object});}
+\DoxyCodeLine{436     BOOL GetVersionInfo(\textcolor{keywordtype}{long} vmID, \mbox{\hyperlink{struct_access_bridge_version_info_tag}{AccessBridgeVersionInfo}} *info);}
+\DoxyCodeLine{437     HWND GetHWNDFromAccessibleContext(\textcolor{keywordtype}{long} vmID, JOBJECT64 accesibleContext);}
+\DoxyCodeLine{438 }
+\DoxyCodeLine{442     BOOL GetAccessibleContextAt(\textcolor{keywordtype}{long} vmID, AccessibleContext acParent,}
+\DoxyCodeLine{443                                 jint x, jint y, AccessibleContext *ac);}
+\DoxyCodeLine{444     BOOL GetAccessibleContextWithFocus(HWND window, \textcolor{keywordtype}{long} *vmID, AccessibleContext *ac);}
+\DoxyCodeLine{445     BOOL GetAccessibleContextInfo(\textcolor{keywordtype}{long} vmID, AccessibleContext ac, \mbox{\hyperlink{struct_accessible_context_info_tag}{AccessibleContextInfo}} *info);}
+\DoxyCodeLine{446     AccessibleContext GetAccessibleChildFromContext(\textcolor{keywordtype}{long} vmID, AccessibleContext ac, jint index);}
+\DoxyCodeLine{447     AccessibleContext GetAccessibleParentFromContext(\textcolor{keywordtype}{long} vmID, AccessibleContext ac);}
+\DoxyCodeLine{448 }
+\DoxyCodeLine{452     BOOL GetAccessibleTextInfo(\textcolor{keywordtype}{long} vmID, AccessibleText at, \mbox{\hyperlink{struct_accessible_text_info_tag}{AccessibleTextInfo}} *textInfo, jint x, jint y);}
+\DoxyCodeLine{453     BOOL GetAccessibleTextItems(\textcolor{keywordtype}{long} vmID, AccessibleText at, \mbox{\hyperlink{struct_accessible_text_items_info_tag}{AccessibleTextItemsInfo}} *textItems, jint index);}
+\DoxyCodeLine{454     BOOL GetAccessibleTextSelectionInfo(\textcolor{keywordtype}{long} vmID, AccessibleText at, \mbox{\hyperlink{struct_accessible_text_selection_info_tag}{AccessibleTextSelectionInfo}} *textSelection);}
+\DoxyCodeLine{455     BOOL GetAccessibleTextAttributes(\textcolor{keywordtype}{long} vmID, AccessibleText at, jint index, \mbox{\hyperlink{struct_accessible_text_attributes_info_tag}{AccessibleTextAttributesInfo}} *attributes);}
+\DoxyCodeLine{456     BOOL GetAccessibleTextRect(\textcolor{keywordtype}{long} vmID, AccessibleText at, \mbox{\hyperlink{struct_accessible_text_rect_info_tag}{AccessibleTextRectInfo}} *rectInfo, jint index);}
+\DoxyCodeLine{457     BOOL GetAccessibleTextLineBounds(\textcolor{keywordtype}{long} vmID, AccessibleText at, jint index, jint *startIndex, jint *endIndex);}
+\DoxyCodeLine{458     BOOL GetAccessibleTextRange(\textcolor{keywordtype}{long} vmID, AccessibleText at, jint start, jint end, \textcolor{keywordtype}{wchar\_t} *text, \textcolor{keywordtype}{short} len);}
+\DoxyCodeLine{459 }
+\DoxyCodeLine{460     \textcolor{comment}{/* begin AccessibleTable routines */}}
+\DoxyCodeLine{461     BOOL getAccessibleTableInfo(\textcolor{keywordtype}{long} vmID, AccessibleContext acParent, \mbox{\hyperlink{struct_accessible_table_info_tag}{AccessibleTableInfo}} *tableInfo);}
+\DoxyCodeLine{462 }
+\DoxyCodeLine{463     BOOL getAccessibleTableCellInfo(\textcolor{keywordtype}{long} vmID, AccessibleTable accessibleTable, jint row, jint column,}
+\DoxyCodeLine{464                                     \mbox{\hyperlink{struct_accessible_table_cell_info_tag}{AccessibleTableCellInfo}} *tableCellInfo);}
+\DoxyCodeLine{465 }
+\DoxyCodeLine{466     BOOL getAccessibleTableRowHeader(\textcolor{keywordtype}{long} vmID, AccessibleContext acParent, \mbox{\hyperlink{struct_accessible_table_info_tag}{AccessibleTableInfo}} *tableInfo);}
+\DoxyCodeLine{467     BOOL getAccessibleTableColumnHeader(\textcolor{keywordtype}{long} vmID, AccessibleContext acParent, \mbox{\hyperlink{struct_accessible_table_info_tag}{AccessibleTableInfo}} *tableInfo);}
+\DoxyCodeLine{468 }
+\DoxyCodeLine{469     AccessibleContext getAccessibleTableRowDescription(\textcolor{keywordtype}{long} vmID, AccessibleContext acParent, jint row);}
+\DoxyCodeLine{470     AccessibleContext getAccessibleTableColumnDescription(\textcolor{keywordtype}{long} vmID, AccessibleContext acParent, jint column);}
+\DoxyCodeLine{471 }
+\DoxyCodeLine{472     jint getAccessibleTableRowSelectionCount(\textcolor{keywordtype}{long} vmID, AccessibleTable table);}
+\DoxyCodeLine{473     BOOL isAccessibleTableRowSelected(\textcolor{keywordtype}{long} vmID, AccessibleTable table, jint row);}
+\DoxyCodeLine{474     BOOL getAccessibleTableRowSelections(\textcolor{keywordtype}{long} vmID, AccessibleTable table, jint count, jint *selections);}
+\DoxyCodeLine{475 }
+\DoxyCodeLine{476     jint getAccessibleTableColumnSelectionCount(\textcolor{keywordtype}{long} vmID, AccessibleTable table);}
+\DoxyCodeLine{477     BOOL isAccessibleTableColumnSelected(\textcolor{keywordtype}{long} vmID, AccessibleTable table, jint column);}
+\DoxyCodeLine{478     BOOL getAccessibleTableColumnSelections(\textcolor{keywordtype}{long} vmID, AccessibleTable table, jint count, jint *selections);}
+\DoxyCodeLine{479 }
+\DoxyCodeLine{480     jint getAccessibleTableRow(\textcolor{keywordtype}{long} vmID, AccessibleTable table, jint index);}
+\DoxyCodeLine{481     jint getAccessibleTableColumn(\textcolor{keywordtype}{long} vmID, AccessibleTable table, jint index);}
+\DoxyCodeLine{482     jint getAccessibleTableIndex(\textcolor{keywordtype}{long} vmID, AccessibleTable table, jint row, jint column);}
+\DoxyCodeLine{483     \textcolor{comment}{/* end AccessibleTable */}}
+\DoxyCodeLine{484 }
+\DoxyCodeLine{485     \textcolor{comment}{/* -\/-\/-\/-\/-\/ AccessibleRelationSet routines */}}
+\DoxyCodeLine{486     BOOL getAccessibleRelationSet(\textcolor{keywordtype}{long} vmID, AccessibleContext accessibleContext,}
+\DoxyCodeLine{487                                   \mbox{\hyperlink{struct_accessible_relation_set_info_tag}{AccessibleRelationSetInfo}} *relationSetInfo);}
+\DoxyCodeLine{488 }
+\DoxyCodeLine{489     \textcolor{comment}{/* -\/-\/-\/-\/-\/ AccessibleHypertext routines */}}
+\DoxyCodeLine{490 }
+\DoxyCodeLine{491      \textcolor{comment}{/*}}
+\DoxyCodeLine{492 \textcolor{comment}{     * Returns hypertext information associated with a component.}}
+\DoxyCodeLine{493 \textcolor{comment}{     */}}
+\DoxyCodeLine{494     BOOL getAccessibleHypertext(\textcolor{keywordtype}{long} vmID, AccessibleContext accessibleContext,}
+\DoxyCodeLine{495                                 \mbox{\hyperlink{struct_accessible_hypertext_info_tag}{AccessibleHypertextInfo}} *hypertextInfo);}
+\DoxyCodeLine{496 }
+\DoxyCodeLine{497     \textcolor{comment}{/*}}
+\DoxyCodeLine{498 \textcolor{comment}{     * Requests that a hyperlink be activated.}}
+\DoxyCodeLine{499 \textcolor{comment}{     */}}
+\DoxyCodeLine{500     BOOL activateAccessibleHyperlink(\textcolor{keywordtype}{long} vmID, AccessibleContext accessibleContext,}
+\DoxyCodeLine{501                                      AccessibleHyperlink accessibleHyperlink);}
+\DoxyCodeLine{502 }
+\DoxyCodeLine{503     \textcolor{comment}{/*}}
+\DoxyCodeLine{504 \textcolor{comment}{     * Returns the number of hyperlinks in a component}}
+\DoxyCodeLine{505 \textcolor{comment}{     * Maps to AccessibleHypertext.getLinkCount.}}
+\DoxyCodeLine{506 \textcolor{comment}{     * Returns -\/1 on error.}}
+\DoxyCodeLine{507 \textcolor{comment}{     */}}
+\DoxyCodeLine{508     jint getAccessibleHyperlinkCount(\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID,}
+\DoxyCodeLine{509                                          \textcolor{keyword}{const} AccessibleHypertext hypertext);}
+\DoxyCodeLine{510 }
+\DoxyCodeLine{511     \textcolor{comment}{/*}}
+\DoxyCodeLine{512 \textcolor{comment}{     * This method is used to iterate through the hyperlinks in a component.  It}}
+\DoxyCodeLine{513 \textcolor{comment}{     * returns hypertext information for a component starting at hyperlink index}}
+\DoxyCodeLine{514 \textcolor{comment}{     * nStartIndex.  No more than MAX\_HYPERLINKS AccessibleHypertextInfo objects will}}
+\DoxyCodeLine{515 \textcolor{comment}{     * be returned for each call to this method.}}
+\DoxyCodeLine{516 \textcolor{comment}{     * Returns FALSE on error.}}
+\DoxyCodeLine{517 \textcolor{comment}{     */}}
+\DoxyCodeLine{518     BOOL getAccessibleHypertextExt(\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID,}
+\DoxyCodeLine{519                                    \textcolor{keyword}{const} AccessibleContext accessibleContext,}
+\DoxyCodeLine{520                                    \textcolor{keyword}{const} jint nStartIndex,}
+\DoxyCodeLine{521                                    \textcolor{comment}{/* OUT */} \mbox{\hyperlink{struct_accessible_hypertext_info_tag}{AccessibleHypertextInfo}} *hypertextInfo);}
+\DoxyCodeLine{522 }
+\DoxyCodeLine{523     \textcolor{comment}{/*}}
+\DoxyCodeLine{524 \textcolor{comment}{     * Returns the index into an array of hyperlinks that is associated with}}
+\DoxyCodeLine{525 \textcolor{comment}{     * a character index in document; maps to AccessibleHypertext.getLinkIndex}}
+\DoxyCodeLine{526 \textcolor{comment}{     * Returns -\/1 on error.}}
+\DoxyCodeLine{527 \textcolor{comment}{     */}}
+\DoxyCodeLine{528     jint getAccessibleHypertextLinkIndex(\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID,}
+\DoxyCodeLine{529                                          \textcolor{keyword}{const} AccessibleHypertext hypertext,}
+\DoxyCodeLine{530                                          \textcolor{keyword}{const} jint nIndex);}
+\DoxyCodeLine{531 }
+\DoxyCodeLine{532     \textcolor{comment}{/*}}
+\DoxyCodeLine{533 \textcolor{comment}{     * Returns the nth hyperlink in a document}}
+\DoxyCodeLine{534 \textcolor{comment}{     * Maps to AccessibleHypertext.getLink.}}
+\DoxyCodeLine{535 \textcolor{comment}{     * Returns FALSE on error}}
+\DoxyCodeLine{536 \textcolor{comment}{     */}}
+\DoxyCodeLine{537     BOOL getAccessibleHyperlink(\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID,}
+\DoxyCodeLine{538                                 \textcolor{keyword}{const} AccessibleHypertext hypertext,}
+\DoxyCodeLine{539                                 \textcolor{keyword}{const} jint nIndex,}
+\DoxyCodeLine{540                                 \textcolor{comment}{/* OUT */} \mbox{\hyperlink{struct_accessible_hyperlink_info_tag}{AccessibleHyperlinkInfo}} *hyperlinkInfo);}
+\DoxyCodeLine{541 }
+\DoxyCodeLine{542     \textcolor{comment}{/* Accessible KeyBindings, Icons and Actions */}}
+\DoxyCodeLine{543 }
+\DoxyCodeLine{544     \textcolor{comment}{/*}}
+\DoxyCodeLine{545 \textcolor{comment}{     * Returns a list of key bindings associated with a component.}}
+\DoxyCodeLine{546 \textcolor{comment}{     */}}
+\DoxyCodeLine{547     BOOL getAccessibleKeyBindings(\textcolor{keywordtype}{long} vmID, AccessibleContext accessibleContext,}
+\DoxyCodeLine{548                                   \mbox{\hyperlink{struct_accessible_key_bindings_tag}{AccessibleKeyBindings}} *keyBindings);}
+\DoxyCodeLine{549 }
+\DoxyCodeLine{550     \textcolor{comment}{/*}}
+\DoxyCodeLine{551 \textcolor{comment}{     * Returns a list of icons associate with a component.}}
+\DoxyCodeLine{552 \textcolor{comment}{     */}}
+\DoxyCodeLine{553     BOOL getAccessibleIcons(\textcolor{keywordtype}{long} vmID, AccessibleContext accessibleContext,}
+\DoxyCodeLine{554                             \mbox{\hyperlink{struct_accessible_icons_tag}{AccessibleIcons}} *icons);}
+\DoxyCodeLine{555 }
+\DoxyCodeLine{556     \textcolor{comment}{/*}}
+\DoxyCodeLine{557 \textcolor{comment}{     * Returns a list of actions that a component can perform.}}
+\DoxyCodeLine{558 \textcolor{comment}{     */}}
+\DoxyCodeLine{559     BOOL getAccessibleActions(\textcolor{keywordtype}{long} vmID, AccessibleContext accessibleContext,}
+\DoxyCodeLine{560                               \mbox{\hyperlink{struct_accessible_actions_tag}{AccessibleActions}} *actions);}
+\DoxyCodeLine{561 }
+\DoxyCodeLine{562     \textcolor{comment}{/*}}
+\DoxyCodeLine{563 \textcolor{comment}{     * Request that a list of AccessibleActions be performed by a component.}}
+\DoxyCodeLine{564 \textcolor{comment}{     * Returns TRUE if all actions are performed.  Returns FALSE}}
+\DoxyCodeLine{565 \textcolor{comment}{     * when the first requested action fails in which case "{}failure"{}}}
+\DoxyCodeLine{566 \textcolor{comment}{     * contains the index of the action that failed.}}
+\DoxyCodeLine{567 \textcolor{comment}{     */}}
+\DoxyCodeLine{568     BOOL doAccessibleActions(\textcolor{keywordtype}{long} vmID, AccessibleContext accessibleContext,}
+\DoxyCodeLine{569                              \mbox{\hyperlink{struct_accessible_actions_to_do_tag}{AccessibleActionsToDo}} *actionsToDo, jint *failure);}
+\DoxyCodeLine{570 }
+\DoxyCodeLine{571 }
+\DoxyCodeLine{572 }
+\DoxyCodeLine{573     \textcolor{comment}{/* Additional utility methods */}}
+\DoxyCodeLine{574 }
+\DoxyCodeLine{575     \textcolor{comment}{/*}}
+\DoxyCodeLine{576 \textcolor{comment}{     * Returns whether two object references refer to the same object.}}
+\DoxyCodeLine{577 \textcolor{comment}{     */}}
+\DoxyCodeLine{578     BOOL IsSameObject(\textcolor{keywordtype}{long} vmID, JOBJECT64 obj1, JOBJECT64 obj2);}
+\DoxyCodeLine{579 }
+\DoxyCodeLine{585     BOOL setTextContents (\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID, \textcolor{keyword}{const} AccessibleContext accessibleContext, \textcolor{keyword}{const} \textcolor{keywordtype}{wchar\_t} *text);}
+\DoxyCodeLine{586 }
+\DoxyCodeLine{594     AccessibleContext getParentWithRole (\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID, \textcolor{keyword}{const} AccessibleContext accessibleContext,}
+\DoxyCodeLine{595                                          \textcolor{keyword}{const} \textcolor{keywordtype}{wchar\_t} *role);}
+\DoxyCodeLine{596 }
+\DoxyCodeLine{604     AccessibleContext getParentWithRoleElseRoot (\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID, \textcolor{keyword}{const} AccessibleContext accessibleContext,}
+\DoxyCodeLine{605                                                  \textcolor{keyword}{const} \textcolor{keywordtype}{wchar\_t} *role);}
+\DoxyCodeLine{606 }
+\DoxyCodeLine{613     AccessibleContext getTopLevelObject (\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID, \textcolor{keyword}{const} AccessibleContext accessibleContext);}
+\DoxyCodeLine{614 }
+\DoxyCodeLine{620     \textcolor{keywordtype}{int} getObjectDepth (\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID, \textcolor{keyword}{const} AccessibleContext accessibleContext);}
+\DoxyCodeLine{621 }
+\DoxyCodeLine{628     AccessibleContext getActiveDescendent (\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID, \textcolor{keyword}{const} AccessibleContext accessibleContext);}
+\DoxyCodeLine{629 }
+\DoxyCodeLine{634     BOOL GetCurrentAccessibleValueFromContext(\textcolor{keywordtype}{long} vmID, AccessibleValue av, \textcolor{keywordtype}{wchar\_t} *value, \textcolor{keywordtype}{short} len);}
+\DoxyCodeLine{635     BOOL GetMaximumAccessibleValueFromContext(\textcolor{keywordtype}{long} vmID, AccessibleValue av, \textcolor{keywordtype}{wchar\_t} *value, \textcolor{keywordtype}{short} len);}
+\DoxyCodeLine{636     BOOL GetMinimumAccessibleValueFromContext(\textcolor{keywordtype}{long} vmID, AccessibleValue av, \textcolor{keywordtype}{wchar\_t} *value, \textcolor{keywordtype}{short} len);}
+\DoxyCodeLine{637 }
+\DoxyCodeLine{641     \textcolor{keywordtype}{void} AddAccessibleSelectionFromContext(\textcolor{keywordtype}{long} vmID, AccessibleSelection as, \textcolor{keywordtype}{int} i);}
+\DoxyCodeLine{642     \textcolor{keywordtype}{void} ClearAccessibleSelectionFromContext(\textcolor{keywordtype}{long} vmID, AccessibleSelection as);}
+\DoxyCodeLine{643     JOBJECT64 GetAccessibleSelectionFromContext(\textcolor{keywordtype}{long} vmID, AccessibleSelection as, \textcolor{keywordtype}{int} i);}
+\DoxyCodeLine{644     \textcolor{keywordtype}{int} GetAccessibleSelectionCountFromContext(\textcolor{keywordtype}{long} vmID, AccessibleSelection as);}
+\DoxyCodeLine{645     BOOL IsAccessibleChildSelectedFromContext(\textcolor{keywordtype}{long} vmID, AccessibleSelection as, \textcolor{keywordtype}{int} i);}
+\DoxyCodeLine{646     \textcolor{keywordtype}{void} RemoveAccessibleSelectionFromContext(\textcolor{keywordtype}{long} vmID, AccessibleSelection as, \textcolor{keywordtype}{int} i);}
+\DoxyCodeLine{647     \textcolor{keywordtype}{void} SelectAllAccessibleSelectionFromContext(\textcolor{keywordtype}{long} vmID, AccessibleSelection as);}
+\DoxyCodeLine{648 }
+\DoxyCodeLine{659     BOOL getVirtualAccessibleName(\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID, \textcolor{keyword}{const} AccessibleContext accessibleContext,}
+\DoxyCodeLine{660                                \textcolor{keywordtype}{wchar\_t} *name, \textcolor{keywordtype}{int} len);}
+\DoxyCodeLine{661 }
+\DoxyCodeLine{667     BOOL requestFocus(\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID, \textcolor{keyword}{const} AccessibleContext accessibleContext);}
+\DoxyCodeLine{668 }
+\DoxyCodeLine{675     BOOL selectTextRange(\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID, \textcolor{keyword}{const} AccessibleContext accessibleContext, \textcolor{keyword}{const} \textcolor{keywordtype}{int} startIndex,}
+\DoxyCodeLine{676                          \textcolor{keyword}{const} \textcolor{keywordtype}{int} endIndex);}
+\DoxyCodeLine{677 }
+\DoxyCodeLine{684     BOOL getTextAttributesInRange(\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID, \textcolor{keyword}{const} AccessibleContext accessibleContext,}
+\DoxyCodeLine{685                                   \textcolor{keyword}{const} \textcolor{keywordtype}{int} startIndex, \textcolor{keyword}{const} \textcolor{keywordtype}{int} endIndex,}
+\DoxyCodeLine{686                                   \mbox{\hyperlink{struct_accessible_text_attributes_info_tag}{AccessibleTextAttributesInfo}} *attributes, \textcolor{keywordtype}{short} *len);}
+\DoxyCodeLine{687 }
+\DoxyCodeLine{693     \textcolor{keywordtype}{int} getVisibleChildrenCount(\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID, \textcolor{keyword}{const} AccessibleContext accessibleContext);}
+\DoxyCodeLine{694 }
+\DoxyCodeLine{700     BOOL getVisibleChildren(\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID, \textcolor{keyword}{const} AccessibleContext accessibleContext,}
+\DoxyCodeLine{701                             \textcolor{keyword}{const} \textcolor{keywordtype}{int} startIndex,}
+\DoxyCodeLine{702                             \mbox{\hyperlink{struct_visible_childen_info_tag}{VisibleChildrenInfo}} *visibleChildrenInfo);}
+\DoxyCodeLine{703 }
+\DoxyCodeLine{709     BOOL setCaretPosition(\textcolor{keyword}{const} \textcolor{keywordtype}{long} vmID, \textcolor{keyword}{const} AccessibleContext accessibleContext,}
+\DoxyCodeLine{710                           \textcolor{keyword}{const} \textcolor{keywordtype}{int} position);}
+\DoxyCodeLine{711 }
+\DoxyCodeLine{715     BOOL getCaretLocation(\textcolor{keywordtype}{long} vmID, AccessibleContext ac,}
+\DoxyCodeLine{716                           \mbox{\hyperlink{struct_accessible_text_rect_info_tag}{AccessibleTextRectInfo}} *rectInfo, jint index);}
+\DoxyCodeLine{717 }
+\DoxyCodeLine{721     \textcolor{keywordtype}{int} getEventsWaiting();}
+\DoxyCodeLine{722 }
+\DoxyCodeLine{723 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{724 \}}
+\DoxyCodeLine{725 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,73 @@
+\hypertarget{class_journal_1_1_journal_call_param_data}{}\doxysection{Journal\+::Journal\+Call\+Param\+Data Class Reference}
+\label{class_journal_1_1_journal_call_param_data}\index{Journal::JournalCallParamData@{Journal::JournalCallParamData}}
+
+
+Inheritance diagram for Journal\+::Journal\+Call\+Param\+Data\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_journal_1_1_journal_call_param_data__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_journal_1_1_journal_call_param_data_a7c618f28299bb9df8604368fd1a057b0}\label{class_journal_1_1_journal_call_param_data_a7c618f28299bb9df8604368fd1a057b0}} 
+enum class {\bfseries Parameter\+Meta\+Type} \{ {\bfseries INPUT}
+, {\bfseries OUTPUT}
+, {\bfseries RETURN}
+ \}
+\item 
+\mbox{\Hypertarget{class_journal_1_1_journal_call_param_data_a6cf7325a91d5e524682ddc53ea585c36}\label{class_journal_1_1_journal_call_param_data_a6cf7325a91d5e524682ddc53ea585c36}} 
+enum class {\bfseries Parameter\+Basic\+Type} \{ {\bfseries STRING}
+, {\bfseries BOOLEAN}
+, {\bfseries INTEGER}
+, {\bfseries NOT\+\_\+\+BASIC}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_journal_1_1_journal_call_param_data_a6a109e1ddd8b93a056d09106ff071e4d}\label{class_journal_1_1_journal_call_param_data_a6a109e1ddd8b93a056d09106ff071e4d}} 
+virtual void {\bfseries Journal} ()=0
+\item 
+\mbox{\Hypertarget{class_journal_1_1_journal_call_param_data_a3a0a3c4125c815c20eef999b5a90adeb}\label{class_journal_1_1_journal_call_param_data_a3a0a3c4125c815c20eef999b5a90adeb}} 
+{\bfseries Journal\+Call\+Param\+Data} (const \mbox{\hyperlink{class_journal_1_1_journal_call_param_data}{Journal\+Call\+Param\+Data}} \&)=delete
+\item 
+\mbox{\Hypertarget{class_journal_1_1_journal_call_param_data_acf014d833d072b72c622c94f50eed427}\label{class_journal_1_1_journal_call_param_data_acf014d833d072b72c622c94f50eed427}} 
+\mbox{\hyperlink{class_journal_1_1_journal_call_param_data}{Journal\+Call\+Param\+Data}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_journal_1_1_journal_call_param_data}{Journal\+Call\+Param\+Data}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_journal_1_1_journal_call_param_data_a5ffbe09359559764f0591ad01ea7236c}\label{class_journal_1_1_journal_call_param_data_a5ffbe09359559764f0591ad01ea7236c}} 
+{\bfseries Journal\+Call\+Param\+Data} (std\+::string param\+Name, Parameter\+Meta\+Type param\+Type, Parameter\+Basic\+Type parameter\+Basic\+Type)
+\item 
+\mbox{\Hypertarget{class_journal_1_1_journal_call_param_data_a37f0b4c3c0c9c71fba23e87a0da24d2a}\label{class_journal_1_1_journal_call_param_data_a37f0b4c3c0c9c71fba23e87a0da24d2a}} 
+{\bfseries Journal\+Call\+Param\+Data} (std\+::string param\+Name, Parameter\+Meta\+Type param\+Type, std\+::string class\+Name)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_journal_1_1_journal_call_param_data_a38f9760d615bd214ec493b71de04423b}\label{class_journal_1_1_journal_call_param_data_a38f9760d615bd214ec493b71de04423b}} 
+std\+::string {\bfseries m\+\_\+param\+Name}
+\item 
+\mbox{\Hypertarget{class_journal_1_1_journal_call_param_data_a0f95bea1540a7fe9f1759c032c5aa6c8}\label{class_journal_1_1_journal_call_param_data_a0f95bea1540a7fe9f1759c032c5aa6c8}} 
+Parameter\+Meta\+Type {\bfseries m\+\_\+param\+Type}
+\item 
+\mbox{\Hypertarget{class_journal_1_1_journal_call_param_data_a13a52f3ac45405d03f78b68f822a5196}\label{class_journal_1_1_journal_call_param_data_a13a52f3ac45405d03f78b68f822a5196}} 
+bool {\bfseries m\+\_\+is\+Class}
+\item 
+\mbox{\Hypertarget{class_journal_1_1_journal_call_param_data_ab3dcd17178a0d73dea888c0022834278}\label{class_journal_1_1_journal_call_param_data_ab3dcd17178a0d73dea888c0022834278}} 
+Parameter\+Basic\+Type {\bfseries m\+\_\+parameter\+Basic\+Type}
+\item 
+\mbox{\Hypertarget{class_journal_1_1_journal_call_param_data_a758a0983ce9733f8e1c2b234353f2002}\label{class_journal_1_1_journal_call_param_data_a758a0983ce9733f8e1c2b234353f2002}} 
+std\+::string {\bfseries m\+\_\+class\+Name}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Brett/source/repos/\+Software\+Arch\+\_\+\+Final\+Project/\+Journaling/Journal\+Call\+Param\+Data.\+h\item 
+C\+:/\+Users/\+Brett/source/repos/\+Software\+Arch\+\_\+\+Final\+Project/\+Journaling/Journal\+Call\+Param\+Data.\+cpp\end{DoxyCompactItemize}

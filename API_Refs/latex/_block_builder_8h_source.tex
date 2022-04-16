@@ -1,0 +1,39 @@
+\hypertarget{_block_builder_8h_source}{}\doxysection{Block\+Builder.\+h}
+\label{_block_builder_8h_source}\index{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/AppLibrary/BlockBuilder.h@{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/AppLibrary/BlockBuilder.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}AppFeaturesOpsExports.h"{}}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}..\(\backslash\)Core\(\backslash\)GuidObject.h"{}}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{comment}{// TODO these probably shoudl be in their own file, }}
+\DoxyCodeLine{6 \textcolor{comment}{// but deferring this to when get a generator to handle this for us}}
+\DoxyCodeLine{7 \textcolor{keyword}{enum} JournalBlockBuilderTypes}
+\DoxyCodeLine{8 \{}
+\DoxyCodeLine{9     JournalTypesOriginAndEdgeLengths, }
+\DoxyCodeLine{10     JournalTypesTwoPointsAndHeight, }
+\DoxyCodeLine{11     JournalTypesDiagonalPoints }
+\DoxyCodeLine{12 \};}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{namespace }Application}
+\DoxyCodeLine{15 \{}
+\DoxyCodeLine{16     \textcolor{keyword}{class }Block;}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18     \textcolor{keyword}{class }APPLIBRARY\_API \mbox{\hyperlink{class_application_1_1_block_builder}{BlockBuilder}} : \textcolor{keyword}{public} GuidObject}
+\DoxyCodeLine{19     \{}
+\DoxyCodeLine{20         \textcolor{keyword}{public}:}
+\DoxyCodeLine{21             \mbox{\hyperlink{class_application_1_1_block_builder}{BlockBuilder}}() = \textcolor{keyword}{delete};}
+\DoxyCodeLine{22             \mbox{\hyperlink{class_application_1_1_block_builder}{BlockBuilder}}(\mbox{\hyperlink{class_application_1_1_block}{Application::Block}}* block, \textcolor{keywordtype}{int} guid);}
+\DoxyCodeLine{23             JournalBlockBuilderTypes GetType();}
+\DoxyCodeLine{24             \textcolor{keywordtype}{void} SetType(JournalBlockBuilderTypes type);}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26         \textcolor{keyword}{private}:}
+\DoxyCodeLine{27             \mbox{\hyperlink{class_application_1_1_block}{Block}}* m\_block;}
+\DoxyCodeLine{28             JournalBlockBuilderTypes m\_journalBlockBuilderTypes;}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30     \};}
+\DoxyCodeLine{31 \}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 }
+
+\end{DoxyCode}
