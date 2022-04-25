@@ -1,0 +1,12 @@
+﻿  DataObjectReader.cpp
+C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\DataReader\DataObjectReader.h(23,47): warning C4251: 'DataObjectReader::m_mapOfReaderFunctions': class 'std::map<std::string,dataReaderFunction,std::less<std::string>,std::allocator<std::pair<const std::string,dataReaderFunction>>>' needs to have dll-interface to be used by clients of class 'DataObjectReader'
+C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\DataReader\DataObjectReader.h(23): message : see declaration of 'std::map<std::string,dataReaderFunction,std::less<std::string>,std::allocator<std::pair<const std::string,dataReaderFunction>>>'
+  DataReaderRegistrant.cpp
+C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\DataReader\DataReaderRegistrant.h(18,14): warning C4251: 'DataReaderRegistrant::m_registrantName': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'DataReaderRegistrant'
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.31.31103\include\xstring(4927): message : see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\DataReader\DataObjectReader.h(23,47): warning C4251: 'DataObjectReader::m_mapOfReaderFunctions': class 'std::map<std::string,dataReaderFunction,std::less<std::string>,std::allocator<std::pair<const std::string,dataReaderFunction>>>' needs to have dll-interface to be used by clients of class 'DataObjectReader'
+C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\DataReader\DataObjectReader.h(23): message : see declaration of 'std::map<std::string,dataReaderFunction,std::less<std::string>,std::allocator<std::pair<const std::string,dataReaderFunction>>>'
+  dllmain.cpp
+  Generating Code...
+     Creating library C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\x64\Debug\DATAREADER.lib and object C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\x64\Debug\DATAREADER.exp
+  DataReader.vcxproj -> C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\x64\Debug\DATAREADER.dll

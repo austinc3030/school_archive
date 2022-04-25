@@ -1,0 +1,21 @@
+﻿  Block.cpp
+  BlockBuilder.cpp
+  CADObject.cpp
+  dllmain.cpp
+  Extrude.cpp
+  FeatureCollection.cpp
+C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\AppPartOps\PartOps.h(20,15): warning C4251: 'Application::PartFile::m_partFilePath': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Application::PartFile'
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.31.31103\include\xstring(4927): message : see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+  IBuilder.cpp
+  Part.cpp
+C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\AppPartOps\PartOps.h(20,15): warning C4251: 'Application::PartFile::m_partFilePath': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Application::PartFile'
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.31.31103\include\xstring(4927): message : see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+  RoutingCollection.cpp
+  Session.cpp
+C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\AppPartOps\PartOps.h(20,15): warning C4251: 'Application::PartFile::m_partFilePath': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Application::PartFile'
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.31.31103\include\xstring(4927): message : see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+  Wire.cpp
+  WireBuilder.cpp
+  Generating Code...
+     Creating library C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\x64\Debug\AUTOMATIONBINDING.lib and object C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\x64\Debug\AUTOMATIONBINDING.exp
+  AutomationBinding.vcxproj -> C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\x64\Debug\AUTOMATIONBINDING.dll

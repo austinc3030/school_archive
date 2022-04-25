@@ -13,7 +13,7 @@ bool Localization::InstantiateLocalization()
 
 	Localization* objLocalizationinstance = Localization::GetInstance();
 
-	if (objLocalizationinstance->initialized) {
+	if (objLocalizationinstance->blnLocalizationReady) {
 		return false;
 	}
 
@@ -28,9 +28,9 @@ bool Localization::InstantiateLocalization()
 bool Localization::DestroyLocalization()
 {
 
-	Localization* instance = Localization::GetInstance();
+	Localization* objLocalizationinstance = Localization::GetInstance();
 
-	if (!instance->initialized) {
+	if (!objLocalizationinstance->blnLocalizationReady) {
 	
 		return false;
 	
@@ -38,7 +38,7 @@ bool Localization::DestroyLocalization()
 
 	// Teardown anything set up during instantiation
 
-	instance->initialized = false;
+	objLocalizationinstance->blnLocalizationReady = false;
 
 	return true;
 

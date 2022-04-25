@@ -1,0 +1,13 @@
+﻿  automationapi_Part.cpp
+C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\AppPartOps\PartOps.h(20,15): warning C4251: 'Application::PartFile::m_partFilePath': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Application::PartFile'
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.31.31103\include\xstring(4927): message : see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\JavaAutomationBinding\automationapi_Part.cpp(18,1): warning C4297: 'Java_automationapi_Part_save': function assumed not to throw an exception but does
+C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\JavaAutomationBinding\automationapi_Part.cpp(18,1): message : __declspec(nothrow), throw(), noexcept(true), or noexcept was specified on the function
+  automationapi_Session.cpp
+C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\AppPartOps\PartOps.h(20,15): warning C4251: 'Application::PartFile::m_partFilePath': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Application::PartFile'
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.31.31103\include\xstring(4927): message : see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+  dllmain.cpp
+  JavaAutomationBinding.cpp
+  Generating Code...
+     Creating library C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\x64\Debug\JavaAutomationBinding.lib and object C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\x64\Debug\JavaAutomationBinding.exp
+  JavaAutomationBinding.vcxproj -> C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\x64\Debug\JavaAutomationBinding.dll

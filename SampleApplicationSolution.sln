@@ -39,6 +39,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CoreUnitTest", "CoreUnitTes
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Localization", "Localization\Localization.vcxproj", "{8D391EAF-C798-4621-8703-BD37A02DBDB3}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LocalizationUnitTests", "LocalizationUnitTests\LocalizationUnitTests.vcxproj", "{9058AB5A-F313-4723-8C39-188D63706420}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -191,6 +193,14 @@ Global
 		{8D391EAF-C798-4621-8703-BD37A02DBDB3}.Release|x64.Build.0 = Release|x64
 		{8D391EAF-C798-4621-8703-BD37A02DBDB3}.Release|x86.ActiveCfg = Release|Win32
 		{8D391EAF-C798-4621-8703-BD37A02DBDB3}.Release|x86.Build.0 = Release|Win32
+		{9058AB5A-F313-4723-8C39-188D63706420}.Debug|x64.ActiveCfg = Debug|x64
+		{9058AB5A-F313-4723-8C39-188D63706420}.Debug|x64.Build.0 = Debug|x64
+		{9058AB5A-F313-4723-8C39-188D63706420}.Debug|x86.ActiveCfg = Debug|Win32
+		{9058AB5A-F313-4723-8C39-188D63706420}.Debug|x86.Build.0 = Debug|Win32
+		{9058AB5A-F313-4723-8C39-188D63706420}.Release|x64.ActiveCfg = Release|x64
+		{9058AB5A-F313-4723-8C39-188D63706420}.Release|x64.Build.0 = Release|x64
+		{9058AB5A-F313-4723-8C39-188D63706420}.Release|x86.ActiveCfg = Release|Win32
+		{9058AB5A-F313-4723-8C39-188D63706420}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
