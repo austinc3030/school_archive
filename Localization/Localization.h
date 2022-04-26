@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include "LocalizationExports.h"
+#include <boost/locale.hpp>
 
 
 class LOCALIZATION_API Localization
@@ -29,5 +30,6 @@ private:
 	Localization();
 	std::string g_strLocale;
 	bool blnLocalizationReady;
+	boost::locale::generator g_objGenerator;
 
 };

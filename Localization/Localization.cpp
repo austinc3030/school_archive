@@ -1,5 +1,5 @@
 #include "Localization.h"
-
+#include <boost/locale.hpp>
 
 
 Localization::Localization() { }
@@ -16,6 +16,9 @@ bool Localization::InstantiateLocalization()
 	if (objLocalizationinstance->blnLocalizationReady) {
 		return false;
 	}
+
+	objLocalizationinstance->g_objGenerator.add_messages_path("C:\\Users\\user\\Desktop\\software_arch\\SoftwareArch_FinalProject\\Localization");
+	objLocalizationinstance->g_objGenerator.add_messages_domain("Localization");
 
 	objLocalizationinstance->blnLocalizationReady = true;
 
@@ -36,8 +39,7 @@ bool Localization::DestroyLocalization()
 	
 	}
 
-	// Teardown anything set up during instantiation
-
+	objLocalizationinstance->g_strLocale = "";
 	objLocalizationinstance->blnLocalizationReady = false;
 
 	return true;
