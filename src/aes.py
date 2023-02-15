@@ -13,13 +13,21 @@ def pre_main():
     try:
         parser = argparse.ArgumentParser()
 
-        parser.add_argument('--message', 'message', type=str, help='The message to encrypt', required=False)
-        parser.add_argument('--subkey0', 'subkey0', type=str, help='The first subkey', required=False)
-        parser.add_argument('--subkey1', 'subkey1', type=str, help='The second subkey', required=False)
+        # Should take in the path to the message file
+        parser.add_argument('--message-file', 'message-file', 
+                            type=str, 
+                            help='The path to the file containing the message '  # Help message is not hard-wrapped
+                                 'to encrypt. Note: The message will be truncated to 128 bits.',
+                            required=False)
+        
+        # Should take in the path to the file containing the subkeys
+        parser.add_argument('--subkey-file', 'subkey-file',
+                            type=str,
+                            help='The path to the file containing the subkeys to '  # Help message is not hard-wrapped
+                                 'be used for encryption. Note: Subkeys will be truncated to 128 bits.',
+                            required=False)
 
         args=parser.parse_args()
-
-        print(parser.print_help())
 
     except Exception as e:
 
