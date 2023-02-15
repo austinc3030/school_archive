@@ -2,8 +2,11 @@
 import sys
 import argparse
 
+# See progress at "work" to fill in pseudo code
 
 
+
+# Make this a class (Overkill for this but nice for using `self.` to reference things)
 def pre_main():
 
     if sys.version_info<(3,5,0):
@@ -28,6 +31,11 @@ def pre_main():
                             required=False)
 
         args=parser.parse_args()
+
+        # Validate arguments given to us
+        # Involves validating the paths and that the file exists
+        # Once files are validated, the message and keys must be validated (and truncated if necessary)
+        # Once all validation/truncation is complete, read message and keys into class variable
 
     except Exception as e:
 
