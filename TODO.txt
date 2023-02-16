@@ -1,0 +1,3 @@
+# Implement message and subkey truncating as neccessary (in ArgumentHandler)
+# Implement various stages of AES per homework instructions
+# Add doc strings
