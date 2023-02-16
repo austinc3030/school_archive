@@ -2,18 +2,36 @@ import sys
 
 from AES.ArgumentHandler import ArgumentHandler
 from AES.ErrorHandler import ErrorHandler
-from AES.Utilities import initialize_state
+from AES.Utilities import chunk_hex_string, matricize_hex_string, split_hex_string, string_to_hex
 
 
 
 class AES(object):
 
     def _obtain_initial_state(self):
-        self.initial_state = initialize_state(self.message)
+        self.initial_state = matricize_hex_string(split_hex_string(string_to_hex(self.message)))
+
+
+    def _add_key(self, subkey):
+        # XOR initial_state with subkey
+        subkey_matrix = matricize_hex_string(subkey)
+        add_key_output = []
+
+        for row_index in range(0, 4):
+            row = []
+            for column_index in range(0, 4):
+                initial_state_element = self.initial_state[row_index][column_index]
+                subkey_element = subkey_matrix[row_index][column_index]
+                # Do XOR
+                row.append(None) # XOR output
+            add_key_output.append(row)
+
+        return add_key_output
 
 
     def main(self):
         self._obtain_initial_state()
+        add_key_round_one_output=self._add_key(self.subkey0)  # Use Subkey0 for first round
         
 
     def __init__(self):

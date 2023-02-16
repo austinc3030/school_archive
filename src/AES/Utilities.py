@@ -54,40 +54,29 @@ def split_hex_string(string_to_split):
     return split_hex
 
 
-def chunk_message(message_to_chunk, number_of_chunks=4):
-    # Initialize State (4 by 4 array of bytes) with message
-    # Divide into 4 parts
-    # 54776F20    4F6E6520    4E696E65       2054776F
-    chunked_message = []
+def chunk_hex_string(string_to_chunk):
+    chunked_hex_string = []
 
-    split_message = split_hex_string(string_to_hex(message_to_chunk))
-    chunk_length = int(len(message_to_chunk) / number_of_chunks)
+    split_string = split_hex_string(string_to_chunk)
     
-    for message_index in range(0, number_of_chunks):
-        message_chunk = []
-        for chunk_index in range(0, chunk_length):
-            message_chunk.append(split_message[message_index * chunk_length + chunk_index])
-        chunked_message.append(message_chunk)
+    for string_index in range(0, 4):
+        string_chunk = []
+        for chunk_index in range(0, 4):
+            string_chunk.append(split_string[string_index * 4 + chunk_index])
+        chunked_hex_string.append(string_chunk)
     
-    return chunked_message
+    return chunked_hex_string
 
 
-def initialize_state(message_for_state):
-    # From the chunked message, it should go
-    # 54776F20    4F6E6520    4E696E65       2054776F
-    # Indexes              Example output
-    # 00, 10, 20, 30       54  4F  4E  20
-    # 01, 11, 21, 31 ____\ 77  6E  69  54
-    # 02, 12, 22, 32     / 6F  65  6E  77
-    # 03, 13, 23, 33       20  20  65  6F
-    state = []
+def matricize_hex_string(hex_string_to_matricize):
+    matrix = []
 
-    chunked_message = chunk_message(message_to_chunk=message_for_state, number_of_chunks=4)
+    chunked_hex_string = chunk_hex_string(hex_string_to_matricize)
         
     for row_index in range(0, 4):
         row = []
         for column_index in range(0, 4):
-            row.append(chunked_message[column_index][row_index])
-        state.append(row)
+            row.append(chunked_hex_string[column_index][row_index])
+        matrix.append(row)
 
-    return state
+    return matrix
