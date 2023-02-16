@@ -1,6 +1,7 @@
 # aes_m11809075
 
 Extracted from `./project1_aes_cs5153.pdf` using https://pdf2md.morethan.io/
+NOTE: The pdf to md conversion messed up some values. Check PDF for accurate values.
 
 ## CS 5153/6053 Network Security, Spring 2023
 ## Project 1: Advanced Encryption Standard
