@@ -32,14 +32,14 @@ class ArgumentHandler(object):
                             type=str, 
                             help='The path to the file containing the message '  # Help message is not hard-wrapped
                                  'to encrypt. Note: The message will be truncated to 128 bits.',
-                            required=False)
+                            required=True)
         
         # Should take in the path to the file containing the subkeys
         parser.add_argument('--subkey-file',
                             type=str,
                             help='The path to the file containing the subkeys to '  # Help message is not hard-wrapped
                                  'be used for encryption. Note: Subkeys will be truncated to 128 bits.',
-                            required=False)
+                            required=True)
 
         parsed_arguments=parser.parse_args()
 
@@ -50,16 +50,18 @@ class ArgumentHandler(object):
         # Validate message file exists
         if not os.path.isfile(os.path.abspath(parsed_arguments.message_file)):
             self.error_handler.error_count += 1
-            self.error_handler.exit_message += 'Error {error_count}: --message-file "{message_file}" does not exist.\n' \
-                                 .format(error_count=self.error_handler.error_count, message_file=parsed_arguments.message_file)
+            self.error_handler.exit_message += 'Error {error_count}: --message-file "{message_file}" does not ' \
+                                               'exist.\n'.format(error_count=self.error_handler.error_count,
+                                                                 message_file=parsed_arguments.message_file)
         else:
             self.message_file = os.path.abspath(parsed_arguments.message_file)
         
         # Validate subkey file exists
         if not os.path.isfile(os.path.abspath(parsed_arguments.subkey_file)):
             self.error_handler.error_count += 1
-            self.error_handler.exit_message += 'Error {error_count}: --subkey-file "{subkey_file}" does not exist.\n' \
-                                 .format(error_count=self.error_handler.error_count, subkey_file=parsed_arguments.subkey_file)
+            self.error_handler.exit_message += 'Error {error_count}: --subkey-file "{subkey_file}" does not ' \
+                                               'exist.\n'.format(error_count=self.error_handler.error_count,
+                                                                 subkey_file=parsed_arguments.subkey_file)
         else:
             self.subkey_file = os.path.abspath(parsed_arguments.subkey_file)
 
@@ -74,8 +76,10 @@ class ArgumentHandler(object):
                 self.raw_message_to_encrypt = message_file_contents[0]
             elif len(message_file_contents) > 1:
                 self.error_handler.error_count += 1
-                self.error_handler.exit_message += 'Error {error_count}: --message-file "{message_file}" contains more than one ' \
-                                    'message.\n'.format(error_count=self.error_handler.error_count, message_file=self.message_file)
+                self.error_handler.exit_message += 'Error {error_count}: --message-file "{message_file}" contains ' \
+                                                   'more than one message.\n' \
+                                                   .format(error_count=self.error_handler.error_count,
+                                                           message_file=self.message_file)
             else:
                 self.error_handler.error_count += 1
                 self.error_handler.exit_message += 'Error {error_count}: --message-file "{message_file}" is empty.\n' \
@@ -93,12 +97,16 @@ class ArgumentHandler(object):
                 self.raw_subkey1 = subkey_file_contents[1]
             elif len(subkey_file_contents) > 2:
                 self.error_handler.error_count += 1
-                self.error_handler.exit_message += 'Error {error_count}: --subkey-file "{subkey_file}" contains more than two ' \
-                                    'subkeys.\n'.format(error_count=self.error_handler.error_count, subkey_file=self.subkey_file)
+                self.error_handler.exit_message += 'Error {error_count}: --subkey-file "{subkey_file}" contains ' \
+                                                   'more than two subkeys.\n' \
+                                                   .format(error_count=self.error_handler.error_count,
+                                                           subkey_file=self.subkey_file)
             elif len(subkey_file_contents) == 1:
                 self.error_handler.error_count += 1
-                self.error_handler.exit_message += 'Error {error_count}: --subkey-file "{subkey_file}" only contains one subkey.\n' \
-                                    .format(error_count=self.error_handler.error_count, subkey_file=self.subkey_file)
+                self.error_handler.exit_message += 'Error {error_count}: --subkey-file "{subkey_file}" only ' \
+                                                   'contains one subkey.\n' \
+                                                   .format(error_count=self.error_handler.error_count,
+                                                           subkey_file=self.subkey_file)
             else:
                 self.error_handler.error_count += 1
                 self.error_handler.exit_message += 'Error {error_count}: --subkey-file "{subkey_file}" is empty.\n' \
