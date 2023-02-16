@@ -23,4 +23,4 @@ class AES(object):
             self.message = self.argument_handler.message_to_encrypt
             self.subkey0 = self.argument_handler.subkey0
             self.subkey1 = self.argument_handler.subkey1
-            self.main()
+            self.main()  # Start the main method
