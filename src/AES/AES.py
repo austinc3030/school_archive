@@ -2,7 +2,8 @@ import sys
 
 from AES.ArgumentHandler import ArgumentHandler
 from AES.ErrorHandler import ErrorHandler
-from AES.Utilities import chunk_hex_string, matricize_hex_string, split_hex_string, string_to_hex
+from AES.Utilities import chunk_hex_string, convert_hex_to_binary, matricize_hex_string, \
+                          split_hex_string, string_to_hex
 
 
 
@@ -29,10 +30,14 @@ class AES(object):
         for row_index in range(0, 4):
             row = []
             for column_index in range(0, 4):
-                initial_state_element = self.initial_state[row_index][column_index]
-                subkey_element = subkey_matrix[row_index][column_index]
-                # XOR initial_state with subkey
-                row.append(None) # XOR output
+                initial_state_element = convert_hex_to_binary(self.initial_state[row_index][column_index])
+                subkey_element = convert_hex_to_binary(subkey_matrix[row_index][column_index])
+                if len(initial_state_element) == len(subkey_element):
+                    xor_result = ""
+                    for bit_index in range(0, 8):
+                        xor_result += str(int(bool(int(initial_state_element[bit_index])) ^
+                                      bool(int(subkey_element[bit_index]))))
+                row.append("{0:02x}".format(int(xor_result, 2)))
             add_key_output.append(row)
 
         return add_key_output
