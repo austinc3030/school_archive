@@ -63,7 +63,8 @@ class AES(object):
             self.subkey_file = os.path.abspath(parsed_arguments.subkey_file)
 
         return (self.message_file and self.subkey_file)
-    
+
+
     def _read_message_file(self):
         with open(self.message_file) as message_file:
             message_file_contents = list(filter(None, message_file.read().splitlines()))
