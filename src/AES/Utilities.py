@@ -35,9 +35,6 @@ def string_to_hex(string_to_convert):
 
 
 def split_hex_string(string_to_split):
-    # Map each character to ascii
-    # T  w  o     O  n  e     N  i  n  e     T  w  o
-    # 54 77 6F 20 4F 6E 65 20 4E 69 6E 65 20 54 77 6F
     split_hex = []
     hex_number = ""
 

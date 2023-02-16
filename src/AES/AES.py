@@ -13,7 +13,6 @@ class AES(object):
 
 
     def _add_key(self, subkey):
-        # XOR initial_state with subkey
         subkey_matrix = matricize_hex_string(subkey)
         add_key_output = []
 
@@ -22,7 +21,7 @@ class AES(object):
             for column_index in range(0, 4):
                 initial_state_element = self.initial_state[row_index][column_index]
                 subkey_element = subkey_matrix[row_index][column_index]
-                # Do XOR
+                # XOR initial_state with subkey
                 row.append(None) # XOR output
             add_key_output.append(row)
 
