@@ -24,6 +24,7 @@ class AES(object):
         
         :return: The output of the add_key round
         """
+        # TODO: CLEAN THIS UP
         subkey_matrix = matricize_hex_string(subkey)
         add_key_output = []
 
