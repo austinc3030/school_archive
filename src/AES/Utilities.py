@@ -1,4 +1,11 @@
 def convert_string_to_binary(string_to_convert):
+    """
+    Convert a string to binary character by character.
+
+    :param string_to_convert: The string to convert to binary
+    
+    :return: The binary equivalent of the string
+    """
     binary_result = ""
 
     for character in string_to_convert:
@@ -8,6 +15,13 @@ def convert_string_to_binary(string_to_convert):
 
 
 def convert_hex_to_binary(string_to_convert):
+    """
+    Convert a hex string to binary hex number by hex number
+
+    :param string_to_convert: The string to convert to binary
+    
+    :return: The binary equivalent of the string
+    """
     binary_result = ""
     hex_number = ""
 
@@ -26,6 +40,13 @@ def convert_hex_to_binary(string_to_convert):
 
 
 def string_to_hex(string_to_convert):
+    """
+    Convert a string to binary character by character.
+
+    :param string_to_convert: The string to convert to binary
+    
+    :return: The binary equivalent of the string
+    """
     hex_string = ""
 
     for character in string_to_convert:
@@ -35,6 +56,13 @@ def string_to_hex(string_to_convert):
 
 
 def split_hex_string(string_to_split):
+    """
+    Split a string of hex numbers to a list of hex numbers.
+    
+    :param string_to_split: The string to split
+    
+    :return: The split string
+    """
     split_hex = []
     hex_number = ""
 
@@ -52,6 +80,13 @@ def split_hex_string(string_to_split):
 
 
 def chunk_hex_string(string_to_chunk):
+    """
+    Split a string of hex numbers to a list of 4 hex numbers.
+    
+    :param string_to_chunk: The string to chunk
+    
+    :return: The chunked string
+    """
     chunked_hex_string = []
 
     split_string = split_hex_string(string_to_chunk)
@@ -66,6 +101,18 @@ def chunk_hex_string(string_to_chunk):
 
 
 def matricize_hex_string(hex_string_to_matricize):
+    """
+    Convert a string into a metrix where the indexes appear below
+
+    0  4  8   12
+    1  5  9   13
+    2  6  10  14
+    3  7  11  15
+
+    :param hex_string_to_matricize: The string to matricize
+    
+    :return: The matrix of the hex string
+    """
     matrix = []
 
     chunked_hex_string = chunk_hex_string(hex_string_to_matricize)

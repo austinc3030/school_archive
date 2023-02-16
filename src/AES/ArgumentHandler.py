@@ -9,6 +9,11 @@ from AES.Utilities import convert_string_to_binary, convert_hex_to_binary
 class ArgumentHandler(object):
 
     def __init__(self, error_handler):
+        """
+        During initialization of ArgumentHandler(), create class variables to be used later by the calling function
+
+        :param error_handler: The initialized error handler object for logging errors
+        """
         self.error_handler = error_handler
 
         self.message_file = None
@@ -23,6 +28,12 @@ class ArgumentHandler(object):
 
 
     def _parse_args(self):
+        """
+        Build an ArgumentParser object and use it to parse arguments passed on the commandline.
+        Store the results in this class
+
+        :return: The parsed argument values
+        """
         parser = argparse.ArgumentParser()
 
         # Should take in the path to the message file
@@ -45,6 +56,11 @@ class ArgumentHandler(object):
     
 
     def _validate_args(self, parsed_arguments):
+        """
+        Validate the arguments we receive. In this case, validate the files exist
+
+        :return: Boolean value whether we are successful
+        """
         # Validate message file exists
         if not os.path.isfile(os.path.abspath(parsed_arguments.message_file)):
             self.error_handler.error_count += 1
@@ -67,6 +83,11 @@ class ArgumentHandler(object):
 
 
     def _read_message_file(self):
+        """
+        Read the message file received in the arguments
+
+        :return: Boolean value of whether we were successful
+        """
         with open(self.message_file) as message_file:
             message_file_contents = list(filter(None, message_file.read().splitlines()))
 
@@ -87,6 +108,11 @@ class ArgumentHandler(object):
 
 
     def _read_subkey_file(self):
+        """
+        Read the subkey file received in the arguments
+
+        :return: Boolean value of whether we were successful
+        """
         with open(self.subkey_file) as subkey_file:
             subkey_file_contents = list(filter(None, subkey_file.read().splitlines()))
 
@@ -114,6 +140,11 @@ class ArgumentHandler(object):
     
 
     def _validate_message_length(self):
+        """
+        Validate whether the message we read is the correct length
+
+        :return: Boolean value of whether we were successful
+        """
         if len(convert_string_to_binary(self.message_to_encrypt)) != 128:
             self.error_handler.error_count += 1
             self.error_handler.exit_message += 'Error {error_count}: Message "{message_to_encrypt}" is not exactly ' \
@@ -125,6 +156,11 @@ class ArgumentHandler(object):
 
 
     def _validate_subkey_length(self):
+        """
+        Validate whether the subkeys we read are the correct length
+
+        :return: Boolean value of whether we were successful
+        """
         if len(convert_hex_to_binary(self.subkey0)) != 128:
             self.error_handler.error_count += 1
             self.error_handler.exit_message += 'Error {error_count}: Subkey0 "{subkey0}" is not exactly ' \
@@ -143,6 +179,12 @@ class ArgumentHandler(object):
     
 
     def handle_arguments(self):
+        """
+        Validate the arguments we received. If there are any issues, we want to intentionally exit and
+        report what the issue was
+
+        :return: Boolean value of whether we were successful
+        """
 
         if not self._validate_args(self._parse_args()):
             return False

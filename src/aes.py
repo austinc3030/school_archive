@@ -5,7 +5,9 @@ from AES.AES import AES
 
 
 if __name__ == '__main__':
-
+    """
+    Immediately launch into the AES class and report any errors if they arise once complete
+    """
     if sys.version_info<(3,5,0):
             sys.stderr.write("You need python 3.5 or later to run this script\n")
             sys.exit(1)
