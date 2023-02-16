@@ -15,6 +15,13 @@ class AES(object):
         self.message_file = None
         self.subkey_file = None
 
+        self.message_file_contents = None
+        self.subkey_file_contents = None
+
+        self.raw_message_to_encrypt = None
+        self.raw_subkey0 = None
+        self.raw_subkey1 = None
+
 
     def _parse_args(self):
         parser = argparse.ArgumentParser()
@@ -56,13 +63,56 @@ class AES(object):
             self.subkey_file = os.path.abspath(parsed_arguments.subkey_file)
 
         return (self.message_file and self.subkey_file)
+    
+    def _read_message_file(self):
+        with open(self.message_file) as message_file:
+            message_file_contents = list(filter(None, message_file.read().splitlines()))
+
+            if len(message_file_contents) == 1:
+                self.raw_message_to_encrypt = message_file_contents[0]
+            elif len(message_file_contents) > 1:
+                self.error_count += 1
+                self.exit_message += 'Error {error_count}: --message-file "{message_file}" contains more than one ' \
+                                    'message.\n'.format(error_count=self.error_count, message_file=self.message_file)
+            else:
+                self.error_count += 1
+                self.exit_message += 'Error {error_count}: --message-file "{message_file}" is empty.\n' \
+                                    .format(error_count=self.error_count, message_file=self.message_file)
+        
+        return (self.raw_message_to_encrypt)
+
+
+    def _read_subkey_file(self):
+        with open(self.subkey_file) as subkey_file:
+            subkey_file_contents = list(filter(None, subkey_file.read().splitlines()))
+
+            if len(subkey_file_contents) == 2:
+                self.raw_subkey0 = subkey_file_contents[0]
+                self.raw_subkey1 = subkey_file_contents[1]
+            elif len(subkey_file_contents) > 2:
+                self.error_count += 1
+                self.exit_message += 'Error {error_count}: --subkey-file "{subkey_file}" contains more than two ' \
+                                    'subkeys.\n'.format(error_count=self.error_count, subkey_file=self.subkey_file)
+            elif len(subkey_file_contents) == 1:
+                self.error_count += 1
+                self.exit_message += 'Error {error_count}: --subkey-file "{subkey_file}" only contains one subkey.\n' \
+                                    .format(error_count=self.error_count, subkey_file=self.subkey_file)
+            else:
+                self.error_count += 1
+                self.exit_message += 'Error {error_count}: --subkey-file "{subkey_file}" is empty.\n' \
+                                    .format(error_count=self.error_count, subkey_file=self.subkey_file)
+        
+        return (self.raw_subkey0 and self.raw_subkey1)
 
 
     def main(self):
 
         # Make sure we got valid args
         if self._validate_args(self._parse_args()):
-            pass
+            if self._read_message_file() and self._read_subkey_file():
+                print("True")
+            else:
+                print("False")
 
 
 if __name__ == '__main__':
