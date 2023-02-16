@@ -64,6 +64,7 @@ class AES(object):
         if self._validate_args(self._parse_args()):
             pass
 
+
 if __name__ == '__main__':
 
     if sys.version_info<(3,5,0):
