@@ -23,14 +23,14 @@ class AES(object):
         parser.add_argument('--message-file', 
                             type=str, 
                             help='The path to the file containing the message '  # Help message is not hard-wrapped
-                                'to encrypt. Note: The message will be truncated to 128 bits.',
+                                 'to encrypt. Note: The message will be truncated to 128 bits.',
                             required=False)
         
         # Should take in the path to the file containing the subkeys
         parser.add_argument('--subkey-file',
                             type=str,
                             help='The path to the file containing the subkeys to '  # Help message is not hard-wrapped
-                                'be used for encryption. Note: Subkeys will be truncated to 128 bits.',
+                                 'be used for encryption. Note: Subkeys will be truncated to 128 bits.',
                             required=False)
 
         parsed_arguments=parser.parse_args()
@@ -62,7 +62,7 @@ class AES(object):
 
         # Make sure we got valid args
         if self._validate_args(self._parse_args()):
-
+            pass
 
 if __name__ == '__main__':
 
