@@ -183,6 +183,51 @@ class AES(object):
                     calculations[row_index][column_index][operand_index] = new_calculation
 
         return calculations
+    
+
+    def _perform_multiplication_of_elements(self, calculations):
+        """
+        Given the calculations to make, perform the multiplcation (Addition of exponents)
+
+        :param calculations: the calculations to make
+
+        :return: The multipled calculations
+        """
+        for row_index, row in enumerate(calculations):
+            for column_index, column in enumerate(row):
+                left_element = column[0]
+                right_element = column[1]
+
+                # Perform left_element * right_element by distributing powers
+                new_element = []
+                for left_index, left in enumerate(left_element):
+                    for right_index, right in enumerate(right_element):
+                        new_element.append(left+right)
+                
+                calculations[row_index][column_index] = new_element
+
+        return calculations
+    
+
+    def _substitute_eighth_powers(self, calculations):
+        """
+        Replace any eights powers with 8, 4, 3, 1, 0
+
+        :param calculations: The calculations to replace substitute irreductible polynomial
+
+        :return: The calculations with the eighth powers replaced
+        """
+        for row_index, row in enumerate(calculations):
+            for column_index, column in enumerate(row):
+                calculation = column
+                if 8 in calculation:
+                    calculations[row_index][column_index].append(8)
+                    calculations[row_index][column_index].append(4)
+                    calculations[row_index][column_index].append(3)
+                    calculations[row_index][column_index].append(1)
+                    calculations[row_index][column_index].append(0)
+        
+        return calculations
 
 
     def _mixcolumns(self, state):
@@ -204,6 +249,10 @@ class AES(object):
         binary_calculations = self._convert_calculations_to_binary(mixcolumn_calculations)
         polynomial_calculations = self._expand_to_polynomial_calculations(binary_calculations)
         calculations_with_reduced_powers = self._reduce_powers_from_calculations(polynomial_calculations)
+        multiplied_elements = self._perform_multiplication_of_elements(calculations_with_reduced_powers)
+        print_state(multiplied_elements)
+        no_eight_powers = self._substitute_eighth_powers(multiplied_elements)
+
 
         print(calculations_with_reduced_powers)
         # [02 03 01 01]   [d4]   [??]
