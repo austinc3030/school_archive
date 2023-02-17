@@ -39,7 +39,6 @@ class AES(object):
         
         :return: The output of the add_key round
         """
-        # TODO: CLEAN THIS UP
         subkey_matrix = matricize_hex_string(subkey)
         
         for row_index, row in enumerate(state):
@@ -74,7 +73,7 @@ class AES(object):
         return state
 
 
-    def _shiftrows(self, current_state):
+    def _shiftrows(self, state):
         """
         Uses SBox to substitute bytes in the current state with the values from SBOX
 
@@ -83,19 +82,41 @@ class AES(object):
         :return: The output of the shift_rows round
         """
         new_state = []
-        for row_index, row in enumerate(current_state):
+        for row_index, row in enumerate(state):
             new_row = []
             for column_index, column in enumerate(row): 
-                new_state_element = current_state[row_index][self.Constants.SHIFT_ARRAY_MAP[row_index][column_index]]
+                new_state_element = state[row_index][self.Constants.SHIFT_ARRAY_MAP[row_index][column_index]]
                 new_row.append(new_state_element)
             new_state.append(new_row)
 
-        current_state = new_state
-
-        return current_state
+        return new_state
 
 
-    def _mixcolumns(self, current_state):
+    def _generate_mixcolumns_calculations(self, state):
+        """
+        Given a state object, generate the per element calculation for the entire state. Combines the state with the 
+        mixcolumns matrix to determine the calculations to make for each element
+
+        :param state: the state to generate the columns from
+
+        :return: THe calculations required for mixcolumns
+        """
+        mixcolumns_calculations = []
+
+        for current_state_row_index, current_state_row in enumerate(state):
+            for current_state_column_index, current_state_column in enumerate(current_state_row):
+                column = get_state_column(state, current_state_column_index)
+                column_calculations = []
+                for column_index, element in enumerate(column):
+                    calculation = [self.Constants.MIX_COLUMN[current_state_row_index][column_index],
+                                   column[column_index]]
+                    column_calculations.append(calculation)
+                mixcolumns_calculations.append(column_calculations)
+
+        return mixcolumns_calculations
+
+
+    def _mixcolumns(self, state):
         """
         Perform mixcolumns on the given current state
         Reference: https://www.youtube.com/watch?v=0VgCy9daNjo
@@ -106,21 +127,12 @@ class AES(object):
         """
         new_state = []
 
-        print_state(current_state)
+        print_state(state)
         print()
 
-        mix_column_calculations = []
+        mixcolumn_calculations = self._generate_mixcolumns_calculations(state)
 
-        for current_state_row_index, current_state_row in enumerate(current_state):
-            for current_state_column_index, current_state_column in enumerate(current_state_row):
-                column = get_state_column(current_state, current_state_column_index)
-                column_calculations = [(str(self.Constants.MIX_COLUMN[current_state_row_index][0]) + " * " + str(column[0])),
-                                       (str(self.Constants.MIX_COLUMN[current_state_row_index][1]) + " * " + str(column[1])),
-                                       (str(self.Constants.MIX_COLUMN[current_state_row_index][2]) + " * " + str(column[2])),
-                                       (str(self.Constants.MIX_COLUMN[current_state_row_index][3]) + " * " + str(column[3]))]
-                mix_column_calculations.append(column_calculations)
-
-        print(mix_column_calculations)
+        print(mixcolumn_calculations)
         # [02 03 01 01]   [d4]   [??]
         # [01 02 03 01] * [bf] = [66]
         # [01 01 02 03]   [5d]   [81]
@@ -164,9 +176,6 @@ class AES(object):
         # If final polynomial value T is in the form of >x7 (There is something to the power of 8)
         # T' = T XOR Polynomial
         # T' = T XOR x8 XOR x4 XOR x3 XOR x XOR 1
-
-
-        current_state = new_state
 
         return new_state
 
