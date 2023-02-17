@@ -1,12 +1,27 @@
 from AES.ArgumentHandler import ArgumentHandler
+from AES.Constants import Constants
 from AES.ErrorHandler import ErrorHandler
-from AES.SBox import SBox
 from AES.Utilities import chunk_hex_string, convert_hex_to_binary, hex_highbyte, hex_lowbyte, matricize_hex_string, \
                           print_state, split_hex_string, string_to_hex
 
 
 
 class AES(object):
+
+    def _generate_sbox(self):
+        """
+        Build the sbox dictionary so elements can be referenced by their hexadecimal indexes
+        """
+        self.sbox = {}
+        # Build SBox
+        for y_int_index, y_hex_index in enumerate(self.Constants.SBOX_Y_AXIS):
+            row_array = self.Constants.SBOX_ROW_ARRAY[y_int_index]
+            hex_row = {}
+            for x_int_index, x_hex_index in enumerate(self.Constants.SBOX_X_AXIS):
+                hex_row[x_hex_index] = row_array[x_int_index]
+            
+            self.sbox[y_hex_index] = hex_row
+
 
     def _obtain_initial_state(self):
         """
@@ -15,7 +30,7 @@ class AES(object):
         return matricize_hex_string(split_hex_string(string_to_hex(self.message)))
 
 
-    def _add_key(self, state, subkey):
+    def _addkey(self, state, subkey):
         """
         Computes add_key based on the given state and subkey
 
@@ -67,16 +82,11 @@ class AES(object):
         
         :return: The output of the shift_rows round
         """
-        shift_array = [[0, 1, 2, 3],
-                       [1, 2, 3, 0],
-                       [2, 3, 0, 1],
-                       [3, 0, 1, 2]]
-
         new_state = []
         for row_index in range(0, 4):
             new_row = []
             for column_index in range(0, 4): 
-                new_state_element = current_state[row_index][shift_array[row_index][column_index]]
+                new_state_element = current_state[row_index][self.Constants.SHIFT_ARRAY_MAP[row_index][column_index]]
                 new_row.append(new_state_element)
             new_state.append(new_row)
 
@@ -85,14 +95,30 @@ class AES(object):
         return current_state
 
 
+    def _mixcolumns(self, current_state):
+        """
+        Perform mixcolumns on the given current state
+
+        :param current_state: the state to perform mixcolumns on
+
+        :return: the new state after the mixcolumns operation
+        """
+        new_state = []
+        
+        current_state = new_state
+
+        return new_state
+
+
     def main(self):
         """
         The main method
         """
         initial_state = self._obtain_initial_state()
-        current_state = self._add_key(initial_state, self.subkey0)  # Use Subkey0 for first round
+        current_state = self._addkey(initial_state, self.subkey0)  # Use Subkey0 for first round
         current_state = self._subbytes(current_state)
         current_state = self._shiftrows(current_state)
+        current_state = self._mixcolumns(current_state)
 
         print_state(current_state)
         
@@ -109,5 +135,6 @@ class AES(object):
             self.subkey0 = self.argument_handler.subkey0
             self.subkey1 = self.argument_handler.subkey1
 
-            self.sbox = SBox().get_sbox()
+            self.Constants = Constants()
+            self._generate_sbox()
             self.main()  # Start the main method
