@@ -151,7 +151,25 @@ def hex_lowbyte(hex_number):
 def print_state(state):
     """
     Prints out the state given to the command line for viewing
+    
+    :param state: The state to output
     """
     print()
     for row in state:
         print(row)
+    
+
+def get_state_column(state, column_index):
+    """
+    Given a state, return an list that is the column index
+
+    :param state: The state to return a column from
+    :param column_index: The column index to return from the state
+    
+    :return: A list that is the column of the state
+    """
+    column = []
+    for row_index, row in enumerate(state):
+        column.append(state[row_index][column_index])
+    
+    return column

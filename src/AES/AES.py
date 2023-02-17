@@ -1,8 +1,8 @@
 from AES.ArgumentHandler import ArgumentHandler
 from AES.Constants import Constants
 from AES.ErrorHandler import ErrorHandler
-from AES.Utilities import chunk_hex_string, convert_hex_to_binary, hex_highbyte, hex_lowbyte, matricize_hex_string, \
-                          print_state, split_hex_string, string_to_hex
+from AES.Utilities import chunk_hex_string, convert_hex_to_binary, hex_highbyte, hex_lowbyte, get_state_column, \
+                          matricize_hex_string, print_state, split_hex_string, string_to_hex
 
 
 
@@ -104,7 +104,7 @@ class AES(object):
         :return: the new state after the mixcolumns operation
         """
         new_state = []
-        
+
         current_state = new_state
 
         return new_state
