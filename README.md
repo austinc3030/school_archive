@@ -9,7 +9,7 @@ NOTE: The pdf to md conversion messed up some values. Check PDF for accurate val
 ```
 Instructor: Dr. Boyang Wang
 ```
-Due Date:2/17/2023 (Friday), 11:59pm.
+Due Date:2/17/2023 (Friday), 11:59pm.  
 Format:Please submit a zip file of your code in Canvas.
 Total Points:12 points
 Note:This is an individual project.
