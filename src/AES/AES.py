@@ -12,13 +12,14 @@ class AES(object):
         """
         Generates the initial state for the encryption operation
         """
-        self.initial_state = matricize_hex_string(split_hex_string(string_to_hex(self.message)))
+        return matricize_hex_string(split_hex_string(string_to_hex(self.message)))
 
 
-    def _add_key(self, subkey):
+    def _add_key(self, state, subkey):
         """
-        Generates the initial state for the encryption operation
+        Computes add_key based on the given state and subkey
 
+        :param state: The current state to use for add_key
         :param subkey: The subkey to use for the add_key round
         
         :return: The output of the add_key round
@@ -30,25 +31,30 @@ class AES(object):
         for row_index in range(0, 4):
             row = []
             for column_index in range(0, 4):
-                initial_state_element = convert_hex_to_binary(self.initial_state[row_index][column_index])
+                state_element = convert_hex_to_binary(state[row_index][column_index])
                 subkey_element = convert_hex_to_binary(subkey_matrix[row_index][column_index])
-                if len(initial_state_element) == len(subkey_element):
+                if len(state_element) == len(subkey_element):
                     xor_result = ""
                     for bit_index in range(0, 8):
-                        xor_result += str(int(bool(int(initial_state_element[bit_index])) ^
+                        xor_result += str(int(bool(int(state_element[bit_index])) ^
                                       bool(int(subkey_element[bit_index]))))
                 row.append("{0:02x}".format(int(xor_result, 2)))
             add_key_output.append(row)
 
         return add_key_output
 
+    
+    def _subbytes(state):
+
+
 
     def main(self):
         """
         The main method
         """
-        self._obtain_initial_state()
-        add_key_round_one_output=self._add_key(self.subkey0)  # Use Subkey0 for first round
+        initial_state = self._obtain_initial_state()
+        current_state = self._add_key(initial_state, self.subkey0)  # Use Subkey0 for first round
+        current_state = self._subbytes(current_state)
         
 
     def __init__(self):
