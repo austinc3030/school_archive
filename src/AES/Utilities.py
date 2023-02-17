@@ -125,6 +125,7 @@ def matricize_hex_string(hex_string_to_matricize):
 
     return matrix
 
+
 def hex_highbyte(hex_number):
     """
     Return the high byte of a hex number for lookup in the SBOX
@@ -135,6 +136,7 @@ def hex_highbyte(hex_number):
     """
     return (hex_number[0] + "0")
 
+
 def hex_lowbyte(hex_number):
     """
     Return the low byte of a hex number for lookup in the SBOX
@@ -144,3 +146,12 @@ def hex_lowbyte(hex_number):
     :return: The low_byte of the hex number
     """
     return ("0" + hex_number[1])
+
+
+def print_state(state):
+    """
+    Prints out the state given to the command line for viewing
+    """
+    print()
+    for row in state:
+        print(row)

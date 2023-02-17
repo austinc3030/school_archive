@@ -2,7 +2,7 @@ from AES.ArgumentHandler import ArgumentHandler
 from AES.ErrorHandler import ErrorHandler
 from AES.SBox import SBox
 from AES.Utilities import chunk_hex_string, convert_hex_to_binary, hex_highbyte, hex_lowbyte, matricize_hex_string, \
-                          split_hex_string, string_to_hex
+                          print_state, split_hex_string, string_to_hex
 
 
 
@@ -59,6 +59,32 @@ class AES(object):
         return state
 
 
+    def _shiftrows(self, current_state):
+        """
+        Uses SBox to substitute bytes in the current state with the values from SBOX
+
+        :param state: The current state to use for shift_rows
+        
+        :return: The output of the shift_rows round
+        """
+        shift_array = [[0, 1, 2, 3],
+                       [1, 2, 3, 0],
+                       [2, 3, 0, 1],
+                       [3, 0, 1, 2]]
+
+        new_state = []
+        for row_index in range(0, 4):
+            new_row = []
+            for column_index in range(0, 4): 
+                new_state_element = current_state[row_index][shift_array[row_index][column_index]]
+                new_row.append(new_state_element)
+            new_state.append(new_row)
+
+        current_state = new_state
+
+        return current_state
+
+
     def main(self):
         """
         The main method
@@ -66,6 +92,9 @@ class AES(object):
         initial_state = self._obtain_initial_state()
         current_state = self._add_key(initial_state, self.subkey0)  # Use Subkey0 for first round
         current_state = self._subbytes(current_state)
+        current_state = self._shiftrows(current_state)
+
+        print_state(current_state)
         
 
     def __init__(self):
