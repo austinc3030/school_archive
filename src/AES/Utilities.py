@@ -173,3 +173,22 @@ def get_state_column(state, column_index):
         column.append(state[row_index][column_index])
     
     return column
+
+
+def convert_binary_to_polynomial(binary):
+    """
+    Given the binary number, convert it to a polynomial and return a list with the proper powers
+
+    Format: [x8, x7, x6, x5, x4, x3, x2, x1, x0]
+
+    :param binary: The binary number to convert
+
+    :return: The polynomial as a list of the binary number
+    """
+    #                  x7     x6     x5     x4     x3     x2     x1     x0
+    polynomial_list = [False, False, False, False, False, False, False, False]
+    for bit_index, bit in enumerate(binary):
+        if bit == "1":
+            polynomial_list[bit_index] = True
+
+    return polynomial_list

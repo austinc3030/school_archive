@@ -1,8 +1,9 @@
 from AES.ArgumentHandler import ArgumentHandler
 from AES.Constants import Constants
 from AES.ErrorHandler import ErrorHandler
-from AES.Utilities import chunk_hex_string, convert_hex_to_binary, hex_highbyte, hex_lowbyte, get_state_column, \
-                          matricize_hex_string, print_state, split_hex_string, string_to_hex
+from AES.Utilities import chunk_hex_string, convert_binary_to_polynomial, convert_hex_to_binary, hex_highbyte, \
+                          hex_lowbyte, get_state_column, matricize_hex_string, print_state, split_hex_string, \
+                          string_to_hex
 
 
 
@@ -116,6 +117,74 @@ class AES(object):
         return mixcolumns_calculations
 
 
+    def _convert_calculations_to_binary(self, calculations):
+        """
+        Take the calculations required and convert the calculation elements to binary
+
+        :param calculations: the calculations object to convert
+
+        :return: The calculations object in binary format
+        """
+        for row_index, row in enumerate(calculations):
+            for column_index, column in enumerate(row):
+                for element_index, element in enumerate(column):
+                    calculations[row_index][column_index][element_index] = convert_hex_to_binary(element)
+
+        return calculations
+    
+
+    def _expand_to_polynomial_calculations(self, calculations):
+        """
+        Taking the calculations given, expand them from binary to polynomial format
+
+        :param calculations: The calculations to expand
+
+        :return: The expanded calculations
+        """
+        for row_index, row in enumerate(calculations):
+            for column_index, column in enumerate(row):
+                for element_index, element in enumerate(column):
+                    calculations[row_index][column_index][element_index] = convert_binary_to_polynomial(element)
+                    # Operand is now in format seen in convert_binary_to_polynomial
+                    # [  x7,   x6,   x5,   x4,   x3,   x2,   x1,   x0]
+                    # [Bool, Bool, Bool, Bool, Bool, Bool, Bool, Bool]
+
+        return calculations
+    
+
+    def _reduce_powers_from_calculations(self, calculations):
+        """
+        For each element in the calculations, reduce to the lowest number of powers contained in the calculation
+        
+        :param calculations: the calculations to reduce powers from
+
+        :return: the calculations with 0 powers removed
+        """
+        for row_index, row in enumerate(calculations):
+            for column_index, column in enumerate(row):
+                for operand_index, operand in enumerate(column):
+                    new_calculation = []
+                    if operand[0]:
+                        new_calculation.append(7)
+                    if operand[1] == True:
+                        new_calculation.append(6)
+                    if operand[2] == True:
+                        new_calculation.append(5)
+                    if operand[3] == True:
+                        new_calculation.append(4)
+                    if operand[4] == True:
+                        new_calculation.append(3)
+                    if operand[5] == True:
+                        new_calculation.append(2)
+                    if operand[6] == True:
+                        new_calculation.append(1)
+                    if operand[7] == True:
+                        new_calculation.append(0)
+                    calculations[row_index][column_index][operand_index] = new_calculation
+
+        return calculations
+
+
     def _mixcolumns(self, state):
         """
         Perform mixcolumns on the given current state
@@ -132,7 +201,11 @@ class AES(object):
 
         mixcolumn_calculations = self._generate_mixcolumns_calculations(state)
 
-        print(mixcolumn_calculations)
+        binary_calculations = self._convert_calculations_to_binary(mixcolumn_calculations)
+        polynomial_calculations = self._expand_to_polynomial_calculations(binary_calculations)
+        calculations_with_reduced_powers = self._reduce_powers_from_calculations(polynomial_calculations)
+
+        print(calculations_with_reduced_powers)
         # [02 03 01 01]   [d4]   [??]
         # [01 02 03 01] * [bf] = [66]
         # [01 01 02 03]   [5d]   [81]
