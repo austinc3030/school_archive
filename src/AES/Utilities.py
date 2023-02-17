@@ -124,3 +124,23 @@ def matricize_hex_string(hex_string_to_matricize):
         matrix.append(row)
 
     return matrix
+
+def hex_highbyte(hex_number):
+    """
+    Return the high byte of a hex number for lookup in the SBOX
+    
+    :param hex_number: The hex number to get the high byte from
+    
+    :return: The high_byte of the hex number
+    """
+    return (hex_number[0] + "0")
+
+def hex_lowbyte(hex_number):
+    """
+    Return the low byte of a hex number for lookup in the SBOX
+    
+    :param hex_number: The hex number to get the low byte from
+    
+    :return: The low_byte of the hex number
+    """
+    return ("0" + hex_number[1])

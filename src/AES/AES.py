@@ -1,7 +1,6 @@
-import sys
-
 from AES.ArgumentHandler import ArgumentHandler
 from AES.ErrorHandler import ErrorHandler
+from AES.SBox import SBox
 from AES.Utilities import chunk_hex_string, convert_hex_to_binary, matricize_hex_string, \
                           split_hex_string, string_to_hex
 
@@ -63,4 +62,6 @@ class AES(object):
             self.message = self.argument_handler.message_to_encrypt
             self.subkey0 = self.argument_handler.subkey0
             self.subkey1 = self.argument_handler.subkey1
+
+            self.sbox = SBox().get_sbox()
             self.main()  # Start the main method
