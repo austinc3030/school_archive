@@ -1,7 +1,7 @@
 from AES.ArgumentHandler import ArgumentHandler
 from AES.ErrorHandler import ErrorHandler
 from AES.SBox import SBox
-from AES.Utilities import chunk_hex_string, convert_hex_to_binary, matricize_hex_string, \
+from AES.Utilities import chunk_hex_string, convert_hex_to_binary, hex_highbyte, hex_lowbyte, matricize_hex_string, \
                           split_hex_string, string_to_hex
 
 
@@ -26,10 +26,8 @@ class AES(object):
         """
         # TODO: CLEAN THIS UP
         subkey_matrix = matricize_hex_string(subkey)
-        add_key_output = []
-
+        
         for row_index in range(0, 4):
-            row = []
             for column_index in range(0, 4):
                 state_element = convert_hex_to_binary(state[row_index][column_index])
                 subkey_element = convert_hex_to_binary(subkey_matrix[row_index][column_index])
@@ -38,14 +36,27 @@ class AES(object):
                     for bit_index in range(0, 8):
                         xor_result += str(int(bool(int(state_element[bit_index])) ^
                                       bool(int(subkey_element[bit_index]))))
-                row.append("{0:02x}".format(int(xor_result, 2)))
-            add_key_output.append(row)
+                    state[row_index][column_index] = ("{0:02x}".format(int(xor_result, 2)))
 
-        return add_key_output
+        return state
 
     
-    def _subbytes(state):
+    def _subbytes(self, state):
+        """
+        Uses SBox to substitute bytes in the current state with the values from SBOX
 
+        :param state: The current state to use for sub_bytes
+        
+        :return: The output of the sub_bytes round
+        """
+        for row_index in range(0, 4):
+            for column_index in range(0, 4):
+                state_element = state[row_index][column_index]
+                state_high_byte = hex_highbyte(state_element)
+                state_low_byte = hex_lowbyte(state_element)
+                state[row_index][column_index] = self.sbox[state_high_byte][state_low_byte]
+
+        return state
 
 
     def main(self):
