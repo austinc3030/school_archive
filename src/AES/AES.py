@@ -98,12 +98,58 @@ class AES(object):
     def _mixcolumns(self, current_state):
         """
         Perform mixcolumns on the given current state
+        Reference: https://www.youtube.com/watch?v=0VgCy9daNjo
 
         :param current_state: the state to perform mixcolumns on
 
         :return: the new state after the mixcolumns operation
         """
         new_state = []
+
+        # [02 03 01 01]   [d4]   [??]
+        # [01 02 03 01] * [bf] = [66]
+        # [01 01 02 03]   [5d]   [81]
+        # [03 01 01 02]   [30]   [e5]
+
+        # ?? = (02 * d4) XOR (03 * bf) XOR (01 * 5d) XOR (01 * 30)
+        # T = T1 XOR T2 XOR T3 XOR T4
+
+        # T1 = (02 * d4)
+        # Convert hex to binary 02 -> 00000010
+        # Convert binary to polynomial
+        #   x7 XOR   x6 XOR   x5 XOR   x4 XOR   x3 XOR   x2 XOR   x1 XOR   x
+        # 0*x7 XOR 0*x6 XOR 0*x5 XOR 0*x4 XOR 0*x3 XOR 0*x2 XOR 1*x1 XOR 0*x0
+        # = x (because there is only 1 for x1)
+
+        # Convert hex to binary d4 -> 11010100
+        # Convert binary to polynomial
+        #   x7 XOR   x6 XOR   x5 XOR   x4 XOR   x3 XOR   x2 XOR   x1 XOR   x
+        # 1*x7 XOR 1*x6 XOR 0*x5 XOR 1*x4 XOR 0*x3 XOR 1*x2 XOR 0*x1 XOR 0*x0
+        # = x7 XOR x6 XOR x4 XOR x2 (because there are 1's in the polynomial for these)
+
+        # T1 = (x) * (x7 XOR x6 XOR x4 XOR x2) (Distribute X)
+        # T1 = x8 XOR x7 XOR x5 XOR x3
+
+        # T2 = (03 * bf) = x8 XOR x7 XOR x6 XOR 1
+        # T3 = (01 * 5d) = x6 XOR x4 XOR x3 XOR x2 XOR 1
+        # T4 = (01 * 30) = x5 XOR x4
+
+        # T = T1 XOR T2 XOR T3 XOR T4
+        # = x8 XOR x7 XOR x5 XOR x3 XOR x8 XOR x7 XOR x6 XOR 1 XOR x6 XOR x4 XOR x3 XOR x2 XOR 1 XOR x5 XOR x4
+        # Cancel out same polynomial degrees
+        # T = x2 (Each duplicate power gets eliminated)
+
+        # Convert polynomial to binary
+        # 0*x7 XOR 0*x6 XOR 0*x6 XOR 0x4 XOR 0*x3 XOR 1*x2 XOR 0*x1 XOR 0*x0
+        # NOTE x^0 is 1 (anything to power of 0 is 1)
+        # 0        0        0        0       0        1        0        0
+        # Convert to hex
+        # 00000100 = 0x04
+
+        # If final polynomial value T is in the form of >x7 (There is something to the power of 8)
+        # T' = T XOR Polynomial
+        # T' = T XOR x8 XOR x4 XOR x3 XOR x XOR 1
+
 
         current_state = new_state
 
