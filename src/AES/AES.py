@@ -42,13 +42,13 @@ class AES(object):
         # TODO: CLEAN THIS UP
         subkey_matrix = matricize_hex_string(subkey)
         
-        for row_index in range(0, 4):
-            for column_index in range(0, 4):
+        for row_index, row in enumerate(state):
+            for column_index, column in enumerate(row):
                 state_element = convert_hex_to_binary(state[row_index][column_index])
                 subkey_element = convert_hex_to_binary(subkey_matrix[row_index][column_index])
                 if len(state_element) == len(subkey_element):
                     xor_result = ""
-                    for bit_index in range(0, 8):
+                    for bit_index, bit in enumerate(state_element):
                         xor_result += str(int(bool(int(state_element[bit_index])) ^
                                       bool(int(subkey_element[bit_index]))))
                     state[row_index][column_index] = ("{0:02x}".format(int(xor_result, 2)))
@@ -64,8 +64,8 @@ class AES(object):
         
         :return: The output of the sub_bytes round
         """
-        for row_index in range(0, 4):
-            for column_index in range(0, 4):
+        for row_index, row in enumerate(state):
+            for column_index, column in enumerate(row):
                 state_element = state[row_index][column_index]
                 state_high_byte = hex_highbyte(state_element)
                 state_low_byte = hex_lowbyte(state_element)
@@ -83,9 +83,9 @@ class AES(object):
         :return: The output of the shift_rows round
         """
         new_state = []
-        for row_index in range(0, 4):
+        for row_index, row in enumerate(current_state):
             new_row = []
-            for column_index in range(0, 4): 
+            for column_index, column in enumerate(row): 
                 new_state_element = current_state[row_index][self.Constants.SHIFT_ARRAY_MAP[row_index][column_index]]
                 new_row.append(new_state_element)
             new_state.append(new_row)
