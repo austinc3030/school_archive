@@ -106,6 +106,21 @@ class AES(object):
         """
         new_state = []
 
+        print_state(current_state)
+        print()
+
+        mix_column_calculations = []
+
+        for current_state_row_index, current_state_row in enumerate(current_state):
+            for current_state_column_index, current_state_column in enumerate(current_state_row):
+                column = get_state_column(current_state, current_state_column_index)
+                column_calculations = [(str(self.Constants.MIX_COLUMN[current_state_row_index][0]) + " * " + str(column[0])),
+                                       (str(self.Constants.MIX_COLUMN[current_state_row_index][1]) + " * " + str(column[1])),
+                                       (str(self.Constants.MIX_COLUMN[current_state_row_index][2]) + " * " + str(column[2])),
+                                       (str(self.Constants.MIX_COLUMN[current_state_row_index][3]) + " * " + str(column[3]))]
+                mix_column_calculations.append(column_calculations)
+
+        print(mix_column_calculations)
         # [02 03 01 01]   [d4]   [??]
         # [01 02 03 01] * [bf] = [66]
         # [01 01 02 03]   [5d]   [81]
@@ -164,10 +179,18 @@ class AES(object):
         current_state = self._addkey(initial_state, self.subkey0)  # Use Subkey0 for first round
         current_state = self._subbytes(current_state)
         current_state = self._shiftrows(current_state)
+
+        ### REMOVE LATER. ONLY FOR TESTING
+        test_state = [["d4"],
+                      ["bf"],
+                      ["5d"],
+                      ["30"]]
+        current_state = test_state
+        ### REMOVE LATER. ONLY FOR TESTING
+
         current_state = self._mixcolumns(current_state)
 
-        print_state(current_state)
-        
+        print_state(current_state)        
 
     def __init__(self):
         """
