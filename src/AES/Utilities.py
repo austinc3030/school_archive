@@ -250,3 +250,20 @@ def convert_binary_to_hex(binary_number):
     :return: The hex equivalent of the binary number
     """
     return "{:02x}".format(int(binary_number[0], 2))
+
+
+def collapse_state_for_output(state):
+    """
+    Collapse the state into a string for output
+    
+    :param state: thee state to collapse
+
+    :return: the collapsed state as a string
+    """
+    state_string = ""
+    
+    for row in state:
+        for column in row:
+            state_string += column
+
+    return state_string

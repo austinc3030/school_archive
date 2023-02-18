@@ -3,10 +3,10 @@ import copy
 from AES.ArgumentHandler import ArgumentHandler
 from AES.Constants import Constants
 from AES.ErrorHandler import ErrorHandler
-from AES.Utilities import chunk_hex_string, convert_binary_to_hex, convert_binary_to_polynomial, \
-                          convert_boolean_list_to_binary, convert_hex_to_binary, convert_polynomial_to_boolean_list, \
-                          hex_highbyte, hex_lowbyte, get_state_column, matricize_hex_string, print_state, \
-                          split_hex_string, string_to_hex
+from AES.Utilities import chunk_hex_string, collapse_state_for_output, convert_binary_to_hex, \
+                          convert_binary_to_polynomial, convert_boolean_list_to_binary, convert_hex_to_binary, \
+                          convert_polynomial_to_boolean_list, hex_highbyte, hex_lowbyte, get_state_column, \
+                          matricize_hex_string, print_state, split_hex_string, string_to_hex
 
 
 
@@ -381,12 +381,15 @@ class AES(object):
         state_after_round1 = copy.deepcopy(current_state)
         
         # Do additional add key with subkey1
-        new_state = self._addkey(current_state, self.subkey1)
+        state_after_second_addkey = self._addkey(current_state, self.subkey1)
 
         # Need to write results to file
 
-        print_state(state_after_round1)
-        print_state(new_state)        
+        collapsed_state_after_round1 = collapse_state_for_output(state_after_round1)
+        collapsed_state_after_second_addkey = collapse_state_for_output(state_after_second_addkey)
+
+        print("Current State After Round 1: " + collapsed_state_after_round1)
+        print("Current State After Additional AddKey After Round 1: " + collapsed_state_after_second_addkey)
 
     def __init__(self):
         """
