@@ -240,3 +240,13 @@ def convert_boolean_list_to_binary(boolean_list):
 
     return binary
 
+
+def convert_binary_to_hex(binary_number):
+    """
+    Convert the given binary number to hex
+
+    :param binary_number: the binary number to convert
+
+    :return: The hex equivalent of the binary number
+    """
+    return "{:02x}".format(int(binary_number[0], 2))

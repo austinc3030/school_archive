@@ -1,9 +1,10 @@
 from AES.ArgumentHandler import ArgumentHandler
 from AES.Constants import Constants
 from AES.ErrorHandler import ErrorHandler
-from AES.Utilities import chunk_hex_string, convert_binary_to_polynomial, convert_boolean_list_to_binary, \
-                          convert_hex_to_binary, convert_polynomial_to_boolean_list, hex_highbyte, hex_lowbyte, \
-                          get_state_column, matricize_hex_string, print_state, split_hex_string, string_to_hex
+from AES.Utilities import chunk_hex_string, convert_binary_to_hex, convert_binary_to_polynomial, \
+                          convert_boolean_list_to_binary, convert_hex_to_binary, convert_polynomial_to_boolean_list, \
+                          hex_highbyte, hex_lowbyte, get_state_column, matricize_hex_string, print_state, \
+                          split_hex_string, string_to_hex
 
 
 
@@ -113,7 +114,6 @@ class AES(object):
                                    column[column_index]]
                     column_calculations.append(calculation)
                 mixcolumns_calculations.append(column_calculations)
-
         return mixcolumns_calculations
 
 
@@ -316,7 +316,25 @@ class AES(object):
         """
         for row_index, row in enumerate(binary_calculations):
             for column_index, column in enumerate(row):
-                binary_calculations[row_index][column_index] = 
+                binary_calculations[row_index][column_index] = convert_binary_to_hex(column)
+            
+        return binary_calculations
+    
+
+    def _format_state(self, state):
+        """
+        Hack function to get state to output how we expect
+        
+        :param state: the state to put out a new format for
+
+        :return: the formatted state
+        """
+        new_state = [[state[0],  state[1],  state[2],  state[3]],
+                     [state[4],  state[5],  state[6],  state[7]],
+                     [state[8],  state[9],  state[10], state[11]],
+                     [state[12], state[13], state[14], state[15]]]
+                    
+        return new_state
 
 
     def _mixcolumns(self, state):
@@ -328,87 +346,23 @@ class AES(object):
 
         :return: the new state after the mixcolumns operation
         """
-        new_state = []
+        state = self._generate_mixcolumns_calculations(state)
+        state = self._convert_calculations_to_binary(state)
+        state = self._expand_to_polynomial_calculations(state)
+        state = self._reduce_powers_from_calculations(state)
+        state = self._perform_multiplication_of_elements(state)
+        state = self._cancel_like_terms(state)
+        state = self._cascade_calculations(state)
+        state = self._cancel_like_terms(state)
+        state = self._substitute_eighth_powers(state)
+        state = self._cancel_like_terms(state)
+        state = self._convert_calculation_outputs_to_boolean_list(state)
+        state = self._convert_boolean_calculations_to_binary(state)
+        state = self._convert_binary_calculations_to_hex(state)
 
-        print_state(state)
-        print()
-
-        mixcolumn_calculations = self._generate_mixcolumns_calculations(state)
-
-        binary_calculations = self._convert_calculations_to_binary(mixcolumn_calculations)
-        polynomial_calculations = self._expand_to_polynomial_calculations(binary_calculations)
-        #print_state(polynomial_calculations)
-        calculations_with_reduced_powers = self._reduce_powers_from_calculations(polynomial_calculations)
-        #print_state(calculations_with_reduced_powers)
-        multiplied_elements = self._perform_multiplication_of_elements(calculations_with_reduced_powers)
-        #print_state(multiplied_elements)
-        cancelled_terms_before_cascade = self._cancel_like_terms(multiplied_elements)
-        #print_state(cancelled_terms_before_cascade)
-        cascaded_calculations = self._cascade_calculations(cancelled_terms_before_cascade)
-        #print_state(cascaded_calculations)
-        cancelled_terms_after_cascade = self._cancel_like_terms(cascaded_calculations)
-        #print_state(cancelled_terms_after_cascade)
-        replaced_eighth_powers = self._substitute_eighth_powers(cancelled_terms_after_cascade)
-        #print_state(replaced_eighth_powers)
-        cancelled_terms_after_substitution = self._cancel_like_terms(replaced_eighth_powers)
-        print_state(cancelled_terms_after_substitution)
-        boolean_calculation_outputs = \
-            self._convert_calculation_outputs_to_boolean_list(cancelled_terms_after_substitution)
-        print_state(boolean_calculation_outputs)
-        binary_output_of_boolean_list = self._convert_boolean_calculations_to_binary(boolean_calculation_outputs)
-        print_state(binary_output_of_boolean_list)
-        hex_output = self._convert_binary_calculations_to_hex(binary_output_of_boolean_list)
-
+        state = self._format_state(state)
             
-
-        #substituted_eighth_powers = self._substitute_eighth_powers(first_cancel)
-        #print_state(substituted_eighth_powers)
-        
-        # [02 03 01 01]   [d4]   [??]
-        # [01 02 03 01] * [bf] = [66]
-        # [01 01 02 03]   [5d]   [81]
-        # [03 01 01 02]   [30]   [e5]
-
-        # ?? = (02 * d4) XOR (03 * bf) XOR (01 * 5d) XOR (01 * 30)
-        # T = T1 XOR T2 XOR T3 XOR T4
-
-        # T1 = (02 * d4)
-        # Convert hex to binary 02 -> 00000010
-        # Convert binary to polynomial
-        #   x7 XOR   x6 XOR   x5 XOR   x4 XOR   x3 XOR   x2 XOR   x1 XOR   x
-        # 0*x7 XOR 0*x6 XOR 0*x5 XOR 0*x4 XOR 0*x3 XOR 0*x2 XOR 1*x1 XOR 0*x0
-        # = x (because there is only 1 for x1)
-
-        # Convert hex to binary d4 -> 11010100
-        # Convert binary to polynomial
-        #   x7 XOR   x6 XOR   x5 XOR   x4 XOR   x3 XOR   x2 XOR   x1 XOR   x
-        # 1*x7 XOR 1*x6 XOR 0*x5 XOR 1*x4 XOR 0*x3 XOR 1*x2 XOR 0*x1 XOR 0*x0
-        # = x7 XOR x6 XOR x4 XOR x2 (because there are 1's in the polynomial for these)
-
-        # T1 = (x) * (x7 XOR x6 XOR x4 XOR x2) (Distribute X)
-        # T1 = x8 XOR x7 XOR x5 XOR x3
-
-        # T2 = (03 * bf) = x8 XOR x7 XOR x6 XOR 1
-        # T3 = (01 * 5d) = x6 XOR x4 XOR x3 XOR x2 XOR 1
-        # T4 = (01 * 30) = x5 XOR x4
-
-        # T = T1 XOR T2 XOR T3 XOR T4
-        # = x8 XOR x7 XOR x5 XOR x3 XOR x8 XOR x7 XOR x6 XOR 1 XOR x6 XOR x4 XOR x3 XOR x2 XOR 1 XOR x5 XOR x4
-        # Cancel out same polynomial degrees
-        # T = x2 (Each duplicate power gets eliminated)
-
-        # Convert polynomial to binary
-        # 0*x7 XOR 0*x6 XOR 0*x6 XOR 0x4 XOR 0*x3 XOR 1*x2 XOR 0*x1 XOR 0*x0
-        # NOTE x^0 is 1 (anything to power of 0 is 1)
-        # 0        0        0        0       0        1        0        0
-        # Convert to hex
-        # 00000100 = 0x04
-
-        # If final polynomial value T is in the form of >x7 (There is something to the power of 8)
-        # T' = T XOR Polynomial
-        # T' = T XOR x8 XOR x4 XOR x3 XOR x XOR 1
-
-        return new_state
+        return state
 
 
     def main(self):
@@ -419,15 +373,6 @@ class AES(object):
         current_state = self._addkey(initial_state, self.subkey0)  # Use Subkey0 for first round
         current_state = self._subbytes(current_state)
         current_state = self._shiftrows(current_state)
-
-        ### REMOVE LATER. ONLY FOR TESTING
-        test_state = [["d4"],
-                      ["bf"],
-                      ["5d"],
-                      ["30"]]
-        current_state = test_state
-        ### REMOVE LATER. ONLY FOR TESTING
-
         current_state = self._mixcolumns(current_state)
 
         print_state(current_state)        
