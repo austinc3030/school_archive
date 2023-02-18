@@ -1,3 +1,5 @@
+import copy
+
 from AES.ArgumentHandler import ArgumentHandler
 from AES.Constants import Constants
 from AES.ErrorHandler import ErrorHandler
@@ -376,12 +378,14 @@ class AES(object):
         current_state = self._mixcolumns(current_state)
 
         # save off current_state so we can display at the end
-        state_after_round1 = current_state
-        print_state(state_after_round1)
+        state_after_round1 = copy.deepcopy(current_state)
+        
         # Do additional add key with subkey1
         new_state = self._addkey(current_state, self.subkey1)
 
+        # Need to write results to file
 
+        print_state(state_after_round1)
         print_state(new_state)        
 
     def __init__(self):
