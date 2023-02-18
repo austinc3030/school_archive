@@ -1,9 +1,9 @@
 from AES.ArgumentHandler import ArgumentHandler
 from AES.Constants import Constants
 from AES.ErrorHandler import ErrorHandler
-from AES.Utilities import chunk_hex_string, convert_binary_to_polynomial, convert_hex_to_binary, hex_highbyte, \
-                          hex_lowbyte, get_state_column, matricize_hex_string, print_state, split_hex_string, \
-                          string_to_hex
+from AES.Utilities import chunk_hex_string, convert_binary_to_polynomial, convert_boolean_list_to_binary, \
+                          convert_hex_to_binary, convert_polynomial_to_boolean_list, hex_highbyte, hex_lowbyte, \
+                          get_state_column, matricize_hex_string, print_state, split_hex_string, string_to_hex
 
 
 
@@ -197,13 +197,11 @@ class AES(object):
             for column_index, column in enumerate(row):
                 left_element = column[0]
                 right_element = column[1]
-
                 # Perform left_element * right_element by distributing powers
                 new_element = []
                 for left_index, left in enumerate(left_element):
                     for right_index, right in enumerate(right_element):
                         new_element.append(left + right)
-                
                 calculations[row_index][column_index] = new_element
 
         return calculations
@@ -257,14 +255,68 @@ class AES(object):
 
         :return: The calculations cascaded appropriately per column
         """
+        new_calculations = []
+
+        for row_index, row in enumerate(calculations):
+            new_row = []
+            for column_index, column in enumerate(row):
+                new_column = []
+                for element_index, element in enumerate(row):
+                    new_column.extend(element)    
+            new_row.append(new_column)
+            new_calculations.append(new_row)
+
+        return new_calculations
+    
+
+    def _convert_calculation_outputs_to_boolean_list(self, calculations):
+        """
+        Convert each element in the calculations object from a polynomial expression to a binary expression
+
+        :param calculations: the calculations object to convert
+
+        :return: The binary converted calculations
+        """
+
         for row_index, row in enumerate(calculations):
             for column_index, column in enumerate(row):
-                new_calculation = []
-                for element_index, element in enumerate(row):
-                    new_calculation.extend(element)
-                calculations[row_index][column_index] = new_calculation
+                calculations[row_index][column_index] = convert_polynomial_to_boolean_list(column)
 
         return calculations
+
+    
+    def _convert_boolean_calculations_to_binary(self, boolean_calculations):
+        """
+        Convert the given boolean list into binary
+
+        :param boolean_calculations: the calculations to convert to binary
+
+        :return: The converted calculations
+        """
+        binary_calculations = []
+
+        for row_index, row in enumerate(boolean_calculations):
+            new_row = []
+            for column_index, column in enumerate(row):
+                new_column = []
+                new_column.append(convert_boolean_list_to_binary(column))
+                new_row.append(new_column)
+            binary_calculations.append(new_row)
+
+        return binary_calculations
+    
+
+    def _convert_binary_calculations_to_hex(self, binary_calculations):
+        """
+        Convert the binary calculations into hex output
+
+        :param binary_calculations: the binary calculations to convert to hex
+
+        :return: The hex output from the conversion
+        """
+        for row_index, row in enumerate(binary_calculations):
+            for column_index, column in enumerate(row):
+                binary_calculations[row_index][column_index] = 
 
 
     def _mixcolumns(self, state):
@@ -285,14 +337,29 @@ class AES(object):
 
         binary_calculations = self._convert_calculations_to_binary(mixcolumn_calculations)
         polynomial_calculations = self._expand_to_polynomial_calculations(binary_calculations)
+        #print_state(polynomial_calculations)
         calculations_with_reduced_powers = self._reduce_powers_from_calculations(polynomial_calculations)
+        #print_state(calculations_with_reduced_powers)
         multiplied_elements = self._perform_multiplication_of_elements(calculations_with_reduced_powers)
+        #print_state(multiplied_elements)
         cancelled_terms_before_cascade = self._cancel_like_terms(multiplied_elements)
+        #print_state(cancelled_terms_before_cascade)
         cascaded_calculations = self._cascade_calculations(cancelled_terms_before_cascade)
+        #print_state(cascaded_calculations)
         cancelled_terms_after_cascade = self._cancel_like_terms(cascaded_calculations)
+        #print_state(cancelled_terms_after_cascade)
         replaced_eighth_powers = self._substitute_eighth_powers(cancelled_terms_after_cascade)
+        #print_state(replaced_eighth_powers)
         cancelled_terms_after_substitution = self._cancel_like_terms(replaced_eighth_powers)
+        print_state(cancelled_terms_after_substitution)
+        boolean_calculation_outputs = \
+            self._convert_calculation_outputs_to_boolean_list(cancelled_terms_after_substitution)
+        print_state(boolean_calculation_outputs)
+        binary_output_of_boolean_list = self._convert_boolean_calculations_to_binary(boolean_calculation_outputs)
+        print_state(binary_output_of_boolean_list)
+        hex_output = self._convert_binary_calculations_to_hex(binary_output_of_boolean_list)
 
+            
 
         #substituted_eighth_powers = self._substitute_eighth_powers(first_cancel)
         #print_state(substituted_eighth_powers)

@@ -192,3 +192,51 @@ def convert_binary_to_polynomial(binary):
             polynomial_list[bit_index] = True
 
     return polynomial_list
+
+
+def convert_polynomial_to_boolean_list(polynomial):
+    """
+    Given a polynomial expression, convert it into binary
+    
+    :param polynomial: A polynomial expression to convert back to binary
+
+    :return: the boolean list from the polynomial
+    """
+    #              x7     x6     x5     x4     x3     x2     x1     x0
+    boolean_list = [False, False, False, False, False, False, False, False]
+    
+    if 7 in polynomial:
+        boolean_list[0] = True
+    if 6 in polynomial:
+        boolean_list[1] = True
+    if 5 in polynomial:
+        boolean_list[2] = True
+    if 4 in polynomial:
+        boolean_list[3] = True
+    if 3 in polynomial:
+        boolean_list[4] = True
+    if 2 in polynomial:
+        boolean_list[5] = True
+    if 1 in polynomial:
+        boolean_list[6] = True
+    if 0 in polynomial:
+        boolean_list[7] = True
+    
+    return boolean_list
+
+
+def convert_boolean_list_to_binary(boolean_list):
+    """
+    Given a boolean list, convert it to a binary number
+
+    :param boolean_list: the boolean list to convert
+
+    :return: The binary number
+    """
+    binary = ""
+
+    for bit in boolean_list:
+        binary += str(int(bit))
+
+    return binary
+
