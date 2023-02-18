@@ -383,13 +383,24 @@ class AES(object):
         # Do additional add key with subkey1
         state_after_second_addkey = self._addkey(current_state, self.subkey1)
 
-        # Need to write results to file
-
+        # Collapse states for output
         collapsed_state_after_round1 = collapse_state_for_output(state_after_round1)
         collapsed_state_after_second_addkey = collapse_state_for_output(state_after_second_addkey)
 
-        print("Current State After Round 1: " + collapsed_state_after_round1)
-        print("Current State After Additional AddKey After Round 1: " + collapsed_state_after_second_addkey)
+        # Output states
+        output_line_1 = str(collapsed_state_after_round1 + "  # Current State After Round 1")
+        output_line_2 = str(collapsed_state_after_second_addkey +
+                            "  # Current State After Additional AddKey After Round 1")
+
+        # Print to terminal
+        print(output_line_1)
+        print(output_line_2)
+
+        # Write output to file
+        with open("../data/result.txt", "w") as output_file:
+            output_file.write(output_line_1 + "\n")
+            output_file.write(output_line_2)
+            output_file.close()
 
     def __init__(self):
         """
