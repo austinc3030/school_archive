@@ -329,10 +329,10 @@ class AES(object):
 
         :return: the formatted state
         """
-        new_state = [[state[0],  state[1],  state[2],  state[3]],
-                     [state[4],  state[5],  state[6],  state[7]],
-                     [state[8],  state[9],  state[10], state[11]],
-                     [state[12], state[13], state[14], state[15]]]
+        new_state = [[state[0][0],  state[1][0],  state[2][0],  state[3][0]],
+                     [state[4][0],  state[5][0],  state[6][0],  state[7][0]],
+                     [state[8][0],  state[9][0],  state[10][0], state[11][0]],
+                     [state[12][0], state[13][0], state[14][0], state[15][0]]]
                     
         return new_state
 
@@ -375,7 +375,14 @@ class AES(object):
         current_state = self._shiftrows(current_state)
         current_state = self._mixcolumns(current_state)
 
-        print_state(current_state)        
+        # save off current_state so we can display at the end
+        state_after_round1 = current_state
+        print_state(state_after_round1)
+        # Do additional add key with subkey1
+        new_state = self._addkey(current_state, self.subkey1)
+
+
+        print_state(new_state)        
 
     def __init__(self):
         """
