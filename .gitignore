@@ -130,3 +130,6 @@ dmypy.json
 
 # Ignore large iso file
 ubuntu-22.04.2-desktop-amd64.iso
+
+# Ignore msoffice temporary files
+~$*.docx
