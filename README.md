@@ -1,6 +1,6 @@
 # buffer_m11809075
 
-Extracted from `./project2_buffer_cs5153.pdf` using https://pdf2md.morethan.io/
+Extracted from `./pdfs/project2_buffer_cs5153.pdf` using https://pdf2md.morethan.io/
 NOTE: The pdf to md conversion messed up some values. Check PDF for accurate values.
 
 ## CS 5153/6053 Network Security, Spring 2023
@@ -64,7 +64,7 @@ In addition, you need to include screenshots to show each of those steps in your
 
 
 ## Buffer Overflow Vulnerability Lab
-Extracted from `./project2_buffer_cs5153.pdf` using https://pdf2md.morethan.io/
+Extracted from `./pdfs/project2_buffer_cs5153.pdf` using https://pdf2md.morethan.io/
 NOTE: The pdf to md conversion messed up some values. Check PDF for accurate values.
 
 Updated on January 11, 2020
