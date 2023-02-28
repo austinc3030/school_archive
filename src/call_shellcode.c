@@ -21,6 +21,7 @@ const char code[] =
 int main(int argc, char **argv)
 {
    char buf[sizeof(code)];
+   print(buf);
    strcpy(buf, code);
    ((void(*)( ))buf)( );
 } 
