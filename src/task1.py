@@ -17,7 +17,7 @@ while True:  # Run until CTRL+C
     lyrIP = IP(src=strSourceIP, dst=strDestinationIP)
 
     # Build TCP layer of the packet
-    lyrTCP = TCP(sport=intSourcePort, dport=intDestinationPort, flags="S", seq=randrange(1,4294967295))
+    lyrTCP = TCP(sport=intSourcePort, dport=intDestinationPort, flags="S", seq=12435)
     
     # Build the full packet and show it
     pktSynPacket = lyrIP / lyrTCP
