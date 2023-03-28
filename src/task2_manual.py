@@ -4,8 +4,8 @@ from random import randrange
 import sys
 
 # Fill with values found during analysis
-intSourcePort = 0
-intNextSequenceNumber = 0
+intSourcePort = 48638
+intNextSequenceNumber = 3531550224
 
 # Targeting victim/server container's telnet port
 strSourceIP = "10.9.0.1"
