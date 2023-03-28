@@ -6,7 +6,7 @@ import sys
 strSourceIP = "10.9.0.1"
 intSourcePort = randrange(1, 65535)  # Pick an arbirtrary source port number
 
-strDestinationIP = "10.9.0.6"
+strDestinationIP = "10.9.0.5"
 intDestinationPort =  23  # Targeting telnet port
 
 # IP information will not change
