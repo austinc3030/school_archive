@@ -4,8 +4,8 @@ import sys
 
 # Fill with values found during analysis
 intSourcePort = 38658
-intNextSequenceNumber = 3373347965
-intAcknowledgementValue = 3021897496
+intNextSequenceNumber = 3373348062
+intAcknowledgementValue = 3021897507
 
 # Attacker listening post
 strListeningIP = "10.9.0.1"
