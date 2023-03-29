@@ -3,7 +3,7 @@ from scapy.all import *
 import sys
 
 # Fill with values found during analysis
-intSourcePort = 68578
+intSourcePort = 60578
 intNextSequenceNumber = 3807779056
 intAcknowledgementValue = 2168643280
 
