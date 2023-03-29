@@ -6,7 +6,6 @@ strClientIP = '10.9.0.6'
 
 def spoof_tcp(pkt):
 
-    print(pkt[IP].src)
     lyrIP = IP(dst=strClientIP, src = pkt[IP].dst)
     lyrTCP = TCP(flags="R", seq=pkt[TCP].ack, dport=pkt[TCP].sport, sport=pkt[TCP].dport)
     
