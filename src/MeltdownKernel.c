@@ -7,6 +7,8 @@
 #include <linux/seq_file.h>
 #include <linux/uaccess.h>
 
+MODULE_LICENSE("GPL");
+
 static char secret[8] = {'S','E','E','D','L','a','b','s'};
 static struct proc_dir_entry *secret_entry;
 static char* secret_buffer;
@@ -27,14 +29,15 @@ static ssize_t read_proc(struct file *filp, char *buffer,
    return 8;
 }
 
-static const struct file_operations test_proc_fops =
+static const struct proc_ops test_proc_fops =
 {
-   .owner = THIS_MODULE,
-   .open = test_proc_open,
-   .read = read_proc,
-   .llseek = seq_lseek,
-   .release = single_release,
+//   .owner = THIS_MODULE,
+   .proc_open = test_proc_open,
+   .proc_read = read_proc,
+   .proc_lseek = seq_lseek,
+   .proc_release = single_release,
 };
+
 
 static __init int test_proc_init(void)
 {
