@@ -46,7 +46,7 @@ void reloadSideChannel()
 
 void meltdown(unsigned long kernel_data_addr)
 {
-  char kernel_data = 0;
+  char kernel_data = 0x49f9dadb;
    
   // The following statement will cause an exception
   kernel_data = *(char*)kernel_data_addr;     
