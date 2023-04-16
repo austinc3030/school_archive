@@ -1,5 +1,6 @@
 #!/bin/python
 
+import re
 import requests
 
 # This is the original page for the change log:
@@ -17,28 +18,79 @@ def get_changelog():
     return changelog
 
 
-def main():
-    changelog = get_changelog()
+def remove_garbage(raw_changelog):
 
-    #for line in changelog:
-    #    print(line)
-
-    for line in changelog:
-        
-        if not line:
-            line = line
-        if line == "# Change Log":
-            line = line
-        elif line.startswith("#### "):
-            print("DATE " + line)
-        elif line.startswith("## "):
-            print("HEADER " + line)
-        elif line.startswith("- "):
-            print("LISTFIRSTLEVEL " + line)
-        elif line.startswith("  - "):
-            print("LISTSECONDLEVEL " + line)
+    garbage_removed = []
+    docs_link_pattern1 = r"\(#DOCS.*\/.*\)"
+    docs_link_pattern2 = r"\(#DOCS.*\)"
+    url_pattern = r"\(http.*\)"
+    
+    for line in raw_changelog:
+        if not line or line == "# Change Log":
+            pass
         else:
-            print(line)
+            # Remove docs links
+            line = re.sub(docs_link_pattern1, "", line)
+            line = re.sub(docs_link_pattern2, "", line)
+
+            # Remove urls
+            line = re.sub(url_pattern, "", line)
+            
+            # Remove brackets
+            line = line.replace("[", "")
+            line = line.replace("]", "")
+            
+            # Remove other characters
+            line = line.replace("`", "")
+            line = line.replace(">", "")
+            line = line.replace("*", "")
+            
+            # Remove newlines
+            line = line.replace("\n", "")
+
+            # Add the line to the clean list
+            garbage_removed.append(line)
+
+    return garbage_removed
+
+
+def main():
+    raw_changelog = get_changelog()
+    cleaned_changelog = remove_garbage(raw_changelog)
+
+    parsed_changelog = []
+
+    for line in cleaned_changelog:
+    
+        parsed_line = {"type" : "",
+                    "content" : "" }
+
+        if line.startswith("#### "):
+            # Will need to try to parse as date and if unable to, then this is not a date
+            parsed_line["type"] = "date"
+            line = line.replace("#### ", "")
+        elif line.startswith("### "):
+            parsed_line["type"] = "sub_header"
+            line = line.replace("### ", "")
+        elif line.startswith("## "):
+            parsed_line["type"] = "header"
+            line = line.replace("## ", "")
+        elif line.startswith("- "):
+            parsed_line["type"] = "list1"
+            line = line.replace("- ", "")
+        elif line.startswith("  - "):
+            parsed_line["type"] = "list2"
+            line = line.replace("  - ", "")
+        else:
+            parsed_line["type"] = "unknown"
+        
+        line = line.strip()        
+        parsed_line["content"] = line
+
+        parsed_changelog.append(parsed_line)
+    
+    for line in parsed_changelog:
+        print(line["type"] + "\t\t" + line["content"])
 
 if __name__:
     main()
