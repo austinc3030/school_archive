@@ -1,5 +1,6 @@
 #!/bin/python
 
+from dateutil.parser import parse
 import re
 import requests
 
@@ -9,6 +10,13 @@ import requests
 #     https://raw.githubusercontent.com/discord/discord-api-docs/main/docs/Change_Log.md
 # This script uses the Change_Log.md file from GitHub to parse the changelog into a csv format
 
+
+# change = {"date" : "",
+#           "header": "",
+#           "message": ""}
+
+# split_by_date = {"date": "",
+#                  "contents"}
 
 def get_changelog():
     discord_changelog_md_url = "https://raw.githubusercontent.com/discord/discord-api-docs/main/docs/Change_Log.md"
@@ -53,44 +61,109 @@ def remove_garbage(raw_changelog):
 
     return garbage_removed
 
+def is_date(possible_date):
+    
+    is_date = False
+   
+    try:
+        parse(possible_date)
+        is_date = True
+    except ValueError:
+        is_date = False
+
+    return is_date
+
+
+def classification(cleaned_changelog):
+
+    classified_changelog = []
+
+    for line in cleaned_changelog:
+    
+        classified_line = {"type" : "",
+                           "content" : "" }
+
+        if line.startswith("#### "):
+            # Will need to try to parse as date and if unable to, then this is not a date.
+            # If not a date, assume header
+            line = line.replace("#### ", "")
+
+            if is_date(line):
+                classified_line["type"] = "date"
+            else:
+                classified_line["type"] = "hedr"
+        elif line.startswith("### "):
+            classified_line["type"] = "shdr"
+            line = line.replace("### ", "")
+        elif line.startswith("## "):
+            classified_line["type"] = "hedr"
+            line = line.replace("## ", "")
+        elif line.startswith("- "):
+            classified_line["type"] = "lst1"
+            line = line.replace("- ", "")
+        elif line.startswith("  - "):
+            classified_line["type"] = "lst2"
+            line = line.replace("  - ", "")
+        else:
+            classified_line["type"] = "mesg"
+        
+        line = line.strip()        
+        classified_line["content"] = line
+
+        classified_changelog.append(classified_line)
+    
+    return classified_changelog
+
+
+def split_by_date(classified_changelog):
+
+    changelog_split_by_date = []
+    entity_dict_format = {"date": "",
+                          "contents": []}
+
+    index = 0
+    
+    while index < len(classified_changelog):
+        entity = {"date" : "",
+                  "contents" : []}
+        
+        contents = []
+
+        if classified_changelog[index]["type"] == "date":
+            entity["date"] = parse(classified_changelog[index]["content"])
+            sub_index = 1
+            stop = False
+
+            # Don't overrun the list and stop when the stop flag is set
+            while ((index + sub_index) < len(classified_changelog)) and not stop:
+                if (index + sub_index + 1) == len(classified_changelog):
+                    stop = True
+                elif classified_changelog[index + sub_index + 1]["type"] == "date":
+                    stop = True
+                
+                contents.append(classified_changelog[index + sub_index])
+
+                sub_index += 1
+
+            entity["contents"] = contents
+        
+        index += 1
+
+        changelog_split_by_date.append(entity)
+
+    return changelog_split_by_date
+
 
 def main():
     raw_changelog = get_changelog()
     cleaned_changelog = remove_garbage(raw_changelog)
+    classified_changelog = classification(cleaned_changelog)
+    changelog_split_by_date = split_by_date(classified_changelog)
 
-    parsed_changelog = []
-
-    for line in cleaned_changelog:
-    
-        parsed_line = {"type" : "",
-                    "content" : "" }
-
-        if line.startswith("#### "):
-            # Will need to try to parse as date and if unable to, then this is not a date
-            parsed_line["type"] = "date"
-            line = line.replace("#### ", "")
-        elif line.startswith("### "):
-            parsed_line["type"] = "sub_header"
-            line = line.replace("### ", "")
-        elif line.startswith("## "):
-            parsed_line["type"] = "header"
-            line = line.replace("## ", "")
-        elif line.startswith("- "):
-            parsed_line["type"] = "list1"
-            line = line.replace("- ", "")
-        elif line.startswith("  - "):
-            parsed_line["type"] = "list2"
-            line = line.replace("  - ", "")
-        else:
-            parsed_line["type"] = "unknown"
-        
-        line = line.strip()        
-        parsed_line["content"] = line
-
-        parsed_changelog.append(parsed_line)
-    
-    for line in parsed_changelog:
-        print(line["type"] + "\t\t" + line["content"])
+    for entity in changelog_split_by_date:
+        print(entity["date"])
+        for content in entity["contents"]:
+            print("\t\t" + content["type"] + " : " + content["content"])
 
 if __name__:
     main()
