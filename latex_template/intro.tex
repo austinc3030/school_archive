@@ -1,0 +1,9 @@
+\section{Introduction}
+\label{sec:intro}
+
+Searchable Encryption (SE) \cite{SWP00, CGKO06} aims to search encrypted data on an untrusted server without decrypting data. %It was motivated by the concerns of completely losing data privacy while using data services on untrusted remote servers, e.g. public clouds. 
+More specifically, with SE, a data owner, e.g., a company, can encrypt a dataset before storing data on an untrusted server, e.g., a public cloud. When this data owner or a user would like to search encrypted data on the server, it can submit a search token, i.e., the encrypted version of a query, to the server. With a search token, the server can return encrypted files/tuples matching to this query without accessing data or queries in plaintext. In addition to its implementation on public servers, SE could also act as the last line of defense minimizing data leakage on internal servers when security breaches, such as the recent leakage of Equifax's 143 million Social Security numbers, happen in practice.
+%decrypting encrypted data or token. %Further details about the system model and algorithms of SE can be found in Sec.~\ref{sec:model}. 
+
+Many SE schemes have been proposed to efficiently support different types of queries, including keyword queries \cite{CGKO06, KPR12, CJJKRS13, KP13, CJJJKRS14, PKVKMCGKB14} and range queries \cite{BW07, SBCSP07, Lu12, KT17}, over encrypted data. For example, while both data and queries are encrypted with a SE scheme, a user can retrieve encrypted files/emails containing a sensitive keyword, such as "Alzheimer", or it  can retrieve encrypted records of patients' confidential information where attribute \texttt{age} is between $(40, 50)$, from an untrusted server. Several secure data systems, such as CryptoDB \cite{PRZB11} and Google Encrypted BigQuery \cite{Bigquery}, have been implemented in practice based on existing SE schemes. 
+  
