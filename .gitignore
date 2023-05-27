@@ -39,6 +39,8 @@ Debug/
 
 /.vs/VSWorkspaceState.json
 Debug/
+=======
+>>>>>>> buffer_m11809075/main
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -168,3 +170,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Ignore large iso file
+*.iso
+
+# Ignore msoffice temporary files
+~$*.docx
