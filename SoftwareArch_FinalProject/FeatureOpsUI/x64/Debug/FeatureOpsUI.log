@@ -1,0 +1,10 @@
+﻿  BlockBuilderUI.cpp
+C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\AppPartOps\PartOps.h(20,15): warning C4251: 'Application::PartFile::m_partFilePath': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Application::PartFile'
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.31.31103\include\xstring(4927): message : see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+  dllmain.cpp
+  MakeWidgetFeature.cpp
+C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\AppPartOps\PartOps.h(20,15): warning C4251: 'Application::PartFile::m_partFilePath': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Application::PartFile'
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.31.31103\include\xstring(4927): message : see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+  Generating Code...
+     Creating library C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\x64\Debug\UIFeatureOps.lib and object C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\x64\Debug\UIFeatureOps.exp
+  FeatureOpsUI.vcxproj -> C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\x64\Debug\UIFeatureOps.dll

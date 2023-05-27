@@ -1,0 +1,10 @@
+﻿  dllmain.cpp
+  JournalCallData.cpp
+  JournalCallParamData.cpp
+  JournalCallParamDataClass.cpp
+  JournalCallParamDataString.cpp
+  JournalFile.cpp
+  Journaling.cpp
+  Generating Code...
+     Creating library C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\x64\Debug\JOURNALING.lib and object C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\x64\Debug\JOURNALING.exp
+  Journaling.vcxproj -> C:\Users\user\Desktop\software_arch\SoftwareArch_FinalProject\x64\Debug\JOURNALING.dll

@@ -1,0 +1,282 @@
+\hypertarget{jdwp_transport_8h_source}{}\doxysection{jdwp\+Transport.\+h}
+\label{jdwp_transport_8h_source}\index{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/JNI\_Includes/jdwpTransport.h@{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/JNI\_Includes/jdwpTransport.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright (c) 2003, 2017, Oracle and/or its affiliates. All rights reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.}}
+\DoxyCodeLine{4 \textcolor{comment}{ *}}
+\DoxyCodeLine{5 \textcolor{comment}{ * This code is free software; you can redistribute it and/or modify it}}
+\DoxyCodeLine{6 \textcolor{comment}{ * under the terms of the GNU General Public License version 2 only, as}}
+\DoxyCodeLine{7 \textcolor{comment}{ * published by the Free Software Foundation.  Oracle designates this}}
+\DoxyCodeLine{8 \textcolor{comment}{ * particular file as subject to the "{}Classpath"{} exception as provided}}
+\DoxyCodeLine{9 \textcolor{comment}{ * by Oracle in the LICENSE file that accompanied this code.}}
+\DoxyCodeLine{10 \textcolor{comment}{ *}}
+\DoxyCodeLine{11 \textcolor{comment}{ * This code is distributed in the hope that it will be useful, but WITHOUT}}
+\DoxyCodeLine{12 \textcolor{comment}{ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or}}
+\DoxyCodeLine{13 \textcolor{comment}{ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License}}
+\DoxyCodeLine{14 \textcolor{comment}{ * version 2 for more details (a copy is included in the LICENSE file that}}
+\DoxyCodeLine{15 \textcolor{comment}{ * accompanied this code).}}
+\DoxyCodeLine{16 \textcolor{comment}{ *}}
+\DoxyCodeLine{17 \textcolor{comment}{ * You should have received a copy of the GNU General Public License version}}
+\DoxyCodeLine{18 \textcolor{comment}{ * 2 along with this work; if not, write to the Free Software Foundation,}}
+\DoxyCodeLine{19 \textcolor{comment}{ * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-\/1301 USA.}}
+\DoxyCodeLine{20 \textcolor{comment}{ *}}
+\DoxyCodeLine{21 \textcolor{comment}{ * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA}}
+\DoxyCodeLine{22 \textcolor{comment}{ * or visit www.oracle.com if you need additional information or have any}}
+\DoxyCodeLine{23 \textcolor{comment}{ * questions.}}
+\DoxyCodeLine{24 \textcolor{comment}{ */}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{comment}{/*}}
+\DoxyCodeLine{27 \textcolor{comment}{ * Java Debug Wire Protocol Transport Service Provider Interface.}}
+\DoxyCodeLine{28 \textcolor{comment}{ */}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#ifndef JDWPTRANSPORT\_H}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#define JDWPTRANSPORT\_H}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#include "{}jni.h"{}}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{36     JDWPTRANSPORT\_VERSION\_1\_0 = 0x00010000,}
+\DoxyCodeLine{37     JDWPTRANSPORT\_VERSION\_1\_1 = 0x00010001}
+\DoxyCodeLine{38 \};}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{41 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \textcolor{keyword}{struct }\mbox{\hyperlink{structjdwp_transport_native_interface__}{jdwpTransportNativeInterface\_}};}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jdwp_transport_env}{\_jdwpTransportEnv}};}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{49 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct__jdwp_transport_env}{\_jdwpTransportEnv}} \mbox{\hyperlink{structjdwp_transport_native_interface__}{jdwpTransportEnv}};}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{51 \textcolor{keyword}{typedef} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structjdwp_transport_native_interface__}{jdwpTransportNativeInterface\_}} *\mbox{\hyperlink{structjdwp_transport_native_interface__}{jdwpTransportEnv}};}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_cplusplus */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 \textcolor{comment}{/*}}
+\DoxyCodeLine{55 \textcolor{comment}{ * Errors. Universal errors with JVMTI/JVMDI equivalents keep the}}
+\DoxyCodeLine{56 \textcolor{comment}{ * values the same.}}
+\DoxyCodeLine{57 \textcolor{comment}{ */}}
+\DoxyCodeLine{58 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{59     JDWPTRANSPORT\_ERROR\_NONE = 0,}
+\DoxyCodeLine{60     JDWPTRANSPORT\_ERROR\_ILLEGAL\_ARGUMENT = 103,}
+\DoxyCodeLine{61     JDWPTRANSPORT\_ERROR\_OUT\_OF\_MEMORY = 110,}
+\DoxyCodeLine{62     JDWPTRANSPORT\_ERROR\_INTERNAL = 113,}
+\DoxyCodeLine{63     JDWPTRANSPORT\_ERROR\_ILLEGAL\_STATE = 201,}
+\DoxyCodeLine{64     JDWPTRANSPORT\_ERROR\_IO\_ERROR = 202,}
+\DoxyCodeLine{65     JDWPTRANSPORT\_ERROR\_TIMEOUT = 203,}
+\DoxyCodeLine{66     JDWPTRANSPORT\_ERROR\_MSG\_NOT\_AVAILABLE = 204}
+\DoxyCodeLine{67 \} jdwpTransportError;}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 \textcolor{comment}{/*}}
+\DoxyCodeLine{71 \textcolor{comment}{ * Structure to define capabilities}}
+\DoxyCodeLine{72 \textcolor{comment}{ */}}
+\DoxyCodeLine{73 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{74     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_timeout\_attach     :1;}
+\DoxyCodeLine{75     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_timeout\_accept     :1;}
+\DoxyCodeLine{76     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_timeout\_handshake  :1;}
+\DoxyCodeLine{77     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} reserved3              :1;}
+\DoxyCodeLine{78     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} reserved4              :1;}
+\DoxyCodeLine{79     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} reserved5              :1;}
+\DoxyCodeLine{80     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} reserved6              :1;}
+\DoxyCodeLine{81     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} reserved7              :1;}
+\DoxyCodeLine{82     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} reserved8              :1;}
+\DoxyCodeLine{83     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} reserved9              :1;}
+\DoxyCodeLine{84     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} reserved10             :1;}
+\DoxyCodeLine{85     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} reserved11             :1;}
+\DoxyCodeLine{86     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} reserved12             :1;}
+\DoxyCodeLine{87     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} reserved13             :1;}
+\DoxyCodeLine{88     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} reserved14             :1;}
+\DoxyCodeLine{89     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} reserved15             :1;}
+\DoxyCodeLine{90 \} \mbox{\hyperlink{struct_j_d_w_p_transport_capabilities}{JDWPTransportCapabilities}};}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93 \textcolor{comment}{/*}}
+\DoxyCodeLine{94 \textcolor{comment}{ * Structures to define packet layout.}}
+\DoxyCodeLine{95 \textcolor{comment}{ *}}
+\DoxyCodeLine{96 \textcolor{comment}{ * See: http://java.sun.com/j2se/1.5/docs/guide/jpda/jdwp-\/spec.html}}
+\DoxyCodeLine{97 \textcolor{comment}{ */}}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99 \textcolor{preprocessor}{\#define JDWP\_HEADER\_SIZE 11}}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101 \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{102     \textcolor{comment}{/*}}
+\DoxyCodeLine{103 \textcolor{comment}{     * If additional flags are added that apply to jdwpCmdPacket,}}
+\DoxyCodeLine{104 \textcolor{comment}{     * then debugLoop.c: reader() will need to be updated to}}
+\DoxyCodeLine{105 \textcolor{comment}{     * accept more than JDWPTRANSPORT\_FLAGS\_NONE.}}
+\DoxyCodeLine{106 \textcolor{comment}{     */}}
+\DoxyCodeLine{107     JDWPTRANSPORT\_FLAGS\_NONE     = 0x0,}
+\DoxyCodeLine{108     JDWPTRANSPORT\_FLAGS\_REPLY    = 0x80}
+\DoxyCodeLine{109 \};}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{112     jint len;}
+\DoxyCodeLine{113     jint id;}
+\DoxyCodeLine{114     jbyte flags;}
+\DoxyCodeLine{115     jbyte cmdSet;}
+\DoxyCodeLine{116     jbyte cmd;}
+\DoxyCodeLine{117     jbyte *data;}
+\DoxyCodeLine{118 \} \mbox{\hyperlink{structjdwp_cmd_packet}{jdwpCmdPacket}};}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{121     jint len;}
+\DoxyCodeLine{122     jint id;}
+\DoxyCodeLine{123     jbyte flags;}
+\DoxyCodeLine{124     jshort errorCode;}
+\DoxyCodeLine{125     jbyte *data;}
+\DoxyCodeLine{126 \} \mbox{\hyperlink{structjdwp_reply_packet}{jdwpReplyPacket}};}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{129     \textcolor{keyword}{union }\{}
+\DoxyCodeLine{130         \mbox{\hyperlink{structjdwp_cmd_packet}{jdwpCmdPacket}} cmd;}
+\DoxyCodeLine{131         \mbox{\hyperlink{structjdwp_reply_packet}{jdwpReplyPacket}} reply;}
+\DoxyCodeLine{132     \} type;}
+\DoxyCodeLine{133 \} \mbox{\hyperlink{structjdwp_packet}{jdwpPacket}};}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135 \textcolor{comment}{/*}}
+\DoxyCodeLine{136 \textcolor{comment}{ * JDWP functions called by the transport.}}
+\DoxyCodeLine{137 \textcolor{comment}{ */}}
+\DoxyCodeLine{138 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structjdwp_transport_callback}{jdwpTransportCallback}} \{}
+\DoxyCodeLine{139     \textcolor{keywordtype}{void} *(*alloc)(jint numBytes);   \textcolor{comment}{/* Call this for all allocations */}}
+\DoxyCodeLine{140     void (*free)(\textcolor{keywordtype}{void} *buffer);      \textcolor{comment}{/* Call this for all deallocations */}}
+\DoxyCodeLine{141 \} \mbox{\hyperlink{structjdwp_transport_callback}{jdwpTransportCallback}};}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143 \textcolor{keyword}{typedef} jint (JNICALL *jdwpTransport\_OnLoad\_t)(\mbox{\hyperlink{struct_j_n_i_invoke_interface__}{JavaVM}} *jvm,}
+\DoxyCodeLine{144                                                \mbox{\hyperlink{structjdwp_transport_callback}{jdwpTransportCallback}} *callback,}
+\DoxyCodeLine{145                                                jint version,}
+\DoxyCodeLine{146                                                \mbox{\hyperlink{structjdwp_transport_native_interface__}{jdwpTransportEnv}}** env);}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148 \textcolor{comment}{/*}}
+\DoxyCodeLine{149 \textcolor{comment}{ * JDWP transport configuration from the agent.}}
+\DoxyCodeLine{150 \textcolor{comment}{ */}}
+\DoxyCodeLine{151 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structjdwp_transport_configuration}{jdwpTransportConfiguration}} \{}
+\DoxyCodeLine{152     \textcolor{comment}{/* Field added in JDWPTRANSPORT\_VERSION\_1\_1: */}}
+\DoxyCodeLine{153     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* allowed\_peers;       \textcolor{comment}{/* Peers allowed for connection */}}
+\DoxyCodeLine{154 \} \mbox{\hyperlink{structjdwp_transport_configuration}{jdwpTransportConfiguration}};}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157 \textcolor{comment}{/* Function Interface */}}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159 \textcolor{keyword}{struct }\mbox{\hyperlink{structjdwp_transport_native_interface__}{jdwpTransportNativeInterface\_}} \{}
+\DoxyCodeLine{160     \textcolor{comment}{/*  1 :  RESERVED */}}
+\DoxyCodeLine{161     \textcolor{keywordtype}{void} *reserved1;}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163     \textcolor{comment}{/*  2 : Get Capabilities */}}
+\DoxyCodeLine{164     jdwpTransportError (JNICALL *GetCapabilities)(\mbox{\hyperlink{structjdwp_transport_native_interface__}{jdwpTransportEnv}}* env,}
+\DoxyCodeLine{165          \mbox{\hyperlink{struct_j_d_w_p_transport_capabilities}{JDWPTransportCapabilities}} *capabilities\_ptr);}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167     \textcolor{comment}{/*  3 : Attach */}}
+\DoxyCodeLine{168     jdwpTransportError (JNICALL *Attach)(\mbox{\hyperlink{structjdwp_transport_native_interface__}{jdwpTransportEnv}}* env,}
+\DoxyCodeLine{169         \textcolor{keyword}{const} \textcolor{keywordtype}{char}* address,}
+\DoxyCodeLine{170         jlong attach\_timeout,}
+\DoxyCodeLine{171         jlong handshake\_timeout);}
+\DoxyCodeLine{172 }
+\DoxyCodeLine{173     \textcolor{comment}{/*  4: StartListening */}}
+\DoxyCodeLine{174     jdwpTransportError (JNICALL *StartListening)(\mbox{\hyperlink{structjdwp_transport_native_interface__}{jdwpTransportEnv}}* env,}
+\DoxyCodeLine{175         \textcolor{keyword}{const} \textcolor{keywordtype}{char}* address,}
+\DoxyCodeLine{176         \textcolor{keywordtype}{char}** actual\_address);}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178     \textcolor{comment}{/*  5: StopListening */}}
+\DoxyCodeLine{179     jdwpTransportError (JNICALL *StopListening)(\mbox{\hyperlink{structjdwp_transport_native_interface__}{jdwpTransportEnv}}* env);}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181     \textcolor{comment}{/*  6: Accept */}}
+\DoxyCodeLine{182     jdwpTransportError (JNICALL *Accept)(\mbox{\hyperlink{structjdwp_transport_native_interface__}{jdwpTransportEnv}}* env,}
+\DoxyCodeLine{183         jlong accept\_timeout,}
+\DoxyCodeLine{184         jlong handshake\_timeout);}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{186     \textcolor{comment}{/*  7: IsOpen */}}
+\DoxyCodeLine{187     jboolean (JNICALL *IsOpen)(\mbox{\hyperlink{structjdwp_transport_native_interface__}{jdwpTransportEnv}}* env);}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{189     \textcolor{comment}{/*  8: Close */}}
+\DoxyCodeLine{190     jdwpTransportError (JNICALL *Close)(\mbox{\hyperlink{structjdwp_transport_native_interface__}{jdwpTransportEnv}}* env);}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192     \textcolor{comment}{/*  9: ReadPacket */}}
+\DoxyCodeLine{193     jdwpTransportError (JNICALL *ReadPacket)(\mbox{\hyperlink{structjdwp_transport_native_interface__}{jdwpTransportEnv}}* env,}
+\DoxyCodeLine{194         \mbox{\hyperlink{structjdwp_packet}{jdwpPacket}} *pkt);}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{196     \textcolor{comment}{/*  10: Write Packet */}}
+\DoxyCodeLine{197     jdwpTransportError (JNICALL *WritePacket)(\mbox{\hyperlink{structjdwp_transport_native_interface__}{jdwpTransportEnv}}* env,}
+\DoxyCodeLine{198         \textcolor{keyword}{const} \mbox{\hyperlink{structjdwp_packet}{jdwpPacket}}* pkt);}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200     \textcolor{comment}{/*  11:  GetLastError */}}
+\DoxyCodeLine{201     jdwpTransportError (JNICALL *GetLastError)(\mbox{\hyperlink{structjdwp_transport_native_interface__}{jdwpTransportEnv}}* env,}
+\DoxyCodeLine{202         \textcolor{keywordtype}{char}** error);}
+\DoxyCodeLine{203 }
+\DoxyCodeLine{204     \textcolor{comment}{/*  12: SetTransportConfiguration added in JDWPTRANSPORT\_VERSION\_1\_1 */}}
+\DoxyCodeLine{205     jdwpTransportError (JNICALL *SetTransportConfiguration)(\mbox{\hyperlink{structjdwp_transport_native_interface__}{jdwpTransportEnv}}* env,}
+\DoxyCodeLine{206         \mbox{\hyperlink{structjdwp_transport_configuration}{jdwpTransportConfiguration}} *config);}
+\DoxyCodeLine{207 \};}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{209 }
+\DoxyCodeLine{210 \textcolor{comment}{/*}}
+\DoxyCodeLine{211 \textcolor{comment}{ * Use inlined functions so that C++ code can use syntax such as}}
+\DoxyCodeLine{212 \textcolor{comment}{ *      env-\/>Attach("{}mymachine:5000"{}, 10*1000, 0);}}
+\DoxyCodeLine{213 \textcolor{comment}{ *}}
+\DoxyCodeLine{214 \textcolor{comment}{ * rather than using C's :-\/}}
+\DoxyCodeLine{215 \textcolor{comment}{ *}}
+\DoxyCodeLine{216 \textcolor{comment}{ *      (*env)-\/>Attach(env, "{}mymachine:5000"{}, 10*1000, 0);}}
+\DoxyCodeLine{217 \textcolor{comment}{ */}}
+\DoxyCodeLine{218 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jdwp_transport_env}{\_jdwpTransportEnv}} \{}
+\DoxyCodeLine{219     \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structjdwp_transport_native_interface__}{jdwpTransportNativeInterface\_}} *functions;}
+\DoxyCodeLine{220 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{221 }
+\DoxyCodeLine{222     jdwpTransportError GetCapabilities(\mbox{\hyperlink{struct_j_d_w_p_transport_capabilities}{JDWPTransportCapabilities}} *capabilities\_ptr) \{}
+\DoxyCodeLine{223         \textcolor{keywordflow}{return} functions-\/>GetCapabilities(\textcolor{keyword}{this}, capabilities\_ptr);}
+\DoxyCodeLine{224     \}}
+\DoxyCodeLine{225 }
+\DoxyCodeLine{226     jdwpTransportError Attach(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* address, jlong attach\_timeout,}
+\DoxyCodeLine{227                 jlong handshake\_timeout) \{}
+\DoxyCodeLine{228         \textcolor{keywordflow}{return} functions-\/>Attach(\textcolor{keyword}{this}, address, attach\_timeout, handshake\_timeout);}
+\DoxyCodeLine{229     \}}
+\DoxyCodeLine{230 }
+\DoxyCodeLine{231     jdwpTransportError StartListening(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* address,}
+\DoxyCodeLine{232                 \textcolor{keywordtype}{char}** actual\_address) \{}
+\DoxyCodeLine{233         \textcolor{keywordflow}{return} functions-\/>StartListening(\textcolor{keyword}{this}, address, actual\_address);}
+\DoxyCodeLine{234     \}}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{236     jdwpTransportError StopListening(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{237         \textcolor{keywordflow}{return} functions-\/>StopListening(\textcolor{keyword}{this});}
+\DoxyCodeLine{238     \}}
+\DoxyCodeLine{239 }
+\DoxyCodeLine{240     jdwpTransportError Accept(jlong accept\_timeout, jlong handshake\_timeout) \{}
+\DoxyCodeLine{241         \textcolor{keywordflow}{return} functions-\/>Accept(\textcolor{keyword}{this}, accept\_timeout, handshake\_timeout);}
+\DoxyCodeLine{242     \}}
+\DoxyCodeLine{243 }
+\DoxyCodeLine{244     jboolean IsOpen(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{245         \textcolor{keywordflow}{return} functions-\/>IsOpen(\textcolor{keyword}{this});}
+\DoxyCodeLine{246     \}}
+\DoxyCodeLine{247 }
+\DoxyCodeLine{248     jdwpTransportError Close(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{249         \textcolor{keywordflow}{return} functions-\/>Close(\textcolor{keyword}{this});}
+\DoxyCodeLine{250     \}}
+\DoxyCodeLine{251 }
+\DoxyCodeLine{252     jdwpTransportError ReadPacket(\mbox{\hyperlink{structjdwp_packet}{jdwpPacket}} *pkt) \{}
+\DoxyCodeLine{253         \textcolor{keywordflow}{return} functions-\/>ReadPacket(\textcolor{keyword}{this}, pkt);}
+\DoxyCodeLine{254     \}}
+\DoxyCodeLine{255 }
+\DoxyCodeLine{256     jdwpTransportError WritePacket(\textcolor{keyword}{const} \mbox{\hyperlink{structjdwp_packet}{jdwpPacket}}* pkt) \{}
+\DoxyCodeLine{257         \textcolor{keywordflow}{return} functions-\/>WritePacket(\textcolor{keyword}{this}, pkt);}
+\DoxyCodeLine{258     \}}
+\DoxyCodeLine{259 }
+\DoxyCodeLine{260     jdwpTransportError GetLastError(\textcolor{keywordtype}{char}** error) \{}
+\DoxyCodeLine{261         \textcolor{keywordflow}{return} functions-\/>GetLastError(\textcolor{keyword}{this}, error);}
+\DoxyCodeLine{262     \}}
+\DoxyCodeLine{263 }
+\DoxyCodeLine{264     \textcolor{comment}{/*  SetTransportConfiguration added in JDWPTRANSPORT\_VERSION\_1\_1 */}}
+\DoxyCodeLine{265     jdwpTransportError SetTransportConfiguration(\mbox{\hyperlink{structjdwp_transport_native_interface__}{jdwpTransportEnv}}* env,}
+\DoxyCodeLine{266         \textcolor{keywordflow}{return} functions-\/>SetTransportConfiguration(\textcolor{keyword}{this}, config);}
+\DoxyCodeLine{267     \}}
+\DoxyCodeLine{268 }
+\DoxyCodeLine{269 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_cplusplus */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{270 \};}
+\DoxyCodeLine{271 }
+\DoxyCodeLine{272 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{273 \} \textcolor{comment}{/* extern "{}C"{} */}}
+\DoxyCodeLine{274 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_cplusplus */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{275 }
+\DoxyCodeLine{276 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* JDWPTRANSPORT\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

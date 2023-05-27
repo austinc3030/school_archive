@@ -1,0 +1,29 @@
+\hypertarget{_wire_versions_8h_source}{}\doxysection{Wire\+Versions.\+h}
+\label{_wire_versions_8h_source}\index{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/CoolDemandLoadedLibrary/WireVersions.h@{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/CoolDemandLoadedLibrary/WireVersions.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}Wire.h"{}}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{keyword}{class }\mbox{\hyperlink{class_wire2}{Wire2}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_routing_feature}{RoutingFeature}}, \textcolor{keyword}{public} \mbox{\hyperlink{class_i_wire}{IWire}}}
+\DoxyCodeLine{7 \{}
+\DoxyCodeLine{8 \textcolor{keyword}{public}:}
+\DoxyCodeLine{9     \mbox{\hyperlink{class_wire2}{Wire2}}(std::string distance, \textcolor{keywordtype}{int} guid);}
+\DoxyCodeLine{10     std::string GetVersion() \textcolor{keyword}{override};}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12     \textcolor{keyword}{const} std::string\& GetDistance()}
+\DoxyCodeLine{13     \{}
+\DoxyCodeLine{14         \textcolor{keywordflow}{return} m\_distance;}
+\DoxyCodeLine{15     \};}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{private}:}
+\DoxyCodeLine{20     std::string m\_distance;}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \};}
+\DoxyCodeLine{23 }
+
+\end{DoxyCode}

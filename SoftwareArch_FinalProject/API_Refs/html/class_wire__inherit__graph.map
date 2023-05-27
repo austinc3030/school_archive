@@ -1,0 +1,6 @@
+<map id="Wire" name="Wire">
+<area shape="rect" id="node1" title=" " alt="" coords="88,155,137,181"/>
+<area shape="rect" id="node2" href="$class_routing_feature.html" title=" " alt="" coords="5,80,116,107"/>
+<area shape="rect" id="node3" href="$class_i_wire.html" title=" " alt="" coords="140,80,192,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="123,5,209,32"/>
+</map>

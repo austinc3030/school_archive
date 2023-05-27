@@ -1,0 +1,28 @@
+\hypertarget{_apps_core_8h_source}{}\doxysection{Apps\+Core.\+h}
+\label{_apps_core_8h_source}\index{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/AppsCore/AppsCore.h@{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/AppsCore/AppsCore.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// The following ifdef block is the standard way of creating macros which make exporting}}
+\DoxyCodeLine{2 \textcolor{comment}{// from a DLL simpler. All files within this DLL are compiled with the APPSCORE\_EXPORTS}}
+\DoxyCodeLine{3 \textcolor{comment}{// symbol defined on the command line. This symbol should not be defined on any project}}
+\DoxyCodeLine{4 \textcolor{comment}{// that uses this DLL. This way any other project whose source files include this file see}}
+\DoxyCodeLine{5 \textcolor{comment}{// APPSCORE\_API functions as being imported from a DLL, whereas this DLL sees symbols}}
+\DoxyCodeLine{6 \textcolor{comment}{// defined with this macro as being exported.}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#ifdef APPSCORE\_EXPORTS}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#define APPSCORE\_API \_\_declspec(dllexport)}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#define APPSCORE\_API \_\_declspec(dllimport)}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{comment}{// This class is exported from the dll}}
+\DoxyCodeLine{14 \textcolor{keyword}{class }APPSCORE\_API \mbox{\hyperlink{class_c_apps_core}{CAppsCore}} \{}
+\DoxyCodeLine{15 \textcolor{keyword}{public}:}
+\DoxyCodeLine{16     \mbox{\hyperlink{class_c_apps_core}{CAppsCore}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{17     \textcolor{comment}{// TODO: add your methods here.}}
+\DoxyCodeLine{18 \};}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{keyword}{extern} APPSCORE\_API \textcolor{keywordtype}{int} nAppsCore;}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 APPSCORE\_API \textcolor{keywordtype}{int} fnAppsCore(\textcolor{keywordtype}{void});}
+
+\end{DoxyCode}

@@ -1,0 +1,52 @@
+\hypertarget{_extrude_versions_8h_source}{}\doxysection{Extrude\+Versions.\+h}
+\label{_extrude_versions_8h_source}\index{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/AppLibrary/ExtrudeVersions.h@{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/AppLibrary/ExtrudeVersions.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}Extrude.h"{}}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{5 \textcolor{keyword}{namespace }Application}
+\DoxyCodeLine{6 \{}
+\DoxyCodeLine{7     \textcolor{keyword}{class }\mbox{\hyperlink{class_application_1_1_extrude2}{Extrude2}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_application_1_1_feature}{Feature}}, \textcolor{keyword}{public} \mbox{\hyperlink{class_application_1_1_i_extrude}{IExtrude}}}
+\DoxyCodeLine{8     \{}
+\DoxyCodeLine{9     \textcolor{keyword}{public}:}
+\DoxyCodeLine{10         \mbox{\hyperlink{class_application_1_1_extrude2}{Extrude2}}(std::string distance, std::string targetFace, std::string vectorObject, std::string booleanType, \textcolor{keywordtype}{int} m\_guid);}
+\DoxyCodeLine{11         std::string GetVersion() \textcolor{keyword}{override};}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13         \textcolor{keyword}{virtual} \mbox{\hyperlink{class_application_1_1_extrude2}{\string~Extrude2}}()}
+\DoxyCodeLine{14         \{}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16         \}}
+\DoxyCodeLine{17         \mbox{\hyperlink{class_application_1_1_extrude2}{Extrude2}}() = \textcolor{keyword}{delete};}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19         \textcolor{keyword}{const} std::string\& GetDistance()}
+\DoxyCodeLine{20         \{}
+\DoxyCodeLine{21             \textcolor{keywordflow}{return} m\_distance;}
+\DoxyCodeLine{22         \};}
+\DoxyCodeLine{23         \textcolor{keyword}{const} std::string\& GetTargetFace()}
+\DoxyCodeLine{24         \{}
+\DoxyCodeLine{25             \textcolor{keywordflow}{return} m\_targetFace;}
+\DoxyCodeLine{26         \};}
+\DoxyCodeLine{27         \textcolor{keyword}{const} std::string\& GetVectorObject()}
+\DoxyCodeLine{28         \{}
+\DoxyCodeLine{29             \textcolor{keywordflow}{return} m\_vectorObject;}
+\DoxyCodeLine{30         \};}
+\DoxyCodeLine{31         \textcolor{keyword}{const} std::string\& GetBooleanType()}
+\DoxyCodeLine{32         \{}
+\DoxyCodeLine{33             \textcolor{keywordflow}{return} m\_booleanType;}
+\DoxyCodeLine{34         \};}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37     \textcolor{keyword}{private}:}
+\DoxyCodeLine{38         std::string m\_distance;}
+\DoxyCodeLine{39         std::string m\_targetFace;}
+\DoxyCodeLine{40         std::string m\_vectorObject;}
+\DoxyCodeLine{41         std::string m\_booleanType;}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43     \};}
+\DoxyCodeLine{44 \}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 }
+
+\end{DoxyCode}

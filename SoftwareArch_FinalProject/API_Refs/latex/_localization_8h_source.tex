@@ -1,0 +1,39 @@
+\hypertarget{_localization_8h_source}{}\doxysection{Localization.\+h}
+\label{_localization_8h_source}\index{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/Localization/Localization.h@{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/Localization/Localization.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}LocalizationExports.h"{}}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{keyword}{class }LOCALIZATION\_API \mbox{\hyperlink{class_localization}{Localization}}}
+\DoxyCodeLine{8 \{}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{public}:}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12     \mbox{\hyperlink{class_localization}{Localization}}(\mbox{\hyperlink{class_localization}{Localization}} \textcolor{keyword}{const}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{13     \textcolor{keywordtype}{void} operator=(\mbox{\hyperlink{class_localization}{Localization}} \textcolor{keyword}{const}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15     \mbox{\hyperlink{class_localization}{\string~Localization}}();}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17     \textcolor{keyword}{static} \mbox{\hyperlink{class_localization}{Localization}}* GetInstance();}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19     \textcolor{keyword}{static} \textcolor{keywordtype}{bool} InstantiateLocalization();}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21     \textcolor{keyword}{static} \textcolor{keywordtype}{bool} DestroyLocalization();}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23     \textcolor{keywordtype}{bool} SetLocale(std::string strLocale);}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25     std::string GetLocale();}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{keyword}{private}:}
+\DoxyCodeLine{28     }
+\DoxyCodeLine{29     \mbox{\hyperlink{class_localization}{Localization}}();}
+\DoxyCodeLine{30     std::string g\_strLocale;}
+\DoxyCodeLine{31     \textcolor{keywordtype}{bool} blnLocalizationReady;}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \};}
+
+\end{DoxyCode}

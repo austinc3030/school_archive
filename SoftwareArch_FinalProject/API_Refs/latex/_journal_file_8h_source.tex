@@ -1,0 +1,39 @@
+\hypertarget{_journal_file_8h_source}{}\doxysection{Journal\+File.\+h}
+\label{_journal_file_8h_source}\index{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/Journaling/JournalFile.h@{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/Journaling/JournalFile.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}JournalingTypes.h"{}}}
+\DoxyCodeLine{4 \textcolor{keyword}{namespace }Journal}
+\DoxyCodeLine{5 \{}
+\DoxyCodeLine{6     \textcolor{keyword}{class }\mbox{\hyperlink{class_journal_1_1_journal_file}{JournalFile}}}
+\DoxyCodeLine{7     \{}
+\DoxyCodeLine{8     \textcolor{keyword}{public}:}
+\DoxyCodeLine{9         \mbox{\hyperlink{class_journal_1_1_journal_file}{JournalFile}}(std::string fileName, JournalingLanguage jnlLang);}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11         \textcolor{keyword}{virtual} \mbox{\hyperlink{class_journal_1_1_journal_file}{\string~JournalFile}}();}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13         \textcolor{keywordtype}{void} WriteJournalFile();}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15         \textcolor{keywordtype}{void} WriteToFile(std::string\& lineToWrite);}
+\DoxyCodeLine{16         \textcolor{keywordtype}{void} NewLine();}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18     \textcolor{keyword}{private}:}
+\DoxyCodeLine{19         \textcolor{keywordtype}{void} ProFormaStart();}
+\DoxyCodeLine{20         \textcolor{keywordtype}{void} ProFormaStartCPP();}
+\DoxyCodeLine{21         \textcolor{keywordtype}{void} ProFormaStartJava();}
+\DoxyCodeLine{22         \textcolor{keywordtype}{void} ProFormEnd();}
+\DoxyCodeLine{23         \textcolor{keywordtype}{void} ProFormEndCPP();}
+\DoxyCodeLine{24         \textcolor{keywordtype}{void} ProFormEndJava();}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26         std::stringstream m\_journalContents;}
+\DoxyCodeLine{27         std::string m\_journalFileName;}
+\DoxyCodeLine{28         std::ofstream* m\_file;}
+\DoxyCodeLine{29         std::stringstream preProForma; \textcolor{comment}{// Include files for example}}
+\DoxyCodeLine{30         JournalingLanguage m\_jnlLang;}
+\DoxyCodeLine{31     \};}
+\DoxyCodeLine{32 \}}
+\DoxyCodeLine{33 }
+
+\end{DoxyCode}

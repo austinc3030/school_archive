@@ -1,0 +1,65 @@
+\hypertarget{jawt__md_8h_source}{}\doxysection{jawt\+\_\+md.\+h}
+\label{jawt__md_8h_source}\index{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/JNI\_Includes/win32/jawt\_md.h@{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/JNI\_Includes/win32/jawt\_md.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright (c) 1999, Oracle and/or its affiliates. All rights reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.}}
+\DoxyCodeLine{4 \textcolor{comment}{ *}}
+\DoxyCodeLine{5 \textcolor{comment}{ * This code is free software; you can redistribute it and/or modify it}}
+\DoxyCodeLine{6 \textcolor{comment}{ * under the terms of the GNU General Public License version 2 only, as}}
+\DoxyCodeLine{7 \textcolor{comment}{ * published by the Free Software Foundation.  Oracle designates this}}
+\DoxyCodeLine{8 \textcolor{comment}{ * particular file as subject to the "{}Classpath"{} exception as provided}}
+\DoxyCodeLine{9 \textcolor{comment}{ * by Oracle in the LICENSE file that accompanied this code.}}
+\DoxyCodeLine{10 \textcolor{comment}{ *}}
+\DoxyCodeLine{11 \textcolor{comment}{ * This code is distributed in the hope that it will be useful, but WITHOUT}}
+\DoxyCodeLine{12 \textcolor{comment}{ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or}}
+\DoxyCodeLine{13 \textcolor{comment}{ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License}}
+\DoxyCodeLine{14 \textcolor{comment}{ * version 2 for more details (a copy is included in the LICENSE file that}}
+\DoxyCodeLine{15 \textcolor{comment}{ * accompanied this code).}}
+\DoxyCodeLine{16 \textcolor{comment}{ *}}
+\DoxyCodeLine{17 \textcolor{comment}{ * You should have received a copy of the GNU General Public License version}}
+\DoxyCodeLine{18 \textcolor{comment}{ * 2 along with this work; if not, write to the Free Software Foundation,}}
+\DoxyCodeLine{19 \textcolor{comment}{ * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-\/1301 USA.}}
+\DoxyCodeLine{20 \textcolor{comment}{ *}}
+\DoxyCodeLine{21 \textcolor{comment}{ * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA}}
+\DoxyCodeLine{22 \textcolor{comment}{ * or visit www.oracle.com if you need additional information or have any}}
+\DoxyCodeLine{23 \textcolor{comment}{ * questions.}}
+\DoxyCodeLine{24 \textcolor{comment}{ */}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#ifndef \_JAVASOFT\_JAWT\_MD\_H\_}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#define \_JAVASOFT\_JAWT\_MD\_H\_}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include <windows.h>}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#include "{}jawt.h"{}}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{33 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{comment}{/*}}
+\DoxyCodeLine{37 \textcolor{comment}{ * Win32-\/specific declarations for AWT native interface.}}
+\DoxyCodeLine{38 \textcolor{comment}{ * See notes in jawt.h for an example of use.}}
+\DoxyCodeLine{39 \textcolor{comment}{ */}}
+\DoxyCodeLine{40 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structjawt___win32_drawing_surface_info}{jawt\_Win32DrawingSurfaceInfo}} \{}
+\DoxyCodeLine{41     \textcolor{comment}{/* Native window, DDB, or DIB handle */}}
+\DoxyCodeLine{42     \textcolor{keyword}{union }\{}
+\DoxyCodeLine{43         HWND hwnd;}
+\DoxyCodeLine{44         HBITMAP hbitmap;}
+\DoxyCodeLine{45         \textcolor{keywordtype}{void}* pbits;}
+\DoxyCodeLine{46     \};}
+\DoxyCodeLine{47     \textcolor{comment}{/*}}
+\DoxyCodeLine{48 \textcolor{comment}{     * This HDC should always be used instead of the HDC returned from}}
+\DoxyCodeLine{49 \textcolor{comment}{     * BeginPaint() or any calls to GetDC().}}
+\DoxyCodeLine{50 \textcolor{comment}{     */}}
+\DoxyCodeLine{51     HDC hdc;}
+\DoxyCodeLine{52     HPALETTE hpalette;}
+\DoxyCodeLine{53 \} \mbox{\hyperlink{structjawt___win32_drawing_surface_info}{JAWT\_Win32DrawingSurfaceInfo}};}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{56 \}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* !\_JAVASOFT\_JAWT\_MD\_H\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

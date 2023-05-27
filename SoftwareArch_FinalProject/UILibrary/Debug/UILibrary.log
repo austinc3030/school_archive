@@ -1,0 +1,6 @@
+﻿  dllmain.cpp
+  UI.cpp
+  UILibrary.cpp
+  Generating Code...
+     Creating library C:\Users\polek\source\repos\BadLibraries\Debug\UILIBRARY.lib and object C:\Users\polek\source\repos\BadLibraries\Debug\UILIBRARY.exp
+  UILibrary.vcxproj -> C:\Users\polek\source\repos\BadLibraries\Debug\UILIBRARY.dll

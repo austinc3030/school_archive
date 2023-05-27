@@ -1,0 +1,121 @@
+\hypertarget{jvmticmlr_8h_source}{}\doxysection{jvmticmlr.\+h}
+\label{jvmticmlr_8h_source}\index{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/JNI\_Includes/jvmticmlr.h@{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/JNI\_Includes/jvmticmlr.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.}}
+\DoxyCodeLine{4 \textcolor{comment}{ *}}
+\DoxyCodeLine{5 \textcolor{comment}{ * This code is free software; you can redistribute it and/or modify it}}
+\DoxyCodeLine{6 \textcolor{comment}{ * under the terms of the GNU General Public License version 2 only, as}}
+\DoxyCodeLine{7 \textcolor{comment}{ * published by the Free Software Foundation.  Oracle designates this}}
+\DoxyCodeLine{8 \textcolor{comment}{ * particular file as subject to the "{}Classpath"{} exception as provided}}
+\DoxyCodeLine{9 \textcolor{comment}{ * by Oracle in the LICENSE file that accompanied this code.}}
+\DoxyCodeLine{10 \textcolor{comment}{ *}}
+\DoxyCodeLine{11 \textcolor{comment}{ * This code is distributed in the hope that it will be useful, but WITHOUT}}
+\DoxyCodeLine{12 \textcolor{comment}{ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or}}
+\DoxyCodeLine{13 \textcolor{comment}{ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License}}
+\DoxyCodeLine{14 \textcolor{comment}{ * version 2 for more details (a copy is included in the LICENSE file that}}
+\DoxyCodeLine{15 \textcolor{comment}{ * accompanied this code).}}
+\DoxyCodeLine{16 \textcolor{comment}{ *}}
+\DoxyCodeLine{17 \textcolor{comment}{ * You should have received a copy of the GNU General Public License version}}
+\DoxyCodeLine{18 \textcolor{comment}{ * 2 along with this work; if not, write to the Free Software Foundation,}}
+\DoxyCodeLine{19 \textcolor{comment}{ * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-\/1301 USA.}}
+\DoxyCodeLine{20 \textcolor{comment}{ *}}
+\DoxyCodeLine{21 \textcolor{comment}{ * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA}}
+\DoxyCodeLine{22 \textcolor{comment}{ * or visit www.oracle.com if you need additional information or have any}}
+\DoxyCodeLine{23 \textcolor{comment}{ * questions.}}
+\DoxyCodeLine{24 \textcolor{comment}{ */}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{comment}{/*}}
+\DoxyCodeLine{27 \textcolor{comment}{ * This header file defines the data structures sent by the VM}}
+\DoxyCodeLine{28 \textcolor{comment}{ * through the JVMTI CompiledMethodLoad callback function via the}}
+\DoxyCodeLine{29 \textcolor{comment}{ * "{}void * compile\_info"{} parameter. The memory pointed to by the}}
+\DoxyCodeLine{30 \textcolor{comment}{ * compile\_info parameter may not be referenced after returning from}}
+\DoxyCodeLine{31 \textcolor{comment}{ * the CompiledMethodLoad callback. These are VM implementation}}
+\DoxyCodeLine{32 \textcolor{comment}{ * specific data structures that may evolve in future releases. A}}
+\DoxyCodeLine{33 \textcolor{comment}{ * JVMTI agent should interpret a non-\/NULL compile\_info as a pointer}}
+\DoxyCodeLine{34 \textcolor{comment}{ * to a region of memory containing a list of records. In a typical}}
+\DoxyCodeLine{35 \textcolor{comment}{ * usage scenario, a JVMTI agent would cast each record to a}}
+\DoxyCodeLine{36 \textcolor{comment}{ * jvmtiCompiledMethodLoadRecordHeader, a struct that represents}}
+\DoxyCodeLine{37 \textcolor{comment}{ * arbitrary information. This struct contains a kind field to indicate}}
+\DoxyCodeLine{38 \textcolor{comment}{ * the kind of information being passed, and a pointer to the next}}
+\DoxyCodeLine{39 \textcolor{comment}{ * record. If the kind field indicates inlining information, then the}}
+\DoxyCodeLine{40 \textcolor{comment}{ * agent would cast the record to a jvmtiCompiledMethodLoadInlineRecord.}}
+\DoxyCodeLine{41 \textcolor{comment}{ * This record contains an array of PCStackInfo structs, which indicate}}
+\DoxyCodeLine{42 \textcolor{comment}{ * for every pc address what are the methods on the invocation stack.}}
+\DoxyCodeLine{43 \textcolor{comment}{ * The "{}methods"{} and "{}bcis"{} fields in each PCStackInfo struct specify a}}
+\DoxyCodeLine{44 \textcolor{comment}{ * 1-\/1 mapping between these inlined methods and their bytecode indices.}}
+\DoxyCodeLine{45 \textcolor{comment}{ * This can be used to derive the proper source lines of the inlined}}
+\DoxyCodeLine{46 \textcolor{comment}{ * methods.}}
+\DoxyCodeLine{47 \textcolor{comment}{ */}}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#ifndef \_JVMTI\_CMLR\_H\_}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#define \_JVMTI\_CMLR\_H\_}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52 \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{53     JVMTI\_CMLR\_MAJOR\_VERSION\_1 = 0x00000001,}
+\DoxyCodeLine{54     JVMTI\_CMLR\_MINOR\_VERSION\_0 = 0x00000000,}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56     JVMTI\_CMLR\_MAJOR\_VERSION   = 0x00000001,}
+\DoxyCodeLine{57     JVMTI\_CMLR\_MINOR\_VERSION   = 0x00000000}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59     \textcolor{comment}{/*}}
+\DoxyCodeLine{60 \textcolor{comment}{     * This comment is for the "{}JDK import from HotSpot"{} sanity check:}}
+\DoxyCodeLine{61 \textcolor{comment}{     * version: 1.0.0}}
+\DoxyCodeLine{62 \textcolor{comment}{     */}}
+\DoxyCodeLine{63 \};}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{66     JVMTI\_CMLR\_DUMMY       = 1,}
+\DoxyCodeLine{67     JVMTI\_CMLR\_INLINE\_INFO = 2}
+\DoxyCodeLine{68 \} jvmtiCMLRKind;}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 \textcolor{comment}{/*}}
+\DoxyCodeLine{71 \textcolor{comment}{ * Record that represents arbitrary information passed through JVMTI}}
+\DoxyCodeLine{72 \textcolor{comment}{ * CompiledMethodLoadEvent void pointer.}}
+\DoxyCodeLine{73 \textcolor{comment}{ */}}
+\DoxyCodeLine{74 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_compiled_method_load_record_header}{\_jvmtiCompiledMethodLoadRecordHeader}} \{}
+\DoxyCodeLine{75   jvmtiCMLRKind kind;     \textcolor{comment}{/* id for the kind of info passed in the record */}}
+\DoxyCodeLine{76   jint majorinfoversion;  \textcolor{comment}{/* major and minor info version values. Init'ed */}}
+\DoxyCodeLine{77   jint minorinfoversion;  \textcolor{comment}{/* to current version value in jvmtiExport.cpp. */}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79   \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_compiled_method_load_record_header}{\_jvmtiCompiledMethodLoadRecordHeader}}* next;}
+\DoxyCodeLine{80 \} \mbox{\hyperlink{struct__jvmti_compiled_method_load_record_header}{jvmtiCompiledMethodLoadRecordHeader}};}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 \textcolor{comment}{/*}}
+\DoxyCodeLine{83 \textcolor{comment}{ * Record that gives information about the methods on the compile-\/time}}
+\DoxyCodeLine{84 \textcolor{comment}{ * stack at a specific pc address of a compiled method. Each element in}}
+\DoxyCodeLine{85 \textcolor{comment}{ * the methods array maps to same element in the bcis array.}}
+\DoxyCodeLine{86 \textcolor{comment}{ */}}
+\DoxyCodeLine{87 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct___p_c_stack_info}{\_PCStackInfo}} \{}
+\DoxyCodeLine{88   \textcolor{keywordtype}{void}* pc;             \textcolor{comment}{/* the pc address for this compiled method */}}
+\DoxyCodeLine{89   jint numstackframes;  \textcolor{comment}{/* number of methods on the stack */}}
+\DoxyCodeLine{90   jmethodID* methods;   \textcolor{comment}{/* array of numstackframes method ids */}}
+\DoxyCodeLine{91   jint* bcis;           \textcolor{comment}{/* array of numstackframes bytecode indices */}}
+\DoxyCodeLine{92 \} \mbox{\hyperlink{struct___p_c_stack_info}{PCStackInfo}};}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 \textcolor{comment}{/*}}
+\DoxyCodeLine{95 \textcolor{comment}{ * Record that contains inlining information for each pc address of}}
+\DoxyCodeLine{96 \textcolor{comment}{ * an nmethod.}}
+\DoxyCodeLine{97 \textcolor{comment}{ */}}
+\DoxyCodeLine{98 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_compiled_method_load_inline_record}{\_jvmtiCompiledMethodLoadInlineRecord}} \{}
+\DoxyCodeLine{99   \mbox{\hyperlink{struct__jvmti_compiled_method_load_record_header}{jvmtiCompiledMethodLoadRecordHeader}} header;  \textcolor{comment}{/* common header for casting */}}
+\DoxyCodeLine{100   jint numpcs;          \textcolor{comment}{/* number of pc descriptors in this nmethod */}}
+\DoxyCodeLine{101   \mbox{\hyperlink{struct___p_c_stack_info}{PCStackInfo}}* pcinfo;  \textcolor{comment}{/* array of numpcs pc descriptors */}}
+\DoxyCodeLine{102 \} \mbox{\hyperlink{struct__jvmti_compiled_method_load_inline_record}{jvmtiCompiledMethodLoadInlineRecord}};}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104 \textcolor{comment}{/*}}
+\DoxyCodeLine{105 \textcolor{comment}{ * Dummy record used to test that we can pass records with different}}
+\DoxyCodeLine{106 \textcolor{comment}{ * information through the void pointer provided that they can be cast}}
+\DoxyCodeLine{107 \textcolor{comment}{ * to a jvmtiCompiledMethodLoadRecordHeader.}}
+\DoxyCodeLine{108 \textcolor{comment}{ */}}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_compiled_method_load_dummy_record}{\_jvmtiCompiledMethodLoadDummyRecord}} \{}
+\DoxyCodeLine{111   \mbox{\hyperlink{struct__jvmti_compiled_method_load_record_header}{jvmtiCompiledMethodLoadRecordHeader}} header;  \textcolor{comment}{/* common header for casting */}}
+\DoxyCodeLine{112   \textcolor{keywordtype}{char} message[50];}
+\DoxyCodeLine{113 \} \mbox{\hyperlink{struct__jvmti_compiled_method_load_dummy_record}{jvmtiCompiledMethodLoadDummyRecord}};}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

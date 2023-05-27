@@ -1,0 +1,7 @@
+<map id="AutomationAPI::ICADObject" name="AutomationAPI::ICADObject">
+<area shape="rect" id="node1" title="ICADObject comment" alt="" coords="169,5,355,32"/>
+<area shape="rect" id="node2" href="$class_automation_a_p_i_1_1_c_a_d_object.html" title="CADObject comment" alt="" coords="171,80,353,107"/>
+<area shape="rect" id="node3" href="$class_automation_a_p_i_1_1_block.html" title="Block comment" alt="" coords="5,155,156,181"/>
+<area shape="rect" id="node4" href="$class_automation_a_p_i_1_1_extrude.html" title="Extrude object" alt="" coords="181,155,343,181"/>
+<area shape="rect" id="node5" href="$class_automation_a_p_i_1_1_wire.html" title="Wire comment" alt="" coords="367,155,511,181"/>
+</map>

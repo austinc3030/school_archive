@@ -1,0 +1,40 @@
+\hypertarget{_automation_a_p_i___wire_builder_8h_source}{}\doxysection{Automation\+API\+\_\+\+Wire\+Builder.\+h}
+\label{_automation_a_p_i___wire_builder_8h_source}\index{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/AutomationBinding/AutomationAPI\_WireBuilder.h@{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/AutomationBinding/AutomationAPI\_WireBuilder.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}AutomationBindingExports.h"{}}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}AutomationAPI\_IBuilder.h"{}}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{keyword}{namespace }AutomationAPI}
+\DoxyCodeLine{6 \{}
+\DoxyCodeLine{7     \textcolor{keyword}{class }CADObject;}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 }
+\DoxyCodeLine{13     \textcolor{keyword}{class }AUTOMATIONBINDING\_API \mbox{\hyperlink{class_automation_a_p_i_1_1_wire_builder}{WireBuilder}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_automation_a_p_i_1_1_i_builder}{IBuilder}}}
+\DoxyCodeLine{14     \{}
+\DoxyCodeLine{15         \textcolor{keyword}{public}:}
+\DoxyCodeLine{16             \textcolor{keyword}{enum} \mbox{\hyperlink{class_automation_a_p_i_1_1_wire_builder_adf383d0874380ee48254160d953b8a04}{WireBuilderTypes}}}
+\DoxyCodeLine{17             \{}
+\DoxyCodeLine{18                 TypesOption1, }
+\DoxyCodeLine{19                 TypesOption2 }
+\DoxyCodeLine{20             \};}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22             \textcolor{keywordtype}{void} SetType(WireBuilderTypes type);}
+\DoxyCodeLine{23             WireBuilderTypes GetType();}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25             \textcolor{keywordtype}{void} SetOrigin1(\textcolor{keywordtype}{int} x, \textcolor{keywordtype}{int} y, \textcolor{keywordtype}{int} z);}
+\DoxyCodeLine{26             \textcolor{keywordtype}{void} GetOrigin1(\textcolor{keywordtype}{int} \&x, \textcolor{keywordtype}{int} \&y, \textcolor{keywordtype}{int} \&z);}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28             \textcolor{keywordtype}{void} SetOrigin2(\textcolor{keywordtype}{int} x, \textcolor{keywordtype}{int} y, \textcolor{keywordtype}{int} z);}
+\DoxyCodeLine{29             \textcolor{keywordtype}{void} GetOrigin2(\textcolor{keywordtype}{int}\& x, \textcolor{keywordtype}{int}\& y, \textcolor{keywordtype}{int}\& z);}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32             \mbox{\hyperlink{class_automation_a_p_i_1_1_c_a_d_object}{CADObject}}* Commit() \textcolor{keyword}{override};}
+\DoxyCodeLine{33         \textcolor{keyword}{private}:}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36     \};}
+\DoxyCodeLine{37 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,2631 @@
+\hypertarget{jvmti_8h_source}{}\doxysection{jvmti.\+h}
+\label{jvmti_8h_source}\index{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/JNI\_Includes/jvmti.h@{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/JNI\_Includes/jvmti.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright (c) 2002, 2018, Oracle and/or its affiliates. All rights reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.}}
+\DoxyCodeLine{4 \textcolor{comment}{ *}}
+\DoxyCodeLine{5 \textcolor{comment}{ * This code is free software; you can redistribute it and/or modify it}}
+\DoxyCodeLine{6 \textcolor{comment}{ * under the terms of the GNU General Public License version 2 only, as}}
+\DoxyCodeLine{7 \textcolor{comment}{ * published by the Free Software Foundation.  Oracle designates this}}
+\DoxyCodeLine{8 \textcolor{comment}{ * particular file as subject to the "{}Classpath"{} exception as provided}}
+\DoxyCodeLine{9 \textcolor{comment}{ * by Oracle in the LICENSE file that accompanied this code.}}
+\DoxyCodeLine{10 \textcolor{comment}{ *}}
+\DoxyCodeLine{11 \textcolor{comment}{ * This code is distributed in the hope that it will be useful, but WITHOUT}}
+\DoxyCodeLine{12 \textcolor{comment}{ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or}}
+\DoxyCodeLine{13 \textcolor{comment}{ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License}}
+\DoxyCodeLine{14 \textcolor{comment}{ * version 2 for more details (a copy is included in the LICENSE file that}}
+\DoxyCodeLine{15 \textcolor{comment}{ * accompanied this code).}}
+\DoxyCodeLine{16 \textcolor{comment}{ *}}
+\DoxyCodeLine{17 \textcolor{comment}{ * You should have received a copy of the GNU General Public License version}}
+\DoxyCodeLine{18 \textcolor{comment}{ * 2 along with this work; if not, write to the Free Software Foundation,}}
+\DoxyCodeLine{19 \textcolor{comment}{ * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-\/1301 USA.}}
+\DoxyCodeLine{20 \textcolor{comment}{ *}}
+\DoxyCodeLine{21 \textcolor{comment}{ * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA}}
+\DoxyCodeLine{22 \textcolor{comment}{ * or visit www.oracle.com if you need additional information or have any}}
+\DoxyCodeLine{23 \textcolor{comment}{ * questions.}}
+\DoxyCodeLine{24 \textcolor{comment}{ */}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26  \textcolor{comment}{/* AUTOMATICALLY GENERATED FILE -\/ DO NOT EDIT */}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28     \textcolor{comment}{/* Include file for the Java(tm) Virtual Machine Tool Interface */}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#ifndef \_JAVA\_JVMTI\_H\_}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#define \_JAVA\_JVMTI\_H\_}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#include "{}jni.h"{}}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{36 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{40     JVMTI\_VERSION\_1   = 0x30010000,}
+\DoxyCodeLine{41     JVMTI\_VERSION\_1\_0 = 0x30010000,}
+\DoxyCodeLine{42     JVMTI\_VERSION\_1\_1 = 0x30010100,}
+\DoxyCodeLine{43     JVMTI\_VERSION\_1\_2 = 0x30010200,}
+\DoxyCodeLine{44     JVMTI\_VERSION\_9   = 0x30090000,}
+\DoxyCodeLine{45     JVMTI\_VERSION\_11  = 0x300B0000,}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47     JVMTI\_VERSION = 0x30000000 + (11 * 0x10000) + (0 * 0x100) + 0  \textcolor{comment}{/* version: 11.0.0 */}}
+\DoxyCodeLine{48 \};}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 JNIEXPORT jint JNICALL}
+\DoxyCodeLine{51 Agent\_OnLoad(\mbox{\hyperlink{struct_j_n_i_invoke_interface__}{JavaVM}} *vm, \textcolor{keywordtype}{char} *options, \textcolor{keywordtype}{void} *reserved);}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 JNIEXPORT jint JNICALL}
+\DoxyCodeLine{54 Agent\_OnAttach(\mbox{\hyperlink{struct_j_n_i_invoke_interface__}{JavaVM}}* vm, \textcolor{keywordtype}{char}* options, \textcolor{keywordtype}{void}* reserved);}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 JNIEXPORT \textcolor{keywordtype}{void} JNICALL}
+\DoxyCodeLine{57 Agent\_OnUnload(\mbox{\hyperlink{struct_j_n_i_invoke_interface__}{JavaVM}} *vm);}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59     \textcolor{comment}{/* Forward declaration of the environment */}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_env}{\_jvmtiEnv}};}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 \textcolor{keyword}{struct }\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiInterface\_1\_}};}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{66 \textcolor{keyword}{typedef} \mbox{\hyperlink{struct__jvmti_env}{\_jvmtiEnv}} \mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}};}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{68 \textcolor{keyword}{typedef} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiInterface\_1\_}} *\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}};}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_cplusplus */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 \textcolor{comment}{/* Derived Base Types */}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 \textcolor{keyword}{typedef} jobject jthread;}
+\DoxyCodeLine{74 \textcolor{keyword}{typedef} jobject jthreadGroup;}
+\DoxyCodeLine{75 \textcolor{keyword}{typedef} jlong jlocation;}
+\DoxyCodeLine{76 \textcolor{keyword}{struct }\_jrawMonitorID;}
+\DoxyCodeLine{77 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\_jrawMonitorID *jrawMonitorID;}
+\DoxyCodeLine{78 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_j_n_i_native_interface__}{JNINativeInterface\_}} \mbox{\hyperlink{struct_j_n_i_native_interface__}{jniNativeInterface}};}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80     \textcolor{comment}{/* Constants */}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83     \textcolor{comment}{/* Thread State Flags */}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85 \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{86     JVMTI\_THREAD\_STATE\_ALIVE = 0x0001,}
+\DoxyCodeLine{87     JVMTI\_THREAD\_STATE\_TERMINATED = 0x0002,}
+\DoxyCodeLine{88     JVMTI\_THREAD\_STATE\_RUNNABLE = 0x0004,}
+\DoxyCodeLine{89     JVMTI\_THREAD\_STATE\_BLOCKED\_ON\_MONITOR\_ENTER = 0x0400,}
+\DoxyCodeLine{90     JVMTI\_THREAD\_STATE\_WAITING = 0x0080,}
+\DoxyCodeLine{91     JVMTI\_THREAD\_STATE\_WAITING\_INDEFINITELY = 0x0010,}
+\DoxyCodeLine{92     JVMTI\_THREAD\_STATE\_WAITING\_WITH\_TIMEOUT = 0x0020,}
+\DoxyCodeLine{93     JVMTI\_THREAD\_STATE\_SLEEPING = 0x0040,}
+\DoxyCodeLine{94     JVMTI\_THREAD\_STATE\_IN\_OBJECT\_WAIT = 0x0100,}
+\DoxyCodeLine{95     JVMTI\_THREAD\_STATE\_PARKED = 0x0200,}
+\DoxyCodeLine{96     JVMTI\_THREAD\_STATE\_SUSPENDED = 0x100000,}
+\DoxyCodeLine{97     JVMTI\_THREAD\_STATE\_INTERRUPTED = 0x200000,}
+\DoxyCodeLine{98     JVMTI\_THREAD\_STATE\_IN\_NATIVE = 0x400000,}
+\DoxyCodeLine{99     JVMTI\_THREAD\_STATE\_VENDOR\_1 = 0x10000000,}
+\DoxyCodeLine{100     JVMTI\_THREAD\_STATE\_VENDOR\_2 = 0x20000000,}
+\DoxyCodeLine{101     JVMTI\_THREAD\_STATE\_VENDOR\_3 = 0x40000000}
+\DoxyCodeLine{102 \};}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104     \textcolor{comment}{/* java.lang.Thread.State Conversion Masks */}}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106 \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{107     JVMTI\_JAVA\_LANG\_THREAD\_STATE\_MASK = JVMTI\_THREAD\_STATE\_TERMINATED | JVMTI\_THREAD\_STATE\_ALIVE | JVMTI\_THREAD\_STATE\_RUNNABLE | JVMTI\_THREAD\_STATE\_BLOCKED\_ON\_MONITOR\_ENTER | JVMTI\_THREAD\_STATE\_WAITING | JVMTI\_THREAD\_STATE\_WAITING\_INDEFINITELY | JVMTI\_THREAD\_STATE\_WAITING\_WITH\_TIMEOUT,}
+\DoxyCodeLine{108     JVMTI\_JAVA\_LANG\_THREAD\_STATE\_NEW = 0,}
+\DoxyCodeLine{109     JVMTI\_JAVA\_LANG\_THREAD\_STATE\_TERMINATED = JVMTI\_THREAD\_STATE\_TERMINATED,}
+\DoxyCodeLine{110     JVMTI\_JAVA\_LANG\_THREAD\_STATE\_RUNNABLE = JVMTI\_THREAD\_STATE\_ALIVE | JVMTI\_THREAD\_STATE\_RUNNABLE,}
+\DoxyCodeLine{111     JVMTI\_JAVA\_LANG\_THREAD\_STATE\_BLOCKED = JVMTI\_THREAD\_STATE\_ALIVE | JVMTI\_THREAD\_STATE\_BLOCKED\_ON\_MONITOR\_ENTER,}
+\DoxyCodeLine{112     JVMTI\_JAVA\_LANG\_THREAD\_STATE\_WAITING = JVMTI\_THREAD\_STATE\_ALIVE | JVMTI\_THREAD\_STATE\_WAITING | JVMTI\_THREAD\_STATE\_WAITING\_INDEFINITELY,}
+\DoxyCodeLine{113     JVMTI\_JAVA\_LANG\_THREAD\_STATE\_TIMED\_WAITING = JVMTI\_THREAD\_STATE\_ALIVE | JVMTI\_THREAD\_STATE\_WAITING | JVMTI\_THREAD\_STATE\_WAITING\_WITH\_TIMEOUT}
+\DoxyCodeLine{114 \};}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116     \textcolor{comment}{/* Thread Priority Constants */}}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118 \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{119     JVMTI\_THREAD\_MIN\_PRIORITY = 1,}
+\DoxyCodeLine{120     JVMTI\_THREAD\_NORM\_PRIORITY = 5,}
+\DoxyCodeLine{121     JVMTI\_THREAD\_MAX\_PRIORITY = 10}
+\DoxyCodeLine{122 \};}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124     \textcolor{comment}{/* Heap Filter Flags */}}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126 \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{127     JVMTI\_HEAP\_FILTER\_TAGGED = 0x4,}
+\DoxyCodeLine{128     JVMTI\_HEAP\_FILTER\_UNTAGGED = 0x8,}
+\DoxyCodeLine{129     JVMTI\_HEAP\_FILTER\_CLASS\_TAGGED = 0x10,}
+\DoxyCodeLine{130     JVMTI\_HEAP\_FILTER\_CLASS\_UNTAGGED = 0x20}
+\DoxyCodeLine{131 \};}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133     \textcolor{comment}{/* Heap Visit Control Flags */}}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135 \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{136     JVMTI\_VISIT\_OBJECTS = 0x100,}
+\DoxyCodeLine{137     JVMTI\_VISIT\_ABORT = 0x8000}
+\DoxyCodeLine{138 \};}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140     \textcolor{comment}{/* Heap Reference Enumeration */}}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{143     JVMTI\_HEAP\_REFERENCE\_CLASS = 1,}
+\DoxyCodeLine{144     JVMTI\_HEAP\_REFERENCE\_FIELD = 2,}
+\DoxyCodeLine{145     JVMTI\_HEAP\_REFERENCE\_ARRAY\_ELEMENT = 3,}
+\DoxyCodeLine{146     JVMTI\_HEAP\_REFERENCE\_CLASS\_LOADER = 4,}
+\DoxyCodeLine{147     JVMTI\_HEAP\_REFERENCE\_SIGNERS = 5,}
+\DoxyCodeLine{148     JVMTI\_HEAP\_REFERENCE\_PROTECTION\_DOMAIN = 6,}
+\DoxyCodeLine{149     JVMTI\_HEAP\_REFERENCE\_INTERFACE = 7,}
+\DoxyCodeLine{150     JVMTI\_HEAP\_REFERENCE\_STATIC\_FIELD = 8,}
+\DoxyCodeLine{151     JVMTI\_HEAP\_REFERENCE\_CONSTANT\_POOL = 9,}
+\DoxyCodeLine{152     JVMTI\_HEAP\_REFERENCE\_SUPERCLASS = 10,}
+\DoxyCodeLine{153     JVMTI\_HEAP\_REFERENCE\_JNI\_GLOBAL = 21,}
+\DoxyCodeLine{154     JVMTI\_HEAP\_REFERENCE\_SYSTEM\_CLASS = 22,}
+\DoxyCodeLine{155     JVMTI\_HEAP\_REFERENCE\_MONITOR = 23,}
+\DoxyCodeLine{156     JVMTI\_HEAP\_REFERENCE\_STACK\_LOCAL = 24,}
+\DoxyCodeLine{157     JVMTI\_HEAP\_REFERENCE\_JNI\_LOCAL = 25,}
+\DoxyCodeLine{158     JVMTI\_HEAP\_REFERENCE\_THREAD = 26,}
+\DoxyCodeLine{159     JVMTI\_HEAP\_REFERENCE\_OTHER = 27}
+\DoxyCodeLine{160 \} jvmtiHeapReferenceKind;}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162     \textcolor{comment}{/* Primitive Type Enumeration */}}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{165     JVMTI\_PRIMITIVE\_TYPE\_BOOLEAN = 90,}
+\DoxyCodeLine{166     JVMTI\_PRIMITIVE\_TYPE\_BYTE = 66,}
+\DoxyCodeLine{167     JVMTI\_PRIMITIVE\_TYPE\_CHAR = 67,}
+\DoxyCodeLine{168     JVMTI\_PRIMITIVE\_TYPE\_SHORT = 83,}
+\DoxyCodeLine{169     JVMTI\_PRIMITIVE\_TYPE\_INT = 73,}
+\DoxyCodeLine{170     JVMTI\_PRIMITIVE\_TYPE\_LONG = 74,}
+\DoxyCodeLine{171     JVMTI\_PRIMITIVE\_TYPE\_FLOAT = 70,}
+\DoxyCodeLine{172     JVMTI\_PRIMITIVE\_TYPE\_DOUBLE = 68}
+\DoxyCodeLine{173 \} jvmtiPrimitiveType;}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175     \textcolor{comment}{/* Heap Object Filter Enumeration */}}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{178     JVMTI\_HEAP\_OBJECT\_TAGGED = 1,}
+\DoxyCodeLine{179     JVMTI\_HEAP\_OBJECT\_UNTAGGED = 2,}
+\DoxyCodeLine{180     JVMTI\_HEAP\_OBJECT\_EITHER = 3}
+\DoxyCodeLine{181 \} jvmtiHeapObjectFilter;}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183     \textcolor{comment}{/* Heap Root Kind Enumeration */}}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{186     JVMTI\_HEAP\_ROOT\_JNI\_GLOBAL = 1,}
+\DoxyCodeLine{187     JVMTI\_HEAP\_ROOT\_SYSTEM\_CLASS = 2,}
+\DoxyCodeLine{188     JVMTI\_HEAP\_ROOT\_MONITOR = 3,}
+\DoxyCodeLine{189     JVMTI\_HEAP\_ROOT\_STACK\_LOCAL = 4,}
+\DoxyCodeLine{190     JVMTI\_HEAP\_ROOT\_JNI\_LOCAL = 5,}
+\DoxyCodeLine{191     JVMTI\_HEAP\_ROOT\_THREAD = 6,}
+\DoxyCodeLine{192     JVMTI\_HEAP\_ROOT\_OTHER = 7}
+\DoxyCodeLine{193 \} jvmtiHeapRootKind;}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195     \textcolor{comment}{/* Object Reference Enumeration */}}
+\DoxyCodeLine{196 }
+\DoxyCodeLine{197 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{198     JVMTI\_REFERENCE\_CLASS = 1,}
+\DoxyCodeLine{199     JVMTI\_REFERENCE\_FIELD = 2,}
+\DoxyCodeLine{200     JVMTI\_REFERENCE\_ARRAY\_ELEMENT = 3,}
+\DoxyCodeLine{201     JVMTI\_REFERENCE\_CLASS\_LOADER = 4,}
+\DoxyCodeLine{202     JVMTI\_REFERENCE\_SIGNERS = 5,}
+\DoxyCodeLine{203     JVMTI\_REFERENCE\_PROTECTION\_DOMAIN = 6,}
+\DoxyCodeLine{204     JVMTI\_REFERENCE\_INTERFACE = 7,}
+\DoxyCodeLine{205     JVMTI\_REFERENCE\_STATIC\_FIELD = 8,}
+\DoxyCodeLine{206     JVMTI\_REFERENCE\_CONSTANT\_POOL = 9}
+\DoxyCodeLine{207 \} jvmtiObjectReferenceKind;}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{209     \textcolor{comment}{/* Iteration Control Enumeration */}}
+\DoxyCodeLine{210 }
+\DoxyCodeLine{211 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{212     JVMTI\_ITERATION\_CONTINUE = 1,}
+\DoxyCodeLine{213     JVMTI\_ITERATION\_IGNORE = 2,}
+\DoxyCodeLine{214     JVMTI\_ITERATION\_ABORT = 0}
+\DoxyCodeLine{215 \} jvmtiIterationControl;}
+\DoxyCodeLine{216 }
+\DoxyCodeLine{217     \textcolor{comment}{/* Class Status Flags */}}
+\DoxyCodeLine{218 }
+\DoxyCodeLine{219 \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{220     JVMTI\_CLASS\_STATUS\_VERIFIED = 1,}
+\DoxyCodeLine{221     JVMTI\_CLASS\_STATUS\_PREPARED = 2,}
+\DoxyCodeLine{222     JVMTI\_CLASS\_STATUS\_INITIALIZED = 4,}
+\DoxyCodeLine{223     JVMTI\_CLASS\_STATUS\_ERROR = 8,}
+\DoxyCodeLine{224     JVMTI\_CLASS\_STATUS\_ARRAY = 16,}
+\DoxyCodeLine{225     JVMTI\_CLASS\_STATUS\_PRIMITIVE = 32}
+\DoxyCodeLine{226 \};}
+\DoxyCodeLine{227 }
+\DoxyCodeLine{228     \textcolor{comment}{/* Event Enable/Disable */}}
+\DoxyCodeLine{229 }
+\DoxyCodeLine{230 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{231     JVMTI\_ENABLE = 1,}
+\DoxyCodeLine{232     JVMTI\_DISABLE = 0}
+\DoxyCodeLine{233 \} jvmtiEventMode;}
+\DoxyCodeLine{234 }
+\DoxyCodeLine{235     \textcolor{comment}{/* Extension Function/Event Parameter Types */}}
+\DoxyCodeLine{236 }
+\DoxyCodeLine{237 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{238     JVMTI\_TYPE\_JBYTE = 101,}
+\DoxyCodeLine{239     JVMTI\_TYPE\_JCHAR = 102,}
+\DoxyCodeLine{240     JVMTI\_TYPE\_JSHORT = 103,}
+\DoxyCodeLine{241     JVMTI\_TYPE\_JINT = 104,}
+\DoxyCodeLine{242     JVMTI\_TYPE\_JLONG = 105,}
+\DoxyCodeLine{243     JVMTI\_TYPE\_JFLOAT = 106,}
+\DoxyCodeLine{244     JVMTI\_TYPE\_JDOUBLE = 107,}
+\DoxyCodeLine{245     JVMTI\_TYPE\_JBOOLEAN = 108,}
+\DoxyCodeLine{246     JVMTI\_TYPE\_JOBJECT = 109,}
+\DoxyCodeLine{247     JVMTI\_TYPE\_JTHREAD = 110,}
+\DoxyCodeLine{248     JVMTI\_TYPE\_JCLASS = 111,}
+\DoxyCodeLine{249     JVMTI\_TYPE\_JVALUE = 112,}
+\DoxyCodeLine{250     JVMTI\_TYPE\_JFIELDID = 113,}
+\DoxyCodeLine{251     JVMTI\_TYPE\_JMETHODID = 114,}
+\DoxyCodeLine{252     JVMTI\_TYPE\_CCHAR = 115,}
+\DoxyCodeLine{253     JVMTI\_TYPE\_CVOID = 116,}
+\DoxyCodeLine{254     JVMTI\_TYPE\_JNIENV = 117}
+\DoxyCodeLine{255 \} jvmtiParamTypes;}
+\DoxyCodeLine{256 }
+\DoxyCodeLine{257     \textcolor{comment}{/* Extension Function/Event Parameter Kinds */}}
+\DoxyCodeLine{258 }
+\DoxyCodeLine{259 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{260     JVMTI\_KIND\_IN = 91,}
+\DoxyCodeLine{261     JVMTI\_KIND\_IN\_PTR = 92,}
+\DoxyCodeLine{262     JVMTI\_KIND\_IN\_BUF = 93,}
+\DoxyCodeLine{263     JVMTI\_KIND\_ALLOC\_BUF = 94,}
+\DoxyCodeLine{264     JVMTI\_KIND\_ALLOC\_ALLOC\_BUF = 95,}
+\DoxyCodeLine{265     JVMTI\_KIND\_OUT = 96,}
+\DoxyCodeLine{266     JVMTI\_KIND\_OUT\_BUF = 97}
+\DoxyCodeLine{267 \} jvmtiParamKind;}
+\DoxyCodeLine{268 }
+\DoxyCodeLine{269     \textcolor{comment}{/* Timer Kinds */}}
+\DoxyCodeLine{270 }
+\DoxyCodeLine{271 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{272     JVMTI\_TIMER\_USER\_CPU = 30,}
+\DoxyCodeLine{273     JVMTI\_TIMER\_TOTAL\_CPU = 31,}
+\DoxyCodeLine{274     JVMTI\_TIMER\_ELAPSED = 32}
+\DoxyCodeLine{275 \} jvmtiTimerKind;}
+\DoxyCodeLine{276 }
+\DoxyCodeLine{277     \textcolor{comment}{/* Phases of execution */}}
+\DoxyCodeLine{278 }
+\DoxyCodeLine{279 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{280     JVMTI\_PHASE\_ONLOAD = 1,}
+\DoxyCodeLine{281     JVMTI\_PHASE\_PRIMORDIAL = 2,}
+\DoxyCodeLine{282     JVMTI\_PHASE\_START = 6,}
+\DoxyCodeLine{283     JVMTI\_PHASE\_LIVE = 4,}
+\DoxyCodeLine{284     JVMTI\_PHASE\_DEAD = 8}
+\DoxyCodeLine{285 \} jvmtiPhase;}
+\DoxyCodeLine{286 }
+\DoxyCodeLine{287     \textcolor{comment}{/* Version Interface Types */}}
+\DoxyCodeLine{288 }
+\DoxyCodeLine{289 \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{290     JVMTI\_VERSION\_INTERFACE\_JNI = 0x00000000,}
+\DoxyCodeLine{291     JVMTI\_VERSION\_INTERFACE\_JVMTI = 0x30000000}
+\DoxyCodeLine{292 \};}
+\DoxyCodeLine{293 }
+\DoxyCodeLine{294     \textcolor{comment}{/* Version Masks */}}
+\DoxyCodeLine{295 }
+\DoxyCodeLine{296 \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{297     JVMTI\_VERSION\_MASK\_INTERFACE\_TYPE = 0x70000000,}
+\DoxyCodeLine{298     JVMTI\_VERSION\_MASK\_MAJOR = 0x0FFF0000,}
+\DoxyCodeLine{299     JVMTI\_VERSION\_MASK\_MINOR = 0x0000FF00,}
+\DoxyCodeLine{300     JVMTI\_VERSION\_MASK\_MICRO = 0x000000FF}
+\DoxyCodeLine{301 \};}
+\DoxyCodeLine{302 }
+\DoxyCodeLine{303     \textcolor{comment}{/* Version Shifts */}}
+\DoxyCodeLine{304 }
+\DoxyCodeLine{305 \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{306     JVMTI\_VERSION\_SHIFT\_MAJOR = 16,}
+\DoxyCodeLine{307     JVMTI\_VERSION\_SHIFT\_MINOR = 8,}
+\DoxyCodeLine{308     JVMTI\_VERSION\_SHIFT\_MICRO = 0}
+\DoxyCodeLine{309 \};}
+\DoxyCodeLine{310 }
+\DoxyCodeLine{311     \textcolor{comment}{/* Verbose Flag Enumeration */}}
+\DoxyCodeLine{312 }
+\DoxyCodeLine{313 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{314     JVMTI\_VERBOSE\_OTHER = 0,}
+\DoxyCodeLine{315     JVMTI\_VERBOSE\_GC = 1,}
+\DoxyCodeLine{316     JVMTI\_VERBOSE\_CLASS = 2,}
+\DoxyCodeLine{317     JVMTI\_VERBOSE\_JNI = 4}
+\DoxyCodeLine{318 \} jvmtiVerboseFlag;}
+\DoxyCodeLine{319 }
+\DoxyCodeLine{320     \textcolor{comment}{/* JLocation Format Enumeration */}}
+\DoxyCodeLine{321 }
+\DoxyCodeLine{322 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{323     JVMTI\_JLOCATION\_JVMBCI = 1,}
+\DoxyCodeLine{324     JVMTI\_JLOCATION\_MACHINEPC = 2,}
+\DoxyCodeLine{325     JVMTI\_JLOCATION\_OTHER = 0}
+\DoxyCodeLine{326 \} jvmtiJlocationFormat;}
+\DoxyCodeLine{327 }
+\DoxyCodeLine{328     \textcolor{comment}{/* Resource Exhaustion Flags */}}
+\DoxyCodeLine{329 }
+\DoxyCodeLine{330 \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{331     JVMTI\_RESOURCE\_EXHAUSTED\_OOM\_ERROR = 0x0001,}
+\DoxyCodeLine{332     JVMTI\_RESOURCE\_EXHAUSTED\_JAVA\_HEAP = 0x0002,}
+\DoxyCodeLine{333     JVMTI\_RESOURCE\_EXHAUSTED\_THREADS = 0x0004}
+\DoxyCodeLine{334 \};}
+\DoxyCodeLine{335 }
+\DoxyCodeLine{336     \textcolor{comment}{/* Errors */}}
+\DoxyCodeLine{337 }
+\DoxyCodeLine{338 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{339     JVMTI\_ERROR\_NONE = 0,}
+\DoxyCodeLine{340     JVMTI\_ERROR\_INVALID\_THREAD = 10,}
+\DoxyCodeLine{341     JVMTI\_ERROR\_INVALID\_THREAD\_GROUP = 11,}
+\DoxyCodeLine{342     JVMTI\_ERROR\_INVALID\_PRIORITY = 12,}
+\DoxyCodeLine{343     JVMTI\_ERROR\_THREAD\_NOT\_SUSPENDED = 13,}
+\DoxyCodeLine{344     JVMTI\_ERROR\_THREAD\_SUSPENDED = 14,}
+\DoxyCodeLine{345     JVMTI\_ERROR\_THREAD\_NOT\_ALIVE = 15,}
+\DoxyCodeLine{346     JVMTI\_ERROR\_INVALID\_OBJECT = 20,}
+\DoxyCodeLine{347     JVMTI\_ERROR\_INVALID\_CLASS = 21,}
+\DoxyCodeLine{348     JVMTI\_ERROR\_CLASS\_NOT\_PREPARED = 22,}
+\DoxyCodeLine{349     JVMTI\_ERROR\_INVALID\_METHODID = 23,}
+\DoxyCodeLine{350     JVMTI\_ERROR\_INVALID\_LOCATION = 24,}
+\DoxyCodeLine{351     JVMTI\_ERROR\_INVALID\_FIELDID = 25,}
+\DoxyCodeLine{352     JVMTI\_ERROR\_INVALID\_MODULE = 26,}
+\DoxyCodeLine{353     JVMTI\_ERROR\_NO\_MORE\_FRAMES = 31,}
+\DoxyCodeLine{354     JVMTI\_ERROR\_OPAQUE\_FRAME = 32,}
+\DoxyCodeLine{355     JVMTI\_ERROR\_TYPE\_MISMATCH = 34,}
+\DoxyCodeLine{356     JVMTI\_ERROR\_INVALID\_SLOT = 35,}
+\DoxyCodeLine{357     JVMTI\_ERROR\_DUPLICATE = 40,}
+\DoxyCodeLine{358     JVMTI\_ERROR\_NOT\_FOUND = 41,}
+\DoxyCodeLine{359     JVMTI\_ERROR\_INVALID\_MONITOR = 50,}
+\DoxyCodeLine{360     JVMTI\_ERROR\_NOT\_MONITOR\_OWNER = 51,}
+\DoxyCodeLine{361     JVMTI\_ERROR\_INTERRUPT = 52,}
+\DoxyCodeLine{362     JVMTI\_ERROR\_INVALID\_CLASS\_FORMAT = 60,}
+\DoxyCodeLine{363     JVMTI\_ERROR\_CIRCULAR\_CLASS\_DEFINITION = 61,}
+\DoxyCodeLine{364     JVMTI\_ERROR\_FAILS\_VERIFICATION = 62,}
+\DoxyCodeLine{365     JVMTI\_ERROR\_UNSUPPORTED\_REDEFINITION\_METHOD\_ADDED = 63,}
+\DoxyCodeLine{366     JVMTI\_ERROR\_UNSUPPORTED\_REDEFINITION\_SCHEMA\_CHANGED = 64,}
+\DoxyCodeLine{367     JVMTI\_ERROR\_INVALID\_TYPESTATE = 65,}
+\DoxyCodeLine{368     JVMTI\_ERROR\_UNSUPPORTED\_REDEFINITION\_HIERARCHY\_CHANGED = 66,}
+\DoxyCodeLine{369     JVMTI\_ERROR\_UNSUPPORTED\_REDEFINITION\_METHOD\_DELETED = 67,}
+\DoxyCodeLine{370     JVMTI\_ERROR\_UNSUPPORTED\_VERSION = 68,}
+\DoxyCodeLine{371     JVMTI\_ERROR\_NAMES\_DONT\_MATCH = 69,}
+\DoxyCodeLine{372     JVMTI\_ERROR\_UNSUPPORTED\_REDEFINITION\_CLASS\_MODIFIERS\_CHANGED = 70,}
+\DoxyCodeLine{373     JVMTI\_ERROR\_UNSUPPORTED\_REDEFINITION\_METHOD\_MODIFIERS\_CHANGED = 71,}
+\DoxyCodeLine{374     JVMTI\_ERROR\_UNSUPPORTED\_REDEFINITION\_CLASS\_ATTRIBUTE\_CHANGED = 72,}
+\DoxyCodeLine{375     JVMTI\_ERROR\_UNMODIFIABLE\_CLASS = 79,}
+\DoxyCodeLine{376     JVMTI\_ERROR\_UNMODIFIABLE\_MODULE = 80,}
+\DoxyCodeLine{377     JVMTI\_ERROR\_NOT\_AVAILABLE = 98,}
+\DoxyCodeLine{378     JVMTI\_ERROR\_MUST\_POSSESS\_CAPABILITY = 99,}
+\DoxyCodeLine{379     JVMTI\_ERROR\_NULL\_POINTER = 100,}
+\DoxyCodeLine{380     JVMTI\_ERROR\_ABSENT\_INFORMATION = 101,}
+\DoxyCodeLine{381     JVMTI\_ERROR\_INVALID\_EVENT\_TYPE = 102,}
+\DoxyCodeLine{382     JVMTI\_ERROR\_ILLEGAL\_ARGUMENT = 103,}
+\DoxyCodeLine{383     JVMTI\_ERROR\_NATIVE\_METHOD = 104,}
+\DoxyCodeLine{384     JVMTI\_ERROR\_CLASS\_LOADER\_UNSUPPORTED = 106,}
+\DoxyCodeLine{385     JVMTI\_ERROR\_OUT\_OF\_MEMORY = 110,}
+\DoxyCodeLine{386     JVMTI\_ERROR\_ACCESS\_DENIED = 111,}
+\DoxyCodeLine{387     JVMTI\_ERROR\_WRONG\_PHASE = 112,}
+\DoxyCodeLine{388     JVMTI\_ERROR\_INTERNAL = 113,}
+\DoxyCodeLine{389     JVMTI\_ERROR\_UNATTACHED\_THREAD = 115,}
+\DoxyCodeLine{390     JVMTI\_ERROR\_INVALID\_ENVIRONMENT = 116,}
+\DoxyCodeLine{391     JVMTI\_ERROR\_MAX = 116}
+\DoxyCodeLine{392 \} jvmtiError;}
+\DoxyCodeLine{393 }
+\DoxyCodeLine{394     \textcolor{comment}{/* Event IDs */}}
+\DoxyCodeLine{395 }
+\DoxyCodeLine{396 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{397     JVMTI\_MIN\_EVENT\_TYPE\_VAL = 50,}
+\DoxyCodeLine{398     JVMTI\_EVENT\_VM\_INIT = 50,}
+\DoxyCodeLine{399     JVMTI\_EVENT\_VM\_DEATH = 51,}
+\DoxyCodeLine{400     JVMTI\_EVENT\_THREAD\_START = 52,}
+\DoxyCodeLine{401     JVMTI\_EVENT\_THREAD\_END = 53,}
+\DoxyCodeLine{402     JVMTI\_EVENT\_CLASS\_FILE\_LOAD\_HOOK = 54,}
+\DoxyCodeLine{403     JVMTI\_EVENT\_CLASS\_LOAD = 55,}
+\DoxyCodeLine{404     JVMTI\_EVENT\_CLASS\_PREPARE = 56,}
+\DoxyCodeLine{405     JVMTI\_EVENT\_VM\_START = 57,}
+\DoxyCodeLine{406     JVMTI\_EVENT\_EXCEPTION = 58,}
+\DoxyCodeLine{407     JVMTI\_EVENT\_EXCEPTION\_CATCH = 59,}
+\DoxyCodeLine{408     JVMTI\_EVENT\_SINGLE\_STEP = 60,}
+\DoxyCodeLine{409     JVMTI\_EVENT\_FRAME\_POP = 61,}
+\DoxyCodeLine{410     JVMTI\_EVENT\_BREAKPOINT = 62,}
+\DoxyCodeLine{411     JVMTI\_EVENT\_FIELD\_ACCESS = 63,}
+\DoxyCodeLine{412     JVMTI\_EVENT\_FIELD\_MODIFICATION = 64,}
+\DoxyCodeLine{413     JVMTI\_EVENT\_METHOD\_ENTRY = 65,}
+\DoxyCodeLine{414     JVMTI\_EVENT\_METHOD\_EXIT = 66,}
+\DoxyCodeLine{415     JVMTI\_EVENT\_NATIVE\_METHOD\_BIND = 67,}
+\DoxyCodeLine{416     JVMTI\_EVENT\_COMPILED\_METHOD\_LOAD = 68,}
+\DoxyCodeLine{417     JVMTI\_EVENT\_COMPILED\_METHOD\_UNLOAD = 69,}
+\DoxyCodeLine{418     JVMTI\_EVENT\_DYNAMIC\_CODE\_GENERATED = 70,}
+\DoxyCodeLine{419     JVMTI\_EVENT\_DATA\_DUMP\_REQUEST = 71,}
+\DoxyCodeLine{420     JVMTI\_EVENT\_MONITOR\_WAIT = 73,}
+\DoxyCodeLine{421     JVMTI\_EVENT\_MONITOR\_WAITED = 74,}
+\DoxyCodeLine{422     JVMTI\_EVENT\_MONITOR\_CONTENDED\_ENTER = 75,}
+\DoxyCodeLine{423     JVMTI\_EVENT\_MONITOR\_CONTENDED\_ENTERED = 76,}
+\DoxyCodeLine{424     JVMTI\_EVENT\_RESOURCE\_EXHAUSTED = 80,}
+\DoxyCodeLine{425     JVMTI\_EVENT\_GARBAGE\_COLLECTION\_START = 81,}
+\DoxyCodeLine{426     JVMTI\_EVENT\_GARBAGE\_COLLECTION\_FINISH = 82,}
+\DoxyCodeLine{427     JVMTI\_EVENT\_OBJECT\_FREE = 83,}
+\DoxyCodeLine{428     JVMTI\_EVENT\_VM\_OBJECT\_ALLOC = 84,}
+\DoxyCodeLine{429     JVMTI\_EVENT\_SAMPLED\_OBJECT\_ALLOC = 86,}
+\DoxyCodeLine{430     JVMTI\_MAX\_EVENT\_TYPE\_VAL = 86}
+\DoxyCodeLine{431 \} jvmtiEvent;}
+\DoxyCodeLine{432 }
+\DoxyCodeLine{433 }
+\DoxyCodeLine{434     \textcolor{comment}{/* Pre-\/Declarations */}}
+\DoxyCodeLine{435 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_thread_info}{\_jvmtiThreadInfo}};}
+\DoxyCodeLine{436 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_thread_info}{\_jvmtiThreadInfo}} \mbox{\hyperlink{struct__jvmti_thread_info}{jvmtiThreadInfo}};}
+\DoxyCodeLine{437 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_monitor_stack_depth_info}{\_jvmtiMonitorStackDepthInfo}};}
+\DoxyCodeLine{438 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_monitor_stack_depth_info}{\_jvmtiMonitorStackDepthInfo}} \mbox{\hyperlink{struct__jvmti_monitor_stack_depth_info}{jvmtiMonitorStackDepthInfo}};}
+\DoxyCodeLine{439 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_thread_group_info}{\_jvmtiThreadGroupInfo}};}
+\DoxyCodeLine{440 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_thread_group_info}{\_jvmtiThreadGroupInfo}} \mbox{\hyperlink{struct__jvmti_thread_group_info}{jvmtiThreadGroupInfo}};}
+\DoxyCodeLine{441 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_frame_info}{\_jvmtiFrameInfo}};}
+\DoxyCodeLine{442 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_frame_info}{\_jvmtiFrameInfo}} \mbox{\hyperlink{struct__jvmti_frame_info}{jvmtiFrameInfo}};}
+\DoxyCodeLine{443 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_stack_info}{\_jvmtiStackInfo}};}
+\DoxyCodeLine{444 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_stack_info}{\_jvmtiStackInfo}} \mbox{\hyperlink{struct__jvmti_stack_info}{jvmtiStackInfo}};}
+\DoxyCodeLine{445 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_heap_reference_info_field}{\_jvmtiHeapReferenceInfoField}};}
+\DoxyCodeLine{446 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_heap_reference_info_field}{\_jvmtiHeapReferenceInfoField}} \mbox{\hyperlink{struct__jvmti_heap_reference_info_field}{jvmtiHeapReferenceInfoField}};}
+\DoxyCodeLine{447 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_heap_reference_info_array}{\_jvmtiHeapReferenceInfoArray}};}
+\DoxyCodeLine{448 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_heap_reference_info_array}{\_jvmtiHeapReferenceInfoArray}} \mbox{\hyperlink{struct__jvmti_heap_reference_info_array}{jvmtiHeapReferenceInfoArray}};}
+\DoxyCodeLine{449 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_heap_reference_info_constant_pool}{\_jvmtiHeapReferenceInfoConstantPool}};}
+\DoxyCodeLine{450 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_heap_reference_info_constant_pool}{\_jvmtiHeapReferenceInfoConstantPool}} \mbox{\hyperlink{struct__jvmti_heap_reference_info_constant_pool}{jvmtiHeapReferenceInfoConstantPool}};}
+\DoxyCodeLine{451 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_heap_reference_info_stack_local}{\_jvmtiHeapReferenceInfoStackLocal}};}
+\DoxyCodeLine{452 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_heap_reference_info_stack_local}{\_jvmtiHeapReferenceInfoStackLocal}} \mbox{\hyperlink{struct__jvmti_heap_reference_info_stack_local}{jvmtiHeapReferenceInfoStackLocal}};}
+\DoxyCodeLine{453 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_heap_reference_info_jni_local}{\_jvmtiHeapReferenceInfoJniLocal}};}
+\DoxyCodeLine{454 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_heap_reference_info_jni_local}{\_jvmtiHeapReferenceInfoJniLocal}} \mbox{\hyperlink{struct__jvmti_heap_reference_info_jni_local}{jvmtiHeapReferenceInfoJniLocal}};}
+\DoxyCodeLine{455 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_heap_reference_info_reserved}{\_jvmtiHeapReferenceInfoReserved}};}
+\DoxyCodeLine{456 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_heap_reference_info_reserved}{\_jvmtiHeapReferenceInfoReserved}} \mbox{\hyperlink{struct__jvmti_heap_reference_info_reserved}{jvmtiHeapReferenceInfoReserved}};}
+\DoxyCodeLine{457 \textcolor{keyword}{union }\mbox{\hyperlink{union__jvmti_heap_reference_info}{\_jvmtiHeapReferenceInfo}};}
+\DoxyCodeLine{458 \textcolor{keyword}{typedef} \textcolor{keyword}{union }\mbox{\hyperlink{union__jvmti_heap_reference_info}{\_jvmtiHeapReferenceInfo}} \mbox{\hyperlink{union__jvmti_heap_reference_info}{jvmtiHeapReferenceInfo}};}
+\DoxyCodeLine{459 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_heap_callbacks}{\_jvmtiHeapCallbacks}};}
+\DoxyCodeLine{460 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_heap_callbacks}{\_jvmtiHeapCallbacks}} \mbox{\hyperlink{struct__jvmti_heap_callbacks}{jvmtiHeapCallbacks}};}
+\DoxyCodeLine{461 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_class_definition}{\_jvmtiClassDefinition}};}
+\DoxyCodeLine{462 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_class_definition}{\_jvmtiClassDefinition}} \mbox{\hyperlink{struct__jvmti_class_definition}{jvmtiClassDefinition}};}
+\DoxyCodeLine{463 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_monitor_usage}{\_jvmtiMonitorUsage}};}
+\DoxyCodeLine{464 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_monitor_usage}{\_jvmtiMonitorUsage}} \mbox{\hyperlink{struct__jvmti_monitor_usage}{jvmtiMonitorUsage}};}
+\DoxyCodeLine{465 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_line_number_entry}{\_jvmtiLineNumberEntry}};}
+\DoxyCodeLine{466 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_line_number_entry}{\_jvmtiLineNumberEntry}} \mbox{\hyperlink{struct__jvmti_line_number_entry}{jvmtiLineNumberEntry}};}
+\DoxyCodeLine{467 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_local_variable_entry}{\_jvmtiLocalVariableEntry}};}
+\DoxyCodeLine{468 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_local_variable_entry}{\_jvmtiLocalVariableEntry}} \mbox{\hyperlink{struct__jvmti_local_variable_entry}{jvmtiLocalVariableEntry}};}
+\DoxyCodeLine{469 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_param_info}{\_jvmtiParamInfo}};}
+\DoxyCodeLine{470 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_param_info}{\_jvmtiParamInfo}} \mbox{\hyperlink{struct__jvmti_param_info}{jvmtiParamInfo}};}
+\DoxyCodeLine{471 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_extension_function_info}{\_jvmtiExtensionFunctionInfo}};}
+\DoxyCodeLine{472 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_extension_function_info}{\_jvmtiExtensionFunctionInfo}} \mbox{\hyperlink{struct__jvmti_extension_function_info}{jvmtiExtensionFunctionInfo}};}
+\DoxyCodeLine{473 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_extension_event_info}{\_jvmtiExtensionEventInfo}};}
+\DoxyCodeLine{474 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_extension_event_info}{\_jvmtiExtensionEventInfo}} \mbox{\hyperlink{struct__jvmti_extension_event_info}{jvmtiExtensionEventInfo}};}
+\DoxyCodeLine{475 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_timer_info}{\_jvmtiTimerInfo}};}
+\DoxyCodeLine{476 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_timer_info}{\_jvmtiTimerInfo}} \mbox{\hyperlink{struct__jvmti_timer_info}{jvmtiTimerInfo}};}
+\DoxyCodeLine{477 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_addr_location_map}{\_jvmtiAddrLocationMap}};}
+\DoxyCodeLine{478 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_addr_location_map}{\_jvmtiAddrLocationMap}} \mbox{\hyperlink{struct__jvmti_addr_location_map}{jvmtiAddrLocationMap}};}
+\DoxyCodeLine{479 }
+\DoxyCodeLine{480     \textcolor{comment}{/* Function Types */}}
+\DoxyCodeLine{481 }
+\DoxyCodeLine{482 \textcolor{keyword}{typedef} void (JNICALL *jvmtiStartFunction)}
+\DoxyCodeLine{483     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* jvmti\_env, \mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* jni\_env, \textcolor{keywordtype}{void}* arg);}
+\DoxyCodeLine{484 }
+\DoxyCodeLine{485 \textcolor{keyword}{typedef} jint (JNICALL *jvmtiHeapIterationCallback)}
+\DoxyCodeLine{486     (jlong class\_tag, jlong size, jlong* tag\_ptr, jint length, \textcolor{keywordtype}{void}* user\_data);}
+\DoxyCodeLine{487 }
+\DoxyCodeLine{488 \textcolor{keyword}{typedef} jint (JNICALL *jvmtiHeapReferenceCallback)}
+\DoxyCodeLine{489     (jvmtiHeapReferenceKind reference\_kind, \textcolor{keyword}{const} \mbox{\hyperlink{union__jvmti_heap_reference_info}{jvmtiHeapReferenceInfo}}* reference\_info, jlong class\_tag, jlong referrer\_class\_tag, jlong size, jlong* tag\_ptr, jlong* referrer\_tag\_ptr, jint length, \textcolor{keywordtype}{void}* user\_data);}
+\DoxyCodeLine{490 }
+\DoxyCodeLine{491 \textcolor{keyword}{typedef} jint (JNICALL *jvmtiPrimitiveFieldCallback)}
+\DoxyCodeLine{492     (jvmtiHeapReferenceKind kind, \textcolor{keyword}{const} \mbox{\hyperlink{union__jvmti_heap_reference_info}{jvmtiHeapReferenceInfo}}* info, jlong object\_class\_tag, jlong* object\_tag\_ptr, \mbox{\hyperlink{unionjvalue}{jvalue}} value, jvmtiPrimitiveType value\_type, \textcolor{keywordtype}{void}* user\_data);}
+\DoxyCodeLine{493 }
+\DoxyCodeLine{494 \textcolor{keyword}{typedef} jint (JNICALL *jvmtiArrayPrimitiveValueCallback)}
+\DoxyCodeLine{495     (jlong class\_tag, jlong size, jlong* tag\_ptr, jint element\_count, jvmtiPrimitiveType element\_type, \textcolor{keyword}{const} \textcolor{keywordtype}{void}* elements, \textcolor{keywordtype}{void}* user\_data);}
+\DoxyCodeLine{496 }
+\DoxyCodeLine{497 \textcolor{keyword}{typedef} jint (JNICALL *jvmtiStringPrimitiveValueCallback)}
+\DoxyCodeLine{498     (jlong class\_tag, jlong size, jlong* tag\_ptr, \textcolor{keyword}{const} jchar* value, jint value\_length, \textcolor{keywordtype}{void}* user\_data);}
+\DoxyCodeLine{499 }
+\DoxyCodeLine{500 \textcolor{keyword}{typedef} jint (JNICALL *jvmtiReservedCallback)}
+\DoxyCodeLine{501     ();}
+\DoxyCodeLine{502 }
+\DoxyCodeLine{503 \textcolor{keyword}{typedef} jvmtiIterationControl (JNICALL *jvmtiHeapObjectCallback)}
+\DoxyCodeLine{504     (jlong class\_tag, jlong size, jlong* tag\_ptr, \textcolor{keywordtype}{void}* user\_data);}
+\DoxyCodeLine{505 }
+\DoxyCodeLine{506 \textcolor{keyword}{typedef} jvmtiIterationControl (JNICALL *jvmtiHeapRootCallback)}
+\DoxyCodeLine{507     (jvmtiHeapRootKind root\_kind, jlong class\_tag, jlong size, jlong* tag\_ptr, \textcolor{keywordtype}{void}* user\_data);}
+\DoxyCodeLine{508 }
+\DoxyCodeLine{509 \textcolor{keyword}{typedef} jvmtiIterationControl (JNICALL *jvmtiStackReferenceCallback)}
+\DoxyCodeLine{510     (jvmtiHeapRootKind root\_kind, jlong class\_tag, jlong size, jlong* tag\_ptr, jlong thread\_tag, jint depth, jmethodID method, jint slot, \textcolor{keywordtype}{void}* user\_data);}
+\DoxyCodeLine{511 }
+\DoxyCodeLine{512 \textcolor{keyword}{typedef} jvmtiIterationControl (JNICALL *jvmtiObjectReferenceCallback)}
+\DoxyCodeLine{513     (jvmtiObjectReferenceKind reference\_kind, jlong class\_tag, jlong size, jlong* tag\_ptr, jlong referrer\_tag, jint referrer\_index, \textcolor{keywordtype}{void}* user\_data);}
+\DoxyCodeLine{514 }
+\DoxyCodeLine{515 \textcolor{keyword}{typedef} jvmtiError (JNICALL *jvmtiExtensionFunction)}
+\DoxyCodeLine{516     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* jvmti\_env,  ...);}
+\DoxyCodeLine{517 }
+\DoxyCodeLine{518 \textcolor{keyword}{typedef} void (JNICALL *jvmtiExtensionEvent)}
+\DoxyCodeLine{519     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* jvmti\_env,  ...);}
+\DoxyCodeLine{520 }
+\DoxyCodeLine{521 }
+\DoxyCodeLine{522     \textcolor{comment}{/* Structure Types */}}
+\DoxyCodeLine{523 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_thread_info}{\_jvmtiThreadInfo}} \{}
+\DoxyCodeLine{524     \textcolor{keywordtype}{char}* name;}
+\DoxyCodeLine{525     jint priority;}
+\DoxyCodeLine{526     jboolean is\_daemon;}
+\DoxyCodeLine{527     jthreadGroup thread\_group;}
+\DoxyCodeLine{528     jobject context\_class\_loader;}
+\DoxyCodeLine{529 \};}
+\DoxyCodeLine{530 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_monitor_stack_depth_info}{\_jvmtiMonitorStackDepthInfo}} \{}
+\DoxyCodeLine{531     jobject monitor;}
+\DoxyCodeLine{532     jint stack\_depth;}
+\DoxyCodeLine{533 \};}
+\DoxyCodeLine{534 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_thread_group_info}{\_jvmtiThreadGroupInfo}} \{}
+\DoxyCodeLine{535     jthreadGroup parent;}
+\DoxyCodeLine{536     \textcolor{keywordtype}{char}* name;}
+\DoxyCodeLine{537     jint max\_priority;}
+\DoxyCodeLine{538     jboolean is\_daemon;}
+\DoxyCodeLine{539 \};}
+\DoxyCodeLine{540 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_frame_info}{\_jvmtiFrameInfo}} \{}
+\DoxyCodeLine{541     jmethodID method;}
+\DoxyCodeLine{542     jlocation location;}
+\DoxyCodeLine{543 \};}
+\DoxyCodeLine{544 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_stack_info}{\_jvmtiStackInfo}} \{}
+\DoxyCodeLine{545     jthread thread;}
+\DoxyCodeLine{546     jint state;}
+\DoxyCodeLine{547     \mbox{\hyperlink{struct__jvmti_frame_info}{jvmtiFrameInfo}}* frame\_buffer;}
+\DoxyCodeLine{548     jint frame\_count;}
+\DoxyCodeLine{549 \};}
+\DoxyCodeLine{550 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_heap_reference_info_field}{\_jvmtiHeapReferenceInfoField}} \{}
+\DoxyCodeLine{551     jint index;}
+\DoxyCodeLine{552 \};}
+\DoxyCodeLine{553 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_heap_reference_info_array}{\_jvmtiHeapReferenceInfoArray}} \{}
+\DoxyCodeLine{554     jint index;}
+\DoxyCodeLine{555 \};}
+\DoxyCodeLine{556 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_heap_reference_info_constant_pool}{\_jvmtiHeapReferenceInfoConstantPool}} \{}
+\DoxyCodeLine{557     jint index;}
+\DoxyCodeLine{558 \};}
+\DoxyCodeLine{559 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_heap_reference_info_stack_local}{\_jvmtiHeapReferenceInfoStackLocal}} \{}
+\DoxyCodeLine{560     jlong thread\_tag;}
+\DoxyCodeLine{561     jlong thread\_id;}
+\DoxyCodeLine{562     jint depth;}
+\DoxyCodeLine{563     jmethodID method;}
+\DoxyCodeLine{564     jlocation location;}
+\DoxyCodeLine{565     jint slot;}
+\DoxyCodeLine{566 \};}
+\DoxyCodeLine{567 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_heap_reference_info_jni_local}{\_jvmtiHeapReferenceInfoJniLocal}} \{}
+\DoxyCodeLine{568     jlong thread\_tag;}
+\DoxyCodeLine{569     jlong thread\_id;}
+\DoxyCodeLine{570     jint depth;}
+\DoxyCodeLine{571     jmethodID method;}
+\DoxyCodeLine{572 \};}
+\DoxyCodeLine{573 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_heap_reference_info_reserved}{\_jvmtiHeapReferenceInfoReserved}} \{}
+\DoxyCodeLine{574     jlong reserved1;}
+\DoxyCodeLine{575     jlong reserved2;}
+\DoxyCodeLine{576     jlong reserved3;}
+\DoxyCodeLine{577     jlong reserved4;}
+\DoxyCodeLine{578     jlong reserved5;}
+\DoxyCodeLine{579     jlong reserved6;}
+\DoxyCodeLine{580     jlong reserved7;}
+\DoxyCodeLine{581     jlong reserved8;}
+\DoxyCodeLine{582 \};}
+\DoxyCodeLine{583 \textcolor{keyword}{union }\mbox{\hyperlink{union__jvmti_heap_reference_info}{\_jvmtiHeapReferenceInfo}} \{}
+\DoxyCodeLine{584     \mbox{\hyperlink{struct__jvmti_heap_reference_info_field}{jvmtiHeapReferenceInfoField}} field;}
+\DoxyCodeLine{585     \mbox{\hyperlink{struct__jvmti_heap_reference_info_array}{jvmtiHeapReferenceInfoArray}} array;}
+\DoxyCodeLine{586     \mbox{\hyperlink{struct__jvmti_heap_reference_info_constant_pool}{jvmtiHeapReferenceInfoConstantPool}} constant\_pool;}
+\DoxyCodeLine{587     \mbox{\hyperlink{struct__jvmti_heap_reference_info_stack_local}{jvmtiHeapReferenceInfoStackLocal}} stack\_local;}
+\DoxyCodeLine{588     \mbox{\hyperlink{struct__jvmti_heap_reference_info_jni_local}{jvmtiHeapReferenceInfoJniLocal}} jni\_local;}
+\DoxyCodeLine{589     \mbox{\hyperlink{struct__jvmti_heap_reference_info_reserved}{jvmtiHeapReferenceInfoReserved}} other;}
+\DoxyCodeLine{590 \};}
+\DoxyCodeLine{591 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_heap_callbacks}{\_jvmtiHeapCallbacks}} \{}
+\DoxyCodeLine{592     jvmtiHeapIterationCallback heap\_iteration\_callback;}
+\DoxyCodeLine{593     jvmtiHeapReferenceCallback heap\_reference\_callback;}
+\DoxyCodeLine{594     jvmtiPrimitiveFieldCallback primitive\_field\_callback;}
+\DoxyCodeLine{595     jvmtiArrayPrimitiveValueCallback array\_primitive\_value\_callback;}
+\DoxyCodeLine{596     jvmtiStringPrimitiveValueCallback string\_primitive\_value\_callback;}
+\DoxyCodeLine{597     jvmtiReservedCallback reserved5;}
+\DoxyCodeLine{598     jvmtiReservedCallback reserved6;}
+\DoxyCodeLine{599     jvmtiReservedCallback reserved7;}
+\DoxyCodeLine{600     jvmtiReservedCallback reserved8;}
+\DoxyCodeLine{601     jvmtiReservedCallback reserved9;}
+\DoxyCodeLine{602     jvmtiReservedCallback reserved10;}
+\DoxyCodeLine{603     jvmtiReservedCallback reserved11;}
+\DoxyCodeLine{604     jvmtiReservedCallback reserved12;}
+\DoxyCodeLine{605     jvmtiReservedCallback reserved13;}
+\DoxyCodeLine{606     jvmtiReservedCallback reserved14;}
+\DoxyCodeLine{607     jvmtiReservedCallback reserved15;}
+\DoxyCodeLine{608 \};}
+\DoxyCodeLine{609 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_class_definition}{\_jvmtiClassDefinition}} \{}
+\DoxyCodeLine{610     jclass klass;}
+\DoxyCodeLine{611     jint class\_byte\_count;}
+\DoxyCodeLine{612     \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}* class\_bytes;}
+\DoxyCodeLine{613 \};}
+\DoxyCodeLine{614 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_monitor_usage}{\_jvmtiMonitorUsage}} \{}
+\DoxyCodeLine{615     jthread owner;}
+\DoxyCodeLine{616     jint entry\_count;}
+\DoxyCodeLine{617     jint waiter\_count;}
+\DoxyCodeLine{618     jthread* waiters;}
+\DoxyCodeLine{619     jint notify\_waiter\_count;}
+\DoxyCodeLine{620     jthread* notify\_waiters;}
+\DoxyCodeLine{621 \};}
+\DoxyCodeLine{622 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_line_number_entry}{\_jvmtiLineNumberEntry}} \{}
+\DoxyCodeLine{623     jlocation start\_location;}
+\DoxyCodeLine{624     jint line\_number;}
+\DoxyCodeLine{625 \};}
+\DoxyCodeLine{626 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_local_variable_entry}{\_jvmtiLocalVariableEntry}} \{}
+\DoxyCodeLine{627     jlocation start\_location;}
+\DoxyCodeLine{628     jint length;}
+\DoxyCodeLine{629     \textcolor{keywordtype}{char}* name;}
+\DoxyCodeLine{630     \textcolor{keywordtype}{char}* signature;}
+\DoxyCodeLine{631     \textcolor{keywordtype}{char}* generic\_signature;}
+\DoxyCodeLine{632     jint slot;}
+\DoxyCodeLine{633 \};}
+\DoxyCodeLine{634 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_param_info}{\_jvmtiParamInfo}} \{}
+\DoxyCodeLine{635     \textcolor{keywordtype}{char}* name;}
+\DoxyCodeLine{636     jvmtiParamKind kind;}
+\DoxyCodeLine{637     jvmtiParamTypes base\_type;}
+\DoxyCodeLine{638     jboolean null\_ok;}
+\DoxyCodeLine{639 \};}
+\DoxyCodeLine{640 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_extension_function_info}{\_jvmtiExtensionFunctionInfo}} \{}
+\DoxyCodeLine{641     jvmtiExtensionFunction func;}
+\DoxyCodeLine{642     \textcolor{keywordtype}{char}* id;}
+\DoxyCodeLine{643     \textcolor{keywordtype}{char}* short\_description;}
+\DoxyCodeLine{644     jint param\_count;}
+\DoxyCodeLine{645     \mbox{\hyperlink{struct__jvmti_param_info}{jvmtiParamInfo}}* params;}
+\DoxyCodeLine{646     jint error\_count;}
+\DoxyCodeLine{647     jvmtiError* errors;}
+\DoxyCodeLine{648 \};}
+\DoxyCodeLine{649 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_extension_event_info}{\_jvmtiExtensionEventInfo}} \{}
+\DoxyCodeLine{650     jint extension\_event\_index;}
+\DoxyCodeLine{651     \textcolor{keywordtype}{char}* id;}
+\DoxyCodeLine{652     \textcolor{keywordtype}{char}* short\_description;}
+\DoxyCodeLine{653     jint param\_count;}
+\DoxyCodeLine{654     \mbox{\hyperlink{struct__jvmti_param_info}{jvmtiParamInfo}}* params;}
+\DoxyCodeLine{655 \};}
+\DoxyCodeLine{656 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_timer_info}{\_jvmtiTimerInfo}} \{}
+\DoxyCodeLine{657     jlong max\_value;}
+\DoxyCodeLine{658     jboolean may\_skip\_forward;}
+\DoxyCodeLine{659     jboolean may\_skip\_backward;}
+\DoxyCodeLine{660     jvmtiTimerKind kind;}
+\DoxyCodeLine{661     jlong reserved1;}
+\DoxyCodeLine{662     jlong reserved2;}
+\DoxyCodeLine{663 \};}
+\DoxyCodeLine{664 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_addr_location_map}{\_jvmtiAddrLocationMap}} \{}
+\DoxyCodeLine{665     \textcolor{keyword}{const} \textcolor{keywordtype}{void}* start\_address;}
+\DoxyCodeLine{666     jlocation location;}
+\DoxyCodeLine{667 \};}
+\DoxyCodeLine{668 }
+\DoxyCodeLine{669 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{670     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_tag\_objects : 1;}
+\DoxyCodeLine{671     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_generate\_field\_modification\_events : 1;}
+\DoxyCodeLine{672     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_generate\_field\_access\_events : 1;}
+\DoxyCodeLine{673     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_get\_bytecodes : 1;}
+\DoxyCodeLine{674     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_get\_synthetic\_attribute : 1;}
+\DoxyCodeLine{675     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_get\_owned\_monitor\_info : 1;}
+\DoxyCodeLine{676     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_get\_current\_contended\_monitor : 1;}
+\DoxyCodeLine{677     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_get\_monitor\_info : 1;}
+\DoxyCodeLine{678     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_pop\_frame : 1;}
+\DoxyCodeLine{679     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_redefine\_classes : 1;}
+\DoxyCodeLine{680     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_signal\_thread : 1;}
+\DoxyCodeLine{681     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_get\_source\_file\_name : 1;}
+\DoxyCodeLine{682     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_get\_line\_numbers : 1;}
+\DoxyCodeLine{683     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_get\_source\_debug\_extension : 1;}
+\DoxyCodeLine{684     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_access\_local\_variables : 1;}
+\DoxyCodeLine{685     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_maintain\_original\_method\_order : 1;}
+\DoxyCodeLine{686     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_generate\_single\_step\_events : 1;}
+\DoxyCodeLine{687     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_generate\_exception\_events : 1;}
+\DoxyCodeLine{688     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_generate\_frame\_pop\_events : 1;}
+\DoxyCodeLine{689     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_generate\_breakpoint\_events : 1;}
+\DoxyCodeLine{690     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_suspend : 1;}
+\DoxyCodeLine{691     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_redefine\_any\_class : 1;}
+\DoxyCodeLine{692     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_get\_current\_thread\_cpu\_time : 1;}
+\DoxyCodeLine{693     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_get\_thread\_cpu\_time : 1;}
+\DoxyCodeLine{694     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_generate\_method\_entry\_events : 1;}
+\DoxyCodeLine{695     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_generate\_method\_exit\_events : 1;}
+\DoxyCodeLine{696     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_generate\_all\_class\_hook\_events : 1;}
+\DoxyCodeLine{697     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_generate\_compiled\_method\_load\_events : 1;}
+\DoxyCodeLine{698     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_generate\_monitor\_events : 1;}
+\DoxyCodeLine{699     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_generate\_vm\_object\_alloc\_events : 1;}
+\DoxyCodeLine{700     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_generate\_native\_method\_bind\_events : 1;}
+\DoxyCodeLine{701     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_generate\_garbage\_collection\_events : 1;}
+\DoxyCodeLine{702     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_generate\_object\_free\_events : 1;}
+\DoxyCodeLine{703     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_force\_early\_return : 1;}
+\DoxyCodeLine{704     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_get\_owned\_monitor\_stack\_depth\_info : 1;}
+\DoxyCodeLine{705     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_get\_constant\_pool : 1;}
+\DoxyCodeLine{706     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_set\_native\_method\_prefix : 1;}
+\DoxyCodeLine{707     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_retransform\_classes : 1;}
+\DoxyCodeLine{708     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_retransform\_any\_class : 1;}
+\DoxyCodeLine{709     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_generate\_resource\_exhaustion\_heap\_events : 1;}
+\DoxyCodeLine{710     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_generate\_resource\_exhaustion\_threads\_events : 1;}
+\DoxyCodeLine{711     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_generate\_early\_vmstart : 1;}
+\DoxyCodeLine{712     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_generate\_early\_class\_hook\_events : 1;}
+\DoxyCodeLine{713     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} can\_generate\_sampled\_object\_alloc\_events : 1;}
+\DoxyCodeLine{714     \textcolor{keywordtype}{unsigned} int : 4;}
+\DoxyCodeLine{715     \textcolor{keywordtype}{unsigned} int : 16;}
+\DoxyCodeLine{716     \textcolor{keywordtype}{unsigned} int : 16;}
+\DoxyCodeLine{717     \textcolor{keywordtype}{unsigned} int : 16;}
+\DoxyCodeLine{718     \textcolor{keywordtype}{unsigned} int : 16;}
+\DoxyCodeLine{719     \textcolor{keywordtype}{unsigned} int : 16;}
+\DoxyCodeLine{720 \} \mbox{\hyperlink{structjvmti_capabilities}{jvmtiCapabilities}};}
+\DoxyCodeLine{721 }
+\DoxyCodeLine{722 }
+\DoxyCodeLine{723     \textcolor{comment}{/* Event Definitions */}}
+\DoxyCodeLine{724 }
+\DoxyCodeLine{725 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventReserved)(void);}
+\DoxyCodeLine{726 }
+\DoxyCodeLine{727 }
+\DoxyCodeLine{728 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventBreakpoint)}
+\DoxyCodeLine{729     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{730      \mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* jni\_env,}
+\DoxyCodeLine{731      jthread thread,}
+\DoxyCodeLine{732      jmethodID method,}
+\DoxyCodeLine{733      jlocation location);}
+\DoxyCodeLine{734 }
+\DoxyCodeLine{735 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventClassFileLoadHook)}
+\DoxyCodeLine{736     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{737      \mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* jni\_env,}
+\DoxyCodeLine{738      jclass class\_being\_redefined,}
+\DoxyCodeLine{739      jobject loader,}
+\DoxyCodeLine{740      \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name,}
+\DoxyCodeLine{741      jobject protection\_domain,}
+\DoxyCodeLine{742      jint class\_data\_len,}
+\DoxyCodeLine{743      \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}* class\_data,}
+\DoxyCodeLine{744      jint* new\_class\_data\_len,}
+\DoxyCodeLine{745      \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}** new\_class\_data);}
+\DoxyCodeLine{746 }
+\DoxyCodeLine{747 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventClassLoad)}
+\DoxyCodeLine{748     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{749      \mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* jni\_env,}
+\DoxyCodeLine{750      jthread thread,}
+\DoxyCodeLine{751      jclass klass);}
+\DoxyCodeLine{752 }
+\DoxyCodeLine{753 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventClassPrepare)}
+\DoxyCodeLine{754     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{755      \mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* jni\_env,}
+\DoxyCodeLine{756      jthread thread,}
+\DoxyCodeLine{757      jclass klass);}
+\DoxyCodeLine{758 }
+\DoxyCodeLine{759 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventCompiledMethodLoad)}
+\DoxyCodeLine{760     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{761      jmethodID method,}
+\DoxyCodeLine{762      jint code\_size,}
+\DoxyCodeLine{763      \textcolor{keyword}{const} \textcolor{keywordtype}{void}* code\_addr,}
+\DoxyCodeLine{764      jint map\_length,}
+\DoxyCodeLine{765      \textcolor{keyword}{const} \mbox{\hyperlink{struct__jvmti_addr_location_map}{jvmtiAddrLocationMap}}* map,}
+\DoxyCodeLine{766      \textcolor{keyword}{const} \textcolor{keywordtype}{void}* compile\_info);}
+\DoxyCodeLine{767 }
+\DoxyCodeLine{768 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventCompiledMethodUnload)}
+\DoxyCodeLine{769     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{770      jmethodID method,}
+\DoxyCodeLine{771      \textcolor{keyword}{const} \textcolor{keywordtype}{void}* code\_addr);}
+\DoxyCodeLine{772 }
+\DoxyCodeLine{773 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventDataDumpRequest)}
+\DoxyCodeLine{774     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env);}
+\DoxyCodeLine{775 }
+\DoxyCodeLine{776 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventDynamicCodeGenerated)}
+\DoxyCodeLine{777     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{778      \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name,}
+\DoxyCodeLine{779      \textcolor{keyword}{const} \textcolor{keywordtype}{void}* address,}
+\DoxyCodeLine{780      jint length);}
+\DoxyCodeLine{781 }
+\DoxyCodeLine{782 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventException)}
+\DoxyCodeLine{783     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{784      \mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* jni\_env,}
+\DoxyCodeLine{785      jthread thread,}
+\DoxyCodeLine{786      jmethodID method,}
+\DoxyCodeLine{787      jlocation location,}
+\DoxyCodeLine{788      jobject exception,}
+\DoxyCodeLine{789      jmethodID catch\_method,}
+\DoxyCodeLine{790      jlocation catch\_location);}
+\DoxyCodeLine{791 }
+\DoxyCodeLine{792 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventExceptionCatch)}
+\DoxyCodeLine{793     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{794      \mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* jni\_env,}
+\DoxyCodeLine{795      jthread thread,}
+\DoxyCodeLine{796      jmethodID method,}
+\DoxyCodeLine{797      jlocation location,}
+\DoxyCodeLine{798      jobject exception);}
+\DoxyCodeLine{799 }
+\DoxyCodeLine{800 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventFieldAccess)}
+\DoxyCodeLine{801     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{802      \mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* jni\_env,}
+\DoxyCodeLine{803      jthread thread,}
+\DoxyCodeLine{804      jmethodID method,}
+\DoxyCodeLine{805      jlocation location,}
+\DoxyCodeLine{806      jclass field\_klass,}
+\DoxyCodeLine{807      jobject object,}
+\DoxyCodeLine{808      jfieldID field);}
+\DoxyCodeLine{809 }
+\DoxyCodeLine{810 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventFieldModification)}
+\DoxyCodeLine{811     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{812      \mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* jni\_env,}
+\DoxyCodeLine{813      jthread thread,}
+\DoxyCodeLine{814      jmethodID method,}
+\DoxyCodeLine{815      jlocation location,}
+\DoxyCodeLine{816      jclass field\_klass,}
+\DoxyCodeLine{817      jobject object,}
+\DoxyCodeLine{818      jfieldID field,}
+\DoxyCodeLine{819      \textcolor{keywordtype}{char} signature\_type,}
+\DoxyCodeLine{820      \mbox{\hyperlink{unionjvalue}{jvalue}} new\_value);}
+\DoxyCodeLine{821 }
+\DoxyCodeLine{822 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventFramePop)}
+\DoxyCodeLine{823     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{824      \mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* jni\_env,}
+\DoxyCodeLine{825      jthread thread,}
+\DoxyCodeLine{826      jmethodID method,}
+\DoxyCodeLine{827      jboolean was\_popped\_by\_exception);}
+\DoxyCodeLine{828 }
+\DoxyCodeLine{829 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventGarbageCollectionFinish)}
+\DoxyCodeLine{830     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env);}
+\DoxyCodeLine{831 }
+\DoxyCodeLine{832 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventGarbageCollectionStart)}
+\DoxyCodeLine{833     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env);}
+\DoxyCodeLine{834 }
+\DoxyCodeLine{835 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventMethodEntry)}
+\DoxyCodeLine{836     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{837      \mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* jni\_env,}
+\DoxyCodeLine{838      jthread thread,}
+\DoxyCodeLine{839      jmethodID method);}
+\DoxyCodeLine{840 }
+\DoxyCodeLine{841 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventMethodExit)}
+\DoxyCodeLine{842     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{843      \mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* jni\_env,}
+\DoxyCodeLine{844      jthread thread,}
+\DoxyCodeLine{845      jmethodID method,}
+\DoxyCodeLine{846      jboolean was\_popped\_by\_exception,}
+\DoxyCodeLine{847      \mbox{\hyperlink{unionjvalue}{jvalue}} return\_value);}
+\DoxyCodeLine{848 }
+\DoxyCodeLine{849 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventMonitorContendedEnter)}
+\DoxyCodeLine{850     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{851      \mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* jni\_env,}
+\DoxyCodeLine{852      jthread thread,}
+\DoxyCodeLine{853      jobject object);}
+\DoxyCodeLine{854 }
+\DoxyCodeLine{855 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventMonitorContendedEntered)}
+\DoxyCodeLine{856     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{857      \mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* jni\_env,}
+\DoxyCodeLine{858      jthread thread,}
+\DoxyCodeLine{859      jobject object);}
+\DoxyCodeLine{860 }
+\DoxyCodeLine{861 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventMonitorWait)}
+\DoxyCodeLine{862     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{863      \mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* jni\_env,}
+\DoxyCodeLine{864      jthread thread,}
+\DoxyCodeLine{865      jobject object,}
+\DoxyCodeLine{866      jlong timeout);}
+\DoxyCodeLine{867 }
+\DoxyCodeLine{868 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventMonitorWaited)}
+\DoxyCodeLine{869     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{870      \mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* jni\_env,}
+\DoxyCodeLine{871      jthread thread,}
+\DoxyCodeLine{872      jobject object,}
+\DoxyCodeLine{873      jboolean timed\_out);}
+\DoxyCodeLine{874 }
+\DoxyCodeLine{875 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventNativeMethodBind)}
+\DoxyCodeLine{876     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{877      \mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* jni\_env,}
+\DoxyCodeLine{878      jthread thread,}
+\DoxyCodeLine{879      jmethodID method,}
+\DoxyCodeLine{880      \textcolor{keywordtype}{void}* address,}
+\DoxyCodeLine{881      \textcolor{keywordtype}{void}** new\_address\_ptr);}
+\DoxyCodeLine{882 }
+\DoxyCodeLine{883 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventObjectFree)}
+\DoxyCodeLine{884     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{885      jlong tag);}
+\DoxyCodeLine{886 }
+\DoxyCodeLine{887 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventResourceExhausted)}
+\DoxyCodeLine{888     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{889      \mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* jni\_env,}
+\DoxyCodeLine{890      jint flags,}
+\DoxyCodeLine{891      \textcolor{keyword}{const} \textcolor{keywordtype}{void}* reserved,}
+\DoxyCodeLine{892      \textcolor{keyword}{const} \textcolor{keywordtype}{char}* description);}
+\DoxyCodeLine{893 }
+\DoxyCodeLine{894 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventSampledObjectAlloc)}
+\DoxyCodeLine{895     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{896      \mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* jni\_env,}
+\DoxyCodeLine{897      jthread thread,}
+\DoxyCodeLine{898      jobject object,}
+\DoxyCodeLine{899      jclass object\_klass,}
+\DoxyCodeLine{900      jlong size);}
+\DoxyCodeLine{901 }
+\DoxyCodeLine{902 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventSingleStep)}
+\DoxyCodeLine{903     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{904      \mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* jni\_env,}
+\DoxyCodeLine{905      jthread thread,}
+\DoxyCodeLine{906      jmethodID method,}
+\DoxyCodeLine{907      jlocation location);}
+\DoxyCodeLine{908 }
+\DoxyCodeLine{909 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventThreadEnd)}
+\DoxyCodeLine{910     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{911      \mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* jni\_env,}
+\DoxyCodeLine{912      jthread thread);}
+\DoxyCodeLine{913 }
+\DoxyCodeLine{914 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventThreadStart)}
+\DoxyCodeLine{915     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{916      \mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* jni\_env,}
+\DoxyCodeLine{917      jthread thread);}
+\DoxyCodeLine{918 }
+\DoxyCodeLine{919 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventVMDeath)}
+\DoxyCodeLine{920     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{921      \mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* jni\_env);}
+\DoxyCodeLine{922 }
+\DoxyCodeLine{923 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventVMInit)}
+\DoxyCodeLine{924     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{925      \mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* jni\_env,}
+\DoxyCodeLine{926      jthread thread);}
+\DoxyCodeLine{927 }
+\DoxyCodeLine{928 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventVMObjectAlloc)}
+\DoxyCodeLine{929     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{930      \mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* jni\_env,}
+\DoxyCodeLine{931      jthread thread,}
+\DoxyCodeLine{932      jobject object,}
+\DoxyCodeLine{933      jclass object\_klass,}
+\DoxyCodeLine{934      jlong size);}
+\DoxyCodeLine{935 }
+\DoxyCodeLine{936 \textcolor{keyword}{typedef} void (JNICALL *jvmtiEventVMStart)}
+\DoxyCodeLine{937     (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}} *jvmti\_env,}
+\DoxyCodeLine{938      \mbox{\hyperlink{struct_j_n_i_native_interface__}{JNIEnv}}* jni\_env);}
+\DoxyCodeLine{939 }
+\DoxyCodeLine{940     \textcolor{comment}{/* Event Callback Structure */}}
+\DoxyCodeLine{941 }
+\DoxyCodeLine{942 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{943                               \textcolor{comment}{/*   50 : VM Initialization Event */}}
+\DoxyCodeLine{944     jvmtiEventVMInit VMInit;}
+\DoxyCodeLine{945                               \textcolor{comment}{/*   51 : VM Death Event */}}
+\DoxyCodeLine{946     jvmtiEventVMDeath VMDeath;}
+\DoxyCodeLine{947                               \textcolor{comment}{/*   52 : Thread Start */}}
+\DoxyCodeLine{948     jvmtiEventThreadStart ThreadStart;}
+\DoxyCodeLine{949                               \textcolor{comment}{/*   53 : Thread End */}}
+\DoxyCodeLine{950     jvmtiEventThreadEnd ThreadEnd;}
+\DoxyCodeLine{951                               \textcolor{comment}{/*   54 : Class File Load Hook */}}
+\DoxyCodeLine{952     jvmtiEventClassFileLoadHook ClassFileLoadHook;}
+\DoxyCodeLine{953                               \textcolor{comment}{/*   55 : Class Load */}}
+\DoxyCodeLine{954     jvmtiEventClassLoad ClassLoad;}
+\DoxyCodeLine{955                               \textcolor{comment}{/*   56 : Class Prepare */}}
+\DoxyCodeLine{956     jvmtiEventClassPrepare ClassPrepare;}
+\DoxyCodeLine{957                               \textcolor{comment}{/*   57 : VM Start Event */}}
+\DoxyCodeLine{958     jvmtiEventVMStart VMStart;}
+\DoxyCodeLine{959                               \textcolor{comment}{/*   58 : Exception */}}
+\DoxyCodeLine{960     jvmtiEventException Exception;}
+\DoxyCodeLine{961                               \textcolor{comment}{/*   59 : Exception Catch */}}
+\DoxyCodeLine{962     jvmtiEventExceptionCatch ExceptionCatch;}
+\DoxyCodeLine{963                               \textcolor{comment}{/*   60 : Single Step */}}
+\DoxyCodeLine{964     jvmtiEventSingleStep SingleStep;}
+\DoxyCodeLine{965                               \textcolor{comment}{/*   61 : Frame Pop */}}
+\DoxyCodeLine{966     jvmtiEventFramePop FramePop;}
+\DoxyCodeLine{967                               \textcolor{comment}{/*   62 : Breakpoint */}}
+\DoxyCodeLine{968     jvmtiEventBreakpoint Breakpoint;}
+\DoxyCodeLine{969                               \textcolor{comment}{/*   63 : Field Access */}}
+\DoxyCodeLine{970     jvmtiEventFieldAccess FieldAccess;}
+\DoxyCodeLine{971                               \textcolor{comment}{/*   64 : Field Modification */}}
+\DoxyCodeLine{972     jvmtiEventFieldModification FieldModification;}
+\DoxyCodeLine{973                               \textcolor{comment}{/*   65 : Method Entry */}}
+\DoxyCodeLine{974     jvmtiEventMethodEntry MethodEntry;}
+\DoxyCodeLine{975                               \textcolor{comment}{/*   66 : Method Exit */}}
+\DoxyCodeLine{976     jvmtiEventMethodExit MethodExit;}
+\DoxyCodeLine{977                               \textcolor{comment}{/*   67 : Native Method Bind */}}
+\DoxyCodeLine{978     jvmtiEventNativeMethodBind NativeMethodBind;}
+\DoxyCodeLine{979                               \textcolor{comment}{/*   68 : Compiled Method Load */}}
+\DoxyCodeLine{980     jvmtiEventCompiledMethodLoad CompiledMethodLoad;}
+\DoxyCodeLine{981                               \textcolor{comment}{/*   69 : Compiled Method Unload */}}
+\DoxyCodeLine{982     jvmtiEventCompiledMethodUnload CompiledMethodUnload;}
+\DoxyCodeLine{983                               \textcolor{comment}{/*   70 : Dynamic Code Generated */}}
+\DoxyCodeLine{984     jvmtiEventDynamicCodeGenerated DynamicCodeGenerated;}
+\DoxyCodeLine{985                               \textcolor{comment}{/*   71 : Data Dump Request */}}
+\DoxyCodeLine{986     jvmtiEventDataDumpRequest DataDumpRequest;}
+\DoxyCodeLine{987                               \textcolor{comment}{/*   72 */}}
+\DoxyCodeLine{988     jvmtiEventReserved reserved72;}
+\DoxyCodeLine{989                               \textcolor{comment}{/*   73 : Monitor Wait */}}
+\DoxyCodeLine{990     jvmtiEventMonitorWait MonitorWait;}
+\DoxyCodeLine{991                               \textcolor{comment}{/*   74 : Monitor Waited */}}
+\DoxyCodeLine{992     jvmtiEventMonitorWaited MonitorWaited;}
+\DoxyCodeLine{993                               \textcolor{comment}{/*   75 : Monitor Contended Enter */}}
+\DoxyCodeLine{994     jvmtiEventMonitorContendedEnter MonitorContendedEnter;}
+\DoxyCodeLine{995                               \textcolor{comment}{/*   76 : Monitor Contended Entered */}}
+\DoxyCodeLine{996     jvmtiEventMonitorContendedEntered MonitorContendedEntered;}
+\DoxyCodeLine{997                               \textcolor{comment}{/*   77 */}}
+\DoxyCodeLine{998     jvmtiEventReserved reserved77;}
+\DoxyCodeLine{999                               \textcolor{comment}{/*   78 */}}
+\DoxyCodeLine{1000     jvmtiEventReserved reserved78;}
+\DoxyCodeLine{1001                               \textcolor{comment}{/*   79 */}}
+\DoxyCodeLine{1002     jvmtiEventReserved reserved79;}
+\DoxyCodeLine{1003                               \textcolor{comment}{/*   80 : Resource Exhausted */}}
+\DoxyCodeLine{1004     jvmtiEventResourceExhausted ResourceExhausted;}
+\DoxyCodeLine{1005                               \textcolor{comment}{/*   81 : Garbage Collection Start */}}
+\DoxyCodeLine{1006     jvmtiEventGarbageCollectionStart GarbageCollectionStart;}
+\DoxyCodeLine{1007                               \textcolor{comment}{/*   82 : Garbage Collection Finish */}}
+\DoxyCodeLine{1008     jvmtiEventGarbageCollectionFinish GarbageCollectionFinish;}
+\DoxyCodeLine{1009                               \textcolor{comment}{/*   83 : Object Free */}}
+\DoxyCodeLine{1010     jvmtiEventObjectFree ObjectFree;}
+\DoxyCodeLine{1011                               \textcolor{comment}{/*   84 : VM Object Allocation */}}
+\DoxyCodeLine{1012     jvmtiEventVMObjectAlloc VMObjectAlloc;}
+\DoxyCodeLine{1013                               \textcolor{comment}{/*   85 */}}
+\DoxyCodeLine{1014     jvmtiEventReserved reserved85;}
+\DoxyCodeLine{1015                               \textcolor{comment}{/*   86 : Sampled Object Allocation */}}
+\DoxyCodeLine{1016     jvmtiEventSampledObjectAlloc SampledObjectAlloc;}
+\DoxyCodeLine{1017 \} \mbox{\hyperlink{structjvmti_event_callbacks}{jvmtiEventCallbacks}};}
+\DoxyCodeLine{1018 }
+\DoxyCodeLine{1019 }
+\DoxyCodeLine{1020     \textcolor{comment}{/* Function Interface */}}
+\DoxyCodeLine{1021 }
+\DoxyCodeLine{1022 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiInterface\_1\_}} \{}
+\DoxyCodeLine{1023 }
+\DoxyCodeLine{1024   \textcolor{comment}{/*   1 :  RESERVED */}}
+\DoxyCodeLine{1025   \textcolor{keywordtype}{void} *reserved1;}
+\DoxyCodeLine{1026 }
+\DoxyCodeLine{1027   \textcolor{comment}{/*   2 : Set Event Notification Mode */}}
+\DoxyCodeLine{1028   jvmtiError (JNICALL *SetEventNotificationMode) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1029     jvmtiEventMode mode,}
+\DoxyCodeLine{1030     jvmtiEvent event\_type,}
+\DoxyCodeLine{1031     jthread event\_thread,}
+\DoxyCodeLine{1032      ...);}
+\DoxyCodeLine{1033 }
+\DoxyCodeLine{1034   \textcolor{comment}{/*   3 : Get All Modules */}}
+\DoxyCodeLine{1035   jvmtiError (JNICALL *GetAllModules) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1036     jint* module\_count\_ptr,}
+\DoxyCodeLine{1037     jobject** modules\_ptr);}
+\DoxyCodeLine{1038 }
+\DoxyCodeLine{1039   \textcolor{comment}{/*   4 : Get All Threads */}}
+\DoxyCodeLine{1040   jvmtiError (JNICALL *GetAllThreads) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1041     jint* threads\_count\_ptr,}
+\DoxyCodeLine{1042     jthread** threads\_ptr);}
+\DoxyCodeLine{1043 }
+\DoxyCodeLine{1044   \textcolor{comment}{/*   5 : Suspend Thread */}}
+\DoxyCodeLine{1045   jvmtiError (JNICALL *SuspendThread) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1046     jthread thread);}
+\DoxyCodeLine{1047 }
+\DoxyCodeLine{1048   \textcolor{comment}{/*   6 : Resume Thread */}}
+\DoxyCodeLine{1049   jvmtiError (JNICALL *ResumeThread) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1050     jthread thread);}
+\DoxyCodeLine{1051 }
+\DoxyCodeLine{1052   \textcolor{comment}{/*   7 : Stop Thread */}}
+\DoxyCodeLine{1053   jvmtiError (JNICALL *StopThread) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1054     jthread thread,}
+\DoxyCodeLine{1055     jobject exception);}
+\DoxyCodeLine{1056 }
+\DoxyCodeLine{1057   \textcolor{comment}{/*   8 : Interrupt Thread */}}
+\DoxyCodeLine{1058   jvmtiError (JNICALL *InterruptThread) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1059     jthread thread);}
+\DoxyCodeLine{1060 }
+\DoxyCodeLine{1061   \textcolor{comment}{/*   9 : Get Thread Info */}}
+\DoxyCodeLine{1062   jvmtiError (JNICALL *GetThreadInfo) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1063     jthread thread,}
+\DoxyCodeLine{1064     \mbox{\hyperlink{struct__jvmti_thread_info}{jvmtiThreadInfo}}* info\_ptr);}
+\DoxyCodeLine{1065 }
+\DoxyCodeLine{1066   \textcolor{comment}{/*   10 : Get Owned Monitor Info */}}
+\DoxyCodeLine{1067   jvmtiError (JNICALL *GetOwnedMonitorInfo) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1068     jthread thread,}
+\DoxyCodeLine{1069     jint* owned\_monitor\_count\_ptr,}
+\DoxyCodeLine{1070     jobject** owned\_monitors\_ptr);}
+\DoxyCodeLine{1071 }
+\DoxyCodeLine{1072   \textcolor{comment}{/*   11 : Get Current Contended Monitor */}}
+\DoxyCodeLine{1073   jvmtiError (JNICALL *GetCurrentContendedMonitor) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1074     jthread thread,}
+\DoxyCodeLine{1075     jobject* monitor\_ptr);}
+\DoxyCodeLine{1076 }
+\DoxyCodeLine{1077   \textcolor{comment}{/*   12 : Run Agent Thread */}}
+\DoxyCodeLine{1078   jvmtiError (JNICALL *RunAgentThread) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1079     jthread thread,}
+\DoxyCodeLine{1080     jvmtiStartFunction proc,}
+\DoxyCodeLine{1081     \textcolor{keyword}{const} \textcolor{keywordtype}{void}* arg,}
+\DoxyCodeLine{1082     jint priority);}
+\DoxyCodeLine{1083 }
+\DoxyCodeLine{1084   \textcolor{comment}{/*   13 : Get Top Thread Groups */}}
+\DoxyCodeLine{1085   jvmtiError (JNICALL *GetTopThreadGroups) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1086     jint* group\_count\_ptr,}
+\DoxyCodeLine{1087     jthreadGroup** groups\_ptr);}
+\DoxyCodeLine{1088 }
+\DoxyCodeLine{1089   \textcolor{comment}{/*   14 : Get Thread Group Info */}}
+\DoxyCodeLine{1090   jvmtiError (JNICALL *GetThreadGroupInfo) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1091     jthreadGroup group,}
+\DoxyCodeLine{1092     \mbox{\hyperlink{struct__jvmti_thread_group_info}{jvmtiThreadGroupInfo}}* info\_ptr);}
+\DoxyCodeLine{1093 }
+\DoxyCodeLine{1094   \textcolor{comment}{/*   15 : Get Thread Group Children */}}
+\DoxyCodeLine{1095   jvmtiError (JNICALL *GetThreadGroupChildren) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1096     jthreadGroup group,}
+\DoxyCodeLine{1097     jint* thread\_count\_ptr,}
+\DoxyCodeLine{1098     jthread** threads\_ptr,}
+\DoxyCodeLine{1099     jint* group\_count\_ptr,}
+\DoxyCodeLine{1100     jthreadGroup** groups\_ptr);}
+\DoxyCodeLine{1101 }
+\DoxyCodeLine{1102   \textcolor{comment}{/*   16 : Get Frame Count */}}
+\DoxyCodeLine{1103   jvmtiError (JNICALL *GetFrameCount) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1104     jthread thread,}
+\DoxyCodeLine{1105     jint* count\_ptr);}
+\DoxyCodeLine{1106 }
+\DoxyCodeLine{1107   \textcolor{comment}{/*   17 : Get Thread State */}}
+\DoxyCodeLine{1108   jvmtiError (JNICALL *GetThreadState) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1109     jthread thread,}
+\DoxyCodeLine{1110     jint* thread\_state\_ptr);}
+\DoxyCodeLine{1111 }
+\DoxyCodeLine{1112   \textcolor{comment}{/*   18 : Get Current Thread */}}
+\DoxyCodeLine{1113   jvmtiError (JNICALL *GetCurrentThread) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1114     jthread* thread\_ptr);}
+\DoxyCodeLine{1115 }
+\DoxyCodeLine{1116   \textcolor{comment}{/*   19 : Get Frame Location */}}
+\DoxyCodeLine{1117   jvmtiError (JNICALL *GetFrameLocation) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1118     jthread thread,}
+\DoxyCodeLine{1119     jint depth,}
+\DoxyCodeLine{1120     jmethodID* method\_ptr,}
+\DoxyCodeLine{1121     jlocation* location\_ptr);}
+\DoxyCodeLine{1122 }
+\DoxyCodeLine{1123   \textcolor{comment}{/*   20 : Notify Frame Pop */}}
+\DoxyCodeLine{1124   jvmtiError (JNICALL *NotifyFramePop) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1125     jthread thread,}
+\DoxyCodeLine{1126     jint depth);}
+\DoxyCodeLine{1127 }
+\DoxyCodeLine{1128   \textcolor{comment}{/*   21 : Get Local Variable -\/ Object */}}
+\DoxyCodeLine{1129   jvmtiError (JNICALL *GetLocalObject) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1130     jthread thread,}
+\DoxyCodeLine{1131     jint depth,}
+\DoxyCodeLine{1132     jint slot,}
+\DoxyCodeLine{1133     jobject* value\_ptr);}
+\DoxyCodeLine{1134 }
+\DoxyCodeLine{1135   \textcolor{comment}{/*   22 : Get Local Variable -\/ Int */}}
+\DoxyCodeLine{1136   jvmtiError (JNICALL *GetLocalInt) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1137     jthread thread,}
+\DoxyCodeLine{1138     jint depth,}
+\DoxyCodeLine{1139     jint slot,}
+\DoxyCodeLine{1140     jint* value\_ptr);}
+\DoxyCodeLine{1141 }
+\DoxyCodeLine{1142   \textcolor{comment}{/*   23 : Get Local Variable -\/ Long */}}
+\DoxyCodeLine{1143   jvmtiError (JNICALL *GetLocalLong) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1144     jthread thread,}
+\DoxyCodeLine{1145     jint depth,}
+\DoxyCodeLine{1146     jint slot,}
+\DoxyCodeLine{1147     jlong* value\_ptr);}
+\DoxyCodeLine{1148 }
+\DoxyCodeLine{1149   \textcolor{comment}{/*   24 : Get Local Variable -\/ Float */}}
+\DoxyCodeLine{1150   jvmtiError (JNICALL *GetLocalFloat) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1151     jthread thread,}
+\DoxyCodeLine{1152     jint depth,}
+\DoxyCodeLine{1153     jint slot,}
+\DoxyCodeLine{1154     jfloat* value\_ptr);}
+\DoxyCodeLine{1155 }
+\DoxyCodeLine{1156   \textcolor{comment}{/*   25 : Get Local Variable -\/ Double */}}
+\DoxyCodeLine{1157   jvmtiError (JNICALL *GetLocalDouble) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1158     jthread thread,}
+\DoxyCodeLine{1159     jint depth,}
+\DoxyCodeLine{1160     jint slot,}
+\DoxyCodeLine{1161     jdouble* value\_ptr);}
+\DoxyCodeLine{1162 }
+\DoxyCodeLine{1163   \textcolor{comment}{/*   26 : Set Local Variable -\/ Object */}}
+\DoxyCodeLine{1164   jvmtiError (JNICALL *SetLocalObject) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1165     jthread thread,}
+\DoxyCodeLine{1166     jint depth,}
+\DoxyCodeLine{1167     jint slot,}
+\DoxyCodeLine{1168     jobject value);}
+\DoxyCodeLine{1169 }
+\DoxyCodeLine{1170   \textcolor{comment}{/*   27 : Set Local Variable -\/ Int */}}
+\DoxyCodeLine{1171   jvmtiError (JNICALL *SetLocalInt) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1172     jthread thread,}
+\DoxyCodeLine{1173     jint depth,}
+\DoxyCodeLine{1174     jint slot,}
+\DoxyCodeLine{1175     jint value);}
+\DoxyCodeLine{1176 }
+\DoxyCodeLine{1177   \textcolor{comment}{/*   28 : Set Local Variable -\/ Long */}}
+\DoxyCodeLine{1178   jvmtiError (JNICALL *SetLocalLong) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1179     jthread thread,}
+\DoxyCodeLine{1180     jint depth,}
+\DoxyCodeLine{1181     jint slot,}
+\DoxyCodeLine{1182     jlong value);}
+\DoxyCodeLine{1183 }
+\DoxyCodeLine{1184   \textcolor{comment}{/*   29 : Set Local Variable -\/ Float */}}
+\DoxyCodeLine{1185   jvmtiError (JNICALL *SetLocalFloat) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1186     jthread thread,}
+\DoxyCodeLine{1187     jint depth,}
+\DoxyCodeLine{1188     jint slot,}
+\DoxyCodeLine{1189     jfloat value);}
+\DoxyCodeLine{1190 }
+\DoxyCodeLine{1191   \textcolor{comment}{/*   30 : Set Local Variable -\/ Double */}}
+\DoxyCodeLine{1192   jvmtiError (JNICALL *SetLocalDouble) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1193     jthread thread,}
+\DoxyCodeLine{1194     jint depth,}
+\DoxyCodeLine{1195     jint slot,}
+\DoxyCodeLine{1196     jdouble value);}
+\DoxyCodeLine{1197 }
+\DoxyCodeLine{1198   \textcolor{comment}{/*   31 : Create Raw Monitor */}}
+\DoxyCodeLine{1199   jvmtiError (JNICALL *CreateRawMonitor) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1200     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name,}
+\DoxyCodeLine{1201     jrawMonitorID* monitor\_ptr);}
+\DoxyCodeLine{1202 }
+\DoxyCodeLine{1203   \textcolor{comment}{/*   32 : Destroy Raw Monitor */}}
+\DoxyCodeLine{1204   jvmtiError (JNICALL *DestroyRawMonitor) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1205     jrawMonitorID monitor);}
+\DoxyCodeLine{1206 }
+\DoxyCodeLine{1207   \textcolor{comment}{/*   33 : Raw Monitor Enter */}}
+\DoxyCodeLine{1208   jvmtiError (JNICALL *RawMonitorEnter) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1209     jrawMonitorID monitor);}
+\DoxyCodeLine{1210 }
+\DoxyCodeLine{1211   \textcolor{comment}{/*   34 : Raw Monitor Exit */}}
+\DoxyCodeLine{1212   jvmtiError (JNICALL *RawMonitorExit) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1213     jrawMonitorID monitor);}
+\DoxyCodeLine{1214 }
+\DoxyCodeLine{1215   \textcolor{comment}{/*   35 : Raw Monitor Wait */}}
+\DoxyCodeLine{1216   jvmtiError (JNICALL *RawMonitorWait) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1217     jrawMonitorID monitor,}
+\DoxyCodeLine{1218     jlong millis);}
+\DoxyCodeLine{1219 }
+\DoxyCodeLine{1220   \textcolor{comment}{/*   36 : Raw Monitor Notify */}}
+\DoxyCodeLine{1221   jvmtiError (JNICALL *RawMonitorNotify) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1222     jrawMonitorID monitor);}
+\DoxyCodeLine{1223 }
+\DoxyCodeLine{1224   \textcolor{comment}{/*   37 : Raw Monitor Notify All */}}
+\DoxyCodeLine{1225   jvmtiError (JNICALL *RawMonitorNotifyAll) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1226     jrawMonitorID monitor);}
+\DoxyCodeLine{1227 }
+\DoxyCodeLine{1228   \textcolor{comment}{/*   38 : Set Breakpoint */}}
+\DoxyCodeLine{1229   jvmtiError (JNICALL *SetBreakpoint) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1230     jmethodID method,}
+\DoxyCodeLine{1231     jlocation location);}
+\DoxyCodeLine{1232 }
+\DoxyCodeLine{1233   \textcolor{comment}{/*   39 : Clear Breakpoint */}}
+\DoxyCodeLine{1234   jvmtiError (JNICALL *ClearBreakpoint) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1235     jmethodID method,}
+\DoxyCodeLine{1236     jlocation location);}
+\DoxyCodeLine{1237 }
+\DoxyCodeLine{1238   \textcolor{comment}{/*   40 : Get Named Module */}}
+\DoxyCodeLine{1239   jvmtiError (JNICALL *GetNamedModule) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1240     jobject class\_loader,}
+\DoxyCodeLine{1241     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* package\_name,}
+\DoxyCodeLine{1242     jobject* module\_ptr);}
+\DoxyCodeLine{1243 }
+\DoxyCodeLine{1244   \textcolor{comment}{/*   41 : Set Field Access Watch */}}
+\DoxyCodeLine{1245   jvmtiError (JNICALL *SetFieldAccessWatch) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1246     jclass klass,}
+\DoxyCodeLine{1247     jfieldID field);}
+\DoxyCodeLine{1248 }
+\DoxyCodeLine{1249   \textcolor{comment}{/*   42 : Clear Field Access Watch */}}
+\DoxyCodeLine{1250   jvmtiError (JNICALL *ClearFieldAccessWatch) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1251     jclass klass,}
+\DoxyCodeLine{1252     jfieldID field);}
+\DoxyCodeLine{1253 }
+\DoxyCodeLine{1254   \textcolor{comment}{/*   43 : Set Field Modification Watch */}}
+\DoxyCodeLine{1255   jvmtiError (JNICALL *SetFieldModificationWatch) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1256     jclass klass,}
+\DoxyCodeLine{1257     jfieldID field);}
+\DoxyCodeLine{1258 }
+\DoxyCodeLine{1259   \textcolor{comment}{/*   44 : Clear Field Modification Watch */}}
+\DoxyCodeLine{1260   jvmtiError (JNICALL *ClearFieldModificationWatch) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1261     jclass klass,}
+\DoxyCodeLine{1262     jfieldID field);}
+\DoxyCodeLine{1263 }
+\DoxyCodeLine{1264   \textcolor{comment}{/*   45 : Is Modifiable Class */}}
+\DoxyCodeLine{1265   jvmtiError (JNICALL *IsModifiableClass) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1266     jclass klass,}
+\DoxyCodeLine{1267     jboolean* is\_modifiable\_class\_ptr);}
+\DoxyCodeLine{1268 }
+\DoxyCodeLine{1269   \textcolor{comment}{/*   46 : Allocate */}}
+\DoxyCodeLine{1270   jvmtiError (JNICALL *Allocate) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1271     jlong size,}
+\DoxyCodeLine{1272     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}** mem\_ptr);}
+\DoxyCodeLine{1273 }
+\DoxyCodeLine{1274   \textcolor{comment}{/*   47 : Deallocate */}}
+\DoxyCodeLine{1275   jvmtiError (JNICALL *Deallocate) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1276     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}* mem);}
+\DoxyCodeLine{1277 }
+\DoxyCodeLine{1278   \textcolor{comment}{/*   48 : Get Class Signature */}}
+\DoxyCodeLine{1279   jvmtiError (JNICALL *GetClassSignature) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1280     jclass klass,}
+\DoxyCodeLine{1281     \textcolor{keywordtype}{char}** signature\_ptr,}
+\DoxyCodeLine{1282     \textcolor{keywordtype}{char}** generic\_ptr);}
+\DoxyCodeLine{1283 }
+\DoxyCodeLine{1284   \textcolor{comment}{/*   49 : Get Class Status */}}
+\DoxyCodeLine{1285   jvmtiError (JNICALL *GetClassStatus) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1286     jclass klass,}
+\DoxyCodeLine{1287     jint* status\_ptr);}
+\DoxyCodeLine{1288 }
+\DoxyCodeLine{1289   \textcolor{comment}{/*   50 : Get Source File Name */}}
+\DoxyCodeLine{1290   jvmtiError (JNICALL *GetSourceFileName) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1291     jclass klass,}
+\DoxyCodeLine{1292     \textcolor{keywordtype}{char}** source\_name\_ptr);}
+\DoxyCodeLine{1293 }
+\DoxyCodeLine{1294   \textcolor{comment}{/*   51 : Get Class Modifiers */}}
+\DoxyCodeLine{1295   jvmtiError (JNICALL *GetClassModifiers) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1296     jclass klass,}
+\DoxyCodeLine{1297     jint* modifiers\_ptr);}
+\DoxyCodeLine{1298 }
+\DoxyCodeLine{1299   \textcolor{comment}{/*   52 : Get Class Methods */}}
+\DoxyCodeLine{1300   jvmtiError (JNICALL *GetClassMethods) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1301     jclass klass,}
+\DoxyCodeLine{1302     jint* method\_count\_ptr,}
+\DoxyCodeLine{1303     jmethodID** methods\_ptr);}
+\DoxyCodeLine{1304 }
+\DoxyCodeLine{1305   \textcolor{comment}{/*   53 : Get Class Fields */}}
+\DoxyCodeLine{1306   jvmtiError (JNICALL *GetClassFields) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1307     jclass klass,}
+\DoxyCodeLine{1308     jint* field\_count\_ptr,}
+\DoxyCodeLine{1309     jfieldID** fields\_ptr);}
+\DoxyCodeLine{1310 }
+\DoxyCodeLine{1311   \textcolor{comment}{/*   54 : Get Implemented Interfaces */}}
+\DoxyCodeLine{1312   jvmtiError (JNICALL *GetImplementedInterfaces) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1313     jclass klass,}
+\DoxyCodeLine{1314     jint* interface\_count\_ptr,}
+\DoxyCodeLine{1315     jclass** interfaces\_ptr);}
+\DoxyCodeLine{1316 }
+\DoxyCodeLine{1317   \textcolor{comment}{/*   55 : Is Interface */}}
+\DoxyCodeLine{1318   jvmtiError (JNICALL *IsInterface) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1319     jclass klass,}
+\DoxyCodeLine{1320     jboolean* is\_interface\_ptr);}
+\DoxyCodeLine{1321 }
+\DoxyCodeLine{1322   \textcolor{comment}{/*   56 : Is Array Class */}}
+\DoxyCodeLine{1323   jvmtiError (JNICALL *IsArrayClass) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1324     jclass klass,}
+\DoxyCodeLine{1325     jboolean* is\_array\_class\_ptr);}
+\DoxyCodeLine{1326 }
+\DoxyCodeLine{1327   \textcolor{comment}{/*   57 : Get Class Loader */}}
+\DoxyCodeLine{1328   jvmtiError (JNICALL *GetClassLoader) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1329     jclass klass,}
+\DoxyCodeLine{1330     jobject* classloader\_ptr);}
+\DoxyCodeLine{1331 }
+\DoxyCodeLine{1332   \textcolor{comment}{/*   58 : Get Object Hash Code */}}
+\DoxyCodeLine{1333   jvmtiError (JNICALL *GetObjectHashCode) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1334     jobject object,}
+\DoxyCodeLine{1335     jint* hash\_code\_ptr);}
+\DoxyCodeLine{1336 }
+\DoxyCodeLine{1337   \textcolor{comment}{/*   59 : Get Object Monitor Usage */}}
+\DoxyCodeLine{1338   jvmtiError (JNICALL *GetObjectMonitorUsage) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1339     jobject object,}
+\DoxyCodeLine{1340     \mbox{\hyperlink{struct__jvmti_monitor_usage}{jvmtiMonitorUsage}}* info\_ptr);}
+\DoxyCodeLine{1341 }
+\DoxyCodeLine{1342   \textcolor{comment}{/*   60 : Get Field Name (and Signature) */}}
+\DoxyCodeLine{1343   jvmtiError (JNICALL *GetFieldName) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1344     jclass klass,}
+\DoxyCodeLine{1345     jfieldID field,}
+\DoxyCodeLine{1346     \textcolor{keywordtype}{char}** name\_ptr,}
+\DoxyCodeLine{1347     \textcolor{keywordtype}{char}** signature\_ptr,}
+\DoxyCodeLine{1348     \textcolor{keywordtype}{char}** generic\_ptr);}
+\DoxyCodeLine{1349 }
+\DoxyCodeLine{1350   \textcolor{comment}{/*   61 : Get Field Declaring Class */}}
+\DoxyCodeLine{1351   jvmtiError (JNICALL *GetFieldDeclaringClass) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1352     jclass klass,}
+\DoxyCodeLine{1353     jfieldID field,}
+\DoxyCodeLine{1354     jclass* declaring\_class\_ptr);}
+\DoxyCodeLine{1355 }
+\DoxyCodeLine{1356   \textcolor{comment}{/*   62 : Get Field Modifiers */}}
+\DoxyCodeLine{1357   jvmtiError (JNICALL *GetFieldModifiers) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1358     jclass klass,}
+\DoxyCodeLine{1359     jfieldID field,}
+\DoxyCodeLine{1360     jint* modifiers\_ptr);}
+\DoxyCodeLine{1361 }
+\DoxyCodeLine{1362   \textcolor{comment}{/*   63 : Is Field Synthetic */}}
+\DoxyCodeLine{1363   jvmtiError (JNICALL *IsFieldSynthetic) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1364     jclass klass,}
+\DoxyCodeLine{1365     jfieldID field,}
+\DoxyCodeLine{1366     jboolean* is\_synthetic\_ptr);}
+\DoxyCodeLine{1367 }
+\DoxyCodeLine{1368   \textcolor{comment}{/*   64 : Get Method Name (and Signature) */}}
+\DoxyCodeLine{1369   jvmtiError (JNICALL *GetMethodName) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1370     jmethodID method,}
+\DoxyCodeLine{1371     \textcolor{keywordtype}{char}** name\_ptr,}
+\DoxyCodeLine{1372     \textcolor{keywordtype}{char}** signature\_ptr,}
+\DoxyCodeLine{1373     \textcolor{keywordtype}{char}** generic\_ptr);}
+\DoxyCodeLine{1374 }
+\DoxyCodeLine{1375   \textcolor{comment}{/*   65 : Get Method Declaring Class */}}
+\DoxyCodeLine{1376   jvmtiError (JNICALL *GetMethodDeclaringClass) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1377     jmethodID method,}
+\DoxyCodeLine{1378     jclass* declaring\_class\_ptr);}
+\DoxyCodeLine{1379 }
+\DoxyCodeLine{1380   \textcolor{comment}{/*   66 : Get Method Modifiers */}}
+\DoxyCodeLine{1381   jvmtiError (JNICALL *GetMethodModifiers) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1382     jmethodID method,}
+\DoxyCodeLine{1383     jint* modifiers\_ptr);}
+\DoxyCodeLine{1384 }
+\DoxyCodeLine{1385   \textcolor{comment}{/*   67 :  RESERVED */}}
+\DoxyCodeLine{1386   \textcolor{keywordtype}{void} *reserved67;}
+\DoxyCodeLine{1387 }
+\DoxyCodeLine{1388   \textcolor{comment}{/*   68 : Get Max Locals */}}
+\DoxyCodeLine{1389   jvmtiError (JNICALL *GetMaxLocals) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1390     jmethodID method,}
+\DoxyCodeLine{1391     jint* max\_ptr);}
+\DoxyCodeLine{1392 }
+\DoxyCodeLine{1393   \textcolor{comment}{/*   69 : Get Arguments Size */}}
+\DoxyCodeLine{1394   jvmtiError (JNICALL *GetArgumentsSize) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1395     jmethodID method,}
+\DoxyCodeLine{1396     jint* size\_ptr);}
+\DoxyCodeLine{1397 }
+\DoxyCodeLine{1398   \textcolor{comment}{/*   70 : Get Line Number Table */}}
+\DoxyCodeLine{1399   jvmtiError (JNICALL *GetLineNumberTable) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1400     jmethodID method,}
+\DoxyCodeLine{1401     jint* entry\_count\_ptr,}
+\DoxyCodeLine{1402     \mbox{\hyperlink{struct__jvmti_line_number_entry}{jvmtiLineNumberEntry}}** table\_ptr);}
+\DoxyCodeLine{1403 }
+\DoxyCodeLine{1404   \textcolor{comment}{/*   71 : Get Method Location */}}
+\DoxyCodeLine{1405   jvmtiError (JNICALL *GetMethodLocation) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1406     jmethodID method,}
+\DoxyCodeLine{1407     jlocation* start\_location\_ptr,}
+\DoxyCodeLine{1408     jlocation* end\_location\_ptr);}
+\DoxyCodeLine{1409 }
+\DoxyCodeLine{1410   \textcolor{comment}{/*   72 : Get Local Variable Table */}}
+\DoxyCodeLine{1411   jvmtiError (JNICALL *GetLocalVariableTable) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1412     jmethodID method,}
+\DoxyCodeLine{1413     jint* entry\_count\_ptr,}
+\DoxyCodeLine{1414     \mbox{\hyperlink{struct__jvmti_local_variable_entry}{jvmtiLocalVariableEntry}}** table\_ptr);}
+\DoxyCodeLine{1415 }
+\DoxyCodeLine{1416   \textcolor{comment}{/*   73 : Set Native Method Prefix */}}
+\DoxyCodeLine{1417   jvmtiError (JNICALL *SetNativeMethodPrefix) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1418     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* prefix);}
+\DoxyCodeLine{1419 }
+\DoxyCodeLine{1420   \textcolor{comment}{/*   74 : Set Native Method Prefixes */}}
+\DoxyCodeLine{1421   jvmtiError (JNICALL *SetNativeMethodPrefixes) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1422     jint prefix\_count,}
+\DoxyCodeLine{1423     \textcolor{keywordtype}{char}** prefixes);}
+\DoxyCodeLine{1424 }
+\DoxyCodeLine{1425   \textcolor{comment}{/*   75 : Get Bytecodes */}}
+\DoxyCodeLine{1426   jvmtiError (JNICALL *GetBytecodes) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1427     jmethodID method,}
+\DoxyCodeLine{1428     jint* bytecode\_count\_ptr,}
+\DoxyCodeLine{1429     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}** bytecodes\_ptr);}
+\DoxyCodeLine{1430 }
+\DoxyCodeLine{1431   \textcolor{comment}{/*   76 : Is Method Native */}}
+\DoxyCodeLine{1432   jvmtiError (JNICALL *IsMethodNative) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1433     jmethodID method,}
+\DoxyCodeLine{1434     jboolean* is\_native\_ptr);}
+\DoxyCodeLine{1435 }
+\DoxyCodeLine{1436   \textcolor{comment}{/*   77 : Is Method Synthetic */}}
+\DoxyCodeLine{1437   jvmtiError (JNICALL *IsMethodSynthetic) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1438     jmethodID method,}
+\DoxyCodeLine{1439     jboolean* is\_synthetic\_ptr);}
+\DoxyCodeLine{1440 }
+\DoxyCodeLine{1441   \textcolor{comment}{/*   78 : Get Loaded Classes */}}
+\DoxyCodeLine{1442   jvmtiError (JNICALL *GetLoadedClasses) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1443     jint* class\_count\_ptr,}
+\DoxyCodeLine{1444     jclass** classes\_ptr);}
+\DoxyCodeLine{1445 }
+\DoxyCodeLine{1446   \textcolor{comment}{/*   79 : Get Classloader Classes */}}
+\DoxyCodeLine{1447   jvmtiError (JNICALL *GetClassLoaderClasses) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1448     jobject initiating\_loader,}
+\DoxyCodeLine{1449     jint* class\_count\_ptr,}
+\DoxyCodeLine{1450     jclass** classes\_ptr);}
+\DoxyCodeLine{1451 }
+\DoxyCodeLine{1452   \textcolor{comment}{/*   80 : Pop Frame */}}
+\DoxyCodeLine{1453   jvmtiError (JNICALL *PopFrame) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1454     jthread thread);}
+\DoxyCodeLine{1455 }
+\DoxyCodeLine{1456   \textcolor{comment}{/*   81 : Force Early Return -\/ Object */}}
+\DoxyCodeLine{1457   jvmtiError (JNICALL *ForceEarlyReturnObject) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1458     jthread thread,}
+\DoxyCodeLine{1459     jobject value);}
+\DoxyCodeLine{1460 }
+\DoxyCodeLine{1461   \textcolor{comment}{/*   82 : Force Early Return -\/ Int */}}
+\DoxyCodeLine{1462   jvmtiError (JNICALL *ForceEarlyReturnInt) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1463     jthread thread,}
+\DoxyCodeLine{1464     jint value);}
+\DoxyCodeLine{1465 }
+\DoxyCodeLine{1466   \textcolor{comment}{/*   83 : Force Early Return -\/ Long */}}
+\DoxyCodeLine{1467   jvmtiError (JNICALL *ForceEarlyReturnLong) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1468     jthread thread,}
+\DoxyCodeLine{1469     jlong value);}
+\DoxyCodeLine{1470 }
+\DoxyCodeLine{1471   \textcolor{comment}{/*   84 : Force Early Return -\/ Float */}}
+\DoxyCodeLine{1472   jvmtiError (JNICALL *ForceEarlyReturnFloat) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1473     jthread thread,}
+\DoxyCodeLine{1474     jfloat value);}
+\DoxyCodeLine{1475 }
+\DoxyCodeLine{1476   \textcolor{comment}{/*   85 : Force Early Return -\/ Double */}}
+\DoxyCodeLine{1477   jvmtiError (JNICALL *ForceEarlyReturnDouble) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1478     jthread thread,}
+\DoxyCodeLine{1479     jdouble value);}
+\DoxyCodeLine{1480 }
+\DoxyCodeLine{1481   \textcolor{comment}{/*   86 : Force Early Return -\/ Void */}}
+\DoxyCodeLine{1482   jvmtiError (JNICALL *ForceEarlyReturnVoid) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1483     jthread thread);}
+\DoxyCodeLine{1484 }
+\DoxyCodeLine{1485   \textcolor{comment}{/*   87 : Redefine Classes */}}
+\DoxyCodeLine{1486   jvmtiError (JNICALL *RedefineClasses) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1487     jint class\_count,}
+\DoxyCodeLine{1488     \textcolor{keyword}{const} \mbox{\hyperlink{struct__jvmti_class_definition}{jvmtiClassDefinition}}* class\_definitions);}
+\DoxyCodeLine{1489 }
+\DoxyCodeLine{1490   \textcolor{comment}{/*   88 : Get Version Number */}}
+\DoxyCodeLine{1491   jvmtiError (JNICALL *GetVersionNumber) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1492     jint* version\_ptr);}
+\DoxyCodeLine{1493 }
+\DoxyCodeLine{1494   \textcolor{comment}{/*   89 : Get Capabilities */}}
+\DoxyCodeLine{1495   jvmtiError (JNICALL *GetCapabilities) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1496     \mbox{\hyperlink{structjvmti_capabilities}{jvmtiCapabilities}}* capabilities\_ptr);}
+\DoxyCodeLine{1497 }
+\DoxyCodeLine{1498   \textcolor{comment}{/*   90 : Get Source Debug Extension */}}
+\DoxyCodeLine{1499   jvmtiError (JNICALL *GetSourceDebugExtension) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1500     jclass klass,}
+\DoxyCodeLine{1501     \textcolor{keywordtype}{char}** source\_debug\_extension\_ptr);}
+\DoxyCodeLine{1502 }
+\DoxyCodeLine{1503   \textcolor{comment}{/*   91 : Is Method Obsolete */}}
+\DoxyCodeLine{1504   jvmtiError (JNICALL *IsMethodObsolete) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1505     jmethodID method,}
+\DoxyCodeLine{1506     jboolean* is\_obsolete\_ptr);}
+\DoxyCodeLine{1507 }
+\DoxyCodeLine{1508   \textcolor{comment}{/*   92 : Suspend Thread List */}}
+\DoxyCodeLine{1509   jvmtiError (JNICALL *SuspendThreadList) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1510     jint request\_count,}
+\DoxyCodeLine{1511     \textcolor{keyword}{const} jthread* request\_list,}
+\DoxyCodeLine{1512     jvmtiError* results);}
+\DoxyCodeLine{1513 }
+\DoxyCodeLine{1514   \textcolor{comment}{/*   93 : Resume Thread List */}}
+\DoxyCodeLine{1515   jvmtiError (JNICALL *ResumeThreadList) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1516     jint request\_count,}
+\DoxyCodeLine{1517     \textcolor{keyword}{const} jthread* request\_list,}
+\DoxyCodeLine{1518     jvmtiError* results);}
+\DoxyCodeLine{1519 }
+\DoxyCodeLine{1520   \textcolor{comment}{/*   94 : Add Module Reads */}}
+\DoxyCodeLine{1521   jvmtiError (JNICALL *AddModuleReads) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1522     jobject module,}
+\DoxyCodeLine{1523     jobject to\_module);}
+\DoxyCodeLine{1524 }
+\DoxyCodeLine{1525   \textcolor{comment}{/*   95 : Add Module Exports */}}
+\DoxyCodeLine{1526   jvmtiError (JNICALL *AddModuleExports) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1527     jobject module,}
+\DoxyCodeLine{1528     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* pkg\_name,}
+\DoxyCodeLine{1529     jobject to\_module);}
+\DoxyCodeLine{1530 }
+\DoxyCodeLine{1531   \textcolor{comment}{/*   96 : Add Module Opens */}}
+\DoxyCodeLine{1532   jvmtiError (JNICALL *AddModuleOpens) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1533     jobject module,}
+\DoxyCodeLine{1534     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* pkg\_name,}
+\DoxyCodeLine{1535     jobject to\_module);}
+\DoxyCodeLine{1536 }
+\DoxyCodeLine{1537   \textcolor{comment}{/*   97 : Add Module Uses */}}
+\DoxyCodeLine{1538   jvmtiError (JNICALL *AddModuleUses) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1539     jobject module,}
+\DoxyCodeLine{1540     jclass service);}
+\DoxyCodeLine{1541 }
+\DoxyCodeLine{1542   \textcolor{comment}{/*   98 : Add Module Provides */}}
+\DoxyCodeLine{1543   jvmtiError (JNICALL *AddModuleProvides) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1544     jobject module,}
+\DoxyCodeLine{1545     jclass service,}
+\DoxyCodeLine{1546     jclass impl\_class);}
+\DoxyCodeLine{1547 }
+\DoxyCodeLine{1548   \textcolor{comment}{/*   99 : Is Modifiable Module */}}
+\DoxyCodeLine{1549   jvmtiError (JNICALL *IsModifiableModule) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1550     jobject module,}
+\DoxyCodeLine{1551     jboolean* is\_modifiable\_module\_ptr);}
+\DoxyCodeLine{1552 }
+\DoxyCodeLine{1553   \textcolor{comment}{/*   100 : Get All Stack Traces */}}
+\DoxyCodeLine{1554   jvmtiError (JNICALL *GetAllStackTraces) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1555     jint max\_frame\_count,}
+\DoxyCodeLine{1556     \mbox{\hyperlink{struct__jvmti_stack_info}{jvmtiStackInfo}}** stack\_info\_ptr,}
+\DoxyCodeLine{1557     jint* thread\_count\_ptr);}
+\DoxyCodeLine{1558 }
+\DoxyCodeLine{1559   \textcolor{comment}{/*   101 : Get Thread List Stack Traces */}}
+\DoxyCodeLine{1560   jvmtiError (JNICALL *GetThreadListStackTraces) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1561     jint thread\_count,}
+\DoxyCodeLine{1562     \textcolor{keyword}{const} jthread* thread\_list,}
+\DoxyCodeLine{1563     jint max\_frame\_count,}
+\DoxyCodeLine{1564     \mbox{\hyperlink{struct__jvmti_stack_info}{jvmtiStackInfo}}** stack\_info\_ptr);}
+\DoxyCodeLine{1565 }
+\DoxyCodeLine{1566   \textcolor{comment}{/*   102 : Get Thread Local Storage */}}
+\DoxyCodeLine{1567   jvmtiError (JNICALL *GetThreadLocalStorage) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1568     jthread thread,}
+\DoxyCodeLine{1569     \textcolor{keywordtype}{void}** data\_ptr);}
+\DoxyCodeLine{1570 }
+\DoxyCodeLine{1571   \textcolor{comment}{/*   103 : Set Thread Local Storage */}}
+\DoxyCodeLine{1572   jvmtiError (JNICALL *SetThreadLocalStorage) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1573     jthread thread,}
+\DoxyCodeLine{1574     \textcolor{keyword}{const} \textcolor{keywordtype}{void}* data);}
+\DoxyCodeLine{1575 }
+\DoxyCodeLine{1576   \textcolor{comment}{/*   104 : Get Stack Trace */}}
+\DoxyCodeLine{1577   jvmtiError (JNICALL *GetStackTrace) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1578     jthread thread,}
+\DoxyCodeLine{1579     jint start\_depth,}
+\DoxyCodeLine{1580     jint max\_frame\_count,}
+\DoxyCodeLine{1581     \mbox{\hyperlink{struct__jvmti_frame_info}{jvmtiFrameInfo}}* frame\_buffer,}
+\DoxyCodeLine{1582     jint* count\_ptr);}
+\DoxyCodeLine{1583 }
+\DoxyCodeLine{1584   \textcolor{comment}{/*   105 :  RESERVED */}}
+\DoxyCodeLine{1585   \textcolor{keywordtype}{void} *reserved105;}
+\DoxyCodeLine{1586 }
+\DoxyCodeLine{1587   \textcolor{comment}{/*   106 : Get Tag */}}
+\DoxyCodeLine{1588   jvmtiError (JNICALL *GetTag) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1589     jobject object,}
+\DoxyCodeLine{1590     jlong* tag\_ptr);}
+\DoxyCodeLine{1591 }
+\DoxyCodeLine{1592   \textcolor{comment}{/*   107 : Set Tag */}}
+\DoxyCodeLine{1593   jvmtiError (JNICALL *SetTag) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1594     jobject object,}
+\DoxyCodeLine{1595     jlong tag);}
+\DoxyCodeLine{1596 }
+\DoxyCodeLine{1597   \textcolor{comment}{/*   108 : Force Garbage Collection */}}
+\DoxyCodeLine{1598   jvmtiError (JNICALL *ForceGarbageCollection) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env);}
+\DoxyCodeLine{1599 }
+\DoxyCodeLine{1600   \textcolor{comment}{/*   109 : Iterate Over Objects Reachable From Object */}}
+\DoxyCodeLine{1601   jvmtiError (JNICALL *IterateOverObjectsReachableFromObject) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1602     jobject object,}
+\DoxyCodeLine{1603     jvmtiObjectReferenceCallback object\_reference\_callback,}
+\DoxyCodeLine{1604     \textcolor{keyword}{const} \textcolor{keywordtype}{void}* user\_data);}
+\DoxyCodeLine{1605 }
+\DoxyCodeLine{1606   \textcolor{comment}{/*   110 : Iterate Over Reachable Objects */}}
+\DoxyCodeLine{1607   jvmtiError (JNICALL *IterateOverReachableObjects) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1608     jvmtiHeapRootCallback heap\_root\_callback,}
+\DoxyCodeLine{1609     jvmtiStackReferenceCallback stack\_ref\_callback,}
+\DoxyCodeLine{1610     jvmtiObjectReferenceCallback object\_ref\_callback,}
+\DoxyCodeLine{1611     \textcolor{keyword}{const} \textcolor{keywordtype}{void}* user\_data);}
+\DoxyCodeLine{1612 }
+\DoxyCodeLine{1613   \textcolor{comment}{/*   111 : Iterate Over Heap */}}
+\DoxyCodeLine{1614   jvmtiError (JNICALL *IterateOverHeap) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1615     jvmtiHeapObjectFilter object\_filter,}
+\DoxyCodeLine{1616     jvmtiHeapObjectCallback heap\_object\_callback,}
+\DoxyCodeLine{1617     \textcolor{keyword}{const} \textcolor{keywordtype}{void}* user\_data);}
+\DoxyCodeLine{1618 }
+\DoxyCodeLine{1619   \textcolor{comment}{/*   112 : Iterate Over Instances Of Class */}}
+\DoxyCodeLine{1620   jvmtiError (JNICALL *IterateOverInstancesOfClass) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1621     jclass klass,}
+\DoxyCodeLine{1622     jvmtiHeapObjectFilter object\_filter,}
+\DoxyCodeLine{1623     jvmtiHeapObjectCallback heap\_object\_callback,}
+\DoxyCodeLine{1624     \textcolor{keyword}{const} \textcolor{keywordtype}{void}* user\_data);}
+\DoxyCodeLine{1625 }
+\DoxyCodeLine{1626   \textcolor{comment}{/*   113 :  RESERVED */}}
+\DoxyCodeLine{1627   \textcolor{keywordtype}{void} *reserved113;}
+\DoxyCodeLine{1628 }
+\DoxyCodeLine{1629   \textcolor{comment}{/*   114 : Get Objects With Tags */}}
+\DoxyCodeLine{1630   jvmtiError (JNICALL *GetObjectsWithTags) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1631     jint tag\_count,}
+\DoxyCodeLine{1632     \textcolor{keyword}{const} jlong* tags,}
+\DoxyCodeLine{1633     jint* count\_ptr,}
+\DoxyCodeLine{1634     jobject** object\_result\_ptr,}
+\DoxyCodeLine{1635     jlong** tag\_result\_ptr);}
+\DoxyCodeLine{1636 }
+\DoxyCodeLine{1637   \textcolor{comment}{/*   115 : Follow References */}}
+\DoxyCodeLine{1638   jvmtiError (JNICALL *FollowReferences) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1639     jint heap\_filter,}
+\DoxyCodeLine{1640     jclass klass,}
+\DoxyCodeLine{1641     jobject initial\_object,}
+\DoxyCodeLine{1642     \textcolor{keyword}{const} \mbox{\hyperlink{struct__jvmti_heap_callbacks}{jvmtiHeapCallbacks}}* callbacks,}
+\DoxyCodeLine{1643     \textcolor{keyword}{const} \textcolor{keywordtype}{void}* user\_data);}
+\DoxyCodeLine{1644 }
+\DoxyCodeLine{1645   \textcolor{comment}{/*   116 : Iterate Through Heap */}}
+\DoxyCodeLine{1646   jvmtiError (JNICALL *IterateThroughHeap) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1647     jint heap\_filter,}
+\DoxyCodeLine{1648     jclass klass,}
+\DoxyCodeLine{1649     \textcolor{keyword}{const} \mbox{\hyperlink{struct__jvmti_heap_callbacks}{jvmtiHeapCallbacks}}* callbacks,}
+\DoxyCodeLine{1650     \textcolor{keyword}{const} \textcolor{keywordtype}{void}* user\_data);}
+\DoxyCodeLine{1651 }
+\DoxyCodeLine{1652   \textcolor{comment}{/*   117 :  RESERVED */}}
+\DoxyCodeLine{1653   \textcolor{keywordtype}{void} *reserved117;}
+\DoxyCodeLine{1654 }
+\DoxyCodeLine{1655   \textcolor{comment}{/*   118 :  RESERVED */}}
+\DoxyCodeLine{1656   \textcolor{keywordtype}{void} *reserved118;}
+\DoxyCodeLine{1657 }
+\DoxyCodeLine{1658   \textcolor{comment}{/*   119 :  RESERVED */}}
+\DoxyCodeLine{1659   \textcolor{keywordtype}{void} *reserved119;}
+\DoxyCodeLine{1660 }
+\DoxyCodeLine{1661   \textcolor{comment}{/*   120 : Set JNI Function Table */}}
+\DoxyCodeLine{1662   jvmtiError (JNICALL *SetJNIFunctionTable) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1663     \textcolor{keyword}{const} \mbox{\hyperlink{struct_j_n_i_native_interface__}{jniNativeInterface}}* function\_table);}
+\DoxyCodeLine{1664 }
+\DoxyCodeLine{1665   \textcolor{comment}{/*   121 : Get JNI Function Table */}}
+\DoxyCodeLine{1666   jvmtiError (JNICALL *GetJNIFunctionTable) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1667     \mbox{\hyperlink{struct_j_n_i_native_interface__}{jniNativeInterface}}** function\_table);}
+\DoxyCodeLine{1668 }
+\DoxyCodeLine{1669   \textcolor{comment}{/*   122 : Set Event Callbacks */}}
+\DoxyCodeLine{1670   jvmtiError (JNICALL *SetEventCallbacks) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1671     \textcolor{keyword}{const} \mbox{\hyperlink{structjvmti_event_callbacks}{jvmtiEventCallbacks}}* callbacks,}
+\DoxyCodeLine{1672     jint size\_of\_callbacks);}
+\DoxyCodeLine{1673 }
+\DoxyCodeLine{1674   \textcolor{comment}{/*   123 : Generate Events */}}
+\DoxyCodeLine{1675   jvmtiError (JNICALL *GenerateEvents) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1676     jvmtiEvent event\_type);}
+\DoxyCodeLine{1677 }
+\DoxyCodeLine{1678   \textcolor{comment}{/*   124 : Get Extension Functions */}}
+\DoxyCodeLine{1679   jvmtiError (JNICALL *GetExtensionFunctions) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1680     jint* extension\_count\_ptr,}
+\DoxyCodeLine{1681     \mbox{\hyperlink{struct__jvmti_extension_function_info}{jvmtiExtensionFunctionInfo}}** extensions);}
+\DoxyCodeLine{1682 }
+\DoxyCodeLine{1683   \textcolor{comment}{/*   125 : Get Extension Events */}}
+\DoxyCodeLine{1684   jvmtiError (JNICALL *GetExtensionEvents) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1685     jint* extension\_count\_ptr,}
+\DoxyCodeLine{1686     \mbox{\hyperlink{struct__jvmti_extension_event_info}{jvmtiExtensionEventInfo}}** extensions);}
+\DoxyCodeLine{1687 }
+\DoxyCodeLine{1688   \textcolor{comment}{/*   126 : Set Extension Event Callback */}}
+\DoxyCodeLine{1689   jvmtiError (JNICALL *SetExtensionEventCallback) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1690     jint extension\_event\_index,}
+\DoxyCodeLine{1691     jvmtiExtensionEvent callback);}
+\DoxyCodeLine{1692 }
+\DoxyCodeLine{1693   \textcolor{comment}{/*   127 : Dispose Environment */}}
+\DoxyCodeLine{1694   jvmtiError (JNICALL *DisposeEnvironment) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env);}
+\DoxyCodeLine{1695 }
+\DoxyCodeLine{1696   \textcolor{comment}{/*   128 : Get Error Name */}}
+\DoxyCodeLine{1697   jvmtiError (JNICALL *GetErrorName) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1698     jvmtiError error,}
+\DoxyCodeLine{1699     \textcolor{keywordtype}{char}** name\_ptr);}
+\DoxyCodeLine{1700 }
+\DoxyCodeLine{1701   \textcolor{comment}{/*   129 : Get JLocation Format */}}
+\DoxyCodeLine{1702   jvmtiError (JNICALL *GetJLocationFormat) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1703     jvmtiJlocationFormat* format\_ptr);}
+\DoxyCodeLine{1704 }
+\DoxyCodeLine{1705   \textcolor{comment}{/*   130 : Get System Properties */}}
+\DoxyCodeLine{1706   jvmtiError (JNICALL *GetSystemProperties) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1707     jint* count\_ptr,}
+\DoxyCodeLine{1708     \textcolor{keywordtype}{char}*** property\_ptr);}
+\DoxyCodeLine{1709 }
+\DoxyCodeLine{1710   \textcolor{comment}{/*   131 : Get System Property */}}
+\DoxyCodeLine{1711   jvmtiError (JNICALL *GetSystemProperty) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1712     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* property,}
+\DoxyCodeLine{1713     \textcolor{keywordtype}{char}** value\_ptr);}
+\DoxyCodeLine{1714 }
+\DoxyCodeLine{1715   \textcolor{comment}{/*   132 : Set System Property */}}
+\DoxyCodeLine{1716   jvmtiError (JNICALL *SetSystemProperty) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1717     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* property,}
+\DoxyCodeLine{1718     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* value\_ptr);}
+\DoxyCodeLine{1719 }
+\DoxyCodeLine{1720   \textcolor{comment}{/*   133 : Get Phase */}}
+\DoxyCodeLine{1721   jvmtiError (JNICALL *GetPhase) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1722     jvmtiPhase* phase\_ptr);}
+\DoxyCodeLine{1723 }
+\DoxyCodeLine{1724   \textcolor{comment}{/*   134 : Get Current Thread CPU Timer Information */}}
+\DoxyCodeLine{1725   jvmtiError (JNICALL *GetCurrentThreadCpuTimerInfo) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1726     \mbox{\hyperlink{struct__jvmti_timer_info}{jvmtiTimerInfo}}* info\_ptr);}
+\DoxyCodeLine{1727 }
+\DoxyCodeLine{1728   \textcolor{comment}{/*   135 : Get Current Thread CPU Time */}}
+\DoxyCodeLine{1729   jvmtiError (JNICALL *GetCurrentThreadCpuTime) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1730     jlong* nanos\_ptr);}
+\DoxyCodeLine{1731 }
+\DoxyCodeLine{1732   \textcolor{comment}{/*   136 : Get Thread CPU Timer Information */}}
+\DoxyCodeLine{1733   jvmtiError (JNICALL *GetThreadCpuTimerInfo) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1734     \mbox{\hyperlink{struct__jvmti_timer_info}{jvmtiTimerInfo}}* info\_ptr);}
+\DoxyCodeLine{1735 }
+\DoxyCodeLine{1736   \textcolor{comment}{/*   137 : Get Thread CPU Time */}}
+\DoxyCodeLine{1737   jvmtiError (JNICALL *GetThreadCpuTime) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1738     jthread thread,}
+\DoxyCodeLine{1739     jlong* nanos\_ptr);}
+\DoxyCodeLine{1740 }
+\DoxyCodeLine{1741   \textcolor{comment}{/*   138 : Get Timer Information */}}
+\DoxyCodeLine{1742   jvmtiError (JNICALL *GetTimerInfo) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1743     \mbox{\hyperlink{struct__jvmti_timer_info}{jvmtiTimerInfo}}* info\_ptr);}
+\DoxyCodeLine{1744 }
+\DoxyCodeLine{1745   \textcolor{comment}{/*   139 : Get Time */}}
+\DoxyCodeLine{1746   jvmtiError (JNICALL *GetTime) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1747     jlong* nanos\_ptr);}
+\DoxyCodeLine{1748 }
+\DoxyCodeLine{1749   \textcolor{comment}{/*   140 : Get Potential Capabilities */}}
+\DoxyCodeLine{1750   jvmtiError (JNICALL *GetPotentialCapabilities) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1751     \mbox{\hyperlink{structjvmti_capabilities}{jvmtiCapabilities}}* capabilities\_ptr);}
+\DoxyCodeLine{1752 }
+\DoxyCodeLine{1753   \textcolor{comment}{/*   141 :  RESERVED */}}
+\DoxyCodeLine{1754   \textcolor{keywordtype}{void} *reserved141;}
+\DoxyCodeLine{1755 }
+\DoxyCodeLine{1756   \textcolor{comment}{/*   142 : Add Capabilities */}}
+\DoxyCodeLine{1757   jvmtiError (JNICALL *AddCapabilities) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1758     \textcolor{keyword}{const} \mbox{\hyperlink{structjvmti_capabilities}{jvmtiCapabilities}}* capabilities\_ptr);}
+\DoxyCodeLine{1759 }
+\DoxyCodeLine{1760   \textcolor{comment}{/*   143 : Relinquish Capabilities */}}
+\DoxyCodeLine{1761   jvmtiError (JNICALL *RelinquishCapabilities) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1762     \textcolor{keyword}{const} \mbox{\hyperlink{structjvmti_capabilities}{jvmtiCapabilities}}* capabilities\_ptr);}
+\DoxyCodeLine{1763 }
+\DoxyCodeLine{1764   \textcolor{comment}{/*   144 : Get Available Processors */}}
+\DoxyCodeLine{1765   jvmtiError (JNICALL *GetAvailableProcessors) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1766     jint* processor\_count\_ptr);}
+\DoxyCodeLine{1767 }
+\DoxyCodeLine{1768   \textcolor{comment}{/*   145 : Get Class Version Numbers */}}
+\DoxyCodeLine{1769   jvmtiError (JNICALL *GetClassVersionNumbers) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1770     jclass klass,}
+\DoxyCodeLine{1771     jint* minor\_version\_ptr,}
+\DoxyCodeLine{1772     jint* major\_version\_ptr);}
+\DoxyCodeLine{1773 }
+\DoxyCodeLine{1774   \textcolor{comment}{/*   146 : Get Constant Pool */}}
+\DoxyCodeLine{1775   jvmtiError (JNICALL *GetConstantPool) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1776     jclass klass,}
+\DoxyCodeLine{1777     jint* constant\_pool\_count\_ptr,}
+\DoxyCodeLine{1778     jint* constant\_pool\_byte\_count\_ptr,}
+\DoxyCodeLine{1779     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}** constant\_pool\_bytes\_ptr);}
+\DoxyCodeLine{1780 }
+\DoxyCodeLine{1781   \textcolor{comment}{/*   147 : Get Environment Local Storage */}}
+\DoxyCodeLine{1782   jvmtiError (JNICALL *GetEnvironmentLocalStorage) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1783     \textcolor{keywordtype}{void}** data\_ptr);}
+\DoxyCodeLine{1784 }
+\DoxyCodeLine{1785   \textcolor{comment}{/*   148 : Set Environment Local Storage */}}
+\DoxyCodeLine{1786   jvmtiError (JNICALL *SetEnvironmentLocalStorage) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1787     \textcolor{keyword}{const} \textcolor{keywordtype}{void}* data);}
+\DoxyCodeLine{1788 }
+\DoxyCodeLine{1789   \textcolor{comment}{/*   149 : Add To Bootstrap Class Loader Search */}}
+\DoxyCodeLine{1790   jvmtiError (JNICALL *AddToBootstrapClassLoaderSearch) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1791     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* segment);}
+\DoxyCodeLine{1792 }
+\DoxyCodeLine{1793   \textcolor{comment}{/*   150 : Set Verbose Flag */}}
+\DoxyCodeLine{1794   jvmtiError (JNICALL *SetVerboseFlag) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1795     jvmtiVerboseFlag flag,}
+\DoxyCodeLine{1796     jboolean value);}
+\DoxyCodeLine{1797 }
+\DoxyCodeLine{1798   \textcolor{comment}{/*   151 : Add To System Class Loader Search */}}
+\DoxyCodeLine{1799   jvmtiError (JNICALL *AddToSystemClassLoaderSearch) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1800     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* segment);}
+\DoxyCodeLine{1801 }
+\DoxyCodeLine{1802   \textcolor{comment}{/*   152 : Retransform Classes */}}
+\DoxyCodeLine{1803   jvmtiError (JNICALL *RetransformClasses) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1804     jint class\_count,}
+\DoxyCodeLine{1805     \textcolor{keyword}{const} jclass* classes);}
+\DoxyCodeLine{1806 }
+\DoxyCodeLine{1807   \textcolor{comment}{/*   153 : Get Owned Monitor Stack Depth Info */}}
+\DoxyCodeLine{1808   jvmtiError (JNICALL *GetOwnedMonitorStackDepthInfo) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1809     jthread thread,}
+\DoxyCodeLine{1810     jint* monitor\_info\_count\_ptr,}
+\DoxyCodeLine{1811     \mbox{\hyperlink{struct__jvmti_monitor_stack_depth_info}{jvmtiMonitorStackDepthInfo}}** monitor\_info\_ptr);}
+\DoxyCodeLine{1812 }
+\DoxyCodeLine{1813   \textcolor{comment}{/*   154 : Get Object Size */}}
+\DoxyCodeLine{1814   jvmtiError (JNICALL *GetObjectSize) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1815     jobject object,}
+\DoxyCodeLine{1816     jlong* size\_ptr);}
+\DoxyCodeLine{1817 }
+\DoxyCodeLine{1818   \textcolor{comment}{/*   155 : Get Local Instance */}}
+\DoxyCodeLine{1819   jvmtiError (JNICALL *GetLocalInstance) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1820     jthread thread,}
+\DoxyCodeLine{1821     jint depth,}
+\DoxyCodeLine{1822     jobject* value\_ptr);}
+\DoxyCodeLine{1823 }
+\DoxyCodeLine{1824   \textcolor{comment}{/*   156 : Set Heap Sampling Interval */}}
+\DoxyCodeLine{1825   jvmtiError (JNICALL *SetHeapSamplingInterval) (\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiEnv}}* env,}
+\DoxyCodeLine{1826     jint sampling\_interval);}
+\DoxyCodeLine{1827 }
+\DoxyCodeLine{1828 \} \mbox{\hyperlink{structjvmti_interface__1__}{jvmtiInterface\_1}};}
+\DoxyCodeLine{1829 }
+\DoxyCodeLine{1830 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__jvmti_env}{\_jvmtiEnv}} \{}
+\DoxyCodeLine{1831     \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structjvmti_interface__1__}{jvmtiInterface\_1\_}} *functions;}
+\DoxyCodeLine{1832 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{1833 }
+\DoxyCodeLine{1834 }
+\DoxyCodeLine{1835   jvmtiError Allocate(jlong size,}
+\DoxyCodeLine{1836             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}** mem\_ptr) \{}
+\DoxyCodeLine{1837     \textcolor{keywordflow}{return} functions-\/>Allocate(\textcolor{keyword}{this}, size, mem\_ptr);}
+\DoxyCodeLine{1838   \}}
+\DoxyCodeLine{1839 }
+\DoxyCodeLine{1840   jvmtiError Deallocate(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}* mem) \{}
+\DoxyCodeLine{1841     \textcolor{keywordflow}{return} functions-\/>Deallocate(\textcolor{keyword}{this}, mem);}
+\DoxyCodeLine{1842   \}}
+\DoxyCodeLine{1843 }
+\DoxyCodeLine{1844   jvmtiError GetThreadState(jthread thread,}
+\DoxyCodeLine{1845             jint* thread\_state\_ptr) \{}
+\DoxyCodeLine{1846     \textcolor{keywordflow}{return} functions-\/>GetThreadState(\textcolor{keyword}{this}, thread, thread\_state\_ptr);}
+\DoxyCodeLine{1847   \}}
+\DoxyCodeLine{1848 }
+\DoxyCodeLine{1849   jvmtiError GetCurrentThread(jthread* thread\_ptr) \{}
+\DoxyCodeLine{1850     \textcolor{keywordflow}{return} functions-\/>GetCurrentThread(\textcolor{keyword}{this}, thread\_ptr);}
+\DoxyCodeLine{1851   \}}
+\DoxyCodeLine{1852 }
+\DoxyCodeLine{1853   jvmtiError GetAllThreads(jint* threads\_count\_ptr,}
+\DoxyCodeLine{1854             jthread** threads\_ptr) \{}
+\DoxyCodeLine{1855     \textcolor{keywordflow}{return} functions-\/>GetAllThreads(\textcolor{keyword}{this}, threads\_count\_ptr, threads\_ptr);}
+\DoxyCodeLine{1856   \}}
+\DoxyCodeLine{1857 }
+\DoxyCodeLine{1858   jvmtiError SuspendThread(jthread thread) \{}
+\DoxyCodeLine{1859     \textcolor{keywordflow}{return} functions-\/>SuspendThread(\textcolor{keyword}{this}, thread);}
+\DoxyCodeLine{1860   \}}
+\DoxyCodeLine{1861 }
+\DoxyCodeLine{1862   jvmtiError SuspendThreadList(jint request\_count,}
+\DoxyCodeLine{1863             \textcolor{keyword}{const} jthread* request\_list,}
+\DoxyCodeLine{1864             jvmtiError* results) \{}
+\DoxyCodeLine{1865     \textcolor{keywordflow}{return} functions-\/>SuspendThreadList(\textcolor{keyword}{this}, request\_count, request\_list, results);}
+\DoxyCodeLine{1866   \}}
+\DoxyCodeLine{1867 }
+\DoxyCodeLine{1868   jvmtiError ResumeThread(jthread thread) \{}
+\DoxyCodeLine{1869     \textcolor{keywordflow}{return} functions-\/>ResumeThread(\textcolor{keyword}{this}, thread);}
+\DoxyCodeLine{1870   \}}
+\DoxyCodeLine{1871 }
+\DoxyCodeLine{1872   jvmtiError ResumeThreadList(jint request\_count,}
+\DoxyCodeLine{1873             \textcolor{keyword}{const} jthread* request\_list,}
+\DoxyCodeLine{1874             jvmtiError* results) \{}
+\DoxyCodeLine{1875     \textcolor{keywordflow}{return} functions-\/>ResumeThreadList(\textcolor{keyword}{this}, request\_count, request\_list, results);}
+\DoxyCodeLine{1876   \}}
+\DoxyCodeLine{1877 }
+\DoxyCodeLine{1878   jvmtiError StopThread(jthread thread,}
+\DoxyCodeLine{1879             jobject exception) \{}
+\DoxyCodeLine{1880     \textcolor{keywordflow}{return} functions-\/>StopThread(\textcolor{keyword}{this}, thread, exception);}
+\DoxyCodeLine{1881   \}}
+\DoxyCodeLine{1882 }
+\DoxyCodeLine{1883   jvmtiError InterruptThread(jthread thread) \{}
+\DoxyCodeLine{1884     \textcolor{keywordflow}{return} functions-\/>InterruptThread(\textcolor{keyword}{this}, thread);}
+\DoxyCodeLine{1885   \}}
+\DoxyCodeLine{1886 }
+\DoxyCodeLine{1887   jvmtiError GetThreadInfo(jthread thread,}
+\DoxyCodeLine{1888             \mbox{\hyperlink{struct__jvmti_thread_info}{jvmtiThreadInfo}}* info\_ptr) \{}
+\DoxyCodeLine{1889     \textcolor{keywordflow}{return} functions-\/>GetThreadInfo(\textcolor{keyword}{this}, thread, info\_ptr);}
+\DoxyCodeLine{1890   \}}
+\DoxyCodeLine{1891 }
+\DoxyCodeLine{1892   jvmtiError GetOwnedMonitorInfo(jthread thread,}
+\DoxyCodeLine{1893             jint* owned\_monitor\_count\_ptr,}
+\DoxyCodeLine{1894             jobject** owned\_monitors\_ptr) \{}
+\DoxyCodeLine{1895     \textcolor{keywordflow}{return} functions-\/>GetOwnedMonitorInfo(\textcolor{keyword}{this}, thread, owned\_monitor\_count\_ptr, owned\_monitors\_ptr);}
+\DoxyCodeLine{1896   \}}
+\DoxyCodeLine{1897 }
+\DoxyCodeLine{1898   jvmtiError GetOwnedMonitorStackDepthInfo(jthread thread,}
+\DoxyCodeLine{1899             jint* monitor\_info\_count\_ptr,}
+\DoxyCodeLine{1900             \mbox{\hyperlink{struct__jvmti_monitor_stack_depth_info}{jvmtiMonitorStackDepthInfo}}** monitor\_info\_ptr) \{}
+\DoxyCodeLine{1901     \textcolor{keywordflow}{return} functions-\/>GetOwnedMonitorStackDepthInfo(\textcolor{keyword}{this}, thread, monitor\_info\_count\_ptr, monitor\_info\_ptr);}
+\DoxyCodeLine{1902   \}}
+\DoxyCodeLine{1903 }
+\DoxyCodeLine{1904   jvmtiError GetCurrentContendedMonitor(jthread thread,}
+\DoxyCodeLine{1905             jobject* monitor\_ptr) \{}
+\DoxyCodeLine{1906     \textcolor{keywordflow}{return} functions-\/>GetCurrentContendedMonitor(\textcolor{keyword}{this}, thread, monitor\_ptr);}
+\DoxyCodeLine{1907   \}}
+\DoxyCodeLine{1908 }
+\DoxyCodeLine{1909   jvmtiError RunAgentThread(jthread thread,}
+\DoxyCodeLine{1910             jvmtiStartFunction proc,}
+\DoxyCodeLine{1911             \textcolor{keyword}{const} \textcolor{keywordtype}{void}* arg,}
+\DoxyCodeLine{1912             jint priority) \{}
+\DoxyCodeLine{1913     \textcolor{keywordflow}{return} functions-\/>RunAgentThread(\textcolor{keyword}{this}, thread, proc, arg, priority);}
+\DoxyCodeLine{1914   \}}
+\DoxyCodeLine{1915 }
+\DoxyCodeLine{1916   jvmtiError SetThreadLocalStorage(jthread thread,}
+\DoxyCodeLine{1917             \textcolor{keyword}{const} \textcolor{keywordtype}{void}* data) \{}
+\DoxyCodeLine{1918     \textcolor{keywordflow}{return} functions-\/>SetThreadLocalStorage(\textcolor{keyword}{this}, thread, data);}
+\DoxyCodeLine{1919   \}}
+\DoxyCodeLine{1920 }
+\DoxyCodeLine{1921   jvmtiError GetThreadLocalStorage(jthread thread,}
+\DoxyCodeLine{1922             \textcolor{keywordtype}{void}** data\_ptr) \{}
+\DoxyCodeLine{1923     \textcolor{keywordflow}{return} functions-\/>GetThreadLocalStorage(\textcolor{keyword}{this}, thread, data\_ptr);}
+\DoxyCodeLine{1924   \}}
+\DoxyCodeLine{1925 }
+\DoxyCodeLine{1926   jvmtiError GetTopThreadGroups(jint* group\_count\_ptr,}
+\DoxyCodeLine{1927             jthreadGroup** groups\_ptr) \{}
+\DoxyCodeLine{1928     \textcolor{keywordflow}{return} functions-\/>GetTopThreadGroups(\textcolor{keyword}{this}, group\_count\_ptr, groups\_ptr);}
+\DoxyCodeLine{1929   \}}
+\DoxyCodeLine{1930 }
+\DoxyCodeLine{1931   jvmtiError GetThreadGroupInfo(jthreadGroup group,}
+\DoxyCodeLine{1932             \mbox{\hyperlink{struct__jvmti_thread_group_info}{jvmtiThreadGroupInfo}}* info\_ptr) \{}
+\DoxyCodeLine{1933     \textcolor{keywordflow}{return} functions-\/>GetThreadGroupInfo(\textcolor{keyword}{this}, group, info\_ptr);}
+\DoxyCodeLine{1934   \}}
+\DoxyCodeLine{1935 }
+\DoxyCodeLine{1936   jvmtiError GetThreadGroupChildren(jthreadGroup group,}
+\DoxyCodeLine{1937             jint* thread\_count\_ptr,}
+\DoxyCodeLine{1938             jthread** threads\_ptr,}
+\DoxyCodeLine{1939             jint* group\_count\_ptr,}
+\DoxyCodeLine{1940             jthreadGroup** groups\_ptr) \{}
+\DoxyCodeLine{1941     \textcolor{keywordflow}{return} functions-\/>GetThreadGroupChildren(\textcolor{keyword}{this}, group, thread\_count\_ptr, threads\_ptr, group\_count\_ptr, groups\_ptr);}
+\DoxyCodeLine{1942   \}}
+\DoxyCodeLine{1943 }
+\DoxyCodeLine{1944   jvmtiError GetStackTrace(jthread thread,}
+\DoxyCodeLine{1945             jint start\_depth,}
+\DoxyCodeLine{1946             jint max\_frame\_count,}
+\DoxyCodeLine{1947             \mbox{\hyperlink{struct__jvmti_frame_info}{jvmtiFrameInfo}}* frame\_buffer,}
+\DoxyCodeLine{1948             jint* count\_ptr) \{}
+\DoxyCodeLine{1949     \textcolor{keywordflow}{return} functions-\/>GetStackTrace(\textcolor{keyword}{this}, thread, start\_depth, max\_frame\_count, frame\_buffer, count\_ptr);}
+\DoxyCodeLine{1950   \}}
+\DoxyCodeLine{1951 }
+\DoxyCodeLine{1952   jvmtiError GetAllStackTraces(jint max\_frame\_count,}
+\DoxyCodeLine{1953             \mbox{\hyperlink{struct__jvmti_stack_info}{jvmtiStackInfo}}** stack\_info\_ptr,}
+\DoxyCodeLine{1954             jint* thread\_count\_ptr) \{}
+\DoxyCodeLine{1955     \textcolor{keywordflow}{return} functions-\/>GetAllStackTraces(\textcolor{keyword}{this}, max\_frame\_count, stack\_info\_ptr, thread\_count\_ptr);}
+\DoxyCodeLine{1956   \}}
+\DoxyCodeLine{1957 }
+\DoxyCodeLine{1958   jvmtiError GetThreadListStackTraces(jint thread\_count,}
+\DoxyCodeLine{1959             \textcolor{keyword}{const} jthread* thread\_list,}
+\DoxyCodeLine{1960             jint max\_frame\_count,}
+\DoxyCodeLine{1961             \mbox{\hyperlink{struct__jvmti_stack_info}{jvmtiStackInfo}}** stack\_info\_ptr) \{}
+\DoxyCodeLine{1962     \textcolor{keywordflow}{return} functions-\/>GetThreadListStackTraces(\textcolor{keyword}{this}, thread\_count, thread\_list, max\_frame\_count, stack\_info\_ptr);}
+\DoxyCodeLine{1963   \}}
+\DoxyCodeLine{1964 }
+\DoxyCodeLine{1965   jvmtiError GetFrameCount(jthread thread,}
+\DoxyCodeLine{1966             jint* count\_ptr) \{}
+\DoxyCodeLine{1967     \textcolor{keywordflow}{return} functions-\/>GetFrameCount(\textcolor{keyword}{this}, thread, count\_ptr);}
+\DoxyCodeLine{1968   \}}
+\DoxyCodeLine{1969 }
+\DoxyCodeLine{1970   jvmtiError PopFrame(jthread thread) \{}
+\DoxyCodeLine{1971     \textcolor{keywordflow}{return} functions-\/>PopFrame(\textcolor{keyword}{this}, thread);}
+\DoxyCodeLine{1972   \}}
+\DoxyCodeLine{1973 }
+\DoxyCodeLine{1974   jvmtiError GetFrameLocation(jthread thread,}
+\DoxyCodeLine{1975             jint depth,}
+\DoxyCodeLine{1976             jmethodID* method\_ptr,}
+\DoxyCodeLine{1977             jlocation* location\_ptr) \{}
+\DoxyCodeLine{1978     \textcolor{keywordflow}{return} functions-\/>GetFrameLocation(\textcolor{keyword}{this}, thread, depth, method\_ptr, location\_ptr);}
+\DoxyCodeLine{1979   \}}
+\DoxyCodeLine{1980 }
+\DoxyCodeLine{1981   jvmtiError NotifyFramePop(jthread thread,}
+\DoxyCodeLine{1982             jint depth) \{}
+\DoxyCodeLine{1983     \textcolor{keywordflow}{return} functions-\/>NotifyFramePop(\textcolor{keyword}{this}, thread, depth);}
+\DoxyCodeLine{1984   \}}
+\DoxyCodeLine{1985 }
+\DoxyCodeLine{1986   jvmtiError ForceEarlyReturnObject(jthread thread,}
+\DoxyCodeLine{1987             jobject value) \{}
+\DoxyCodeLine{1988     \textcolor{keywordflow}{return} functions-\/>ForceEarlyReturnObject(\textcolor{keyword}{this}, thread, value);}
+\DoxyCodeLine{1989   \}}
+\DoxyCodeLine{1990 }
+\DoxyCodeLine{1991   jvmtiError ForceEarlyReturnInt(jthread thread,}
+\DoxyCodeLine{1992             jint value) \{}
+\DoxyCodeLine{1993     \textcolor{keywordflow}{return} functions-\/>ForceEarlyReturnInt(\textcolor{keyword}{this}, thread, value);}
+\DoxyCodeLine{1994   \}}
+\DoxyCodeLine{1995 }
+\DoxyCodeLine{1996   jvmtiError ForceEarlyReturnLong(jthread thread,}
+\DoxyCodeLine{1997             jlong value) \{}
+\DoxyCodeLine{1998     \textcolor{keywordflow}{return} functions-\/>ForceEarlyReturnLong(\textcolor{keyword}{this}, thread, value);}
+\DoxyCodeLine{1999   \}}
+\DoxyCodeLine{2000 }
+\DoxyCodeLine{2001   jvmtiError ForceEarlyReturnFloat(jthread thread,}
+\DoxyCodeLine{2002             jfloat value) \{}
+\DoxyCodeLine{2003     \textcolor{keywordflow}{return} functions-\/>ForceEarlyReturnFloat(\textcolor{keyword}{this}, thread, value);}
+\DoxyCodeLine{2004   \}}
+\DoxyCodeLine{2005 }
+\DoxyCodeLine{2006   jvmtiError ForceEarlyReturnDouble(jthread thread,}
+\DoxyCodeLine{2007             jdouble value) \{}
+\DoxyCodeLine{2008     \textcolor{keywordflow}{return} functions-\/>ForceEarlyReturnDouble(\textcolor{keyword}{this}, thread, value);}
+\DoxyCodeLine{2009   \}}
+\DoxyCodeLine{2010 }
+\DoxyCodeLine{2011   jvmtiError ForceEarlyReturnVoid(jthread thread) \{}
+\DoxyCodeLine{2012     \textcolor{keywordflow}{return} functions-\/>ForceEarlyReturnVoid(\textcolor{keyword}{this}, thread);}
+\DoxyCodeLine{2013   \}}
+\DoxyCodeLine{2014 }
+\DoxyCodeLine{2015   jvmtiError FollowReferences(jint heap\_filter,}
+\DoxyCodeLine{2016             jclass klass,}
+\DoxyCodeLine{2017             jobject initial\_object,}
+\DoxyCodeLine{2018             \textcolor{keyword}{const} \mbox{\hyperlink{struct__jvmti_heap_callbacks}{jvmtiHeapCallbacks}}* callbacks,}
+\DoxyCodeLine{2019             \textcolor{keyword}{const} \textcolor{keywordtype}{void}* user\_data) \{}
+\DoxyCodeLine{2020     \textcolor{keywordflow}{return} functions-\/>FollowReferences(\textcolor{keyword}{this}, heap\_filter, klass, initial\_object, callbacks, user\_data);}
+\DoxyCodeLine{2021   \}}
+\DoxyCodeLine{2022 }
+\DoxyCodeLine{2023   jvmtiError IterateThroughHeap(jint heap\_filter,}
+\DoxyCodeLine{2024             jclass klass,}
+\DoxyCodeLine{2025             \textcolor{keyword}{const} \mbox{\hyperlink{struct__jvmti_heap_callbacks}{jvmtiHeapCallbacks}}* callbacks,}
+\DoxyCodeLine{2026             \textcolor{keyword}{const} \textcolor{keywordtype}{void}* user\_data) \{}
+\DoxyCodeLine{2027     \textcolor{keywordflow}{return} functions-\/>IterateThroughHeap(\textcolor{keyword}{this}, heap\_filter, klass, callbacks, user\_data);}
+\DoxyCodeLine{2028   \}}
+\DoxyCodeLine{2029 }
+\DoxyCodeLine{2030   jvmtiError GetTag(jobject \textcolor{keywordtype}{object},}
+\DoxyCodeLine{2031             jlong* tag\_ptr) \{}
+\DoxyCodeLine{2032     \textcolor{keywordflow}{return} functions-\/>GetTag(\textcolor{keyword}{this}, \textcolor{keywordtype}{object}, tag\_ptr);}
+\DoxyCodeLine{2033   \}}
+\DoxyCodeLine{2034 }
+\DoxyCodeLine{2035   jvmtiError SetTag(jobject \textcolor{keywordtype}{object},}
+\DoxyCodeLine{2036             jlong tag) \{}
+\DoxyCodeLine{2037     \textcolor{keywordflow}{return} functions-\/>SetTag(\textcolor{keyword}{this}, \textcolor{keywordtype}{object}, tag);}
+\DoxyCodeLine{2038   \}}
+\DoxyCodeLine{2039 }
+\DoxyCodeLine{2040   jvmtiError GetObjectsWithTags(jint tag\_count,}
+\DoxyCodeLine{2041             \textcolor{keyword}{const} jlong* tags,}
+\DoxyCodeLine{2042             jint* count\_ptr,}
+\DoxyCodeLine{2043             jobject** object\_result\_ptr,}
+\DoxyCodeLine{2044             jlong** tag\_result\_ptr) \{}
+\DoxyCodeLine{2045     \textcolor{keywordflow}{return} functions-\/>GetObjectsWithTags(\textcolor{keyword}{this}, tag\_count, tags, count\_ptr, object\_result\_ptr, tag\_result\_ptr);}
+\DoxyCodeLine{2046   \}}
+\DoxyCodeLine{2047 }
+\DoxyCodeLine{2048   jvmtiError ForceGarbageCollection() \{}
+\DoxyCodeLine{2049     \textcolor{keywordflow}{return} functions-\/>ForceGarbageCollection(\textcolor{keyword}{this});}
+\DoxyCodeLine{2050   \}}
+\DoxyCodeLine{2051 }
+\DoxyCodeLine{2052   jvmtiError IterateOverObjectsReachableFromObject(jobject \textcolor{keywordtype}{object},}
+\DoxyCodeLine{2053             jvmtiObjectReferenceCallback object\_reference\_callback,}
+\DoxyCodeLine{2054             \textcolor{keyword}{const} \textcolor{keywordtype}{void}* user\_data) \{}
+\DoxyCodeLine{2055     \textcolor{keywordflow}{return} functions-\/>IterateOverObjectsReachableFromObject(\textcolor{keyword}{this}, \textcolor{keywordtype}{object}, object\_reference\_callback, user\_data);}
+\DoxyCodeLine{2056   \}}
+\DoxyCodeLine{2057 }
+\DoxyCodeLine{2058   jvmtiError IterateOverReachableObjects(jvmtiHeapRootCallback heap\_root\_callback,}
+\DoxyCodeLine{2059             jvmtiStackReferenceCallback stack\_ref\_callback,}
+\DoxyCodeLine{2060             jvmtiObjectReferenceCallback object\_ref\_callback,}
+\DoxyCodeLine{2061             \textcolor{keyword}{const} \textcolor{keywordtype}{void}* user\_data) \{}
+\DoxyCodeLine{2062     \textcolor{keywordflow}{return} functions-\/>IterateOverReachableObjects(\textcolor{keyword}{this}, heap\_root\_callback, stack\_ref\_callback, object\_ref\_callback, user\_data);}
+\DoxyCodeLine{2063   \}}
+\DoxyCodeLine{2064 }
+\DoxyCodeLine{2065   jvmtiError IterateOverHeap(jvmtiHeapObjectFilter object\_filter,}
+\DoxyCodeLine{2066             jvmtiHeapObjectCallback heap\_object\_callback,}
+\DoxyCodeLine{2067             \textcolor{keyword}{const} \textcolor{keywordtype}{void}* user\_data) \{}
+\DoxyCodeLine{2068     \textcolor{keywordflow}{return} functions-\/>IterateOverHeap(\textcolor{keyword}{this}, object\_filter, heap\_object\_callback, user\_data);}
+\DoxyCodeLine{2069   \}}
+\DoxyCodeLine{2070 }
+\DoxyCodeLine{2071   jvmtiError IterateOverInstancesOfClass(jclass klass,}
+\DoxyCodeLine{2072             jvmtiHeapObjectFilter object\_filter,}
+\DoxyCodeLine{2073             jvmtiHeapObjectCallback heap\_object\_callback,}
+\DoxyCodeLine{2074             \textcolor{keyword}{const} \textcolor{keywordtype}{void}* user\_data) \{}
+\DoxyCodeLine{2075     \textcolor{keywordflow}{return} functions-\/>IterateOverInstancesOfClass(\textcolor{keyword}{this}, klass, object\_filter, heap\_object\_callback, user\_data);}
+\DoxyCodeLine{2076   \}}
+\DoxyCodeLine{2077 }
+\DoxyCodeLine{2078   jvmtiError GetLocalObject(jthread thread,}
+\DoxyCodeLine{2079             jint depth,}
+\DoxyCodeLine{2080             jint slot,}
+\DoxyCodeLine{2081             jobject* value\_ptr) \{}
+\DoxyCodeLine{2082     \textcolor{keywordflow}{return} functions-\/>GetLocalObject(\textcolor{keyword}{this}, thread, depth, slot, value\_ptr);}
+\DoxyCodeLine{2083   \}}
+\DoxyCodeLine{2084 }
+\DoxyCodeLine{2085   jvmtiError GetLocalInstance(jthread thread,}
+\DoxyCodeLine{2086             jint depth,}
+\DoxyCodeLine{2087             jobject* value\_ptr) \{}
+\DoxyCodeLine{2088     \textcolor{keywordflow}{return} functions-\/>GetLocalInstance(\textcolor{keyword}{this}, thread, depth, value\_ptr);}
+\DoxyCodeLine{2089   \}}
+\DoxyCodeLine{2090 }
+\DoxyCodeLine{2091   jvmtiError GetLocalInt(jthread thread,}
+\DoxyCodeLine{2092             jint depth,}
+\DoxyCodeLine{2093             jint slot,}
+\DoxyCodeLine{2094             jint* value\_ptr) \{}
+\DoxyCodeLine{2095     \textcolor{keywordflow}{return} functions-\/>GetLocalInt(\textcolor{keyword}{this}, thread, depth, slot, value\_ptr);}
+\DoxyCodeLine{2096   \}}
+\DoxyCodeLine{2097 }
+\DoxyCodeLine{2098   jvmtiError GetLocalLong(jthread thread,}
+\DoxyCodeLine{2099             jint depth,}
+\DoxyCodeLine{2100             jint slot,}
+\DoxyCodeLine{2101             jlong* value\_ptr) \{}
+\DoxyCodeLine{2102     \textcolor{keywordflow}{return} functions-\/>GetLocalLong(\textcolor{keyword}{this}, thread, depth, slot, value\_ptr);}
+\DoxyCodeLine{2103   \}}
+\DoxyCodeLine{2104 }
+\DoxyCodeLine{2105   jvmtiError GetLocalFloat(jthread thread,}
+\DoxyCodeLine{2106             jint depth,}
+\DoxyCodeLine{2107             jint slot,}
+\DoxyCodeLine{2108             jfloat* value\_ptr) \{}
+\DoxyCodeLine{2109     \textcolor{keywordflow}{return} functions-\/>GetLocalFloat(\textcolor{keyword}{this}, thread, depth, slot, value\_ptr);}
+\DoxyCodeLine{2110   \}}
+\DoxyCodeLine{2111 }
+\DoxyCodeLine{2112   jvmtiError GetLocalDouble(jthread thread,}
+\DoxyCodeLine{2113             jint depth,}
+\DoxyCodeLine{2114             jint slot,}
+\DoxyCodeLine{2115             jdouble* value\_ptr) \{}
+\DoxyCodeLine{2116     \textcolor{keywordflow}{return} functions-\/>GetLocalDouble(\textcolor{keyword}{this}, thread, depth, slot, value\_ptr);}
+\DoxyCodeLine{2117   \}}
+\DoxyCodeLine{2118 }
+\DoxyCodeLine{2119   jvmtiError SetLocalObject(jthread thread,}
+\DoxyCodeLine{2120             jint depth,}
+\DoxyCodeLine{2121             jint slot,}
+\DoxyCodeLine{2122             jobject value) \{}
+\DoxyCodeLine{2123     \textcolor{keywordflow}{return} functions-\/>SetLocalObject(\textcolor{keyword}{this}, thread, depth, slot, value);}
+\DoxyCodeLine{2124   \}}
+\DoxyCodeLine{2125 }
+\DoxyCodeLine{2126   jvmtiError SetLocalInt(jthread thread,}
+\DoxyCodeLine{2127             jint depth,}
+\DoxyCodeLine{2128             jint slot,}
+\DoxyCodeLine{2129             jint value) \{}
+\DoxyCodeLine{2130     \textcolor{keywordflow}{return} functions-\/>SetLocalInt(\textcolor{keyword}{this}, thread, depth, slot, value);}
+\DoxyCodeLine{2131   \}}
+\DoxyCodeLine{2132 }
+\DoxyCodeLine{2133   jvmtiError SetLocalLong(jthread thread,}
+\DoxyCodeLine{2134             jint depth,}
+\DoxyCodeLine{2135             jint slot,}
+\DoxyCodeLine{2136             jlong value) \{}
+\DoxyCodeLine{2137     \textcolor{keywordflow}{return} functions-\/>SetLocalLong(\textcolor{keyword}{this}, thread, depth, slot, value);}
+\DoxyCodeLine{2138   \}}
+\DoxyCodeLine{2139 }
+\DoxyCodeLine{2140   jvmtiError SetLocalFloat(jthread thread,}
+\DoxyCodeLine{2141             jint depth,}
+\DoxyCodeLine{2142             jint slot,}
+\DoxyCodeLine{2143             jfloat value) \{}
+\DoxyCodeLine{2144     \textcolor{keywordflow}{return} functions-\/>SetLocalFloat(\textcolor{keyword}{this}, thread, depth, slot, value);}
+\DoxyCodeLine{2145   \}}
+\DoxyCodeLine{2146 }
+\DoxyCodeLine{2147   jvmtiError SetLocalDouble(jthread thread,}
+\DoxyCodeLine{2148             jint depth,}
+\DoxyCodeLine{2149             jint slot,}
+\DoxyCodeLine{2150             jdouble value) \{}
+\DoxyCodeLine{2151     \textcolor{keywordflow}{return} functions-\/>SetLocalDouble(\textcolor{keyword}{this}, thread, depth, slot, value);}
+\DoxyCodeLine{2152   \}}
+\DoxyCodeLine{2153 }
+\DoxyCodeLine{2154   jvmtiError SetBreakpoint(jmethodID method,}
+\DoxyCodeLine{2155             jlocation location) \{}
+\DoxyCodeLine{2156     \textcolor{keywordflow}{return} functions-\/>SetBreakpoint(\textcolor{keyword}{this}, method, location);}
+\DoxyCodeLine{2157   \}}
+\DoxyCodeLine{2158 }
+\DoxyCodeLine{2159   jvmtiError ClearBreakpoint(jmethodID method,}
+\DoxyCodeLine{2160             jlocation location) \{}
+\DoxyCodeLine{2161     \textcolor{keywordflow}{return} functions-\/>ClearBreakpoint(\textcolor{keyword}{this}, method, location);}
+\DoxyCodeLine{2162   \}}
+\DoxyCodeLine{2163 }
+\DoxyCodeLine{2164   jvmtiError SetFieldAccessWatch(jclass klass,}
+\DoxyCodeLine{2165             jfieldID field) \{}
+\DoxyCodeLine{2166     \textcolor{keywordflow}{return} functions-\/>SetFieldAccessWatch(\textcolor{keyword}{this}, klass, field);}
+\DoxyCodeLine{2167   \}}
+\DoxyCodeLine{2168 }
+\DoxyCodeLine{2169   jvmtiError ClearFieldAccessWatch(jclass klass,}
+\DoxyCodeLine{2170             jfieldID field) \{}
+\DoxyCodeLine{2171     \textcolor{keywordflow}{return} functions-\/>ClearFieldAccessWatch(\textcolor{keyword}{this}, klass, field);}
+\DoxyCodeLine{2172   \}}
+\DoxyCodeLine{2173 }
+\DoxyCodeLine{2174   jvmtiError SetFieldModificationWatch(jclass klass,}
+\DoxyCodeLine{2175             jfieldID field) \{}
+\DoxyCodeLine{2176     \textcolor{keywordflow}{return} functions-\/>SetFieldModificationWatch(\textcolor{keyword}{this}, klass, field);}
+\DoxyCodeLine{2177   \}}
+\DoxyCodeLine{2178 }
+\DoxyCodeLine{2179   jvmtiError ClearFieldModificationWatch(jclass klass,}
+\DoxyCodeLine{2180             jfieldID field) \{}
+\DoxyCodeLine{2181     \textcolor{keywordflow}{return} functions-\/>ClearFieldModificationWatch(\textcolor{keyword}{this}, klass, field);}
+\DoxyCodeLine{2182   \}}
+\DoxyCodeLine{2183 }
+\DoxyCodeLine{2184   jvmtiError GetAllModules(jint* module\_count\_ptr,}
+\DoxyCodeLine{2185             jobject** modules\_ptr) \{}
+\DoxyCodeLine{2186     \textcolor{keywordflow}{return} functions-\/>GetAllModules(\textcolor{keyword}{this}, module\_count\_ptr, modules\_ptr);}
+\DoxyCodeLine{2187   \}}
+\DoxyCodeLine{2188 }
+\DoxyCodeLine{2189   jvmtiError GetNamedModule(jobject class\_loader,}
+\DoxyCodeLine{2190             \textcolor{keyword}{const} \textcolor{keywordtype}{char}* package\_name,}
+\DoxyCodeLine{2191             jobject* module\_ptr) \{}
+\DoxyCodeLine{2192     \textcolor{keywordflow}{return} functions-\/>GetNamedModule(\textcolor{keyword}{this}, class\_loader, package\_name, module\_ptr);}
+\DoxyCodeLine{2193   \}}
+\DoxyCodeLine{2194 }
+\DoxyCodeLine{2195   jvmtiError AddModuleReads(jobject module,}
+\DoxyCodeLine{2196             jobject to\_module) \{}
+\DoxyCodeLine{2197     \textcolor{keywordflow}{return} functions-\/>AddModuleReads(\textcolor{keyword}{this}, module, to\_module);}
+\DoxyCodeLine{2198   \}}
+\DoxyCodeLine{2199 }
+\DoxyCodeLine{2200   jvmtiError AddModuleExports(jobject module,}
+\DoxyCodeLine{2201             \textcolor{keyword}{const} \textcolor{keywordtype}{char}* pkg\_name,}
+\DoxyCodeLine{2202             jobject to\_module) \{}
+\DoxyCodeLine{2203     \textcolor{keywordflow}{return} functions-\/>AddModuleExports(\textcolor{keyword}{this}, module, pkg\_name, to\_module);}
+\DoxyCodeLine{2204   \}}
+\DoxyCodeLine{2205 }
+\DoxyCodeLine{2206   jvmtiError AddModuleOpens(jobject module,}
+\DoxyCodeLine{2207             \textcolor{keyword}{const} \textcolor{keywordtype}{char}* pkg\_name,}
+\DoxyCodeLine{2208             jobject to\_module) \{}
+\DoxyCodeLine{2209     \textcolor{keywordflow}{return} functions-\/>AddModuleOpens(\textcolor{keyword}{this}, module, pkg\_name, to\_module);}
+\DoxyCodeLine{2210   \}}
+\DoxyCodeLine{2211 }
+\DoxyCodeLine{2212   jvmtiError AddModuleUses(jobject module,}
+\DoxyCodeLine{2213             jclass service) \{}
+\DoxyCodeLine{2214     \textcolor{keywordflow}{return} functions-\/>AddModuleUses(\textcolor{keyword}{this}, module, service);}
+\DoxyCodeLine{2215   \}}
+\DoxyCodeLine{2216 }
+\DoxyCodeLine{2217   jvmtiError AddModuleProvides(jobject module,}
+\DoxyCodeLine{2218             jclass service,}
+\DoxyCodeLine{2219             jclass impl\_class) \{}
+\DoxyCodeLine{2220     \textcolor{keywordflow}{return} functions-\/>AddModuleProvides(\textcolor{keyword}{this}, module, service, impl\_class);}
+\DoxyCodeLine{2221   \}}
+\DoxyCodeLine{2222 }
+\DoxyCodeLine{2223   jvmtiError IsModifiableModule(jobject module,}
+\DoxyCodeLine{2224             jboolean* is\_modifiable\_module\_ptr) \{}
+\DoxyCodeLine{2225     \textcolor{keywordflow}{return} functions-\/>IsModifiableModule(\textcolor{keyword}{this}, module, is\_modifiable\_module\_ptr);}
+\DoxyCodeLine{2226   \}}
+\DoxyCodeLine{2227 }
+\DoxyCodeLine{2228   jvmtiError GetLoadedClasses(jint* class\_count\_ptr,}
+\DoxyCodeLine{2229             jclass** classes\_ptr) \{}
+\DoxyCodeLine{2230     \textcolor{keywordflow}{return} functions-\/>GetLoadedClasses(\textcolor{keyword}{this}, class\_count\_ptr, classes\_ptr);}
+\DoxyCodeLine{2231   \}}
+\DoxyCodeLine{2232 }
+\DoxyCodeLine{2233   jvmtiError GetClassLoaderClasses(jobject initiating\_loader,}
+\DoxyCodeLine{2234             jint* class\_count\_ptr,}
+\DoxyCodeLine{2235             jclass** classes\_ptr) \{}
+\DoxyCodeLine{2236     \textcolor{keywordflow}{return} functions-\/>GetClassLoaderClasses(\textcolor{keyword}{this}, initiating\_loader, class\_count\_ptr, classes\_ptr);}
+\DoxyCodeLine{2237   \}}
+\DoxyCodeLine{2238 }
+\DoxyCodeLine{2239   jvmtiError GetClassSignature(jclass klass,}
+\DoxyCodeLine{2240             \textcolor{keywordtype}{char}** signature\_ptr,}
+\DoxyCodeLine{2241             \textcolor{keywordtype}{char}** generic\_ptr) \{}
+\DoxyCodeLine{2242     \textcolor{keywordflow}{return} functions-\/>GetClassSignature(\textcolor{keyword}{this}, klass, signature\_ptr, generic\_ptr);}
+\DoxyCodeLine{2243   \}}
+\DoxyCodeLine{2244 }
+\DoxyCodeLine{2245   jvmtiError GetClassStatus(jclass klass,}
+\DoxyCodeLine{2246             jint* status\_ptr) \{}
+\DoxyCodeLine{2247     \textcolor{keywordflow}{return} functions-\/>GetClassStatus(\textcolor{keyword}{this}, klass, status\_ptr);}
+\DoxyCodeLine{2248   \}}
+\DoxyCodeLine{2249 }
+\DoxyCodeLine{2250   jvmtiError GetSourceFileName(jclass klass,}
+\DoxyCodeLine{2251             \textcolor{keywordtype}{char}** source\_name\_ptr) \{}
+\DoxyCodeLine{2252     \textcolor{keywordflow}{return} functions-\/>GetSourceFileName(\textcolor{keyword}{this}, klass, source\_name\_ptr);}
+\DoxyCodeLine{2253   \}}
+\DoxyCodeLine{2254 }
+\DoxyCodeLine{2255   jvmtiError GetClassModifiers(jclass klass,}
+\DoxyCodeLine{2256             jint* modifiers\_ptr) \{}
+\DoxyCodeLine{2257     \textcolor{keywordflow}{return} functions-\/>GetClassModifiers(\textcolor{keyword}{this}, klass, modifiers\_ptr);}
+\DoxyCodeLine{2258   \}}
+\DoxyCodeLine{2259 }
+\DoxyCodeLine{2260   jvmtiError GetClassMethods(jclass klass,}
+\DoxyCodeLine{2261             jint* method\_count\_ptr,}
+\DoxyCodeLine{2262             jmethodID** methods\_ptr) \{}
+\DoxyCodeLine{2263     \textcolor{keywordflow}{return} functions-\/>GetClassMethods(\textcolor{keyword}{this}, klass, method\_count\_ptr, methods\_ptr);}
+\DoxyCodeLine{2264   \}}
+\DoxyCodeLine{2265 }
+\DoxyCodeLine{2266   jvmtiError GetClassFields(jclass klass,}
+\DoxyCodeLine{2267             jint* field\_count\_ptr,}
+\DoxyCodeLine{2268             jfieldID** fields\_ptr) \{}
+\DoxyCodeLine{2269     \textcolor{keywordflow}{return} functions-\/>GetClassFields(\textcolor{keyword}{this}, klass, field\_count\_ptr, fields\_ptr);}
+\DoxyCodeLine{2270   \}}
+\DoxyCodeLine{2271 }
+\DoxyCodeLine{2272   jvmtiError GetImplementedInterfaces(jclass klass,}
+\DoxyCodeLine{2273             jint* interface\_count\_ptr,}
+\DoxyCodeLine{2274             jclass** interfaces\_ptr) \{}
+\DoxyCodeLine{2275     \textcolor{keywordflow}{return} functions-\/>GetImplementedInterfaces(\textcolor{keyword}{this}, klass, interface\_count\_ptr, interfaces\_ptr);}
+\DoxyCodeLine{2276   \}}
+\DoxyCodeLine{2277 }
+\DoxyCodeLine{2278   jvmtiError GetClassVersionNumbers(jclass klass,}
+\DoxyCodeLine{2279             jint* minor\_version\_ptr,}
+\DoxyCodeLine{2280             jint* major\_version\_ptr) \{}
+\DoxyCodeLine{2281     \textcolor{keywordflow}{return} functions-\/>GetClassVersionNumbers(\textcolor{keyword}{this}, klass, minor\_version\_ptr, major\_version\_ptr);}
+\DoxyCodeLine{2282   \}}
+\DoxyCodeLine{2283 }
+\DoxyCodeLine{2284   jvmtiError GetConstantPool(jclass klass,}
+\DoxyCodeLine{2285             jint* constant\_pool\_count\_ptr,}
+\DoxyCodeLine{2286             jint* constant\_pool\_byte\_count\_ptr,}
+\DoxyCodeLine{2287             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}** constant\_pool\_bytes\_ptr) \{}
+\DoxyCodeLine{2288     \textcolor{keywordflow}{return} functions-\/>GetConstantPool(\textcolor{keyword}{this}, klass, constant\_pool\_count\_ptr, constant\_pool\_byte\_count\_ptr, constant\_pool\_bytes\_ptr);}
+\DoxyCodeLine{2289   \}}
+\DoxyCodeLine{2290 }
+\DoxyCodeLine{2291   jvmtiError IsInterface(jclass klass,}
+\DoxyCodeLine{2292             jboolean* is\_interface\_ptr) \{}
+\DoxyCodeLine{2293     \textcolor{keywordflow}{return} functions-\/>IsInterface(\textcolor{keyword}{this}, klass, is\_interface\_ptr);}
+\DoxyCodeLine{2294   \}}
+\DoxyCodeLine{2295 }
+\DoxyCodeLine{2296   jvmtiError IsArrayClass(jclass klass,}
+\DoxyCodeLine{2297             jboolean* is\_array\_class\_ptr) \{}
+\DoxyCodeLine{2298     \textcolor{keywordflow}{return} functions-\/>IsArrayClass(\textcolor{keyword}{this}, klass, is\_array\_class\_ptr);}
+\DoxyCodeLine{2299   \}}
+\DoxyCodeLine{2300 }
+\DoxyCodeLine{2301   jvmtiError IsModifiableClass(jclass klass,}
+\DoxyCodeLine{2302             jboolean* is\_modifiable\_class\_ptr) \{}
+\DoxyCodeLine{2303     \textcolor{keywordflow}{return} functions-\/>IsModifiableClass(\textcolor{keyword}{this}, klass, is\_modifiable\_class\_ptr);}
+\DoxyCodeLine{2304   \}}
+\DoxyCodeLine{2305 }
+\DoxyCodeLine{2306   jvmtiError GetClassLoader(jclass klass,}
+\DoxyCodeLine{2307             jobject* classloader\_ptr) \{}
+\DoxyCodeLine{2308     \textcolor{keywordflow}{return} functions-\/>GetClassLoader(\textcolor{keyword}{this}, klass, classloader\_ptr);}
+\DoxyCodeLine{2309   \}}
+\DoxyCodeLine{2310 }
+\DoxyCodeLine{2311   jvmtiError GetSourceDebugExtension(jclass klass,}
+\DoxyCodeLine{2312             \textcolor{keywordtype}{char}** source\_debug\_extension\_ptr) \{}
+\DoxyCodeLine{2313     \textcolor{keywordflow}{return} functions-\/>GetSourceDebugExtension(\textcolor{keyword}{this}, klass, source\_debug\_extension\_ptr);}
+\DoxyCodeLine{2314   \}}
+\DoxyCodeLine{2315 }
+\DoxyCodeLine{2316   jvmtiError RetransformClasses(jint class\_count,}
+\DoxyCodeLine{2317             \textcolor{keyword}{const} jclass* classes) \{}
+\DoxyCodeLine{2318     \textcolor{keywordflow}{return} functions-\/>RetransformClasses(\textcolor{keyword}{this}, class\_count, classes);}
+\DoxyCodeLine{2319   \}}
+\DoxyCodeLine{2320 }
+\DoxyCodeLine{2321   jvmtiError RedefineClasses(jint class\_count,}
+\DoxyCodeLine{2322             \textcolor{keyword}{const} \mbox{\hyperlink{struct__jvmti_class_definition}{jvmtiClassDefinition}}* class\_definitions) \{}
+\DoxyCodeLine{2323     \textcolor{keywordflow}{return} functions-\/>RedefineClasses(\textcolor{keyword}{this}, class\_count, class\_definitions);}
+\DoxyCodeLine{2324   \}}
+\DoxyCodeLine{2325 }
+\DoxyCodeLine{2326   jvmtiError GetObjectSize(jobject \textcolor{keywordtype}{object},}
+\DoxyCodeLine{2327             jlong* size\_ptr) \{}
+\DoxyCodeLine{2328     \textcolor{keywordflow}{return} functions-\/>GetObjectSize(\textcolor{keyword}{this}, \textcolor{keywordtype}{object}, size\_ptr);}
+\DoxyCodeLine{2329   \}}
+\DoxyCodeLine{2330 }
+\DoxyCodeLine{2331   jvmtiError GetObjectHashCode(jobject \textcolor{keywordtype}{object},}
+\DoxyCodeLine{2332             jint* hash\_code\_ptr) \{}
+\DoxyCodeLine{2333     \textcolor{keywordflow}{return} functions-\/>GetObjectHashCode(\textcolor{keyword}{this}, \textcolor{keywordtype}{object}, hash\_code\_ptr);}
+\DoxyCodeLine{2334   \}}
+\DoxyCodeLine{2335 }
+\DoxyCodeLine{2336   jvmtiError GetObjectMonitorUsage(jobject \textcolor{keywordtype}{object},}
+\DoxyCodeLine{2337             \mbox{\hyperlink{struct__jvmti_monitor_usage}{jvmtiMonitorUsage}}* info\_ptr) \{}
+\DoxyCodeLine{2338     \textcolor{keywordflow}{return} functions-\/>GetObjectMonitorUsage(\textcolor{keyword}{this}, \textcolor{keywordtype}{object}, info\_ptr);}
+\DoxyCodeLine{2339   \}}
+\DoxyCodeLine{2340 }
+\DoxyCodeLine{2341   jvmtiError GetFieldName(jclass klass,}
+\DoxyCodeLine{2342             jfieldID field,}
+\DoxyCodeLine{2343             \textcolor{keywordtype}{char}** name\_ptr,}
+\DoxyCodeLine{2344             \textcolor{keywordtype}{char}** signature\_ptr,}
+\DoxyCodeLine{2345             \textcolor{keywordtype}{char}** generic\_ptr) \{}
+\DoxyCodeLine{2346     \textcolor{keywordflow}{return} functions-\/>GetFieldName(\textcolor{keyword}{this}, klass, field, name\_ptr, signature\_ptr, generic\_ptr);}
+\DoxyCodeLine{2347   \}}
+\DoxyCodeLine{2348 }
+\DoxyCodeLine{2349   jvmtiError GetFieldDeclaringClass(jclass klass,}
+\DoxyCodeLine{2350             jfieldID field,}
+\DoxyCodeLine{2351             jclass* declaring\_class\_ptr) \{}
+\DoxyCodeLine{2352     \textcolor{keywordflow}{return} functions-\/>GetFieldDeclaringClass(\textcolor{keyword}{this}, klass, field, declaring\_class\_ptr);}
+\DoxyCodeLine{2353   \}}
+\DoxyCodeLine{2354 }
+\DoxyCodeLine{2355   jvmtiError GetFieldModifiers(jclass klass,}
+\DoxyCodeLine{2356             jfieldID field,}
+\DoxyCodeLine{2357             jint* modifiers\_ptr) \{}
+\DoxyCodeLine{2358     \textcolor{keywordflow}{return} functions-\/>GetFieldModifiers(\textcolor{keyword}{this}, klass, field, modifiers\_ptr);}
+\DoxyCodeLine{2359   \}}
+\DoxyCodeLine{2360 }
+\DoxyCodeLine{2361   jvmtiError IsFieldSynthetic(jclass klass,}
+\DoxyCodeLine{2362             jfieldID field,}
+\DoxyCodeLine{2363             jboolean* is\_synthetic\_ptr) \{}
+\DoxyCodeLine{2364     \textcolor{keywordflow}{return} functions-\/>IsFieldSynthetic(\textcolor{keyword}{this}, klass, field, is\_synthetic\_ptr);}
+\DoxyCodeLine{2365   \}}
+\DoxyCodeLine{2366 }
+\DoxyCodeLine{2367   jvmtiError GetMethodName(jmethodID method,}
+\DoxyCodeLine{2368             \textcolor{keywordtype}{char}** name\_ptr,}
+\DoxyCodeLine{2369             \textcolor{keywordtype}{char}** signature\_ptr,}
+\DoxyCodeLine{2370             \textcolor{keywordtype}{char}** generic\_ptr) \{}
+\DoxyCodeLine{2371     \textcolor{keywordflow}{return} functions-\/>GetMethodName(\textcolor{keyword}{this}, method, name\_ptr, signature\_ptr, generic\_ptr);}
+\DoxyCodeLine{2372   \}}
+\DoxyCodeLine{2373 }
+\DoxyCodeLine{2374   jvmtiError GetMethodDeclaringClass(jmethodID method,}
+\DoxyCodeLine{2375             jclass* declaring\_class\_ptr) \{}
+\DoxyCodeLine{2376     \textcolor{keywordflow}{return} functions-\/>GetMethodDeclaringClass(\textcolor{keyword}{this}, method, declaring\_class\_ptr);}
+\DoxyCodeLine{2377   \}}
+\DoxyCodeLine{2378 }
+\DoxyCodeLine{2379   jvmtiError GetMethodModifiers(jmethodID method,}
+\DoxyCodeLine{2380             jint* modifiers\_ptr) \{}
+\DoxyCodeLine{2381     \textcolor{keywordflow}{return} functions-\/>GetMethodModifiers(\textcolor{keyword}{this}, method, modifiers\_ptr);}
+\DoxyCodeLine{2382   \}}
+\DoxyCodeLine{2383 }
+\DoxyCodeLine{2384   jvmtiError GetMaxLocals(jmethodID method,}
+\DoxyCodeLine{2385             jint* max\_ptr) \{}
+\DoxyCodeLine{2386     \textcolor{keywordflow}{return} functions-\/>GetMaxLocals(\textcolor{keyword}{this}, method, max\_ptr);}
+\DoxyCodeLine{2387   \}}
+\DoxyCodeLine{2388 }
+\DoxyCodeLine{2389   jvmtiError GetArgumentsSize(jmethodID method,}
+\DoxyCodeLine{2390             jint* size\_ptr) \{}
+\DoxyCodeLine{2391     \textcolor{keywordflow}{return} functions-\/>GetArgumentsSize(\textcolor{keyword}{this}, method, size\_ptr);}
+\DoxyCodeLine{2392   \}}
+\DoxyCodeLine{2393 }
+\DoxyCodeLine{2394   jvmtiError GetLineNumberTable(jmethodID method,}
+\DoxyCodeLine{2395             jint* entry\_count\_ptr,}
+\DoxyCodeLine{2396             \mbox{\hyperlink{struct__jvmti_line_number_entry}{jvmtiLineNumberEntry}}** table\_ptr) \{}
+\DoxyCodeLine{2397     \textcolor{keywordflow}{return} functions-\/>GetLineNumberTable(\textcolor{keyword}{this}, method, entry\_count\_ptr, table\_ptr);}
+\DoxyCodeLine{2398   \}}
+\DoxyCodeLine{2399 }
+\DoxyCodeLine{2400   jvmtiError GetMethodLocation(jmethodID method,}
+\DoxyCodeLine{2401             jlocation* start\_location\_ptr,}
+\DoxyCodeLine{2402             jlocation* end\_location\_ptr) \{}
+\DoxyCodeLine{2403     \textcolor{keywordflow}{return} functions-\/>GetMethodLocation(\textcolor{keyword}{this}, method, start\_location\_ptr, end\_location\_ptr);}
+\DoxyCodeLine{2404   \}}
+\DoxyCodeLine{2405 }
+\DoxyCodeLine{2406   jvmtiError GetLocalVariableTable(jmethodID method,}
+\DoxyCodeLine{2407             jint* entry\_count\_ptr,}
+\DoxyCodeLine{2408             \mbox{\hyperlink{struct__jvmti_local_variable_entry}{jvmtiLocalVariableEntry}}** table\_ptr) \{}
+\DoxyCodeLine{2409     \textcolor{keywordflow}{return} functions-\/>GetLocalVariableTable(\textcolor{keyword}{this}, method, entry\_count\_ptr, table\_ptr);}
+\DoxyCodeLine{2410   \}}
+\DoxyCodeLine{2411 }
+\DoxyCodeLine{2412   jvmtiError GetBytecodes(jmethodID method,}
+\DoxyCodeLine{2413             jint* bytecode\_count\_ptr,}
+\DoxyCodeLine{2414             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}** bytecodes\_ptr) \{}
+\DoxyCodeLine{2415     \textcolor{keywordflow}{return} functions-\/>GetBytecodes(\textcolor{keyword}{this}, method, bytecode\_count\_ptr, bytecodes\_ptr);}
+\DoxyCodeLine{2416   \}}
+\DoxyCodeLine{2417 }
+\DoxyCodeLine{2418   jvmtiError IsMethodNative(jmethodID method,}
+\DoxyCodeLine{2419             jboolean* is\_native\_ptr) \{}
+\DoxyCodeLine{2420     \textcolor{keywordflow}{return} functions-\/>IsMethodNative(\textcolor{keyword}{this}, method, is\_native\_ptr);}
+\DoxyCodeLine{2421   \}}
+\DoxyCodeLine{2422 }
+\DoxyCodeLine{2423   jvmtiError IsMethodSynthetic(jmethodID method,}
+\DoxyCodeLine{2424             jboolean* is\_synthetic\_ptr) \{}
+\DoxyCodeLine{2425     \textcolor{keywordflow}{return} functions-\/>IsMethodSynthetic(\textcolor{keyword}{this}, method, is\_synthetic\_ptr);}
+\DoxyCodeLine{2426   \}}
+\DoxyCodeLine{2427 }
+\DoxyCodeLine{2428   jvmtiError IsMethodObsolete(jmethodID method,}
+\DoxyCodeLine{2429             jboolean* is\_obsolete\_ptr) \{}
+\DoxyCodeLine{2430     \textcolor{keywordflow}{return} functions-\/>IsMethodObsolete(\textcolor{keyword}{this}, method, is\_obsolete\_ptr);}
+\DoxyCodeLine{2431   \}}
+\DoxyCodeLine{2432 }
+\DoxyCodeLine{2433   jvmtiError SetNativeMethodPrefix(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* prefix) \{}
+\DoxyCodeLine{2434     \textcolor{keywordflow}{return} functions-\/>SetNativeMethodPrefix(\textcolor{keyword}{this}, prefix);}
+\DoxyCodeLine{2435   \}}
+\DoxyCodeLine{2436 }
+\DoxyCodeLine{2437   jvmtiError SetNativeMethodPrefixes(jint prefix\_count,}
+\DoxyCodeLine{2438             \textcolor{keywordtype}{char}** prefixes) \{}
+\DoxyCodeLine{2439     \textcolor{keywordflow}{return} functions-\/>SetNativeMethodPrefixes(\textcolor{keyword}{this}, prefix\_count, prefixes);}
+\DoxyCodeLine{2440   \}}
+\DoxyCodeLine{2441 }
+\DoxyCodeLine{2442   jvmtiError CreateRawMonitor(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* name,}
+\DoxyCodeLine{2443             jrawMonitorID* monitor\_ptr) \{}
+\DoxyCodeLine{2444     \textcolor{keywordflow}{return} functions-\/>CreateRawMonitor(\textcolor{keyword}{this}, name, monitor\_ptr);}
+\DoxyCodeLine{2445   \}}
+\DoxyCodeLine{2446 }
+\DoxyCodeLine{2447   jvmtiError DestroyRawMonitor(jrawMonitorID monitor) \{}
+\DoxyCodeLine{2448     \textcolor{keywordflow}{return} functions-\/>DestroyRawMonitor(\textcolor{keyword}{this}, monitor);}
+\DoxyCodeLine{2449   \}}
+\DoxyCodeLine{2450 }
+\DoxyCodeLine{2451   jvmtiError RawMonitorEnter(jrawMonitorID monitor) \{}
+\DoxyCodeLine{2452     \textcolor{keywordflow}{return} functions-\/>RawMonitorEnter(\textcolor{keyword}{this}, monitor);}
+\DoxyCodeLine{2453   \}}
+\DoxyCodeLine{2454 }
+\DoxyCodeLine{2455   jvmtiError RawMonitorExit(jrawMonitorID monitor) \{}
+\DoxyCodeLine{2456     \textcolor{keywordflow}{return} functions-\/>RawMonitorExit(\textcolor{keyword}{this}, monitor);}
+\DoxyCodeLine{2457   \}}
+\DoxyCodeLine{2458 }
+\DoxyCodeLine{2459   jvmtiError RawMonitorWait(jrawMonitorID monitor,}
+\DoxyCodeLine{2460             jlong millis) \{}
+\DoxyCodeLine{2461     \textcolor{keywordflow}{return} functions-\/>RawMonitorWait(\textcolor{keyword}{this}, monitor, millis);}
+\DoxyCodeLine{2462   \}}
+\DoxyCodeLine{2463 }
+\DoxyCodeLine{2464   jvmtiError RawMonitorNotify(jrawMonitorID monitor) \{}
+\DoxyCodeLine{2465     \textcolor{keywordflow}{return} functions-\/>RawMonitorNotify(\textcolor{keyword}{this}, monitor);}
+\DoxyCodeLine{2466   \}}
+\DoxyCodeLine{2467 }
+\DoxyCodeLine{2468   jvmtiError RawMonitorNotifyAll(jrawMonitorID monitor) \{}
+\DoxyCodeLine{2469     \textcolor{keywordflow}{return} functions-\/>RawMonitorNotifyAll(\textcolor{keyword}{this}, monitor);}
+\DoxyCodeLine{2470   \}}
+\DoxyCodeLine{2471 }
+\DoxyCodeLine{2472   jvmtiError SetJNIFunctionTable(\textcolor{keyword}{const} \mbox{\hyperlink{struct_j_n_i_native_interface__}{jniNativeInterface}}* function\_table) \{}
+\DoxyCodeLine{2473     \textcolor{keywordflow}{return} functions-\/>SetJNIFunctionTable(\textcolor{keyword}{this}, function\_table);}
+\DoxyCodeLine{2474   \}}
+\DoxyCodeLine{2475 }
+\DoxyCodeLine{2476   jvmtiError GetJNIFunctionTable(\mbox{\hyperlink{struct_j_n_i_native_interface__}{jniNativeInterface}}** function\_table) \{}
+\DoxyCodeLine{2477     \textcolor{keywordflow}{return} functions-\/>GetJNIFunctionTable(\textcolor{keyword}{this}, function\_table);}
+\DoxyCodeLine{2478   \}}
+\DoxyCodeLine{2479 }
+\DoxyCodeLine{2480   jvmtiError SetEventCallbacks(\textcolor{keyword}{const} \mbox{\hyperlink{structjvmti_event_callbacks}{jvmtiEventCallbacks}}* callbacks,}
+\DoxyCodeLine{2481             jint size\_of\_callbacks) \{}
+\DoxyCodeLine{2482     \textcolor{keywordflow}{return} functions-\/>SetEventCallbacks(\textcolor{keyword}{this}, callbacks, size\_of\_callbacks);}
+\DoxyCodeLine{2483   \}}
+\DoxyCodeLine{2484 }
+\DoxyCodeLine{2485   jvmtiError SetEventNotificationMode(jvmtiEventMode mode,}
+\DoxyCodeLine{2486             jvmtiEvent event\_type,}
+\DoxyCodeLine{2487             jthread event\_thread,}
+\DoxyCodeLine{2488              ...) \{}
+\DoxyCodeLine{2489     \textcolor{keywordflow}{return} functions-\/>SetEventNotificationMode(\textcolor{keyword}{this}, mode, event\_type, event\_thread);}
+\DoxyCodeLine{2490   \}}
+\DoxyCodeLine{2491 }
+\DoxyCodeLine{2492   jvmtiError GenerateEvents(jvmtiEvent event\_type) \{}
+\DoxyCodeLine{2493     \textcolor{keywordflow}{return} functions-\/>GenerateEvents(\textcolor{keyword}{this}, event\_type);}
+\DoxyCodeLine{2494   \}}
+\DoxyCodeLine{2495 }
+\DoxyCodeLine{2496   jvmtiError GetExtensionFunctions(jint* extension\_count\_ptr,}
+\DoxyCodeLine{2497             \mbox{\hyperlink{struct__jvmti_extension_function_info}{jvmtiExtensionFunctionInfo}}** extensions) \{}
+\DoxyCodeLine{2498     \textcolor{keywordflow}{return} functions-\/>GetExtensionFunctions(\textcolor{keyword}{this}, extension\_count\_ptr, extensions);}
+\DoxyCodeLine{2499   \}}
+\DoxyCodeLine{2500 }
+\DoxyCodeLine{2501   jvmtiError GetExtensionEvents(jint* extension\_count\_ptr,}
+\DoxyCodeLine{2502             \mbox{\hyperlink{struct__jvmti_extension_event_info}{jvmtiExtensionEventInfo}}** extensions) \{}
+\DoxyCodeLine{2503     \textcolor{keywordflow}{return} functions-\/>GetExtensionEvents(\textcolor{keyword}{this}, extension\_count\_ptr, extensions);}
+\DoxyCodeLine{2504   \}}
+\DoxyCodeLine{2505 }
+\DoxyCodeLine{2506   jvmtiError SetExtensionEventCallback(jint extension\_event\_index,}
+\DoxyCodeLine{2507             jvmtiExtensionEvent callback) \{}
+\DoxyCodeLine{2508     \textcolor{keywordflow}{return} functions-\/>SetExtensionEventCallback(\textcolor{keyword}{this}, extension\_event\_index, callback);}
+\DoxyCodeLine{2509   \}}
+\DoxyCodeLine{2510 }
+\DoxyCodeLine{2511   jvmtiError GetPotentialCapabilities(\mbox{\hyperlink{structjvmti_capabilities}{jvmtiCapabilities}}* capabilities\_ptr) \{}
+\DoxyCodeLine{2512     \textcolor{keywordflow}{return} functions-\/>GetPotentialCapabilities(\textcolor{keyword}{this}, capabilities\_ptr);}
+\DoxyCodeLine{2513   \}}
+\DoxyCodeLine{2514 }
+\DoxyCodeLine{2515   jvmtiError AddCapabilities(\textcolor{keyword}{const} \mbox{\hyperlink{structjvmti_capabilities}{jvmtiCapabilities}}* capabilities\_ptr) \{}
+\DoxyCodeLine{2516     \textcolor{keywordflow}{return} functions-\/>AddCapabilities(\textcolor{keyword}{this}, capabilities\_ptr);}
+\DoxyCodeLine{2517   \}}
+\DoxyCodeLine{2518 }
+\DoxyCodeLine{2519   jvmtiError RelinquishCapabilities(\textcolor{keyword}{const} \mbox{\hyperlink{structjvmti_capabilities}{jvmtiCapabilities}}* capabilities\_ptr) \{}
+\DoxyCodeLine{2520     \textcolor{keywordflow}{return} functions-\/>RelinquishCapabilities(\textcolor{keyword}{this}, capabilities\_ptr);}
+\DoxyCodeLine{2521   \}}
+\DoxyCodeLine{2522 }
+\DoxyCodeLine{2523   jvmtiError GetCapabilities(\mbox{\hyperlink{structjvmti_capabilities}{jvmtiCapabilities}}* capabilities\_ptr) \{}
+\DoxyCodeLine{2524     \textcolor{keywordflow}{return} functions-\/>GetCapabilities(\textcolor{keyword}{this}, capabilities\_ptr);}
+\DoxyCodeLine{2525   \}}
+\DoxyCodeLine{2526 }
+\DoxyCodeLine{2527   jvmtiError GetCurrentThreadCpuTimerInfo(\mbox{\hyperlink{struct__jvmti_timer_info}{jvmtiTimerInfo}}* info\_ptr) \{}
+\DoxyCodeLine{2528     \textcolor{keywordflow}{return} functions-\/>GetCurrentThreadCpuTimerInfo(\textcolor{keyword}{this}, info\_ptr);}
+\DoxyCodeLine{2529   \}}
+\DoxyCodeLine{2530 }
+\DoxyCodeLine{2531   jvmtiError GetCurrentThreadCpuTime(jlong* nanos\_ptr) \{}
+\DoxyCodeLine{2532     \textcolor{keywordflow}{return} functions-\/>GetCurrentThreadCpuTime(\textcolor{keyword}{this}, nanos\_ptr);}
+\DoxyCodeLine{2533   \}}
+\DoxyCodeLine{2534 }
+\DoxyCodeLine{2535   jvmtiError GetThreadCpuTimerInfo(\mbox{\hyperlink{struct__jvmti_timer_info}{jvmtiTimerInfo}}* info\_ptr) \{}
+\DoxyCodeLine{2536     \textcolor{keywordflow}{return} functions-\/>GetThreadCpuTimerInfo(\textcolor{keyword}{this}, info\_ptr);}
+\DoxyCodeLine{2537   \}}
+\DoxyCodeLine{2538 }
+\DoxyCodeLine{2539   jvmtiError GetThreadCpuTime(jthread thread,}
+\DoxyCodeLine{2540             jlong* nanos\_ptr) \{}
+\DoxyCodeLine{2541     \textcolor{keywordflow}{return} functions-\/>GetThreadCpuTime(\textcolor{keyword}{this}, thread, nanos\_ptr);}
+\DoxyCodeLine{2542   \}}
+\DoxyCodeLine{2543 }
+\DoxyCodeLine{2544   jvmtiError GetTimerInfo(\mbox{\hyperlink{struct__jvmti_timer_info}{jvmtiTimerInfo}}* info\_ptr) \{}
+\DoxyCodeLine{2545     \textcolor{keywordflow}{return} functions-\/>GetTimerInfo(\textcolor{keyword}{this}, info\_ptr);}
+\DoxyCodeLine{2546   \}}
+\DoxyCodeLine{2547 }
+\DoxyCodeLine{2548   jvmtiError GetTime(jlong* nanos\_ptr) \{}
+\DoxyCodeLine{2549     \textcolor{keywordflow}{return} functions-\/>GetTime(\textcolor{keyword}{this}, nanos\_ptr);}
+\DoxyCodeLine{2550   \}}
+\DoxyCodeLine{2551 }
+\DoxyCodeLine{2552   jvmtiError GetAvailableProcessors(jint* processor\_count\_ptr) \{}
+\DoxyCodeLine{2553     \textcolor{keywordflow}{return} functions-\/>GetAvailableProcessors(\textcolor{keyword}{this}, processor\_count\_ptr);}
+\DoxyCodeLine{2554   \}}
+\DoxyCodeLine{2555 }
+\DoxyCodeLine{2556   jvmtiError AddToBootstrapClassLoaderSearch(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* segment) \{}
+\DoxyCodeLine{2557     \textcolor{keywordflow}{return} functions-\/>AddToBootstrapClassLoaderSearch(\textcolor{keyword}{this}, segment);}
+\DoxyCodeLine{2558   \}}
+\DoxyCodeLine{2559 }
+\DoxyCodeLine{2560   jvmtiError AddToSystemClassLoaderSearch(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* segment) \{}
+\DoxyCodeLine{2561     \textcolor{keywordflow}{return} functions-\/>AddToSystemClassLoaderSearch(\textcolor{keyword}{this}, segment);}
+\DoxyCodeLine{2562   \}}
+\DoxyCodeLine{2563 }
+\DoxyCodeLine{2564   jvmtiError GetSystemProperties(jint* count\_ptr,}
+\DoxyCodeLine{2565             \textcolor{keywordtype}{char}*** property\_ptr) \{}
+\DoxyCodeLine{2566     \textcolor{keywordflow}{return} functions-\/>GetSystemProperties(\textcolor{keyword}{this}, count\_ptr, property\_ptr);}
+\DoxyCodeLine{2567   \}}
+\DoxyCodeLine{2568 }
+\DoxyCodeLine{2569   jvmtiError GetSystemProperty(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* property,}
+\DoxyCodeLine{2570             \textcolor{keywordtype}{char}** value\_ptr) \{}
+\DoxyCodeLine{2571     \textcolor{keywordflow}{return} functions-\/>GetSystemProperty(\textcolor{keyword}{this}, property, value\_ptr);}
+\DoxyCodeLine{2572   \}}
+\DoxyCodeLine{2573 }
+\DoxyCodeLine{2574   jvmtiError SetSystemProperty(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* property,}
+\DoxyCodeLine{2575             \textcolor{keyword}{const} \textcolor{keywordtype}{char}* value\_ptr) \{}
+\DoxyCodeLine{2576     \textcolor{keywordflow}{return} functions-\/>SetSystemProperty(\textcolor{keyword}{this}, property, value\_ptr);}
+\DoxyCodeLine{2577   \}}
+\DoxyCodeLine{2578 }
+\DoxyCodeLine{2579   jvmtiError GetPhase(jvmtiPhase* phase\_ptr) \{}
+\DoxyCodeLine{2580     \textcolor{keywordflow}{return} functions-\/>GetPhase(\textcolor{keyword}{this}, phase\_ptr);}
+\DoxyCodeLine{2581   \}}
+\DoxyCodeLine{2582 }
+\DoxyCodeLine{2583   jvmtiError DisposeEnvironment() \{}
+\DoxyCodeLine{2584     \textcolor{keywordflow}{return} functions-\/>DisposeEnvironment(\textcolor{keyword}{this});}
+\DoxyCodeLine{2585   \}}
+\DoxyCodeLine{2586 }
+\DoxyCodeLine{2587   jvmtiError SetEnvironmentLocalStorage(\textcolor{keyword}{const} \textcolor{keywordtype}{void}* data) \{}
+\DoxyCodeLine{2588     \textcolor{keywordflow}{return} functions-\/>SetEnvironmentLocalStorage(\textcolor{keyword}{this}, data);}
+\DoxyCodeLine{2589   \}}
+\DoxyCodeLine{2590 }
+\DoxyCodeLine{2591   jvmtiError GetEnvironmentLocalStorage(\textcolor{keywordtype}{void}** data\_ptr) \{}
+\DoxyCodeLine{2592     \textcolor{keywordflow}{return} functions-\/>GetEnvironmentLocalStorage(\textcolor{keyword}{this}, data\_ptr);}
+\DoxyCodeLine{2593   \}}
+\DoxyCodeLine{2594 }
+\DoxyCodeLine{2595   jvmtiError GetVersionNumber(jint* version\_ptr) \{}
+\DoxyCodeLine{2596     \textcolor{keywordflow}{return} functions-\/>GetVersionNumber(\textcolor{keyword}{this}, version\_ptr);}
+\DoxyCodeLine{2597   \}}
+\DoxyCodeLine{2598 }
+\DoxyCodeLine{2599   jvmtiError GetErrorName(jvmtiError error,}
+\DoxyCodeLine{2600             \textcolor{keywordtype}{char}** name\_ptr) \{}
+\DoxyCodeLine{2601     \textcolor{keywordflow}{return} functions-\/>GetErrorName(\textcolor{keyword}{this}, error, name\_ptr);}
+\DoxyCodeLine{2602   \}}
+\DoxyCodeLine{2603 }
+\DoxyCodeLine{2604   jvmtiError SetVerboseFlag(jvmtiVerboseFlag flag,}
+\DoxyCodeLine{2605             jboolean value) \{}
+\DoxyCodeLine{2606     \textcolor{keywordflow}{return} functions-\/>SetVerboseFlag(\textcolor{keyword}{this}, flag, value);}
+\DoxyCodeLine{2607   \}}
+\DoxyCodeLine{2608 }
+\DoxyCodeLine{2609   jvmtiError GetJLocationFormat(jvmtiJlocationFormat* format\_ptr) \{}
+\DoxyCodeLine{2610     \textcolor{keywordflow}{return} functions-\/>GetJLocationFormat(\textcolor{keyword}{this}, format\_ptr);}
+\DoxyCodeLine{2611   \}}
+\DoxyCodeLine{2612 }
+\DoxyCodeLine{2613   jvmtiError SetHeapSamplingInterval(jint sampling\_interval) \{}
+\DoxyCodeLine{2614     \textcolor{keywordflow}{return} functions-\/>SetHeapSamplingInterval(\textcolor{keyword}{this}, sampling\_interval);}
+\DoxyCodeLine{2615   \}}
+\DoxyCodeLine{2616 }
+\DoxyCodeLine{2617 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_cplusplus */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{2618 \};}
+\DoxyCodeLine{2619 }
+\DoxyCodeLine{2620 }
+\DoxyCodeLine{2621 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{2622 \} \textcolor{comment}{/* extern "{}C"{} */}}
+\DoxyCodeLine{2623 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_cplusplus */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{2624 }
+\DoxyCodeLine{2625 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* !\_JAVA\_JVMTI\_H\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

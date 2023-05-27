@@ -1,0 +1,18 @@
+\hypertarget{_core_exports_8h_source}{}\doxysection{Core\+Exports.\+h}
+\label{_core_exports_8h_source}\index{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/Core/CoreExports.h@{C:/Users/Brett/source/repos/SoftwareArch\_FinalProject/Core/CoreExports.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{comment}{// The following ifdef block is the standard way of creating macros which make exporting}}
+\DoxyCodeLine{3 \textcolor{comment}{// from a DLL simpler. All files within this DLL are compiled with the CORE\_EXPORTS}}
+\DoxyCodeLine{4 \textcolor{comment}{// symbol defined on the command line. This symbol should not be defined on any project}}
+\DoxyCodeLine{5 \textcolor{comment}{// that uses this DLL. This way any other project whose source files include this file see}}
+\DoxyCodeLine{6 \textcolor{comment}{// CORE\_API functions as being imported from a DLL, whereas this DLL sees symbols}}
+\DoxyCodeLine{7 \textcolor{comment}{// defined with this macro as being exported.}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#ifdef CORE\_EXPORTS}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#define CORE\_API \_\_declspec(dllexport)}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#define CORE\_API \_\_declspec(dllimport)}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

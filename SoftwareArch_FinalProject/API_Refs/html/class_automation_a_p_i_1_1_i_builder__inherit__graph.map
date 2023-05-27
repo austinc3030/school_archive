@@ -1,0 +1,5 @@
+<map id="AutomationAPI::IBuilder" name="AutomationAPI::IBuilder">
+<area shape="rect" id="node1" title="IBuilder comment" alt="" coords="126,5,286,32"/>
+<area shape="rect" id="node2" href="$class_automation_a_p_i_1_1_block_builder.html" title="BlockBuilder comment" alt="" coords="5,80,196,107"/>
+<area shape="rect" id="node3" href="$class_automation_a_p_i_1_1_wire_builder.html" title="WireBuilder comment" alt="" coords="221,80,405,107"/>
+</map>
