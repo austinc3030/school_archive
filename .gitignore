@@ -194,3 +194,4 @@ scripts/Output
 
 # Built installer
 epb-setup.exe
+~$*.docx
