@@ -185,6 +185,9 @@ py_src/build
 py_src/dist
 py_out
 build
+backend_src/__pycache__
+build
+backend
 
 # Mac Stuff
 .DS_store
@@ -195,3 +198,5 @@ scripts/Output
 # Built installer
 epb-setup.exe
 ~$*.docx
+# Compiled Windows Installer
+netlock-setup.exe
