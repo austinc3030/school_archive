@@ -39,8 +39,6 @@ Debug/
 
 /.vs/VSWorkspaceState.json
 Debug/
-=======
->>>>>>> buffer_m11809075/main
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -176,3 +174,23 @@ dmypy.json
 
 # Ignore msoffice temporary files
 ~$*.docx
+# Node Stuff
+node_modules/
+out/
+
+# Python Stuff
+.venv
+py_src/__pycache__
+py_src/build
+py_src/dist
+py_out
+build
+
+# Mac Stuff
+.DS_store
+
+# Inno Stuff
+scripts/Output
+
+# Built installer
+epb-setup.exe
