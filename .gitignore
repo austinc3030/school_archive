@@ -200,3 +200,7 @@ epb-setup.exe
 ~$*.docx
 # Compiled Windows Installer
 netlock-setup.exe
+*.iso
+.DS_Store
+~$*.docx
+~WRL2126.tmp
